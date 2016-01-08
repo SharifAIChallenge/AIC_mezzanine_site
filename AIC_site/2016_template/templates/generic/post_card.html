@@ -1,0 +1,34 @@
+{% load i18n blog_tags mezzanine_tags other_ssc_tags %}
+
+{% with post|get_post_real_url as post_url %}
+<div class="card">
+    {% if post.featured_image %}
+    <div class="card-image">
+        <img src="{{ MEDIA_URL }}{% thumbnail post.featured_image 400 0%}">
+    </div>
+    {% else %}{% endif %}
+    <h3 class="cyan-text card-header">
+        <span>
+        <a class="cyan-text" href="{{ post_url }}">
+            <span class="px-40 horizontal spacer">&nbsp;</span> {{ post.title }} <span class="px-40 horizontal spacer">&nbsp;</span>
+        </a>
+        {% if post|post_is_new %}
+            <span class="red-text text-darken-2">
+                | <span class="px-40 horizontal spacer">&nbsp;</span> {% trans 'New' %} <span class="px-40 horizontal spacer">&nbsp;</span>
+            </span>
+        {% endif %}
+        </span>
+    </h3>
+    <div class="card-content">
+        {{ post.content | safe }}
+    </div>
+    <div class="card-action">
+        <h5 class="read-more">
+            <a class="cyan-text" href="{{ post_url }}">
+                {% trans "Read More" %}
+            </a>
+        </h5>
+    </div>
+</div>
+
+{% endwith %}

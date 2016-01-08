@@ -1,0 +1,13 @@
+*.pyc
+*.pyo
+*.db
+.DS_Store
+.coverage
+local_settings.py
+*/static*
+*/media*
+AIC_Site/static
+AIC_Site/media
+AIC_Site/forms
+AIC_Site/gunicorn.*
+*migrations/*

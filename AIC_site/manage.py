@@ -1,9 +1,11 @@
 #!/usr/bin/env python
-import os
 import sys
 
-if __name__ == "__main__":
+import os
 
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+if __name__ == "__main__":
     from mezzanine.utils.conf import real_project_name
 
     settings_module = "%s.settings" % real_project_name("AIC_site")

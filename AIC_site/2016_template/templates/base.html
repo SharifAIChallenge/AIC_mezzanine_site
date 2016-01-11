@@ -7,37 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="keywords" content="{% block meta_keywords %}{% endblock %}">
     <meta name="description" content="{% block meta_description %}{% endblock %}">
-    <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
+    <title>
+        {% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
     <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
 
     {% ifinstalled mezzanine.blog %}
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url 'blog_post_feed' 'rss' %}">
-    <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url 'blog_post_feed' 'atom' %}">
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url 'blog_post_feed' 'rss' %}">
+        <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url 'blog_post_feed' 'atom' %}">
     {% endifinstalled %}
 
     {% compress css %}
-    <!-- Import iransans font -->
-    <link type="text/css" rel="stylesheet" href="/static/base/font/iransans/style.css"/>
-    <!-- Import materialize.css -->
-    <link type="text/css" rel="stylesheet" href="/static/materialize/css/materialize.min.css"  media="screen,projection"/>
-    <!-- Import LightBox -->
-    <link type="text/css" rel="stylesheet" href="/static/lightbox/css/lightbox.css">
+        <!-- Import iransans font -->
+        <link type="text/css" rel="stylesheet" href="/static/base/font/iransans/style.css"/>
+        <!-- Import materialize.css -->
+        <link type="text/css" rel="stylesheet" href="/static/materialize/css/materialize.min.css"
+              media="screen,projection"/>
+        <!-- Import LightBox -->
+        <link type="text/css" rel="stylesheet" href="/static/lightbox/css/lightbox.css">
 
-    <!-- Custom Styles materialize.css -->
-    <link type="text/css" rel="stylesheet" href="/static/base/css/main.css"/>
-    <link type="text/css" rel="stylesheet" href="/static/base/css/materialize-config.css"/>
+        <!-- Custom Styles materialize.css -->
+        <link type="text/css" rel="stylesheet" href="/static/base/css/main.css"/>
+        <link type="text/css" rel="stylesheet" href="/static/base/css/materialize-config.css"/>
 
-    {% block extra_css %}{% endblock %}
+        {% block extra_css %}{% endblock %}
     {% endcompress %}
 
     {% compress js %}
-    <script type="text/javascript" src="/static/base/js/jquery-2.1.3.min.js"></script>
-    <script type="text/javascript" src="/static/materialize/js/materialize.min.js"></script>
-    <script type="text/javascript" src="/static/base/js/masonry.pkgd.min.js"></script>
-    <script type="text/javascript" src="/static/base/js/imagesloaded.pkgd.min.js"></script>
+        <script type="text/javascript" src="/static/base/js/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="/static/materialize/js/materialize.min.js"></script>
+        <script type="text/javascript" src="/static/base/js/masonry.pkgd.min.js"></script>
+        <script type="text/javascript" src="/static/base/js/imagesloaded.pkgd.min.js"></script>
 
 
-    {% block extra_js %}{% endblock %}
+        {% block extra_js %}{% endblock %}
     {% endcompress %}
 
     {% block extra_head %}{% endblock %}
@@ -48,90 +50,92 @@
 <div id="main-content" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 
     {% block header %}
-    <div class="main-header card">
-        <div class="card-image">
-            <img src = "/static/base/image/header-tmp.png" >
+        <div class="main-header card">
+            <div class="card-image">
+                <img src="/static/base/image/header-tmp.png">
+            </div>
         </div>
-    </div>
     {% endblock %}
 
     <div class="px-20 vertical spacer"></div>
 
     {% block main_wrapper %}
-    <div class="container">
-        <div class="row">
-            <div class="{% if LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
-                {% block right_panel %}
+        <div class="container">
+            <div class="row">
+                <div class="{% if LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
+                    {% block right_panel %}
 
-                {% get_language_info_list for LANGUAGES as languages %}
-                {% if settings.USE_MODELTRANSLATION and languages|length > 1 %}
-                <form action="{% url 'set_language' %}" method="post" id="language_selector_form">
-                    {% csrf_token %}
-                    <select name="language" class="form-control">
-                        {% for language in languages %}
-                        <option value="{{ language.code }}"
-                                {% if language.code == LANGUAGE_CODE %}selected="selected"{% endif %}>
-                            {{ language.name_local }}
-                        </option>
-                        {% endfor %}
-                    </select>
-                    <input type="submit" class="btn btn-default" value="{% trans "Change" %}" />
-                </form>
-                <div class="row">
-                    {% for language in languages %}
-                    <a href="#" class="red-text text-darken-2 right col s6 m6 l6" onclick="setlang('{{ language.code }}');">
-                        <div class="center-align card-panel">
-                            <i class="lang {{ language.code }} flag"></i>
-                            <span class="px-40 horizontal spacer">&nbsp;</span>
-                            {{ language.name_local }}
+                        {% include "includes/user_panel.html" %}
+
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        {% if settings.USE_MODELTRANSLATION and languages|length > 1 %}
+                            <form action="{% url 'set_language' %}" method="post" id="language_selector_form">
+                                {% csrf_token %}
+                                <select name="language" class="form-control">
+                                    {% for language in languages %}
+                                        <option value="{{ language.code }}"
+                                                {% if language.code == LANGUAGE_CODE %}selected="selected"{% endif %}>
+                                            {{ language.name_local }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <input type="submit" class="btn btn-default" value="{% trans "Change" %}"/>
+                            </form>
+                            <div class="row">
+                                {% for language in languages %}
+                                    <a href="#" class="red-text text-darken-2 right col s6 m6 l6"
+                                       onclick="setlang('{{ language.code }}');">
+                                        <div class="center-align card-panel">
+                                            <i class="lang {{ language.code }} flag"></i>
+                                            <span class="px-40 horizontal spacer">&nbsp;</span>
+                                            {{ language.name_local }}
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                            <script>
+                                function setlang(lang) {
+                                    $("#language_selector_form .form-control").val(lang);
+                                    $("#language_selector_form").submit();
+                                }
+                            </script>
+                        {% endif %}
+
+                        {% block menu_wrapper %}
+                            <ul class="collapsible card" data-collapsible="accordion">
+                                {% page_menu "pages/menus/main_menu.html" %}
+                            </ul>
+                        {% endblock %}
+                        {% if page %}
+                            {% block child_wrapper %}
+                                {% page_menu page "pages/menus/children.html" %}
+                            {% endblock %}
+                        {% endif %}
+                    {% endblock %}
+
+                    <div class="px-40 vertical spacer"></div>
+                    <h4 class="center-align cyan lighten-3 red-text text-darken-2 card-panel">{% trans "Sponsers" %}</h4>
+
+                    <a class="red-text text-darken-2" href="http://bayan.ir">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="/static/base/image/sponsers/bayan.png">
+                            </div>
+                            <div class="center-align card-content">
+                                گروه راهبردی بیان
+                            </div>
                         </div>
                     </a>
-                    {% endfor %}
                 </div>
-                <script>
-                function setlang(lang) {
-                    $("#language_selector_form .form-control").val(lang);
-                    $("#language_selector_form").submit();
-                }
-            </script>
-                {% endif %}
+                <div class="col s12 m8 l8">
+                    {% block main %}
 
-                {% block menu_wrapper %}
-                <ul class="collapsible card" data-collapsible="accordion">
-                    {% page_menu "pages/menus/main_menu.html" %}
-                </ul>
-                {% endblock %}
-                {% block child_wrapper %}
-                {% page_menu page "pages/menus/children.html" %}
-                {% endblock %}
-                {% endblock %}
-
-                <div class="px-40 vertical spacer"></div>
-                <h4 class="center-align cyan lighten-3 red-text text-darken-2 card-panel">{% trans "Sponsers" %}</h4>
-
-                <a class="red-text text-darken-2" href="http://bayan.ir">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src = "/static/base/image/sponsers/bayan.png" >
-                        </div>
-                        <div class="center-align card-content">
-                            گروه راهبردی بیان
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col s12 m8 l8">
-                {% block main %}
-
-                {% endblock     %}
+                    {% endblock %}
+                </div>
             </div>
         </div>
-    </div>
     {% endblock %}
 </div>
-
-
-
 
 
 <div id="main-wrapper">
@@ -146,15 +150,16 @@
             <div class="row">
                 <div class="center-align">
                     {% blocktrans with ssc_link_attrs='class="white-text text-lighten-4" href="http://ssc.ce.sharif.edu"' sharif_link_attrs='class="white-text text-lighten-4" href="http://sharif.edu"' %}
-                    &copy;
-                    <a {{ ssc_link_attrs }} >Scientific Students Chapter of Computer Engineering Department</a>,
-                    <a {{ sharif_link_attrs }} >Sharif University of Technology</a>
+                        &copy;
+                        <a {{ ssc_link_attrs }} >Scientific Students Chapter of Computer Engineering Department</a>,
+                        <a {{ sharif_link_attrs }} >Sharif University of Technology</a>
                     {% endblocktrans %}
                 </div>
                 <div class="px-40 vertical spacer"></div>
                 <div class="valign-wrapper center-align row">
                     <div class="valign col s6 m3 l3">
-                        <img class="responsive-img" style="width:80%;" src="/static/base/image/SSC-unofficial-logo-white.png">
+                        <img class="responsive-img" style="width:80%;"
+                             src="/static/base/image/SSC-unofficial-logo-white.png">
                         <!--<br>-->
 
                         <!--انجمن علمی دانشجوی-->
@@ -177,11 +182,11 @@
             <div class="container">
                 <div class="grey-text text-lighten-4 left">
                     {% blocktrans with powered_by='<a class="white-text text-lighten-4" href="http://mezzanine.jupo.org/">Mezzanine</a>, <a class="white-text text-lighten-4" href="http://materializecss.com/">Materialize</a>' designer='<a class="white-text text-lighten-4" href="http://mr.amira.li">Mr.AmirA.li</a>' %}
-                    Pwered By
-                    {{ powered_by }}
-                    -
-                    Designed By
-                    {{ designer }}
+                        Pwered By
+                        {{ powered_by }}
+                        -
+                        Designed By
+                        {{ designer }}
                     {% endblocktrans %}
                 </div>
             </div>
@@ -192,8 +197,8 @@
 </div>
 
 {% compress js %}
-<script type="text/javascript" src="/static/lightbox/js/lightbox.min.js"></script>
-<script type="text/javascript" src="/static/base/js/main.js"></script>
+    <script type="text/javascript" src="/static/lightbox/js/lightbox.min.js"></script>
+    <script type="text/javascript" src="/static/base/js/main.js"></script>
 {% endcompress %}
 {% block extra_body %}{% endblock %}
 

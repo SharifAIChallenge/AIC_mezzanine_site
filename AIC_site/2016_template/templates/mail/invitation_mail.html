@@ -1,0 +1,14 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% trans 'you have been invited to team:' %}
+    {{ team }}
+    {% trans 'click on below link to accept:' %}
+    <a href="{{ link }}">{{ link }}</a>
+</body>
+</html>

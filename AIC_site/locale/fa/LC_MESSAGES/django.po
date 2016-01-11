@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-09 00:04+0330\n"
+"POT-Creation-Date: 2016-01-11 03:59+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,22 +18,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: 2016_template/templates/base.html:78
+#: 2016_template/templates/base.html:82
 msgid "Change"
 msgstr "تغییر"
 
-#: 2016_template/templates/base.html:110
+#: 2016_template/templates/base.html:117
 msgid "Sponsers"
 msgstr "حامیان"
 
-#: 2016_template/templates/base.html:148
-#, python-format
+#: 2016_template/templates/base.html:152
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                    &copy;\n"
+#| "                    <a %(ssc_link_attrs)s >Scientific Students Chapter of "
+#| "Computer Engineering Department</a>,\n"
+#| "                    <a %(sharif_link_attrs)s >Sharif University of "
+#| "Technology</a>\n"
+#| "                    "
 msgid ""
 "\n"
-"                    &copy;\n"
-"                    <a %(ssc_link_attrs)s >Scientific Students Chapter of "
-"Computer Engineering Department</a>,\n"
-"                    <a %(sharif_link_attrs)s >Sharif University of "
+"                        &copy;\n"
+"                        <a %(ssc_link_attrs)s >Scientific Students Chapter "
+"of Computer Engineering Department</a>,\n"
+"                        <a %(sharif_link_attrs)s >Sharif University of "
 "Technology</a>\n"
 "                    "
 msgstr ""
@@ -44,15 +52,23 @@ msgstr ""
 "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
 "                    "
 
-#: 2016_template/templates/base.html:179
-#, python-format
+#: 2016_template/templates/base.html:184
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "                    Pwered By\n"
+#| "                    %(powered_by)s\n"
+#| "                    -\n"
+#| "                    Designed By\n"
+#| "                    %(designer)s\n"
+#| "                    "
 msgid ""
 "\n"
-"                    Pwered By\n"
-"                    %(powered_by)s\n"
-"                    -\n"
-"                    Designed By\n"
-"                    %(designer)s\n"
+"                        Pwered By\n"
+"                        %(powered_by)s\n"
+"                        -\n"
+"                        Designed By\n"
+"                        %(designer)s\n"
 "                    "
 msgstr ""
 "\n"
@@ -211,7 +227,16 @@ msgstr "به زودی"
 msgid "Recent News"
 msgstr "اکنون در مانیتور‌های لابی"
 
+#: 2016_template/templates/mail/invitation_mail.html:9
+msgid "you have been invited to team:"
+msgstr ""
+
+#: 2016_template/templates/mail/invitation_mail.html:11
+msgid "click on below link to accept:"
+msgstr ""
+
 #: 2016_template/templates/pages/gallery.html:48
+#, python-format
 msgid ""
 "\n"
 "                   Click <a href='%(url)s'>here</a> to see the original "
@@ -252,25 +277,174 @@ msgstr ""
 msgid "read more"
 msgstr "ادامه‌ی نوشتار"
 
-#: AIC_site/settings.py:44
+#: AIC_site/settings.py:43
 msgid "Top navigation bar"
 msgstr "نوار بالایی"
 
-#: AIC_site/settings.py:45
+#: AIC_site/settings.py:44
 msgid "Left-hand tree"
 msgstr "نوار کناری"
 
-#: AIC_site/settings.py:63
+#: AIC_site/settings.py:62
 msgid "Featured Image"
 msgstr "تصویر ویژه"
 
-#: AIC_site/settings.py:114
+#: AIC_site/settings.py:113
 msgid "Persian"
 msgstr "فارسی"
 
-#: AIC_site/settings.py:115
+#: AIC_site/settings.py:114
 msgid "English"
 msgstr "انگلیسی"
+
+#: base/apps.py:8
+msgid "base"
+msgstr "اصلی"
+
+#: base/forms.py:43
+msgid "user not found"
+msgstr "کاربر یافت نشد"
+
+#: base/forms.py:51
+msgid "AIChallenge team invitation"
+msgstr "دعوت عضویت تیم در AIChallenge"
+
+#: base/forms.py:52
+#, python-format
+msgid ""
+"you have been invited to team %(name)s, follow the link to accept:\n"
+"%(link)s"
+msgstr ""
+"شما به تیم %(name)s دعوت شده‌اید، جهت پذیرفتن روی لینک زیر کلیک کنید:\n"
+"%(link)s"
+
+#: base/models.py:12 base/models.py:26 base/models.py:32 game/models.py:8
+#: game/models.py:21
+msgid "timestamp"
+msgstr "زمان"
+
+#: base/models.py:13 game/models.py:16 game/models.py:22
+msgid "competition"
+msgstr "مسابقه"
+
+#: base/models.py:14
+msgid "name"
+msgstr "نام"
+
+#: base/models.py:15
+msgid "members"
+msgstr "اعضا"
+
+#: base/models.py:21 base/models.py:27 base/models.py:34 base/models.py:64
+#: game/models.py:38
+msgid "team"
+msgstr "تیم"
+
+#: base/models.py:22
+msgid "teams"
+msgstr "تیم‌ها"
+
+#: base/models.py:28 base/models.py:65
+msgid "member"
+msgstr "کاربر"
+
+#: base/models.py:33
+msgid "code"
+msgstr "کد"
+
+#: base/models.py:36
+msgid "played"
+msgstr "بازی کرده"
+
+#: base/models.py:37
+msgid "won"
+msgstr "برده"
+
+#: base/models.py:43
+msgid "submit"
+msgstr "کد سابمیت شده"
+
+#: base/models.py:44
+msgid "submits"
+msgstr "کدهای سابمیت شده"
+
+#: base/models.py:63
+msgid "accepted"
+msgstr "پذیرفته"
+
+#: base/models.py:66
+msgid "slug"
+msgstr "اسلاگ"
+
+#: base/models.py:74
+msgid "invitation"
+msgstr "دعوت"
+
+#: base/models.py:75
+msgid "invitations"
+msgstr "دعوت‌ها"
+
+#: base/views.py:52
+msgid "register new team"
+msgstr "ثبت تیم جدید"
+
+#: base/views.py:67
+msgid "choose your team"
+msgstr "تیم را انتخاب کنید"
+
+#: base/views.py:77
+#, python-format
+msgid "successfully invited user %(name)s"
+msgstr "کاربر %(name)s با موفقیت دعوت شد"
+
+#: base/views.py:81
+msgid "invite member to team"
+msgstr "دعوت کاربر به تیم"
+
+#: base/views.py:94
+msgid "submit new code"
+msgstr "ارسال کد"
+
+#: base/views.py:106
+#, python-format
+msgid "successfully joined team %s"
+msgstr "با موفقیت به تیم %s ملحق شدید"
+
+#: game/apps.py:8 game/models.py:33 game/models.py:39
+msgid "game"
+msgstr "بازی"
+
+#: game/models.py:9 game/models.py:23
+msgid "title"
+msgstr "عنوان"
+
+#: game/models.py:10
+msgid "site"
+msgstr "سایت"
+
+#: game/models.py:17
+msgid "competitions"
+msgstr "مسابقات"
+
+#: game/models.py:24
+msgid "players"
+msgstr "بازیکنان"
+
+#: game/models.py:25
+msgid "config"
+msgstr "تنظیمات"
+
+#: game/models.py:27
+msgid "pre games"
+msgstr "بازی‌های مقدماتی"
+
+#: game/models.py:34
+msgid "games"
+msgstr "بازی‌ها"
+
+#: game/models.py:41
+msgid "score"
+msgstr "امتیاز"
 
 #~ msgid "Media Library"
 #~ msgstr "مدیریت رسانه‌ها"
@@ -332,9 +506,6 @@ msgstr "انگلیسی"
 #~ msgid "Persons"
 #~ msgstr "اشخاص"
 
-#~ msgid "Title"
-#~ msgstr "عنوان"
-
 #~ msgid "Duty"
 #~ msgstr "وظیفه"
 
@@ -358,9 +529,6 @@ msgstr "انگلیسی"
 
 #~ msgid "Group Member"
 #~ msgstr "عضو گروه"
-
-#~ msgid "Group Members"
-#~ msgstr "اعضای گروه"
 
 #~ msgid "Gallery Container Page"
 #~ msgstr "صفحه‌ی شامل گالری‌ها"

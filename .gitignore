@@ -1,3 +1,6 @@
+/AIC_site/db.sqlite
+/AIC_site/dump.json
+/venv
 *.pyc
 *.pyo
 *.db
@@ -10,4 +13,4 @@ AIC_Site/static
 AIC_Site/media
 AIC_Site/forms
 AIC_Site/gunicorn.*
-*migrations/*
+.idea

@@ -1,4 +1,3 @@
-
 from __future__ import absolute_import, unicode_literals
 import os
 from django.utils.translation import ugettext_lazy as _
@@ -130,6 +129,8 @@ SITE_ID = 1
 USE_I18N = True
 USE_L10N = True
 
+ACCOUNTS_VERIFICATION_REQUIRED = True
+
 AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 
 # The numeric mode to set newly-uploaded files to. The value should be
@@ -226,7 +227,10 @@ INSTALLED_APPS = (
     "mezzanine.blog",
     "mezzanine.forms",
     "mezzanine.galleries",
+    "mezzanine.accounts",
     "AIC_configs",
+    "base",
+    "game",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -293,6 +297,50 @@ OPTIONAL_APPS = (
     PACKAGE_NAME_GRAPPELLI,
 )
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.NullHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+        'mail_admin': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'WARNING',
+        },
+        'AIC_site': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'sync': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'django.request': {
+            'handlers': ['console'],
+            # 'filters': ['require_debug_false'], # means when debug set to false do logging
+            'level': 'WARNING',
+        },
+        # For performance reasons, SQL logging is only enabled when settings.DEBUG is set to True
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'WARNING',
+        },
+    }
+}
+
 ##################
 # LOCAL SETTINGS #
 ##################
@@ -306,7 +354,7 @@ OPTIONAL_APPS = (
 
 f = os.path.join(PROJECT_APP_PATH, "local_settings.py")
 if os.path.exists(f):
-    exec(open(f, "rb").read())
+    exec (open(f, "rb").read())
 
 
 ####################

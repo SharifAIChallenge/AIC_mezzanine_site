@@ -52,7 +52,9 @@
     {% block header %}
         <div class="main-header card">
             <div class="card-image">
-                <img src="/static/base/image/header-tmp.png">
+                {% block header_image %}
+                <img src="/static/base/image/headers/page-1.png">
+                {% endblock %}
             </div>
         </div>
     {% endblock %}
@@ -65,7 +67,9 @@
                 <div class="{% if LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
                     {% block right_panel %}
 
+                        {% comment %}
                         {% include "includes/user_panel.html" %}
+                        {% endcomment %}
 
                         {% get_language_info_list for LANGUAGES as languages %}
                         {% if settings.USE_MODELTRANSLATION and languages|length > 1 %}

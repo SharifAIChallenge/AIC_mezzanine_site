@@ -9,8 +9,8 @@
 local_settings.py
 */static*
 */media*
-AIC_Site/static
-AIC_Site/media
-AIC_Site/forms
-AIC_Site/gunicorn.*
-.idea
+*migrations/*
+AIC_site/static
+AIC_site/media
+AIC_site/forms
+AIC_site/gunicorn.*

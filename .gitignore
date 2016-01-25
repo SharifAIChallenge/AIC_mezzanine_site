@@ -7,9 +7,7 @@
 .DS_Store
 .coverage
 local_settings.py
-*/static*
-*/media*
-*migrations/*
+migrations/
 AIC_site/static
 AIC_site/media
 AIC_site/forms

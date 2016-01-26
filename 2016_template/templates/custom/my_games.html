@@ -12,46 +12,34 @@
         <script type="text/javascript">
             $(function () {
                 var csrf_token = '{{ csrf_token }}';
+                var handle_request_url = '{% url 'handle_game_request' %}';
 
-                $('.accept').on('click', function () {
+                $('.game-request').on('click', function (e) {
                     var $self = $(this);
 
+                    var is_accept = $self.hasClass('accept');
+
                     $self.addClass('disabled');
+                    $self.sibling('.game-request').addClass('disabled');
                     $.ajax({
-                        url: accept_decline_url,
+                        url: handle_request_url,
                         method: 'post',
                         data: {
                             csrfmiddlewaretoken: csrf_token,
-                            id: $self.parents('tr').data('id'),
-                            type: 'accept'
+                            id: $self.data('id'),
+                            status: is_accept ? 'accept' : 'reject'
                         }
                     }).success(function (response) {
                         if (response['success']) {
-                            location.reload(true);
+                            Materialize.toast(response['message'], 1000, 'rounded', function() {
+                                location.reload(true);
+                            });
                         } else {
                             Materialize.toast(response['message'], 3000, 'rounded');
                         }
                     });
-                });
-                $('.decline').on('click', function () {
-                    var $self = $(this);
 
-                    $self.addClass('disabled');
-                    $.ajax({
-                        url: accept_decline_url,
-                        method: 'post',
-                        data: {
-                            csrfmiddlewaretoken: csrf_token,
-                            id: $self.parents('tr').data('id'),
-                            type: 'decline'
-                        }
-                    }).success(function (response) {
-                        if (response['success']) {
-                            location.reload(true);
-                        } else {
-                            Materialize.toast(response['message'], 3000, 'rounded');
-                        }
-                    });
+                    e.preventDefault();
                 });
             });
         </script>
@@ -99,8 +87,8 @@
                                         </td>
                                         <td>{{ request.made_time }}</td>
                                         <td>
-                                            <a href="#" class="btn">{% trans 'accept' %}</a>
-                                            <a href="#" class="btn">{% trans 'reject' %}</a>
+                                            <a href="#" class="btn game-request accept" data-id="{{ request.pk }}">{% trans 'accept' %}</a>
+                                            <a href="#" class="btn game-request reject" data-id="{{ request.pk }}">{% trans 'reject' %}</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -108,18 +96,22 @@
                                     <tr>
                                         <td>{{ request.requestee.name }}</td>
                                         <td>
-                                            {% if request.accepted %}
+                                            {% if request.accept_time %}
                                                 {{ request.accept_time }}
                                             {% else %}
                                                 {{ request.made_time }}
                                             {% endif %}
                                         </td>
                                         <td>
-                                            {% if request.accepted %}
-                                                {% if request.game %}
-                                                    <a href="{{ request.game.get_log_url }}">{% trans 'watch game' %}</a>
+                                            {% if request.accept_time %}
+                                                {% if request.accepted %}
+                                                    {% if request.game %}
+                                                        <a href="{{ request.game.get_log_url }}">{% trans 'watch game' %}</a>
+                                                    {% else %}
+                                                        {% trans 'waiting for run' %}
+                                                    {% endif %}
                                                 {% else %}
-                                                    {% trans 'waiting for run' %}
+                                                    {% trans 'rejected' %}
                                                 {% endif %}
                                             {% else %}
                                                 {% trans 'waiting for accept' %}

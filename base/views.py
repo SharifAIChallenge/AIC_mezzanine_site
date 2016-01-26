@@ -228,6 +228,42 @@ def my_games(request):
 @login_required
 @team_required
 @require_POST
+def handle_game_request(request):
+    if not request.team.final:
+        return HttpResponse({
+            'success': False,
+            'message': _('your team must be final')
+        }, content_type='application/json')
+
+    try:
+        game_request = GameRequest.objects.get(id=request.POST.get('id'), requestee=request.team)
+    except GameRequest.DoesNotExist:
+        return HttpResponse({
+            'success': False,
+            'message': _('No such game request found')
+        }, content_type='application/json')
+
+    if 'status' not in request.POST or request.POST.get('status') not in {'accept', 'reject'}:
+        return HttpResponse({
+            'success': False,
+            'message': _('Bad request')
+        }, content_type='application/json')
+    else:
+        accept = request.POST['status'] == 'accept'
+
+    game_request.accepted = accept
+    game_request.accept_time = timezone.now()
+    game_request.save()
+
+    return HttpResponse({
+        'success': True,
+        'message': _('Done')
+    }, content_type='application/json')
+
+
+@login_required
+@team_required
+@require_POST
 def remove(request):
     if registration_period_ended(request):
         return HttpResponse(json.dumps({"success": False, "message": str(_("registration period has ended"))}),

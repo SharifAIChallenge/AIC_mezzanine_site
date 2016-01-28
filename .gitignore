@@ -12,3 +12,4 @@ AIC_site/static
 AIC_site/media
 AIC_site/forms
 AIC_site/gunicorn.*
+.idea

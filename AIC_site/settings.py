@@ -1,7 +1,7 @@
 from __future__ import absolute_import, unicode_literals
+
 import os
 from django.utils.translation import ugettext_lazy as _
-
 
 ######################
 # MEZZANINE SETTINGS #
@@ -79,7 +79,6 @@ USE_MODELTRANSLATION = True
 
 FORMS_USE_HTML5 = True
 
-
 ########################
 # MAIN DJANGO SETTINGS #
 ########################
@@ -137,7 +136,6 @@ AUTHENTICATION_BACKENDS = ("mezzanine.core.auth_backends.MezzanineBackend",)
 # a mode you'd pass directly to os.chmod.
 FILE_UPLOAD_PERMISSIONS = 0o644
 
-
 #############
 # DATABASES #
 #############
@@ -158,7 +156,6 @@ DATABASES = {
         "PORT": "",
     }
 }
-
 
 #########
 # PATHS #
@@ -182,7 +179,9 @@ STATIC_URL = "/static/"
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(PROJECT_ROOT, STATIC_URL.strip("/"))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, '..', STATIC_URL.strip("/"))
+
+STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, STATIC_URL.strip("/")),)
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -203,7 +202,6 @@ ROOT_URLCONF = "%s.urls" % PROJECT_APP
 TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 
 LOCALE_PATHS = (os.path.join(PROJECT_ROOT, "locale"),)
-
 
 ################
 # APPLICATIONS #
@@ -355,7 +353,6 @@ LOGGING = {
 f = os.path.join(PROJECT_APP_PATH, "local_settings.py")
 if os.path.exists(f):
     exec (open(f, "rb").read())
-
 
 ####################
 # DYNAMIC SETTINGS #

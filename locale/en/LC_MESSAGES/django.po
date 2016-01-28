@@ -16,27 +16,18 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: 2016_template/templates/base.html:87 templates/index.html:64
 #: venv/lib/python2.7/site-packages/django/forms/widgets.py:346
 msgid "Change"
-msgstr "تغییر"
+msgstr ""
 
 #: 2016_template/templates/base.html:122
 msgid "Sponsers"
-msgstr "حامیان"
+msgstr ""
 
 #: 2016_template/templates/base.html:157
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "                    &copy;\n"
-#| "                    <a %(ssc_link_attrs)s >Scientific Students Chapter of "
-#| "Computer Engineering Department</a>,\n"
-#| "                    <a %(sharif_link_attrs)s >Sharif University of "
-#| "Technology</a>\n"
-#| "                    "
+#, python-format
 msgid ""
 "\n"
 "                        &copy;\n"
@@ -46,23 +37,9 @@ msgid ""
 "Technology</a>\n"
 "                    "
 msgstr ""
-"\n"
-"                    &copy; کلیه‌ی حقوق این سایت متعلق به \n"
-"                    <a %(ssc_link_attrs)s >انجمن علمی دانشجویی دانشکده‌ی "
-"کامپیوتر</a> \n"
-"                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
-"                    "
 
 #: 2016_template/templates/base.html:192
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "                    Pwered By\n"
-#| "                    %(powered_by)s\n"
-#| "                    -\n"
-#| "                    Designed By\n"
-#| "                    %(designer)s\n"
-#| "                    "
+#, python-format
 msgid ""
 "\n"
 "                        Pwered By\n"
@@ -72,78 +49,71 @@ msgid ""
 "                        %(designer)s\n"
 "                    "
 msgstr ""
-"\n"
-"                    قدرت گرفته از \n"
-"                    %(powered_by)s\n"
-"                    -\n"
-"                    طراحی شده به دست \n"
-"                    %(designer)s\n"
-"                    "
 
 #: 2016_template/templates/blog/blog_post_detail.html:42
 msgid "Related News"
-msgstr "اخبار مرتبط"
+msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:4
 #: 2016_template/templates/blog/blog_post_list.html:25
 msgid "news"
-msgstr "اخبار"
+msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:30
 msgid "Tag:"
-msgstr "برچسب:"
+msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:32
 msgid "Category:"
-msgstr "دسته:"
+msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:36
 msgid "Author:"
-msgstr "نویسنده"
+msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:51
 msgid "Viewing news tagged"
-msgstr "اخبار با برچسب"
+msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:53
 msgid "Viewing news for the category"
-msgstr "اخبار با موضوع"
+msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:55
 msgid "Viewing news from"
-msgstr "اخبار نوشته‌شده به دست"
+msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:58
 msgid "Viewing news by"
-msgstr "اخبار نوشته‌شده به دست"
+msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:64
 msgid "Recent news"
-msgstr "اخبار جدید"
+msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:7
 msgid "Recent Posts"
-msgstr "نوشتار‌های اخیر"
+msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:26
 msgid "Categories"
-msgstr "دسته‌ها"
+msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:41
 msgid "Tags"
-msgstr "برچسب‌ها"
+msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:60
 msgid "Authors"
-msgstr "نویسندگان"
+msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:77
 msgid "Archive"
-msgstr "بایگانی"
+msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:96
 msgid "Feeds"
-msgstr "خوراک‌ها"
+msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:99
 #: 2016_template/templates/blog/includes/filter_panel.html:103
@@ -162,73 +132,73 @@ msgstr ""
 #: 2016_template/templates/generic/includes/comment.html:10
 #, python-format
 msgid "written on%(sometime)s ago"
-msgstr "نوشته شده در %(sometime)s پیش"
+msgstr ""
 
 #: 2016_template/templates/generic/includes/comment.html:27
 msgid "There are currently no comments"
-msgstr "نظری تا کنون ثبت نشده‌است."
+msgstr ""
 
 #: 2016_template/templates/generic/includes/comment_form.html:16
 #: venv/lib/python2.7/site-packages/mezzanine/utils/views.py:91
 msgid "Name"
-msgstr "نام"
+msgstr ""
 
 #: 2016_template/templates/generic/includes/comment_form.html:20
 #: 2016_template/templates/index.html:41
 msgid "Email"
-msgstr "رایانامه"
+msgstr ""
 
 #: 2016_template/templates/generic/includes/comment_form.html:29
 #: venv/lib/python2.7/site-packages/django_comments/forms.py:108
 msgid "Comment"
-msgstr "نظر"
+msgstr ""
 
 #: 2016_template/templates/generic/includes/comments.html:4
 msgid "Comments"
-msgstr "نظرات"
+msgstr ""
 
 #: 2016_template/templates/generic/includes/comments.html:19
 msgid "New Comment"
-msgstr "نظر جدید"
+msgstr ""
 
 #: 2016_template/templates/generic/post_card.html:17
 msgid "New"
-msgstr "جدید"
+msgstr ""
 
 #: 2016_template/templates/generic/post_card.html:28
 msgid "Read More"
-msgstr "ادامه‌ی نوشتار"
+msgstr ""
 
 #: 2016_template/templates/includes/form_fields.html:46
 msgid "Choose File"
-msgstr "انتخاب فایل"
+msgstr ""
 
 #: 2016_template/templates/includes/pagination.html:7
 msgid "Page"
-msgstr "صفحه"
+msgstr ""
 
 #: 2016_template/templates/includes/pagination.html:7
 msgid "of"
-msgstr "از"
+msgstr ""
 
 #: 2016_template/templates/index.html:3 2016_template/templates/index.html:4
 #: 2016_template/templates/index.html:13
 #: 2016_template/templates/pages/menus/main_menu.html:13
 #: 2016_template/templates/search_results.html:13
 msgid "Home"
-msgstr "صفحه‌ی اصلی"
+msgstr ""
 
 #: 2016_template/templates/index.html:42
 msgid "password"
-msgstr "گذرواژه"
+msgstr ""
 
 #: 2016_template/templates/index.html:46
 msgid "Coming Soon"
-msgstr "به زودی"
+msgstr ""
 
 #: 2016_template/templates/index.html:62
 msgid "Recent News"
-msgstr "اکنون در مانیتور‌های لابی"
+msgstr ""
 
 #: 2016_template/templates/mail/invitation_mail.html:9
 msgid "you have been invited to team:"
@@ -246,15 +216,12 @@ msgid ""
 "image.\n"
 "                   "
 msgstr ""
-"\n"
-"برای مشاهده‌ی عکس با کیفیت اصلی <a href='%(url)s'>اینجا</a>  کلیک کنید.\n"
-"                       "
 
 #: 2016_template/templates/search_results.html:5
 #: 2016_template/templates/search_results.html:6
 #: 2016_template/templates/search_results.html:15
 msgid "Search Results"
-msgstr "نتیجه‌ی جستجو"
+msgstr ""
 
 #: 2016_template/templates/search_results.html:22
 #, python-format
@@ -262,8 +229,6 @@ msgid ""
 "\n"
 "No results were found in %(search_type)s matching your query: %(query)s\n"
 msgstr ""
-"\n"
-"No results were found in %(search_type)s matching your query: %(query)s\n"
 
 #: 2016_template/templates/search_results.html:26
 #, python-format
@@ -272,46 +237,43 @@ msgid ""
 "Showing %(start)s to %(end)s of %(total)s results in %(search_type)s "
 "matching your query: %(query)s\n"
 msgstr ""
-"\n"
-"Showing %(start)s to %(end)s of %(total)s results in %(search_type)s "
-"matching your query: %(query)s\n"
 
 #: 2016_template/templates/search_results.html:37
 msgid "read more"
-msgstr "ادامه‌ی نوشتار"
+msgstr ""
 
 #: AIC_site/settings.py:43
 msgid "Top navigation bar"
-msgstr "نوار بالایی"
+msgstr ""
 
 #: AIC_site/settings.py:44
 msgid "Left-hand tree"
-msgstr "نوار کناری"
+msgstr ""
 
 #: AIC_site/settings.py:62
 msgid "Featured Image"
-msgstr "تصویر ویژه"
+msgstr ""
 
 #: AIC_site/settings.py:112
 msgid "Persian"
-msgstr "فارسی"
+msgstr ""
 
 #: AIC_site/settings.py:113
 #: venv/lib/python2.7/site-packages/mezzanine/project_template/project_name/settings.py:113
 msgid "English"
-msgstr "انگلیسی"
+msgstr ""
 
 #: base/apps.py:8
 msgid "base"
-msgstr "اصلی"
+msgstr ""
 
 #: base/forms.py:43
 msgid "user not found"
-msgstr "کاربر یافت نشد"
+msgstr ""
 
 #: base/forms.py:51
 msgid "AIChallenge team invitation"
-msgstr "دعوت عضویت تیم در AIChallenge"
+msgstr ""
 
 #: base/forms.py:52
 #, python-format
@@ -319,165 +281,161 @@ msgid ""
 "you have been invited to team %(name)s, follow the link to accept:\n"
 "%(link)s"
 msgstr ""
-"شما به تیم %(name)s دعوت شده‌اید، جهت پذیرفتن روی لینک زیر کلیک کنید:\n"
-"%(link)s"
 
 #: base/models.py:12 base/models.py:26 base/models.py:32 game/models.py:8
 #: game/models.py:21
 msgid "timestamp"
-msgstr "زمان"
+msgstr ""
 
 #: base/models.py:13 game/models.py:16 game/models.py:22
 msgid "competition"
-msgstr "مسابقه"
+msgstr ""
 
 #: base/models.py:14
 msgid "name"
-msgstr "نام"
+msgstr ""
 
 #: base/models.py:15
 msgid "members"
-msgstr "اعضا"
+msgstr ""
 
 #: base/models.py:21 base/models.py:27 base/models.py:34 base/models.py:64
 msgid "team"
-msgstr "تیم"
+msgstr ""
 
 #: base/models.py:22
 msgid "teams"
-msgstr "تیم‌ها"
+msgstr ""
 
 #: base/models.py:28 base/models.py:65
 msgid "member"
-msgstr "کاربر"
+msgstr ""
 
 #: base/models.py:33
 msgid "code"
-msgstr "کد"
+msgstr ""
 
 #: base/models.py:36
 msgid "played"
-msgstr "بازی کرده"
+msgstr ""
 
 #: base/models.py:37
 msgid "won"
-msgstr "برده"
+msgstr ""
 
 #: base/models.py:43
 msgid "submit"
-msgstr "کد سابمیت شده"
+msgstr ""
 
 #: base/models.py:44
 msgid "submits"
-msgstr "کدهای سابمیت شده"
+msgstr ""
 
 #: base/models.py:63
 msgid "accepted"
-msgstr "پذیرفته"
+msgstr ""
 
 #: base/models.py:66
 msgid "slug"
-msgstr "اسلاگ"
+msgstr ""
 
 #: base/models.py:74
 msgid "invitation"
-msgstr "دعوت"
+msgstr ""
 
 #: base/models.py:75
 msgid "invitations"
-msgstr "دعوت‌ها"
+msgstr ""
 
 #: base/views.py:52
 msgid "register new team"
-msgstr "ثبت تیم جدید"
+msgstr ""
 
 #: base/views.py:67
 msgid "choose your team"
-msgstr "تیم را انتخاب کنید"
+msgstr ""
 
 #: base/views.py:77
 #, python-format
 msgid "successfully invited user %(name)s"
-msgstr "کاربر %(name)s با موفقیت دعوت شد"
+msgstr ""
 
 #: base/views.py:81
 msgid "invite member to team"
-msgstr "دعوت کاربر به تیم"
+msgstr ""
 
 #: base/views.py:96
 msgid "submit new code"
-msgstr "ارسال کد"
+msgstr ""
 
 #: base/views.py:108
 #, python-format
 msgid "successfully joined team %s"
-msgstr "با موفقیت به تیم %s ملحق شدید"
+msgstr ""
 
 #: game/apps.py:8 game/models.py:33 game/models.py:39
 msgid "game"
-msgstr "بازی"
+msgstr ""
 
 #: game/models.py:9 game/models.py:23
 msgid "title"
-msgstr "عنوان"
+msgstr ""
 
 #: game/models.py:10
 msgid "site"
-msgstr "سایت"
+msgstr ""
 
 #: game/models.py:17
 msgid "competitions"
-msgstr "مسابقات"
+msgstr ""
 
 #: game/models.py:24
 msgid "players"
-msgstr "بازیکنان"
+msgstr ""
 
 #: game/models.py:25
 msgid "config"
-msgstr "تنظیمات"
+msgstr ""
 
 #: game/models.py:27
 msgid "pre games"
-msgstr "بازی‌های مقدماتی"
+msgstr ""
 
 #: game/models.py:34
 msgid "games"
-msgstr "بازی‌ها"
+msgstr ""
 
 #: game/models.py:38
-#, fuzzy
-#| msgid "submit"
 msgid "team submit"
-msgstr "کد سابمیت شده"
+msgstr ""
 
 #: game/models.py:41
 msgid "score"
-msgstr "امتیاز"
+msgstr ""
 
 #: templates/index.html:70 templates/index.html.py:94
 msgid "خانه"
-msgstr ""
+msgstr "Home"
 
 #: templates/index.html:71 templates/index.html.py:95 templates/index.html:140
 msgid "معرفی مسابقه"
-msgstr ""
+msgstr "Introduction"
 
 #: templates/index.html:72 templates/index.html.py:96
 msgid "برنامه مسابقات"
-msgstr ""
+msgstr "Schedule"
 
 #: templates/index.html:73 templates/index.html.py:97 templates/index.html:186
 msgid "تاریخچه"
-msgstr "پیشینه"
+msgstr "History"
 
 #: templates/index.html:74 templates/index.html.py:98 templates/index.html:210
 msgid "جوایز"
-msgstr ""
+msgstr "Prizes"
 
 #: templates/index.html:75 templates/index.html.py:99
 msgid "معرفی"
-msgstr ""
+msgstr "About"
 
 #: templates/index.html:77 templates/index.html.py:101
 msgid "حامیان"
@@ -485,19 +443,19 @@ msgstr ""
 
 #: templates/index.html:79 templates/index.html.py:103
 msgid "تماس با ما"
-msgstr ""
+msgstr "Contact Us"
 
 #: templates/index.html:80 templates/index.html.py:104
 msgid "وبلاگ"
-msgstr ""
+msgstr "Weblog"
 
 #: templates/index.html:113
 msgid "ورود"
-msgstr ""
+msgstr "login"
 
 #: templates/index.html:114
 msgid "ثبت‌نام"
-msgstr ""
+msgstr "sign up"
 
 #: templates/index.html:141
 msgid "معرفی و اطلاعاتی از مسابقه و سرگذشت"
@@ -606,10 +564,8 @@ msgid "Static Files"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/contrib/syndication/apps.py:7
-#, fuzzy
-#| msgid "invitation"
 msgid "Syndication"
-msgstr "دعوت"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/contrib/webdesign/apps.py:7
 msgid "Web Design"
@@ -681,6 +637,7 @@ msgid_plural ""
 "Ensure this value has at least %(limit_value)d characters (it has "
 "%(show_value)d)."
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/core/validators.py:325
 #, python-format
@@ -691,6 +648,7 @@ msgid_plural ""
 "Ensure this value has at most %(limit_value)d characters (it has "
 "%(show_value)d)."
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/db/models/base.py:1130
 #: venv/lib/python2.7/site-packages/django/forms/models.py:718
@@ -919,10 +877,8 @@ msgid "File"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/files.py:388
-#, fuzzy
-#| msgid "image"
 msgid "Image"
-msgstr "تصویر"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/related.py:1812
 #, python-format
@@ -959,12 +915,14 @@ msgstr ""
 msgid "Ensure that there are no more than %(max)s digit in total."
 msgid_plural "Ensure that there are no more than %(max)s digits in total."
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/forms/fields.py:323
 #, python-format
 msgid "Ensure that there are no more than %(max)s decimal place."
 msgid_plural "Ensure that there are no more than %(max)s decimal places."
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/forms/fields.py:327
 #, python-format
@@ -973,6 +931,7 @@ msgid ""
 msgid_plural ""
 "Ensure that there are no more than %(max)s digits before the decimal point."
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/forms/fields.py:438
 #: venv/lib/python2.7/site-packages/django/forms/fields.py:1193
@@ -1010,6 +969,7 @@ msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
 msgid_plural ""
 "Ensure this filename has at most %(max)d characters (it has %(length)d)."
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/forms/fields.py:598
 msgid "Please either submit a file or check the clear checkbox, not both."
@@ -1067,12 +1027,14 @@ msgstr ""
 msgid "Please submit %d or fewer forms."
 msgid_plural "Please submit %d or fewer forms."
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/forms/formsets.py:340
 #, python-format
 msgid "Please submit %d or more forms."
 msgid_plural "Please submit %d or more forms."
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/forms/formsets.py:368
 #: venv/lib/python2.7/site-packages/django/forms/formsets.py:370
@@ -1154,6 +1116,7 @@ msgstr ""
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/template/defaultfilters.py:908
 #, python-format
@@ -1233,10 +1196,8 @@ msgid "Sunday"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:10
-#, fuzzy
-#| msgid "won"
 msgid "Mon"
-msgstr "برده"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:10
 msgid "Tue"
@@ -1295,26 +1256,20 @@ msgid "August"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:19
-#, fuzzy
-#| msgid "member"
 msgid "September"
-msgstr "کاربر"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:19
 msgid "October"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:19
-#, fuzzy
-#| msgid "member"
 msgid "November"
-msgstr "کاربر"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:20
-#, fuzzy
-#| msgid "member"
 msgid "December"
-msgstr "کاربر"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:23
 msgid "jan"
@@ -1465,11 +1420,9 @@ msgid "August"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:53
-#, fuzzy
-#| msgid "member"
 msgctxt "alt. month"
 msgid "September"
-msgstr "کاربر"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:54
 msgctxt "alt. month"
@@ -1477,18 +1430,14 @@ msgid "October"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:55
-#, fuzzy
-#| msgid "member"
 msgctxt "alt. month"
 msgid "November"
-msgstr "کاربر"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:56
-#, fuzzy
-#| msgid "member"
 msgctxt "alt. month"
 msgid "December"
-msgstr "کاربر"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/ipv6.py:10
 msgid "This is not a valid IPv6 address."
@@ -1515,36 +1464,42 @@ msgstr ""
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/utils/timesince.py:11
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/utils/timesince.py:12
 #, python-format
 msgid "%d week"
 msgid_plural "%d weeks"
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/utils/timesince.py:13
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/utils/timesince.py:14
 #, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/utils/timesince.py:15
 #, python-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django/utils/timesince.py:47
 msgid "0 minutes"
@@ -1693,6 +1648,7 @@ msgstr ""
 msgid "flagged"
 msgid_plural "flagged"
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django_comments/admin.py:62
 msgid "Flag selected comments"
@@ -1702,6 +1658,7 @@ msgstr ""
 msgid "approved"
 msgid_plural "approved"
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django_comments/admin.py:68
 msgid "Approve selected comments"
@@ -1711,6 +1668,7 @@ msgstr ""
 msgid "removed"
 msgid_plural "removed"
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django_comments/admin.py:74
 msgid "Remove selected comments"
@@ -1721,6 +1679,7 @@ msgstr ""
 msgid "1 comment was successfully %(action)s."
 msgid_plural "%(count)s comments were successfully %(action)s."
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django_comments/feeds.py:17
 #, python-format
@@ -1733,17 +1692,16 @@ msgid "Latest comments on %(site_name)s"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/forms.py:105
-#, fuzzy
-#| msgid "Name"
 msgctxt "Person name"
 msgid "Name"
-msgstr "نام"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/forms.py:187
 #, python-format
 msgid "Watch your mouth! The word %s is not allowed here."
 msgid_plural "Watch your mouth! The words %s are not allowed here."
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django_comments/forms.py:197
 msgid ""
@@ -1778,10 +1736,8 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django_comments/models.py:67
 #: venv/lib/python2.7/site-packages/django_comments/models.py:87
 #: venv/lib/python2.7/site-packages/django_comments/models.py:190
-#, fuzzy
-#| msgid "Comment"
 msgid "comment"
-msgstr "نظر"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/models.py:70
 msgid "date/time submitted"
@@ -1807,10 +1763,8 @@ msgid ""
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/models.py:88
-#, fuzzy
-#| msgid "Comments"
 msgid "comments"
-msgstr "نظرات"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/models.py:133
 msgid ""
@@ -1843,16 +1797,12 @@ msgid "date"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/models.py:202
-#, fuzzy
-#| msgid "Comment"
 msgid "comment flag"
-msgstr "نظر"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/models.py:203
-#, fuzzy
-#| msgid "Comments"
 msgid "comment flags"
-msgstr "نظرات"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/templates/comments/approve.html:4
 msgid "Approve a comment"
@@ -1911,10 +1861,8 @@ msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/templates/comments/form.html:18
 #: venv/lib/python2.7/site-packages/django_comments/templates/comments/preview.html:34
-#, fuzzy
-#| msgid "Posts"
 msgid "Post"
-msgstr "نوشتار‌ها"
+msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/templates/comments/form.html:19
 #: venv/lib/python2.7/site-packages/django_comments/templates/comments/preview.html:35
@@ -1938,6 +1886,7 @@ msgstr ""
 msgid "Please correct the error below"
 msgid_plural "Please correct the errors below"
 msgstr[0] ""
+msgstr[1] ""
 
 #: venv/lib/python2.7/site-packages/django_comments/templates/comments/preview.html:17
 msgid "Post your comment"
@@ -1950,246 +1899,3 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/modeltranslation/widgets.py:26
 msgid "None"
 msgstr ""
-
-#~ msgid "Media Library"
-#~ msgstr "مدیریت رسانه‌ها"
-
-#~ msgid "SSC_Configs"
-#~ msgstr "ویژه اس‌اس‌سی"
-
-#~ msgid "Read More Text"
-#~ msgstr "متن ادامه‌ی نوشتار"
-
-#~ msgid "Parallax Image"
-#~ msgstr "تصویر پارالاکس"
-
-#~ msgid "Label of left monitor page"
-#~ msgstr "برچسب مانیتور سمت چپ"
-
-#~ msgid "Label of right monitor page"
-#~ msgstr "برچسب مانیتور سمت راست"
-
-#~ msgid "Sequence of setting names available within templates."
-#~ msgstr "مجموعه تنظیمات فایل دسترسی در قالب‌ها."
-
-#~ msgid "Label"
-#~ msgstr "برچسب"
-
-#~ msgid "Screen Page"
-#~ msgstr "صفحه‌ی مانیتور"
-
-#~ msgid "Screen Pages"
-#~ msgstr "صفحات مانیتور"
-
-#~ msgid "screen"
-#~ msgstr "مانیتور"
-
-#~ msgid "Published from"
-#~ msgstr "منتشر شده از"
-
-#~ msgid "With Published chosen, won't be shown until this time"
-#~ msgstr "با انتخاب منتشر شده, تا این لحظه نمایش داده نمی‌شود."
-
-#~ msgid "Expires on"
-#~ msgstr "انقضا در"
-
-#~ msgid "With Published chosen, won't be shown after this time"
-#~ msgstr "با انتخاب منتشر شده, بعد از این لحظه نمایش داده نمی شود."
-
-#~ msgid "is default"
-#~ msgstr "تصویر پیشفرض"
-
-#~ msgid "Parallax of index page"
-#~ msgstr "تصویر پارالاکس صفحه‌ی اصلی"
-
-#~ msgid "Person"
-#~ msgstr "شخص"
-
-#~ msgid "Persons"
-#~ msgstr "اشخاص"
-
-#~ msgid "Duty"
-#~ msgstr "وظیفه"
-
-#~ msgid "Groups' Info Page"
-#~ msgstr "صفحه‌ی اطلاعات گروه‌ها"
-
-#~ msgid "Groups' Info Pages"
-#~ msgstr "صفحات اطلاعات گروه‌ها"
-
-#~ msgid "Containing Page"
-#~ msgstr "صفحه‌ی شامل"
-
-#~ msgid "Group Info"
-#~ msgstr "اطلاعات گروه"
-
-#~ msgid "Groups Info"
-#~ msgstr "اطلاعات گروه‌ها"
-
-#~ msgid "Containing Group"
-#~ msgstr "گروه شامل"
-
-#~ msgid "Group Member"
-#~ msgstr "عضو گروه"
-
-#~ msgid "Gallery Container Page"
-#~ msgstr "صفحه‌ی شامل گالری‌ها"
-
-#~ msgid "Gallery Container Pages"
-#~ msgstr "صفحات شامل گالری‌ها"
-
-#~ msgid "Related announcements"
-#~ msgstr "اطلاعیه‌های مرتبط"
-
-#~ msgid "Announcements"
-#~ msgstr "اطلاعیه‌ها"
-
-#~ msgid "Recent announcements"
-#~ msgstr "اطلاعیه‌های اخیر"
-
-#~ msgid "Written On %(sometime)s"
-#~ msgstr "نوشته شده در %(sometime)s"
-
-#~ msgid "Fill Out The Form"
-#~ msgstr "پر کردن فرم"
-
-#~ msgid "Go To the Gallery"
-#~ msgstr "مشاهده‌ی گالری"
-
-#~ msgid "Rials"
-#~ msgstr "﷼"
-
-#~ msgid "At Full Capacity"
-#~ msgstr "ظرفیت تکمیل است"
-
-#~ msgid "Choose The Right One"
-#~ msgstr "گزینه‌ی مناسب را انتخاب کنید"
-
-#~ msgid "Send and Pay"
-#~ msgstr "ارسال و پرداخت"
-
-#~ msgid "ERROR: Your form must contain a hidden field labeled UUID."
-#~ msgstr "خطا: فرم شما باید حاوی یک فیلد پنها با عنوان UUID باشد."
-
-#~ msgid "ERROR: Can not connect to payment gateway, please try again."
-#~ msgstr ""
-#~ "خطا: در حال حاضر قادر به اتصال به درگاه پرداخت نیستیم، لطفا مجددا تلاش "
-#~ "نمایید."
-
-#~ msgid "Unfortunately we have reached our maximum capacity."
-#~ msgstr "متاسفانه ظرفیت تکمیل شده‌است."
-
-#~ msgid ""
-#~ "CAUTION: We are going to reach our maximum capacity, so we may put you in "
-#~ "reservation list."
-#~ msgstr "توجه: ظرفیت در حال تکمیل است. ممکن است در لیست رزرو قرار بگیرید."
-
-#~ msgid "You are going to be redirected to Redirecting to Payment Page ..."
-#~ msgstr "شما در حال ارسال به درگاه پرداخت هستید."
-
-#~ msgid "Click here if you were not redirected in 5 seconds"
-#~ msgstr "اگر در ۵ ثانیه به درگاه منتقل نشدید، اینجا کلیک کنید."
-
-#~ msgid "OK"
-#~ msgstr "متوجه شدم"
-
-#~ msgid "View Full Screen Slider"
-#~ msgstr "مشاهده‌ی تمام صفحه‌ی تصاویر"
-
-#~ msgid "Show All Items"
-#~ msgstr "نمایش تمام موارد"
-
-#~ msgid "Gateway Type"
-#~ msgstr "نوع درگاه"
-
-#~ msgid "Gateway ID"
-#~ msgstr "آی‌دی درگاه"
-
-#~ msgid "Gateway API"
-#~ msgstr "ای‌پی‌آی درگاه"
-
-#~ msgid "Price Group"
-#~ msgstr "گروه قیمت"
-
-#~ msgid "Price Groups"
-#~ msgstr "گروه‌های قیمت"
-
-#~ msgid "Payment Form"
-#~ msgstr "فرم پرداخت"
-
-#~ msgid "Payment Gateway"
-#~ msgstr "درگاه پرداخت"
-
-#~ msgid "Payment Description"
-#~ msgstr "توضیحات پرداخت"
-
-#~ msgid "At Full Capacity Message"
-#~ msgstr "پیام ظرفیت پر شده"
-
-#~ msgid "Payment Forms"
-#~ msgstr "فرم‌های پرداخت"
-
-#~ msgid "Can View Payment Transactions"
-#~ msgstr "می‌تواند تراکنش‌های پرداختی را مشاهده نماید"
-
-#~ msgid "Containing Payment Form"
-#~ msgstr "صفحه‌ی شامل فرم"
-
-#~ msgid "Group Identifier"
-#~ msgstr "مشخص‌کننده‌ی گروه"
-
-#~ msgid "Amount in Rials"
-#~ msgstr "مقدار به ریال"
-
-#~ msgid "Creation Time"
-#~ msgstr "زمان ایجاد"
-
-#~ msgid "Form Entry UUID"
-#~ msgstr "UUID وارد شده"
-
-#~ msgid "Bank Token"
-#~ msgstr "توکن بانک"
-
-#~ msgid "Random Token"
-#~ msgstr "توکن تصادفی"
-
-#~ msgid "Is Payed"
-#~ msgstr "پرداخت‌شده"
-
-#~ msgid "Payment Time"
-#~ msgstr "زمان پرداخت"
-
-#~ msgid "Upal Payment Transaction"
-#~ msgstr "تراکنش پرداختی یوپال"
-
-#~ msgid "Upal Payment Transactions"
-#~ msgstr "تراکنش‌های پرداختی یوپال"
-
-#~ msgid "Payment in Rials"
-#~ msgstr "مقدار پرداخت به ریال"
-
-#~ msgid "Successful Payment Transaction"
-#~ msgstr "تراکنش پرداختی موفقیت آمیز بود"
-
-#~ msgid "UnSuccessful Payment Transaction"
-#~ msgstr ""
-#~ "تراکنش پرداختی با مشکل مواجه شده‌است. لطفا چنانچه پرداخت شما موفق بوده‌است، "
-#~ "ما را مطلع کنید."
-
-#~ msgid "Blog"
-#~ msgstr "وبلاگ"
-
-#~ msgid "Click here"
-#~ msgstr "اینجا کلیک‌کنید"
-
-#~ msgid "Full Name"
-#~ msgstr "نام و نام خانوادگی"
-
-#~ msgid "related_posts"
-#~ msgstr "نوشتار‌های مرتبط"
-
-#~ msgid "Login"
-#~ msgstr "ورود"
-
-#~ msgid "%(sometime)s ago"
-#~ msgstr "%(sometime)s پیش"

@@ -11,4 +11,3 @@ local_settings.py
 forms
 gunicorn.*
 .idea
-/static

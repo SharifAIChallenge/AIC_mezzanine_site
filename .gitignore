@@ -1,5 +1,5 @@
-/AIC_site/db.sqlite
-/AIC_site/dump.json
+db.sqlite
+dump.json
 /venv
 *.pyc
 *.pyo
@@ -7,9 +7,8 @@
 .DS_Store
 .coverage
 local_settings.py
-migrations/
-AIC_site/static
-AIC_site/media
-AIC_site/forms
-AIC_site/gunicorn.*
+/media
+forms
+gunicorn.*
 .idea
+/static

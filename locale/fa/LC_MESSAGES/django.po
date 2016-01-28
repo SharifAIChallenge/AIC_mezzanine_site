@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-28 23:42+0330\n"
+"POT-Creation-Date: 2016-01-29 00:32+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -322,68 +322,82 @@ msgstr ""
 "شما به تیم %(name)s دعوت شده‌اید، جهت پذیرفتن روی لینک زیر کلیک کنید:\n"
 "%(link)s"
 
-#: base/models.py:12 base/models.py:26 base/models.py:32 game/models.py:8
+#: base/models.py:12
+#, fuzzy
+#| msgid "member"
+msgid "phone_number"
+msgstr "کاربر"
+
+#: base/models.py:13
+msgid "education place"
+msgstr ""
+
+#: base/models.py:14
+msgid "avatar"
+msgstr ""
+
+#: base/models.py:18 base/models.py:32 base/models.py:38 game/models.py:8
 #: game/models.py:21
 msgid "timestamp"
 msgstr "زمان"
 
-#: base/models.py:13 game/models.py:16 game/models.py:22
+#: base/models.py:19 game/models.py:16 game/models.py:22
 msgid "competition"
 msgstr "مسابقه"
 
-#: base/models.py:14
+#: base/models.py:20
 msgid "name"
 msgstr "نام"
 
-#: base/models.py:15
+#: base/models.py:21
 msgid "members"
 msgstr "اعضا"
 
-#: base/models.py:21 base/models.py:27 base/models.py:34 base/models.py:64
+#: base/models.py:27 base/models.py:33 base/models.py:40 base/models.py:70
 msgid "team"
 msgstr "تیم"
 
-#: base/models.py:22
+#: base/models.py:28
 msgid "teams"
 msgstr "تیم‌ها"
 
-#: base/models.py:28 base/models.py:65
+#: base/models.py:34 base/models.py:71
 msgid "member"
 msgstr "کاربر"
 
-#: base/models.py:33
+#: base/models.py:39
 msgid "code"
 msgstr "کد"
 
-#: base/models.py:36
+#: base/models.py:42
 msgid "played"
 msgstr "بازی کرده"
 
-#: base/models.py:37
+#: base/models.py:43
 msgid "won"
 msgstr "برده"
 
-#: base/models.py:43
+#: base/models.py:49
 msgid "submit"
 msgstr "کد سابمیت شده"
 
-#: base/models.py:44
+#: base/models.py:50
 msgid "submits"
 msgstr "کدهای سابمیت شده"
 
-#: base/models.py:63
+#: base/models.py:69
 msgid "accepted"
 msgstr "پذیرفته"
 
-#: base/models.py:66
+#: base/models.py:72
 msgid "slug"
 msgstr "اسلاگ"
 
-#: base/models.py:74
+#: base/models.py:80
 msgid "invitation"
 msgstr "دعوت"
 
-#: base/models.py:75
+#: base/models.py:81
 msgid "invitations"
 msgstr "دعوت‌ها"
 
@@ -591,7 +605,7 @@ msgstr ""
 
 #: templates/index.html:291 templates/index.html.py:293
 msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
-msgstr ""
+msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
 
 #: venv/lib/python2.7/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"

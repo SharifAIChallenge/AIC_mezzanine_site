@@ -2,17 +2,23 @@ import base64
 import uuid
 
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
+
+class Member(AbstractUser):
+    phone_number = models.CharField(verbose_name=_("phone_number"), max_length=20, blank=True)
+    education_place = models.CharField(verbose_name=_("education place"), max_length=255)
+    avatar = models.ImageField(verbose_name=_("avatar"))
 
 
 class Team(models.Model):
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=True)
     name = models.CharField(verbose_name=_('name'), max_length=200)
-    members = models.ManyToManyField(User, verbose_name=_('members'), through='base.TeamMember')
+    members = models.ManyToManyField(Member, verbose_name=_('members'), through='base.TeamMember')
 
     def __unicode__(self):
         return 'Team%d(%s)' % (self.id, self.name)
@@ -25,7 +31,7 @@ class Team(models.Model):
 class TeamMember(models.Model):
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     team = models.ForeignKey('base.Team', verbose_name=_('team'))
-    member = models.ForeignKey(User, verbose_name=_('member'))
+    member = models.ForeignKey(Member, verbose_name=_('member'))
 
 
 class Submit(models.Model):
@@ -62,7 +68,7 @@ class Submit(models.Model):
 class TeamInvitation(models.Model):
     accepted = models.BooleanField(verbose_name=_('accepted'), default=False)
     team = models.ForeignKey('base.Team', verbose_name=_('team'))
-    member = models.ForeignKey(User, verbose_name=_('member'))
+    member = models.ForeignKey(Member, verbose_name=_('member'))
     slug = models.CharField(verbose_name=_('slug'), max_length=100)
 
     def __init__(self, *args, **kwargs):

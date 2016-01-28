@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-28 23:42+0330\n"
+"POT-Creation-Date: 2016-01-29 00:32+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -282,68 +282,80 @@ msgid ""
 "%(link)s"
 msgstr ""
 
-#: base/models.py:12 base/models.py:26 base/models.py:32 game/models.py:8
+#: base/models.py:12
+msgid "phone_number"
+msgstr ""
+
+#: base/models.py:13
+msgid "education place"
+msgstr ""
+
+#: base/models.py:14
+msgid "avatar"
+msgstr ""
+
+#: base/models.py:18 base/models.py:32 base/models.py:38 game/models.py:8
 #: game/models.py:21
 msgid "timestamp"
 msgstr ""
 
-#: base/models.py:13 game/models.py:16 game/models.py:22
+#: base/models.py:19 game/models.py:16 game/models.py:22
 msgid "competition"
 msgstr ""
 
-#: base/models.py:14
+#: base/models.py:20
 msgid "name"
 msgstr ""
 
-#: base/models.py:15
+#: base/models.py:21
 msgid "members"
 msgstr ""
 
-#: base/models.py:21 base/models.py:27 base/models.py:34 base/models.py:64
+#: base/models.py:27 base/models.py:33 base/models.py:40 base/models.py:70
 msgid "team"
 msgstr ""
 
-#: base/models.py:22
+#: base/models.py:28
 msgid "teams"
 msgstr ""
 
-#: base/models.py:28 base/models.py:65
+#: base/models.py:34 base/models.py:71
 msgid "member"
 msgstr ""
 
-#: base/models.py:33
+#: base/models.py:39
 msgid "code"
 msgstr ""
 
-#: base/models.py:36
+#: base/models.py:42
 msgid "played"
 msgstr ""
 
-#: base/models.py:37
+#: base/models.py:43
 msgid "won"
 msgstr ""
 
-#: base/models.py:43
+#: base/models.py:49
 msgid "submit"
 msgstr ""
 
-#: base/models.py:44
+#: base/models.py:50
 msgid "submits"
 msgstr ""
 
-#: base/models.py:63
+#: base/models.py:69
 msgid "accepted"
 msgstr ""
 
-#: base/models.py:66
+#: base/models.py:72
 msgid "slug"
 msgstr ""
 
-#: base/models.py:74
+#: base/models.py:80
 msgid "invitation"
 msgstr ""
 
-#: base/models.py:75
+#: base/models.py:81
 msgid "invitations"
 msgstr ""
 
@@ -550,6 +562,7 @@ msgstr ""
 #: templates/index.html:291 templates/index.html.py:293
 msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
 msgstr ""
+"Student`s Scientific Chapter of Computer Engineering Department"
 
 #: venv/lib/python2.7/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"

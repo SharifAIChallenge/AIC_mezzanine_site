@@ -274,21 +274,26 @@
             {#            <h2 class="pull-title" style="color: #C3C7D8;font-size: 2.6em;cursor: default;">ارتباط با ما</h2>#}
             {#            <p>ایران٬ تهران٬ دانشگاه شریف٬ سالن جبار</p>#}
             {#            <p>+۹۸۲۱۶۱۵۳</p>#}
-            <ul class="social-media" style="display: none;">
-                <li><a href="http://twitter.com/aichallenge" title="twitter" target="_blank"><i
-                        class="icon-twitter-circled"></i></a></li>
-                <li><a href="http://instagram.com/aichallenge" title="instagram" target="_blank"><i
-                        class="icon-instagram-circled"></i></a></li>
-                <!-- <li><a href="http://instagram.com/@username" title="Sharif University" target="_blank"><i class="icon-sharif-circled"></i></a></li> -->
-                <li><a href="http://aichallenge.blog.ir/" title="blog" target="_blank"><i class="icon-blog-circled"></i></a>
-                </li>
-            </ul>
+
+            {% if LANGUAGE_BIDI %}
+                <ul class="social-media">
+                    <li><a href="http://twitter.com/aichallenge" title="twitter" target="_blank"><i
+                            class="icon-twitter-circled"></i></a></li>
+                    <li><a href="http://instagram.com/aichallenge" title="instagram" target="_blank"><i
+                            class="icon-instagram-circled"></i></a></li>
+                    <!-- <li><a href="http://instagram.com/@username" title="Sharif University" target="_blank"><i class="icon-sharif-circled"></i></a></li> -->
+                    <li><a href="http://aichallenge.blog.ir/" title="blog" target="_blank"><i
+                            class="icon-blog-circled"></i></a>
+                    </li>
+                </ul>
+            {% endif %}
             <div class="logos">
                 <!--<a href="//bayan.ir" tabindex="-1" hidefocus="true"><img src="/static/images/bayan.png" class="logo-bayan"></i></a>-->
                 <a href="" tabindex="-1" hidefocus="true" class="sharif"><img src="/static/images/sharif.png"
                                                                               class="logo-sharif"></a>
                 <a href="//ssc.ce.sharif.edu" tabindex="-1" hidefocus="true" class="ssc"></a>
-                <div class="divider" style="display: none;"><p>{% blocktrans %}انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف{% endblocktrans %}</p>
+                <div class="divider" style="display: none;"><p>{% blocktrans %}انجمن علمی دانشجویی دانشکده کامپیوتر
+                    دانشگاه شریف{% endblocktrans %}</p>
                 </div>
                 <p>{% blocktrans %}انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف{% endblocktrans %}</p>
             </div>

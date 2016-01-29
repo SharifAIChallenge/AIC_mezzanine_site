@@ -10,8 +10,8 @@ from django.utils.translation import ugettext_lazy as _
 
 class Member(AbstractUser):
     phone_number = models.CharField(verbose_name=_("phone_number"), max_length=20, blank=True)
-    education_place = models.CharField(verbose_name=_("education place"), max_length=255)
-    avatar = models.ImageField(verbose_name=_("avatar"))
+    education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
+    avatar = models.ImageField(verbose_name=_("avatar"), blank=True)
 
 
 class Team(models.Model):

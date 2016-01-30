@@ -32,9 +32,18 @@ class Team(models.Model):
 
 
 class Submit(models.Model):
+    PL_CHOICES = (
+        ('jav', 'java'),
+        ('cpp', 'c++'),
+        ('py2', 'python2'),
+        ('py3', 'python3'),
+    )
+
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     code = models.FileField(verbose_name=_('code'), upload_to='submits/temp')
     team = models.ForeignKey(Team, verbose_name=_('team'))
+
+    pl = models.CharField(verbose_name=_("programming language"), choices=PL_CHOICES, null=True, max_length=3)
 
     played = models.IntegerField(verbose_name=_('played'), default=0)
     won = models.IntegerField(verbose_name=_('won'), default=0)

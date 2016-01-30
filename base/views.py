@@ -60,9 +60,17 @@ def invite_member(request):
     if request.method == 'POST':
         form = InvitationForm(data=request.POST)
         if form.is_valid():
-            form.save(team=request.team)
-            messages.success(request, _('successfully invited user %(name)s') % {'name': form.user.get_full_name()})
-            return redirect('invite_member')
+            if form.member.team:
+                if form.member.team == request.team:
+                    messages.info(request, _("already part of the team"))
+                else:
+                    messages.error(request, _("already part of another team"))
+            elif TeamInvitation.objects.filter(member=form.member, team=request.team).exists():
+                messages.warning(request, _("you have invited this user before!"))
+            else:
+                form.save(team=request.team)
+                messages.success(request, _('successfully invited user %(name)s') % {'name': form.user.get_full_name()})
+                return redirect('invite_member')
     else:
         form = InvitationForm()
     return render(request, 'accounts/account_form.html', {'form': form, 'title': _('invite member to team')})
@@ -71,6 +79,9 @@ def invite_member(request):
 @login_required
 @team_required
 def submit(request):
+    if request.team.member_set.count() < request.team.competition.min_members:
+        messages.error(request, _("your team does not have enough members"))
+        return redirect('invite_member')
     if request.method == 'POST':
         form = SubmitForm(data=request.POST, files=request.FILES)
         if form.is_valid():
@@ -91,6 +102,9 @@ def accept_invite(request, slug):
         raise Http404()
     if not invitation.member == request.user:
         raise PermissionDenied()
-    invitation.accept()
-    messages.success(request, _('successfully joined team %s') % invitation.team.name)
+    if invitation.team.member_set.count() == invitation.team.competition.max_members:
+        messages.error(request, _("the team has reached max members"))
+    else:
+        invitation.accept()
+        messages.success(request, _('successfully joined team %s') % invitation.team.name)
     return redirect('home')

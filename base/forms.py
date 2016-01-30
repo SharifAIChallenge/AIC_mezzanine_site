@@ -5,18 +5,22 @@ from django.contrib.auth.models import User
 from django.template import Context
 from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
+from django_countries.widgets import CountrySelectWidget
 from mezzanine.accounts.forms import ProfileForm as mezzanine_profile_form
 
 
 class ProfileForm(mezzanine_profile_form):
     class Meta:
         model = Member
-        fields = ("first_name", "last_name", "phone_number", "education_place", "avatar", "email", "username")
+        fields = (
+            "first_name", "last_name", "phone_number", "country", "education_place", "avatar", "email", "username"
+        )
+        widgets = {'country': CountrySelectWidget()}
 
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
         self.fields['phone_number'].required = False
-        self.fields['phone_number'].initial = "+989123456789"
+        # self.fields['phone_number'].initial = "+989123456789"
         self.fields['education_place'].required = False
         self.fields['avatar'].required = False
 

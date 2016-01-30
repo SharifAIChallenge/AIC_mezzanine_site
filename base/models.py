@@ -6,12 +6,14 @@ from django.contrib.auth.models import AbstractUser
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django_countries.fields import CountryField
 
 
 class Member(AbstractUser):
     phone_number = models.CharField(verbose_name=_("phone_number"), max_length=20, blank=True)
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
     avatar = models.ImageField(verbose_name=_("avatar"), blank=True)
+    country = CountryField(blank_label=_("choose your country"), default='IR')
 
 
 class Team(models.Model):

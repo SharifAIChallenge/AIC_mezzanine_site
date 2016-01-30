@@ -231,6 +231,7 @@ INSTALLED_APPS = (
     "AIC_configs",
     "base",
     "game",
+    "django_countries",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -345,6 +346,11 @@ LOGIN_URL = "/login/"
 LOGOUT_URL = "/logout/"
 SIGNUP_URL = "/signup/"
 ACCOUNTS_PROFILE_FORM_CLASS = "base.forms.ProfileForm"
+
+
+COUNTRIES_FIRST = [
+    'IR'
+]
 
 ##################
 # LOCAL SETTINGS #

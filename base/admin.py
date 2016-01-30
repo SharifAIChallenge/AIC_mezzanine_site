@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from base.models import TeamMember, Team, Submit
+from base.models import Team, Submit
 from django.contrib import admin
 
 admin.site.register(Team)

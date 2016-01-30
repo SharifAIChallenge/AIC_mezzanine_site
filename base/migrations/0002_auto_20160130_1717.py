@@ -21,8 +21,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='team',
-            name='members',
-            field=models.ManyToManyField(to=settings.AUTH_USER_MODEL, verbose_name='members', through='base.TeamMember'),
+            name='head',
+            field=models.ForeignKey(related_name='+', verbose_name='team head', to=settings.AUTH_USER_MODEL),
         ),
         migrations.AddField(
             model_name='submit',
@@ -33,6 +33,11 @@ class Migration(migrations.Migration):
             model_name='member',
             name='groups',
             field=models.ManyToManyField(related_query_name='user', related_name='user_set', to='auth.Group', blank=True, help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.', verbose_name='groups'),
+        ),
+        migrations.AddField(
+            model_name='member',
+            name='team',
+            field=models.ForeignKey(verbose_name='team', to='base.Team', null=True),
         ),
         migrations.AddField(
             model_name='member',

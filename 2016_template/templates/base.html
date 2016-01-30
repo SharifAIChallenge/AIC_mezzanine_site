@@ -29,6 +29,18 @@
         <link type="text/css" rel="stylesheet" href="/static/base/css/main.css"/>
         <link type="text/css" rel="stylesheet" href="/static/base/css/materialize-config.css"/>
 
+        <link type="text/css" rel="stylesheet" href="/static/styles/screen.css"/>
+
+        <style>
+            nav {
+                background: #244273;
+{#                color: whitesmoke;#}
+{#                font-family: 'BYekan','Open Sans',sans-serif;#}
+{#                font-size: 14px;#}
+{#                font-weight: 400;#}
+            }
+        </style>
+
         {% block extra_css %}{% endblock %}
     {% endcompress %}
 
@@ -44,19 +56,45 @@
 
     {% block extra_head %}{% endblock %}
 </head>
-
+{% get_language_info_list for LANGUAGES as languages %}
 <body id="{% block body_id %}body{% endblock %}">
 
 <div id="main-content" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
 
     {% block header %}
-        <div class="main-header card">
-            <div class="card-image">
-                {% block header_image %}
-                <img src="/static/base/image/headers/page-1.png">
-                {% endblock %}
+{#        <div class="main-header card">#}
+{#            <div class="card-image">#}
+{#                {% block header_image %}#}
+{#                <img src="/static/base/image/headers/page-1.png">#}
+{#                {% endblock %}#}
+{#            </div>#}
+{#        </div>#}
+
+        <nav class="">
+            <div class="nav-wrapper container" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+                <ul class="menu landingPage">
+                    <li class="right"><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+                    {% if request.user.is_authenticated %}
+                        <li class="right"><a href="#">{% trans "My Team" %}</a></li>
+                        <li class="right"><a href="#">{% trans "Teams" %}</a></li>
+                        <li class="right"><a href="#">{% trans "Documentations" %}</a></li>
+                        <li class="right"><a href="#">{% trans "Contact us" %}</a></li>
+                        <li class="right"><a href="http://aichallenge.blog.ir">{% trans "blog" %}</a></li>
+                        <li class="right"><a href="#">{% trans "logout" %}</a></li>
+                    {% else %}
+                        <li class="right"><a href="#">{% trans "Login" %}</a></li>
+                        <li class="right"><a href="#">{% trans "Register" %}</a></li>
+                    {% endif %}
+
+                    {% for language in languages %}
+                        <li class="left"><a href="#" class="text-darken-2 right col s6 m6 l6"
+                           onclick="setlang('{{ language.code }}');">
+                                {{ language.name_local }}
+                        </a></li>
+                    {% endfor %}
+                </ul>
             </div>
-        </div>
+        </nav>
     {% endblock %}
 
     <div class="px-20 vertical spacer"></div>
@@ -71,7 +109,6 @@
                         {% include "includes/user_panel.html" %}
                         {% endcomment %}
 
-                        {% get_language_info_list for LANGUAGES as languages %}
                         {% if settings.USE_MODELTRANSLATION and languages|length > 1 %}
                             <form action="{% url 'set_language' %}" method="post" id="language_selector_form">
                                 {% csrf_token %}
@@ -85,18 +122,18 @@
                                 </select>
                                 <input type="submit" class="btn btn-default" value="{% trans "Change" %}"/>
                             </form>
-                            <div class="row">
-                                {% for language in languages %}
-                                    <a href="#" class="red-text text-darken-2 right col s6 m6 l6"
-                                       onclick="setlang('{{ language.code }}');">
-                                        <div class="center-align card-panel">
-                                            <i class="lang {{ language.code }} flag"></i>
-                                            <span class="px-40 horizontal spacer">&nbsp;</span>
-                                            {{ language.name_local }}
-                                        </div>
-                                    </a>
-                                {% endfor %}
-                            </div>
+{#                            <div class="row">#}
+{#                                {% for language in languages %}#}
+{#                                    <a href="#" class="red-text text-darken-2 right col s6 m6 l6"#}
+{#                                       onclick="setlang('{{ language.code }}');">#}
+{#                                        <div class="center-align card-panel">#}
+{#                                            <i class="lang {{ language.code }} flag"></i>#}
+{#                                            <span class="px-40 horizontal spacer">&nbsp;</span>#}
+{#                                            {{ language.name_local }}#}
+{#                                        </div>#}
+{#                                    </a>#}
+{#                                {% endfor %}#}
+{#                            </div>#}
                             <script>
                                 function setlang(lang) {
                                     $("#language_selector_form .form-control").val(lang);
@@ -147,58 +184,102 @@
 
     <!-- Start of StatCounter Code for Default Guide -->
     <!-- End of StatCounter Code for Default Guide -->
-
-
-    <footer class="cyan page-footer white-text"  {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-        <div class="container">
-            <div class="row">
-                <div class="center-align">
-                    {% blocktrans with ssc_link_attrs='class="white-text text-lighten-4" href="http://ssc.ce.sharif.edu"' sharif_link_attrs='class="white-text text-lighten-4" href="http://sharif.edu"' %}
-                        &copy;
-                        <a {{ ssc_link_attrs }} >Scientific Students Chapter of Computer Engineering Department</a>,
-                        <a {{ sharif_link_attrs }} >Sharif University of Technology</a>
-                    {% endblocktrans %}
-                </div>
-                <div class="px-40 vertical spacer"></div>
-                <div class="valign-wrapper center-align row">
-                    <div class="valign col s6 m3 l3">
-                        <a href="http://ssc.ce.sharif.edu">
-                            <img class="responsive-img" style="width:80%;"
-                                 src="/static/base/image/SSC-unofficial-logo-white.png">
-                        </a>
-                    </div>
-                    <div class="valign col s6 m3 l3">
-                        <a href="http://sharif.edu">
-                            <img style="width:50%;" src="/static/base/image/Sharif-log-HQ-white.png">
-                        </a>
-                    </div>
-                    <div class="valign col s6 m3 l3">
-                        <a href="https://www.instagram.com/AIChallenge/">
-                            <img style="width:38%;" src="/static/base/image/insta-logo.png">
-                        </a>
-                    </div>
-                    <div class="valign col s6 m3 l3">
-                        <a href="https://twitter.com/AIChallenge">
-                            <img style="width:50%;" src="/static/base/image/twitter-logo.png">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <div class="container">
-                <div class="grey-text text-lighten-4 left">
-                    {% blocktrans with powered_by='<a class="white-text text-lighten-4" href="http://mezzanine.jupo.org/">Mezzanine</a>, <a class="white-text text-lighten-4" href="http://materializecss.com/">Materialize</a>' designer='<a class="white-text text-lighten-4" href="http://mr.amira.li">Mr.AmirA.li</a>' %}
-                        Pwered By
-                        {{ powered_by }}
-                        -
-                        Designed By
-                        {{ designer }}
-                    {% endblocktrans %}
-                </div>
-            </div>
-        </div>
+{##}
+{##}
+{#    <footer class="cyan page-footer white-text" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="center-align">#}
+{#                    {% blocktrans with ssc_link_attrs='class="white-text text-lighten-4" href="http://ssc.ce.sharif.edu"' sharif_link_attrs='class="white-text text-lighten-4" href="http://sharif.edu"' %}#}
+{#                        &copy;#}
+{#                        <a {{ ssc_link_attrs }} >Scientific Students Chapter of Computer Engineering Department</a>,#}
+{#                        <a {{ sharif_link_attrs }} >Sharif University of Technology</a>#}
+{#                    {% endblocktrans %}#}
+{#                </div>#}
+{#                <div class="px-40 vertical spacer"></div>#}
+{#                <div class="valign-wrapper center-align row">#}
+{#                    <div class="valign col s6 m3 l3">#}
+{#                        <a href="http://ssc.ce.sharif.edu">#}
+{#                            <img class="responsive-img" style="width:80%;"#}
+{#                                 src="/static/base/image/SSC-unofficial-logo-white.png">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <div class="valign col s6 m3 l3">#}
+{#                        <a href="http://sharif.edu">#}
+{#                            <img style="width:50%;" src="/static/base/image/Sharif-log-HQ-white.png">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <div class="valign col s6 m3 l3">#}
+{#                        <a href="https://www.instagram.com/AIChallenge/">#}
+{#                            <img style="width:38%;" src="/static/base/image/insta-logo.png">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                    <div class="valign col s6 m3 l3">#}
+{#                        <a href="https://twitter.com/AIChallenge">#}
+{#                            <img style="width:50%;" src="/static/base/image/twitter-logo.png">#}
+{#                        </a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="footer-copyright">#}
+{#            <div class="container">#}
+{#                <div class="grey-text text-lighten-4 left">#}
+{#                    {% blocktrans with powered_by='<a class="white-text text-lighten-4" href="http://mezzanine.jupo.org/">Mezzanine</a>, <a class="white-text text-lighten-4" href="http://materializecss.com/">Materialize</a>' designer='<a class="white-text text-lighten-4" href="http://mr.amira.li">Mr.AmirA.li</a>' %}#}
+{#                        Pwered By#}
+{#                        {{ powered_by }}#}
+{#                        -#}
+{#                        Designed By#}
+{#                        {{ designer }}#}
+{#                    {% endblocktrans %}#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
     </footer>
+
+    <div class="footer">
+        <div class="information-site">
+            {#            <h2 class="pull-title" style="color: #C3C7D8;font-size: 2.6em;cursor: default;">ارتباط با ما</h2>#}
+            {#            <p>ایران٬ تهران٬ دانشگاه شریف٬ سالن جبار</p>#}
+            {#            <p>+۹۸۲۱۶۱۵۳</p>#}
+
+            {% if LANGUAGE_BIDI %}
+                <ul class="social-media">
+                    <li><a href="http://twitter.com/aichallenge" title="twitter" target="_blank"><i
+                            class="icon-twitter-circled"></i></a></li>
+                    <li><a href="http://instagram.com/aichallenge" title="instagram" target="_blank"><i
+                            class="icon-instagram-circled"></i></a></li>
+                    <!-- <li><a href="http://instagram.com/@username" title="Sharif University" target="_blank"><i class="icon-sharif-circled"></i></a></li> -->
+                    <li><a href="http://aichallenge.blog.ir/" title="blog" target="_blank"><i
+                            class="icon-blog-circled"></i></a>
+                    </li>
+                </ul>
+            {% endif %}
+            <div class="logos">
+                <!--<a href="//bayan.ir" tabindex="-1" hidefocus="true"><img src="/static/images/bayan.png" class="logo-bayan"></i></a>-->
+                <a href="" tabindex="-1" hidefocus="true" class="sharif"><img src="/static/images/sharif.png"
+                                                                              class="logo-sharif"></a>
+                <a href="//ssc.ce.sharif.edu" tabindex="-1" hidefocus="true" class="ssc"></a>
+                <div class="divider" style="display: none;"><p>{% blocktrans %}انجمن علمی دانشجویی دانشکده کامپیوتر
+                    دانشگاه شریف{% endblocktrans %}</p>
+                </div>
+                <p>{% blocktrans %}انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف{% endblocktrans %}</p>
+            </div>
+        </div>
+        <div class="bottom-layout">
+            <div class="copyright-area copyright-area__dark onshow">
+                <div class="container">
+                    <div class="footer-container">
+                        <div class="copyright-text">
+                            © Students Scientific Chapter of Computer Engineering Department, Sharif University of
+                            Technology
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </div>

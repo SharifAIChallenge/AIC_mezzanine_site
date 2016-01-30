@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from base.models import Submit, Team, TeamMember, TeamInvitation, Member
+from base.models import Submit, Team, TeamInvitation, Member
 from django import forms
 from django.contrib.auth.models import User
 from django.template import Context
@@ -39,18 +39,11 @@ class TeamForm(forms.ModelForm):
     def save(self, commit=True, user=None, competition=None):
         instance = super(TeamForm, self).save(commit=False)
         instance.competition = competition
+        instance.head = user
         instance.save()
-        TeamMember.objects.create(team=instance, member=user)
+        user.team = instance
+        user.save()
         return instance
-
-
-class ChooseTeamForm(forms.Form):
-    team = forms.ModelChoiceField(queryset=Team.objects)
-
-    def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user')
-        super(ChooseTeamForm, self).__init__(*args, **kwargs)
-        self.fields['team'].queryset = Team.objects.filter(members=user)
 
 
 class InvitationForm(forms.Form):

@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import migrations, models
 import django.contrib.auth.models
+import django_countries.fields
 import django.utils.timezone
 from django.conf import settings
 import django.core.validators
@@ -29,8 +30,9 @@ class Migration(migrations.Migration):
                 ('is_active', models.BooleanField(default=True, help_text='Designates whether this user should be treated as active. Unselect this instead of deleting accounts.', verbose_name='active')),
                 ('date_joined', models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined')),
                 ('phone_number', models.CharField(max_length=20, verbose_name='phone_number', blank=True)),
-                ('education_place', models.CharField(max_length=255, verbose_name='education place')),
-                ('avatar', models.ImageField(upload_to=b'', verbose_name='avatar')),
+                ('education_place', models.CharField(max_length=255, verbose_name='education place', blank=True)),
+                ('avatar', models.ImageField(upload_to=b'', verbose_name='avatar', blank=True)),
+                ('country', django_countries.fields.CountryField(default=b'IR', max_length=2, verbose_name='country')),
             ],
             options={
                 'abstract': False,
@@ -80,14 +82,5 @@ class Migration(migrations.Migration):
                 'verbose_name': 'invitation',
                 'verbose_name_plural': 'invitations',
             },
-        ),
-        migrations.CreateModel(
-            name='TeamMember',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('timestamp', models.DateTimeField(auto_now=True, verbose_name='timestamp')),
-                ('member', models.ForeignKey(verbose_name='member', to=settings.AUTH_USER_MODEL)),
-                ('team', models.ForeignKey(verbose_name='team', to='base.Team')),
-            ],
         ),
     ]

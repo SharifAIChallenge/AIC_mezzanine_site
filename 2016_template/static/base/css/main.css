@@ -1,13 +1,12 @@
 html {
-	font-family: "IRANSans-web" !important;
+    font-family: "IRANSans-web" !important;
 }
 
 body {
-	background:
-	linear-gradient(to right, rgba(235, 232, 204, 0.45),  rgba(235, 232, 204, 0.45)),
-	url('/static/base/image/pattern/gplay.png'),
-	linear-gradient(to right, rgba(255, 255, 255, 0.25),  rgba(255, 255, 255, 0.25)),
-	linear-gradient(to right, rgba(235, 232, 204, 1),  rgba(235, 232, 204, 1));
+    background: linear-gradient(to right, rgba(235, 232, 204, 0.45), rgba(235, 232, 204, 0.45)),
+    url('/static/base/image/pattern/gplay.png'),
+    linear-gradient(to right, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
+    linear-gradient(to right, rgba(235, 232, 204, 1), rgba(235, 232, 204, 1));
 }
 
 #main-content {
@@ -34,21 +33,18 @@ body {
     border-radius: 0px;
 }
 
-
 #top-lang {
     margin-left: 4%;
-	margin-right: 4%;
+    margin-right: 4%;
 }
-
 
 .lang.flag {
     background-repeat: no-repeat;
-	background-size: contain;
-	padding-left: 18px;
-	height: 14px;
-	background-position: center 0px;
+    background-size: contain;
+    padding-left: 18px;
+    height: 14px;
+    background-position: center 0px;
 }
-
 
 .lang.fa.flag {
     margin-top: 14px;
@@ -65,37 +61,36 @@ body {
     display: none;
 }
 
-
 .px-10.vertical.spacer {
-	height: 10px !important;
+    height: 10px !important;
 }
 
 .px-20.vertical.spacer {
-	height: 20px !important;
+    height: 20px !important;
 }
 
 .px-40.vertical.spacer {
-	height: 40px !important;
+    height: 40px !important;
 }
 
 .px-20.horizontal.spacer {
-	width: 20px !important;
+    width: 20px !important;
 }
 
 .px-40.horizontal.spacer {
-	width: 40px !important;
+    width: 40px !important;
 }
 
 .right.spaced {
-	padding-left: 30px;
+    padding-left: 30px;
 }
 
 .left.spaced {
-	padding-right: 30px;
+    padding-right: 30px;
 }
 
 .full.width {
-	width: 100%;
+    width: 100%;
 }
 
 .breadcrumb.rtl > span {
@@ -122,3 +117,6 @@ body {
     margin: 0px;
 }
 
+fieldset {
+    padding: 10px !important;
+}

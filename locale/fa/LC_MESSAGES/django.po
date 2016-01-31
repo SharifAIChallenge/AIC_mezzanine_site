@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-31 16:40+0330\n"
+"POT-Creation-Date: 2016-02-01 00:38+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,68 +18,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: 2016_template/templates/base.html:87 templates/en.html:61
+#: 2016_template/templates/base.html:75 templates/en.html:61
 #: templates/index.html:60
 #: venv/lib/python2.7/site-packages/django/forms/widgets.py:346
 msgid "Change"
 msgstr "تغییر"
 
-#: 2016_template/templates/base.html:122
-msgid "Sponsers"
-msgstr "حامیان"
+#: 2016_template/templates/base.html:98 2016_template/templates/index.html:3
+#: 2016_template/templates/index.html:4 2016_template/templates/index.html:13
+#: 2016_template/templates/pages/menus/main_menu.html:13
+#: 2016_template/templates/search_results.html:13
+msgid "Home"
+msgstr "صفحه‌ی اصلی"
 
-#: 2016_template/templates/base.html:157
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "                    &copy;\n"
-#| "                    <a %(ssc_link_attrs)s >Scientific Students Chapter of "
-#| "Computer Engineering Department</a>,\n"
-#| "                    <a %(sharif_link_attrs)s >Sharif University of "
-#| "Technology</a>\n"
-#| "                    "
-msgid ""
-"\n"
-"                        &copy;\n"
-"                        <a %(ssc_link_attrs)s >Scientific Students Chapter "
-"of Computer Engineering Department</a>,\n"
-"                        <a %(sharif_link_attrs)s >Sharif University of "
-"Technology</a>\n"
-"                    "
+#: 2016_template/templates/base.html:100
+msgid "My Team"
 msgstr ""
-"\n"
-"                    &copy; کلیه‌ی حقوق این سایت متعلق به \n"
-"                    <a %(ssc_link_attrs)s >انجمن علمی دانشجویی دانشکده‌ی "
-"کامپیوتر</a> \n"
-"                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
-"                    "
 
-#: 2016_template/templates/base.html:192
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "                    Pwered By\n"
-#| "                    %(powered_by)s\n"
-#| "                    -\n"
-#| "                    Designed By\n"
-#| "                    %(designer)s\n"
-#| "                    "
-msgid ""
-"\n"
-"                        Pwered By\n"
-"                        %(powered_by)s\n"
-"                        -\n"
-"                        Designed By\n"
-"                        %(designer)s\n"
-"                    "
+#: 2016_template/templates/base.html:101
+#, fuzzy
+#| msgid "teams"
+msgid "Teams"
+msgstr "تیم‌ها"
+
+#: 2016_template/templates/base.html:102
+#, fuzzy
+#| msgid "competitions"
+msgid "Documentations"
+msgstr "مسابقات"
+
+#: 2016_template/templates/base.html:103
+msgid "Contact us"
 msgstr ""
-"\n"
-"                    قدرت گرفته از \n"
-"                    %(powered_by)s\n"
-"                    -\n"
-"                    طراحی شده به دست \n"
-"                    %(designer)s\n"
-"                    "
+
+#: 2016_template/templates/base.html:104
+msgid "blog"
+msgstr ""
+
+#: 2016_template/templates/base.html:105 2016_template/templates/base.html:123
+#: templates/index.html:100
+msgid "خروج"
+msgstr ""
+
+#: 2016_template/templates/base.html:107 2016_template/templates/base.html:125
+#: templates/index.html:102
+msgid "ورود"
+msgstr ""
+
+#: 2016_template/templates/base.html:108 2016_template/templates/base.html:126
+#: templates/index.html:104
+msgid "ثبت‌نام"
+msgstr ""
+
+#: 2016_template/templates/base.html:267 templates/index.html:282
+#, fuzzy
+#| msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
+msgid ""
+"انجمن علمی دانشجویی دانشکده کامپیوتر\n"
+"                    دانشگاه شریف"
+msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
+
+#: 2016_template/templates/base.html:270 templates/index.html:285
+msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
+msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
 
 #: 2016_template/templates/blog/blog_post_detail.html:42
 msgid "Related News"
@@ -211,13 +212,6 @@ msgstr "صفحه"
 #: 2016_template/templates/includes/pagination.html:7
 msgid "of"
 msgstr "از"
-
-#: 2016_template/templates/index.html:3 2016_template/templates/index.html:4
-#: 2016_template/templates/index.html:13
-#: 2016_template/templates/pages/menus/main_menu.html:13
-#: 2016_template/templates/search_results.html:13
-msgid "Home"
-msgstr "صفحه‌ی اصلی"
 
 #: 2016_template/templates/index.html:42
 msgid "password"
@@ -419,7 +413,9 @@ msgstr "دعوت‌ها"
 msgid ""
 "you are not in a team, create one below or request your team leader to "
 "invite you"
-msgstr "شما در هیچ تیمی نیستید، هم اکنون یک تیم بسازید یا از سرگروه بخواهید شما را دعوت کند."
+msgstr ""
+"شما در هیچ تیمی نیستید، هم اکنون یک تیم بسازید یا از سرگروه بخواهید شما را "
+"دعوت کند."
 
 #: base/views.py:54
 msgid "register new team"
@@ -549,18 +545,6 @@ msgstr ""
 msgid "وبلاگ"
 msgstr ""
 
-#: templates/index.html:100
-msgid "خروج"
-msgstr ""
-
-#: templates/index.html:102
-msgid "ورود"
-msgstr ""
-
-#: templates/index.html:104
-msgid "ثبت‌نام"
-msgstr ""
-
 #: templates/index.html:132
 msgid "معرفی و اطلاعاتی از مسابقه و سرگذشت"
 msgstr ""
@@ -650,18 +634,6 @@ msgstr ""
 #: templates/index.html:223
 msgid "درباره کادر مسابقه"
 msgstr ""
-
-#: templates/index.html:282
-#, fuzzy
-#| msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
-msgid ""
-"انجمن علمی دانشجویی دانشکده کامپیوتر\n"
-"                    دانشگاه شریف"
-msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
-
-#: templates/index.html:285
-msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
-msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
 
 #: venv/lib/python2.7/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
@@ -2021,6 +1993,60 @@ msgstr ""
 msgid "None"
 msgstr ""
 
+#~ msgid "Sponsers"
+#~ msgstr "حامیان"
+
+#, fuzzy
+#~| msgid ""
+#~| "\n"
+#~| "                    &copy;\n"
+#~| "                    <a %(ssc_link_attrs)s >Scientific Students Chapter "
+#~| "of Computer Engineering Department</a>,\n"
+#~| "                    <a %(sharif_link_attrs)s >Sharif University of "
+#~| "Technology</a>\n"
+#~| "                    "
+#~ msgid ""
+#~ "\n"
+#~ "                        &copy;\n"
+#~ "                        <a %(ssc_link_attrs)s >Scientific Students "
+#~ "Chapter of Computer Engineering Department</a>,\n"
+#~ "                        <a %(sharif_link_attrs)s >Sharif University of "
+#~ "Technology</a>\n"
+#~ "                    "
+#~ msgstr ""
+#~ "\n"
+#~ "                    &copy; کلیه‌ی حقوق این سایت متعلق به \n"
+#~ "                    <a %(ssc_link_attrs)s >انجمن علمی دانشجویی دانشکده‌ی "
+#~ "کامپیوتر</a> \n"
+#~ "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
+#~ "                    "
+
+#, fuzzy
+#~| msgid ""
+#~| "\n"
+#~| "                    Pwered By\n"
+#~| "                    %(powered_by)s\n"
+#~| "                    -\n"
+#~| "                    Designed By\n"
+#~| "                    %(designer)s\n"
+#~| "                    "
+#~ msgid ""
+#~ "\n"
+#~ "                        Pwered By\n"
+#~ "                        %(powered_by)s\n"
+#~ "                        -\n"
+#~ "                        Designed By\n"
+#~ "                        %(designer)s\n"
+#~ "                    "
+#~ msgstr ""
+#~ "\n"
+#~ "                    قدرت گرفته از \n"
+#~ "                    %(powered_by)s\n"
+#~ "                    -\n"
+#~ "                    طراحی شده به دست \n"
+#~ "                    %(designer)s\n"
+#~ "                    "
+
 #~ msgid "members"
 #~ msgstr "اعضا"
 
@@ -2266,3 +2292,63 @@ msgstr ""
 
 #~ msgid "%(sometime)s ago"
 #~ msgstr "%(sometime)s پیش"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:29
+msgid "Brunei"
+msgstr "برونئی"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:30
+msgid "Bolivia"
+msgstr "بولیوی"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:32
+msgid "Iran"
+msgstr "ایران"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:33
+msgid "North Korea"
+msgstr "کره شمالی"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:34
+msgid "South Korea"
+msgstr "کره جنوبی"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:35
+msgid "Laos"
+msgstr "لائوس"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:36
+msgid "Moldova"
+msgstr ""
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:37
+msgid "Macedonia"
+msgstr "مقدونیه"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:38
+msgid "Russia"
+msgstr "روسیه"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:39
+msgid "Syria"
+msgstr "سوریه"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:40
+msgid "Taiwan"
+msgstr "تایوان"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:41
+msgid "Tanzania"
+msgstr "تانزانیا"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:42
+msgid "Venezuela"
+msgstr "ونزوئلا"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:43
+msgid "Vietnam"
+msgstr "ویتنام"
+
+#: venv/lib/python2.7/site-packages/django_countries/data.py:284
+msgid "United States of America"
+msgstr "ایالات متحده آمریکا"

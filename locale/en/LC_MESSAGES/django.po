@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-31 16:40+0330\n"
+"POT-Creation-Date: 2016-02-01 00:38+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,39 +17,65 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: 2016_template/templates/base.html:87 templates/en.html:61
+#: 2016_template/templates/base.html:75 templates/en.html:61
 #: templates/index.html:60
 #: venv/lib/python2.7/site-packages/django/forms/widgets.py:346
 msgid "Change"
 msgstr ""
 
-#: 2016_template/templates/base.html:122
-msgid "Sponsers"
+#: 2016_template/templates/base.html:98 2016_template/templates/index.html:3
+#: 2016_template/templates/index.html:4 2016_template/templates/index.html:13
+#: 2016_template/templates/pages/menus/main_menu.html:13
+#: 2016_template/templates/search_results.html:13
+msgid "Home"
 msgstr ""
 
-#: 2016_template/templates/base.html:157
-#, python-format
-msgid ""
-"\n"
-"                        &copy;\n"
-"                        <a %(ssc_link_attrs)s >Scientific Students Chapter "
-"of Computer Engineering Department</a>,\n"
-"                        <a %(sharif_link_attrs)s >Sharif University of "
-"Technology</a>\n"
-"                    "
+#: 2016_template/templates/base.html:100
+msgid "My Team"
 msgstr ""
 
-#: 2016_template/templates/base.html:192
-#, python-format
-msgid ""
-"\n"
-"                        Pwered By\n"
-"                        %(powered_by)s\n"
-"                        -\n"
-"                        Designed By\n"
-"                        %(designer)s\n"
-"                    "
+#: 2016_template/templates/base.html:101
+msgid "Teams"
 msgstr ""
+
+#: 2016_template/templates/base.html:102
+msgid "Documentations"
+msgstr ""
+
+#: 2016_template/templates/base.html:103
+msgid "Contact us"
+msgstr ""
+
+#: 2016_template/templates/base.html:104
+msgid "blog"
+msgstr ""
+
+#: 2016_template/templates/base.html:105 2016_template/templates/base.html:123
+#: templates/index.html:100
+msgid "خروج"
+msgstr ""
+
+#: 2016_template/templates/base.html:107 2016_template/templates/base.html:125
+#: templates/index.html:102
+msgid "ورود"
+msgstr "login"
+
+#: 2016_template/templates/base.html:108 2016_template/templates/base.html:126
+#: templates/index.html:104
+msgid "ثبت‌نام"
+msgstr "sign up"
+
+#: 2016_template/templates/base.html:267 templates/index.html:282
+#, fuzzy
+#| msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
+msgid ""
+"انجمن علمی دانشجویی دانشکده کامپیوتر\n"
+"                    دانشگاه شریف"
+msgstr "Student`s Scientific Chapter of Computer Engineering Department"
+
+#: 2016_template/templates/base.html:270 templates/index.html:285
+msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
+msgstr "Student`s Scientific Chapter of Computer Engineering Department"
 
 #: 2016_template/templates/blog/blog_post_detail.html:42
 msgid "Related News"
@@ -180,13 +206,6 @@ msgstr ""
 
 #: 2016_template/templates/includes/pagination.html:7
 msgid "of"
-msgstr ""
-
-#: 2016_template/templates/index.html:3 2016_template/templates/index.html:4
-#: 2016_template/templates/index.html:13
-#: 2016_template/templates/pages/menus/main_menu.html:13
-#: 2016_template/templates/search_results.html:13
-msgid "Home"
 msgstr ""
 
 #: 2016_template/templates/index.html:42
@@ -503,18 +522,6 @@ msgstr "Contact Us"
 msgid "وبلاگ"
 msgstr "Weblog"
 
-#: templates/index.html:100
-msgid "خروج"
-msgstr ""
-
-#: templates/index.html:102
-msgid "ورود"
-msgstr "login"
-
-#: templates/index.html:104
-msgid "ثبت‌نام"
-msgstr "sign up"
-
 #: templates/index.html:132
 msgid "معرفی و اطلاعاتی از مسابقه و سرگذشت"
 msgstr ""
@@ -604,18 +611,6 @@ msgstr ""
 #: templates/index.html:223
 msgid "درباره کادر مسابقه"
 msgstr ""
-
-#: templates/index.html:282
-#, fuzzy
-#| msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
-msgid ""
-"انجمن علمی دانشجویی دانشکده کامپیوتر\n"
-"                    دانشگاه شریف"
-msgstr "Student`s Scientific Chapter of Computer Engineering Department"
-
-#: templates/index.html:285
-msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
-msgstr "Student`s Scientific Chapter of Computer Engineering Department"
 
 #: venv/lib/python2.7/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"

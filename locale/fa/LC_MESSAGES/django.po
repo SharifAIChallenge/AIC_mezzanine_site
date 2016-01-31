@@ -3,20 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-01-29 00:32+0330\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2016-01-31 12:54+0330\n"
+"Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.6\n"
 
 #: 2016_template/templates/base.html:87 templates/index.html:64
 #: venv/lib/python2.7/site-packages/django/forms/widgets.py:346
@@ -40,8 +40,8 @@ msgstr "حامیان"
 msgid ""
 "\n"
 "                        &copy;\n"
-"                        <a %(ssc_link_attrs)s >Scientific Students Chapter "
-"of Computer Engineering Department</a>,\n"
+"                        <a %(ssc_link_attrs)s >Scientific Students Chapter of "
+"Computer Engineering Department</a>,\n"
 "                        <a %(sharif_link_attrs)s >Sharif University of "
 "Technology</a>\n"
 "                    "
@@ -269,12 +269,12 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"Showing %(start)s to %(end)s of %(total)s results in %(search_type)s "
-"matching your query: %(query)s\n"
+"Showing %(start)s to %(end)s of %(total)s results in %(search_type)s matching "
+"your query: %(query)s\n"
 msgstr ""
 "\n"
-"Showing %(start)s to %(end)s of %(total)s results in %(search_type)s "
-"matching your query: %(query)s\n"
+"Showing %(start)s to %(end)s of %(total)s results in %(search_type)s matching "
+"your query: %(query)s\n"
 
 #: 2016_template/templates/search_results.html:37
 msgid "read more"
@@ -491,7 +491,7 @@ msgstr ""
 
 #: templates/index.html:75 templates/index.html.py:99
 msgid "معرفی"
-msgstr ""
+msgstr "درباره ما"
 
 #: templates/index.html:77 templates/index.html.py:101
 msgid "حامیان"
@@ -515,7 +515,7 @@ msgstr ""
 
 #: templates/index.html:141
 msgid "معرفی و اطلاعاتی از مسابقه و سرگذشت"
-msgstr ""
+msgstr "نبرد هوش مصنوعی شریف ۹۴"
 
 #: templates/index.html:143
 msgid "مسابقه نبرد هوش مصنوعی شریف٬ ۹۴"
@@ -524,12 +524,12 @@ msgstr ""
 #: templates/index.html:143 templates/index.html.py:233
 msgid ""
 "\n"
-"                فیلیپ هاموند وزیر امور خارجه انگلستان با اشاره به شرایط "
-"ایجاد شده در زمینه روابط دو کشور گفت: دلایل\n"
+"                فیلیپ هاموند وزیر امور خارجه انگلستان با اشاره به شرایط ایجاد "
+"شده در زمینه روابط دو کشور گفت: دلایل\n"
 "                مختلف موانع و چالش‌هایی بین روابط تجاری ایران و انگلستان به "
 "وجود آمد و امیدواریم بعد از رفع تحریم‌ها این\n"
-"                چالش‌ها رفع شود. وی افزود: بانک‌های اروپایی با توجه به همکاری "
-"با بانک‌های ایران از ناحیه آمریکا با جریمه\n"
+"                چالش‌ها رفع شود. وی افزود: بانک‌های اروپایی با توجه به همکاری با "
+"بانک‌های ایران از ناحیه آمریکا با جریمه\n"
 "                روبرو شدند و به همین دلیل احتیاط زیادی را برای از سر گرفتن "
 "روابط دارند. وزیر خارجه انگلستان با بیان\n"
 "                اینکه بانک‌های انگلستان علاقه به فعالیت در ایران و همکاری با "
@@ -538,6 +538,18 @@ msgid ""
 "موانع بروکراتیک برداشته شود.\n"
 "            "
 msgstr ""
+"‏\n"
+"نبرد هوش مصنوعی شریف، مسابقه برنامه‌ نویسی دانشجویی است که شرکت‌کنندگان در قالب "
+"تیم‌های سه نفره برای بازی طراحی شده توسط تیم فنی، برنامه‌ای می‌نویسند تا بتواند "
+"حریفان را یکی پس از دیگری شکست دهد.\n"
+"در واقع، این مسابقه هشتمین دوره‌ی مسابقه‌ی نبرد به زبان جاوا (JavaChallenge) است "
+"که از امسال، علاوه بر جاوا، C++ و پایتون را هم به طور رسمی پشتیبانی می‌کند و با "
+"نام نبرد هوش مصنوعی (AIChallenege) به حیات خود ادامه می‌دهد!\n"
+"شرکت در مسابقه نیاز به هیچ گونه اطلاعات تخصصی از مباحث و الگوریتم‌های هوش "
+"مصنوعی ندارد (البته استفاده از این الگوریتم‌ها به موفق‌تر بودن برنامه‌ها کمک "
+"خواهد کرد.) و مهارت  برنامه‌نویسی به یکی از زبان‌های فوق برای حضور در مسابقه "
+"کافی خواهد بود!\n"
+"به امید دیدار شما در این دوره از مسابقه!"
 
 #: templates/index.html:155
 msgid "برنامه مسابقه"
@@ -562,8 +574,8 @@ msgstr ""
 #: templates/index.html:198
 msgid ""
 "اولین مراحل شکل گیری این مسابقه کلید خرد٬ و خب با تلاش های زیاد\n"
-"                                و توکل به خدا تونستیم مرحله مقدماتی اجرائی "
-"رو پیش رو بزاریم\n"
+"                                و توکل به خدا تونستیم مرحله مقدماتی اجرائی رو "
+"پیش رو بزاریم\n"
 "                            "
 msgstr ""
 
@@ -740,8 +752,7 @@ msgstr ""
 #. Eg: "Title must be unique for pub_date year"
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:114
 #, python-format
-msgid ""
-"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgid "%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:132
@@ -781,8 +792,7 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1188
 #, python-format
 msgid ""
-"'%(value)s' value has an invalid date format. It must be in YYYY-MM-DD "
-"format."
+"'%(value)s' value has an invalid date format. It must be in YYYY-MM-DD format."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1190
@@ -807,8 +817,8 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1342
 #, python-format
 msgid ""
-"'%(value)s' value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
-"[TZ]) but it is an invalid date/time."
+"'%(value)s' value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]) "
+"but it is an invalid date/time."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1346
@@ -1110,8 +1120,8 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/forms/models.py:722
 #, python-format
 msgid ""
-"Please correct the duplicate data for %(field_name)s which must be unique "
-"for the %(lookup)s in %(date_field)s."
+"Please correct the duplicate data for %(field_name)s which must be unique for "
+"the %(lookup)s in %(date_field)s."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/forms/models.py:730
@@ -1134,8 +1144,8 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/forms/utils.py:165
 #, python-format
 msgid ""
-"%(datetime)s couldn't be interpreted in time zone %(current_timezone)s; it "
-"may be ambiguous or it may not exist."
+"%(datetime)s couldn't be interpreted in time zone %(current_timezone)s; it may "
+"be ambiguous or it may not exist."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/forms/widgets.py:345
@@ -1590,14 +1600,14 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/views/csrf.py:122
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when "
-"submitting forms. This cookie is required for security reasons, to ensure "
-"that your browser is not being hijacked by third parties."
+"submitting forms. This cookie is required for security reasons, to ensure that "
+"your browser is not being hijacked by third parties."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/views/csrf.py:127
 msgid ""
-"If you have configured your browser to disable cookies, please re-enable "
-"them, at least for this site, or for 'same-origin' requests."
+"If you have configured your browser to disable cookies, please re-enable them, "
+"at least for this site, or for 'same-origin' requests."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/views/csrf.py:132
@@ -1618,14 +1628,14 @@ msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/views/debug.py:586
 msgid ""
-"Of course, you haven't actually done any work yet. Next, start your first "
-"app by running <code>python manage.py startapp [app_label]</code>."
+"Of course, you haven't actually done any work yet. Next, start your first app "
+"by running <code>python manage.py startapp [app_label]</code>."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/views/debug.py:588
 msgid ""
-"You're seeing this message because you have <code>DEBUG = True</code> in "
-"your Django settings file and you haven't configured any URLs. Get to work!"
+"You're seeing this message because you have <code>DEBUG = True</code> in your "
+"Django settings file and you haven't configured any URLs. Get to work!"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/views/generic/dates.py:48
@@ -1760,8 +1770,7 @@ msgid_plural "Watch your mouth! The words %s are not allowed here."
 msgstr[0] ""
 
 #: venv/lib/python2.7/site-packages/django_comments/forms.py:197
-msgid ""
-"If you enter anything in this field your comment will be treated as spam"
+msgid "If you enter anything in this field your comment will be treated as spam"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/models.py:29
@@ -1806,8 +1815,7 @@ msgid "is public"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/models.py:73
-msgid ""
-"Uncheck this box to make the comment effectively disappear from the site."
+msgid "Uncheck this box to make the comment effectively disappear from the site."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/models.py:75

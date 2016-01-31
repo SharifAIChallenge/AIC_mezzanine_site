@@ -447,11 +447,11 @@ msgstr "Prizes"
 
 #: templates/index.html:75 templates/index.html.py:99
 msgid "معرفی"
-msgstr "About"
+msgstr "About us"
 
 #: templates/index.html:77 templates/index.html.py:101
 msgid "حامیان"
-msgstr ""
+msgstr "Sponsors"
 
 #: templates/index.html:79 templates/index.html.py:103
 msgid "تماس با ما"

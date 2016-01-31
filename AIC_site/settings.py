@@ -4,7 +4,6 @@ from __future__ import absolute_import, unicode_literals
 import os
 from django.utils.translation import ugettext_lazy as _
 
-
 ######################
 # MEZZANINE SETTINGS #
 ######################
@@ -123,7 +122,7 @@ DEBUG = False
 # Whether a user's session cookie expires when the Web browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-SITE_ID = 1
+SITE_ID = 2
 
 AUTH_USER_MODEL = 'base.Member'
 

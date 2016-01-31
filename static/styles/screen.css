@@ -309,6 +309,26 @@ hr {
         -moz-border-radius: 2.5px;
         -webkit-border-radius: 2.5px;
         border-radius: 2.5px; }
+      #header .wrapper .float > a.signout-dump {
+        display: inline-block;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        -moz-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        padding: 6px 35px;
+        font: 14px "BYekan", "Open Sans", sans-serif;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        background: transparent;
+        color: #FFF;
+        line-height: 23px;
+        vertical-align: top;
+        margin-top: 12px;
+        -moz-border-radius: 2.5px;
+        -webkit-border-radius: 2.5px;
+        border-radius: 2.5px; }
 
 body.ltr .mobile {
   float: left !important; }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-01 00:38+0330\n"
+"POT-Creation-Date: 2016-02-01 01:30+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,59 +18,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: 2016_template/templates/base.html:75 templates/en.html:61
-#: templates/index.html:60
+#: 2016_template/templates/base.html:73 templates/en.html:61
+#: templates/index.html:62
 #: venv/lib/python2.7/site-packages/django/forms/widgets.py:346
 msgid "Change"
 msgstr "تغییر"
 
-#: 2016_template/templates/base.html:98 2016_template/templates/index.html:3
+#: 2016_template/templates/base.html:96 2016_template/templates/index.html:3
 #: 2016_template/templates/index.html:4 2016_template/templates/index.html:13
 #: 2016_template/templates/pages/menus/main_menu.html:13
 #: 2016_template/templates/search_results.html:13
 msgid "Home"
 msgstr "صفحه‌ی اصلی"
 
-#: 2016_template/templates/base.html:100
+#: 2016_template/templates/base.html:98
 msgid "My Team"
-msgstr ""
+msgstr "تیم من"
 
-#: 2016_template/templates/base.html:101
-#, fuzzy
-#| msgid "teams"
+#: 2016_template/templates/base.html:99
 msgid "Teams"
 msgstr "تیم‌ها"
 
-#: 2016_template/templates/base.html:102
-#, fuzzy
-#| msgid "competitions"
+#: 2016_template/templates/base.html:100
 msgid "Documentations"
-msgstr "مسابقات"
+msgstr "مستندات"
 
-#: 2016_template/templates/base.html:103
+#: 2016_template/templates/base.html:101
 msgid "Contact us"
-msgstr ""
+msgstr "تماس با ما"
 
-#: 2016_template/templates/base.html:104
+#: 2016_template/templates/base.html:102
 msgid "blog"
-msgstr ""
+msgstr "وبلاگ"
 
-#: 2016_template/templates/base.html:105 2016_template/templates/base.html:123
-#: templates/index.html:100
-msgid "خروج"
-msgstr ""
+#: 2016_template/templates/base.html:118
+msgid "logout"
+msgstr "خروج"
 
-#: 2016_template/templates/base.html:107 2016_template/templates/base.html:125
-#: templates/index.html:102
-msgid "ورود"
-msgstr ""
+#: 2016_template/templates/base.html:121
+msgid "login"
+msgstr "ورود"
 
-#: 2016_template/templates/base.html:108 2016_template/templates/base.html:126
-#: templates/index.html:104
-msgid "ثبت‌نام"
-msgstr ""
+#: 2016_template/templates/base.html:123
+msgid "signup"
+msgstr "ثبت نام"
 
-#: 2016_template/templates/base.html:267 templates/index.html:282
+#: 2016_template/templates/base.html:264 templates/index.html:322
 #, fuzzy
 #| msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
 msgid ""
@@ -78,7 +71,7 @@ msgid ""
 "                    دانشگاه شریف"
 msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
 
-#: 2016_template/templates/base.html:270 templates/index.html:285
+#: 2016_template/templates/base.html:267 templates/index.html:325
 msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
 msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
 
@@ -227,11 +220,11 @@ msgstr "اکنون در مانیتور‌های لابی"
 
 #: 2016_template/templates/mail/invitation_mail.html:9
 msgid "you have been invited to team:"
-msgstr ""
+msgstr "شما به تیمی با این نام دعوت شده‌اید:"
 
 #: 2016_template/templates/mail/invitation_mail.html:11
 msgid "click on below link to accept:"
-msgstr ""
+msgstr "برای پذیرفتن روی لینک زیر کلیک کنید:"
 
 #: 2016_template/templates/pages/gallery.html:48
 #, python-format
@@ -275,23 +268,23 @@ msgstr ""
 msgid "read more"
 msgstr "ادامه‌ی نوشتار"
 
-#: AIC_site/settings.py:43
+#: AIC_site/settings.py:45
 msgid "Top navigation bar"
 msgstr "نوار بالایی"
 
-#: AIC_site/settings.py:44
+#: AIC_site/settings.py:46
 msgid "Left-hand tree"
 msgstr "نوار کناری"
 
-#: AIC_site/settings.py:62
+#: AIC_site/settings.py:64
 msgid "Featured Image"
 msgstr "تصویر ویژه"
 
-#: AIC_site/settings.py:112
+#: AIC_site/settings.py:114
 msgid "Persian"
 msgstr "فارسی"
 
-#: AIC_site/settings.py:113
+#: AIC_site/settings.py:115
 #: venv/lib/python2.7/site-packages/mezzanine/project_template/project_name/settings.py:113
 msgid "English"
 msgstr "انگلیسی"
@@ -509,130 +502,102 @@ msgstr "کد سابمیت شده"
 msgid "score"
 msgstr "امتیاز"
 
-#: templates/index.html:66 templates/index.html.py:84
+#: templates/index.html:68 templates/index.html.py:86
 msgid "خانه"
 msgstr ""
 
-#: templates/index.html:67 templates/index.html.py:85 templates/index.html:131
+#: templates/index.html:69 templates/index.html.py:87 templates/index.html:133
 msgid "معرفی مسابقه"
 msgstr ""
 
-#: templates/index.html:68 templates/index.html.py:86
-msgid "برنامه مسابقات"
-msgstr ""
-
-#: templates/index.html:69 templates/index.html.py:87 templates/index.html:177
-msgid "تاریخچه"
-msgstr "پیشینه"
-
-#: templates/index.html:70 templates/index.html.py:88 templates/index.html:201
-msgid "جوایز"
-msgstr ""
-
-#: templates/index.html:71 templates/index.html.py:89
-msgid "معرفی"
-msgstr ""
-
-#: templates/index.html:72 templates/index.html.py:91
-msgid "حامیان"
-msgstr ""
-
-#: templates/index.html:73 templates/index.html.py:93
-msgid "تماس با ما"
-msgstr ""
-
-#: templates/index.html:74 templates/index.html.py:94
-msgid "وبلاگ"
-msgstr ""
-
-#: templates/index.html:132
-msgid "معرفی و اطلاعاتی از مسابقه و سرگذشت"
-msgstr ""
-
-#: templates/index.html:134
-msgid "مسابقه نبرد هوش مصنوعی شریف٬ ۹۴"
-msgstr ""
-
-#: templates/index.html:134 templates/index.html.py:224
-msgid ""
-"\n"
-"                فیلیپ هاموند وزیر امور خارجه انگلستان با اشاره به شرایط "
-"ایجاد شده در زمینه روابط دو کشور گفت: دلایل\n"
-"                مختلف موانع و چالش‌هایی بین روابط تجاری ایران و انگلستان به "
-"وجود آمد و امیدواریم بعد از رفع تحریم‌ها این\n"
-"                چالش‌ها رفع شود. وی افزود: بانک‌های اروپایی با توجه به همکاری "
-"با بانک‌های ایران از ناحیه آمریکا با جریمه\n"
-"                روبرو شدند و به همین دلیل احتیاط زیادی را برای از سر گرفتن "
-"روابط دارند. وزیر خارجه انگلستان با بیان\n"
-"                اینکه بانک‌های انگلستان علاقه به فعالیت در ایران و همکاری با "
-"بانک‌های ایران دارند، افزود: گام اول برای\n"
-"                بهبود روابط تجاری صحبت دولت ایران با دولت انگلستان است تا "
-"موانع بروکراتیک برداشته شود.\n"
-"            "
-msgstr ""
-
-#: templates/index.html:146
+#: templates/index.html:70 templates/index.html.py:88 templates/index.html:151
 msgid "برنامه مسابقه"
 msgstr ""
 
-#: templates/index.html:147
-msgid "برنامه پیش روی مسابقه برای زمان اجراء"
+#: templates/index.html:71 templates/index.html.py:89 templates/index.html:184
+msgid "تاریخچه"
+msgstr "پیشینه"
+
+#: templates/index.html:72 templates/index.html.py:90 templates/index.html:244
+msgid "جوایز"
 msgstr ""
 
-#: templates/index.html:178
-msgid "جدول تاریخچه داستان این مسابقه"
+#: templates/index.html:73 templates/index.html.py:91 templates/index.html:267
+msgid "معرفی"
 msgstr ""
 
-#: templates/index.html:187
-msgid "طرح اولیه از مسابقه"
+#: templates/index.html:74 templates/index.html.py:93
+msgid "حامیان"
 msgstr ""
 
-#: templates/index.html:188
-msgid "ارائه طرح اولیه از مسابقه به تیم فنی"
+#: templates/index.html:75 templates/index.html.py:95
+msgid "تماس با ما"
 msgstr ""
 
-#: templates/index.html:189
+#: templates/index.html:76 templates/index.html.py:96
+msgid "وبلاگ"
+msgstr ""
+
+#: templates/index.html:102
+msgid "خروج"
+msgstr ""
+
+#: templates/index.html:104
+msgid "ورود"
+msgstr ""
+
+#: templates/index.html:106
+msgid "ثبت‌نام"
+msgstr ""
+
+#: templates/index.html:134
 msgid ""
-"اولین مراحل شکل گیری این مسابقه کلید خرد٬ و خب با تلاش های زیاد\n"
-"                                و توکل به خدا تونستیم مرحله مقدماتی اجرائی "
-"رو پیش رو بزاریم\n"
-"                            "
+"\n"
+"نبرد هوش‌مصنوعی شریف ۹۴\n"
+"                "
 msgstr ""
 
-#: templates/index.html:202
-msgid "جوایز سومین دوره‌ی مسابقات نبرد هوش مصنوعی"
+#: templates/index.html:138
+msgid "مسابقه نبرد هوش مصنوعی شریف ۹۴"
 msgstr ""
 
-#: templates/index.html:210
-msgid "نفر اول"
+#: templates/index.html:138
+msgid ""
+"\n"
+"نبرد هوش مصنوعی شریف، مسابقه برنامه‌ نویسی دانشجویی است که شرکت‌کنندگان در "
+"قالب تیم‌های سه نفره برای بازی طراحی شده توسط تیم فنی، برنامه‌ای می‌نویسند تا "
+"بتواند حریفان را یکی پس از دیگری شکست دهد.\n"
+"در واقع، این مسابقه هشتمین دوره‌ی مسابقه‌ی نبرد به زبان جاوا (JavaChallenge) "
+"است که از امسال، علاوه بر جاوا،\n"
+" C++ و پایتون را هم به طور رسمی پشتیبانی می‌کند و با نام نبرد هوش مصنوعی "
+"(AIChallenege) به حیات خود ادامه می‌دهد! همچنین در این دوره از رقابت‌ها امکان "
+"حضور تیم‌ها از سراسر جهان فراهم شده است و مسابقات به شکل بین‌المللی برگزار "
+"خواهد شد.\n"
+"شرکت در مسابقه نیاز به هیچ گونه اطلاعات تخصصی از مباحث و الگوریتم‌های هوش "
+"مصنوعی ندارد (البته استفاده از این الگوریتم‌ها به موفق‌تر بودن برنامه‌ها کمک "
+"خواهد کرد.) و مهارت  برنامه‌نویسی به یکی از زبان‌های فوق برای حضور در مسابقه "
+"کافی خواهد بود!<br>\n"
+"                اخبار و اطلاعات تکمیلی مسابقه از طریق\n"
+"                <a href=\"//aichallenge.blog.ir\" style=\"color: blue"
+"\">وبلاگ</a>\n"
+"                مسابقه در دستس شما خواهد بود. به امید دیدار شما در این دوره "
+"از مسابقات!\n"
+"            "
 msgstr ""
 
-#: templates/index.html:211
-msgid "۳ سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه"
+#: templates/index.html:152
+msgid ""
+"\n"
+"                تاریخ‌های مهم پیشرو در مسابقه‌ی سال ۹۴\n"
+"            "
 msgstr ""
 
-#: templates/index.html:212
-msgid "نفر دوم"
+#: templates/index.html:185
+msgid "دوره‌های گذشته مسابقه"
 msgstr ""
 
-#: templates/index.html:213
-msgid "۲ سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه"
-msgstr ""
-
-#: templates/index.html:214
-msgid "نفر سوم"
-msgstr ""
-
-#: templates/index.html:215
-msgid "یک سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه"
-msgstr ""
-
-#: templates/index.html:222
-msgid "درباره ما"
-msgstr ""
-
-#: templates/index.html:223
-msgid "درباره کادر مسابقه"
+#: templates/index.html:245
+msgid "جوایز این دوره از مسابقات"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/contrib/messages/apps.py:7
@@ -2287,68 +2252,47 @@ msgstr ""
 #~ msgid "related_posts"
 #~ msgstr "نوشتار‌های مرتبط"
 
-#~ msgid "Login"
-#~ msgstr "ورود"
-
 #~ msgid "%(sometime)s ago"
 #~ msgstr "%(sometime)s پیش"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:29
 msgid "Brunei"
 msgstr "برونئی"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:30
 msgid "Bolivia"
 msgstr "بولیوی"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:32
 msgid "Iran"
 msgstr "ایران"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:33
 msgid "North Korea"
 msgstr "کره شمالی"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:34
 msgid "South Korea"
 msgstr "کره جنوبی"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:35
 msgid "Laos"
 msgstr "لائوس"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:36
-msgid "Moldova"
-msgstr ""
-
-#: venv/lib/python2.7/site-packages/django_countries/data.py:37
 msgid "Macedonia"
 msgstr "مقدونیه"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:38
 msgid "Russia"
 msgstr "روسیه"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:39
 msgid "Syria"
 msgstr "سوریه"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:40
 msgid "Taiwan"
 msgstr "تایوان"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:41
 msgid "Tanzania"
 msgstr "تانزانیا"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:42
 msgid "Venezuela"
 msgstr "ونزوئلا"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:43
 msgid "Vietnam"
 msgstr "ویتنام"
 
-#: venv/lib/python2.7/site-packages/django_countries/data.py:284
 msgid "United States of America"
 msgstr "ایالات متحده آمریکا"

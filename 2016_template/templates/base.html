@@ -34,11 +34,9 @@
         <style>
             nav {
                 background: #244273;
-{#                color: whitesmoke;#}
-{#                font-family: 'BYekan','Open Sans',sans-serif;#}
-{#                font-size: 14px;#}
-{#                font-weight: 400;#}
+            {#                color: whitesmoke;#}{#                font-family: 'BYekan','Open Sans',sans-serif;#}{#                font-size: 14px;#}{#                font-weight: 400;#}
             }
+
             .footer .information-site {
                 margin: 0 auto !important;
             }
@@ -83,52 +81,51 @@
 {% endif %}
 
 <div id="main-content" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-{% block header %}
-{#        <div class="main-header card">#}
-{#            <div class="card-image">#}
-{#                {% block header_image %}#}
-{#                <img src="/static/base/image/headers/page-1.png">#}
-{#                {% endblock %}#}
-{#            </div>#}
-{#        </div>#}
+    {% block header %}
+        {#        <div class="main-header card">#}
+        {#            <div class="card-image">#}
+        {#                {% block header_image %}#}
+        {#                <img src="/static/base/image/headers/page-1.png">#}
+        {#                {% endblock %}#}
+        {#            </div>#}
+        {#        </div>#}
 
-<div id="header">
-    <div class="wrapper" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-        <ul class="menu landingPage">
-            <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
-            {% if request.user.is_authenticated %}
-                <li><a href="#">{% trans "My Team" %}</a></li>
-                <li><a href="#">{% trans "Teams" %}</a></li>
-                <li><a href="#">{% trans "Documentations" %}</a></li>
-                <li><a href="#">{% trans "Contact us" %}</a></li>
-                <li><a href="http://aichallenge.blog.ir">{% trans "blog" %}</a></li>
-                <li><a href="{% url 'logout' %}">{% trans "خروج" %}</a></li>
-            {% else %}
-                <li><a href="{% url 'login' %}">{% trans "ورود" %}</a></li>
-                <li><a href="{% url 'signup' %}">{% trans "ثبت‌نام" %}</a></li>
-            {% endif %}
+        <div id="header">
+            <div class="wrapper" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+                <ul class="menu landingPage">
+                    <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+                    {% if request.user.is_authenticated %}
+                        <li><a href="#">{% trans "My Team" %}</a></li>
+                        <li><a href="#">{% trans "Teams" %}</a></li>
+                        <li><a href="#">{% trans "Documentations" %}</a></li>
+                        <li><a href="#">{% trans "Contact us" %}</a></li>
+                        <li><a href="http://aichallenge.blog.ir">{% trans "blog" %}</a></li>
+                    {% endif %}
 
-{#            {% for language in languages %}#}
-{#                <li><a href="#" onclick="setlang('{{ language.code }}');">{{ language.name_local }}</a></li>#}
-{#            {% endfor %}#}
+                    {#            {% for language in languages %}#}
+                    {#                <li><a href="#" onclick="setlang('{{ language.code }}');">{{ language.name_local }}</a></li>#}
+                    {#            {% endfor %}#}
 
-            {% if LANGUAGE_BIDI %}
-                <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
-            {% else %}
-                <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
-            {% endif %}
-        </ul>
-        <div class="float left">
-            {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">{% trans 'خروج' %}</a>
-            {% else %}
-                <a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">{% trans 'ورود' %}</a>
-                <a href="{% url 'signup' %}" tabindex="-1" hidefocus="true" class="signup-dump">{% trans 'ثبت‌نام' %}</a>
-            {% endif %}
+                    {% if LANGUAGE_BIDI %}
+                        <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
+                    {% else %}
+                        <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
+                    {% endif %}
+                </ul>
+                <div class="float left">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true"
+                           class="signout-dump">{% trans 'logout' %}</a>
+                    {% else %}
+                        <a href="{% url 'login' %}" tabindex="-1" hidefocus="true"
+                           class="signin-dump">{% trans 'login' %}</a>
+                        <a href="{% url 'signup' %}" tabindex="-1" hidefocus="true"
+                           class="signup-dump">{% trans 'signup' %}</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-{% endblock %}
+    {% endblock %}
 
     <div class="px-40 vertical spacer"></div>
     <div class="px-40 vertical spacer"></div>
@@ -136,41 +133,41 @@
     {% block main_wrapper %}
         <div class="container">
             <div class="row">
-            {% comment %}
-                <div class="{% if LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
-                    {% block right_panel %}
+                {% comment %}
+                    <div class="{% if LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
+                        {% block right_panel %}
 
 
-{#                        {% include "includes/user_panel.html" %}#}
+                            {#                        {% include "includes/user_panel.html" %}#}
 
 
-                        {% block menu_wrapper %}
-                            <ul class="collapsible card" data-collapsible="accordion">
-                                {% page_menu "pages/menus/main_menu.html" %}
-                            </ul>
-                        {% endblock %}
-                        {% if page %}
-                            {% block child_wrapper %}
-                                {% page_menu page "pages/menus/children.html" %}
+                            {% block menu_wrapper %}
+                                <ul class="collapsible card" data-collapsible="accordion">
+                                    {% page_menu "pages/menus/main_menu.html" %}
+                                </ul>
                             {% endblock %}
-                        {% endif %}
-                    {% endblock %}
+                            {% if page %}
+                                {% block child_wrapper %}
+                                    {% page_menu page "pages/menus/children.html" %}
+                                {% endblock %}
+                            {% endif %}
+                        {% endblock %}
 
-{#                    <div class="px-40 vertical spacer"></div>#}
-{#                    <h4 class="center-align cyan lighten-3 red-text text-darken-2 card-panel">{% trans "Sponsers" %}</h4>#}
-{##}
-{#                    <a class="red-text text-darken-2" href="http://bayan.ir">#}
-{#                        <div class="card">#}
-{#                            <div class="card-image">#}
-{#                                <img src="/static/base/image/sponsers/bayan.png">#}
-{#                            </div>#}
-{#                            <div class="center-align card-content">#}
-{#                                گروه راهبردی بیان#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </a>#}
-                </div>
-            {% endcomment %}
+                        {#                    <div class="px-40 vertical spacer"></div>#}
+                        {#                    <h4 class="center-align cyan lighten-3 red-text text-darken-2 card-panel">{% trans "Sponsers" %}</h4>#}
+                        {##}
+                        {#                    <a class="red-text text-darken-2" href="http://bayan.ir">#}
+                        {#                        <div class="card">#}
+                        {#                            <div class="card-image">#}
+                        {#                                <img src="/static/base/image/sponsers/bayan.png">#}
+                        {#                            </div>#}
+                        {#                            <div class="center-align card-content">#}
+                        {#                                گروه راهبردی بیان#}
+                        {#                            </div>#}
+                        {#                        </div>#}
+                        {#                    </a>#}
+                    </div>
+                {% endcomment %}
                 <div class="col s12 m12 l12">
                     {% block main %}
 
@@ -187,57 +184,57 @@
 
     <!-- Start of StatCounter Code for Default Guide -->
     <!-- End of StatCounter Code for Default Guide -->
-{##}
-{##}
-{#    <footer class="cyan page-footer white-text" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>#}
-{#        <div class="container">#}
-{#            <div class="row">#}
-{#                <div class="center-align">#}
-{#                    {% blocktrans with ssc_link_attrs='class="white-text text-lighten-4" href="http://ssc.ce.sharif.edu"' sharif_link_attrs='class="white-text text-lighten-4" href="http://sharif.edu"' %}#}
-{#                        &copy;#}
-{#                        <a {{ ssc_link_attrs }} >Scientific Students Chapter of Computer Engineering Department</a>,#}
-{#                        <a {{ sharif_link_attrs }} >Sharif University of Technology</a>#}
-{#                    {% endblocktrans %}#}
-{#                </div>#}
-{#                <div class="px-40 vertical spacer"></div>#}
-{#                <div class="valign-wrapper center-align row">#}
-{#                    <div class="valign col s6 m3 l3">#}
-{#                        <a href="http://ssc.ce.sharif.edu">#}
-{#                            <img class="responsive-img" style="width:80%;"#}
-{#                                 src="/static/base/image/SSC-unofficial-logo-white.png">#}
-{#                        </a>#}
-{#                    </div>#}
-{#                    <div class="valign col s6 m3 l3">#}
-{#                        <a href="http://sharif.edu">#}
-{#                            <img style="width:50%;" src="/static/base/image/Sharif-log-HQ-white.png">#}
-{#                        </a>#}
-{#                    </div>#}
-{#                    <div class="valign col s6 m3 l3">#}
-{#                        <a href="https://www.instagram.com/AIChallenge/">#}
-{#                            <img style="width:38%;" src="/static/base/image/insta-logo.png">#}
-{#                        </a>#}
-{#                    </div>#}
-{#                    <div class="valign col s6 m3 l3">#}
-{#                        <a href="https://twitter.com/AIChallenge">#}
-{#                            <img style="width:50%;" src="/static/base/image/twitter-logo.png">#}
-{#                        </a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#        <div class="footer-copyright">#}
-{#            <div class="container">#}
-{#                <div class="grey-text text-lighten-4 left">#}
-{#                    {% blocktrans with powered_by='<a class="white-text text-lighten-4" href="http://mezzanine.jupo.org/">Mezzanine</a>, <a class="white-text text-lighten-4" href="http://materializecss.com/">Materialize</a>' designer='<a class="white-text text-lighten-4" href="http://mr.amira.li">Mr.AmirA.li</a>' %}#}
-{#                        Pwered By#}
-{#                        {{ powered_by }}#}
-{#                        -#}
-{#                        Designed By#}
-{#                        {{ designer }}#}
-{#                    {% endblocktrans %}#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
+    {##}
+    {##}
+    {#    <footer class="cyan page-footer white-text" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>#}
+    {#        <div class="container">#}
+    {#            <div class="row">#}
+    {#                <div class="center-align">#}
+    {#                    {% blocktrans with ssc_link_attrs='class="white-text text-lighten-4" href="http://ssc.ce.sharif.edu"' sharif_link_attrs='class="white-text text-lighten-4" href="http://sharif.edu"' %}#}
+    {#                        &copy;#}
+    {#                        <a {{ ssc_link_attrs }} >Scientific Students Chapter of Computer Engineering Department</a>,#}
+    {#                        <a {{ sharif_link_attrs }} >Sharif University of Technology</a>#}
+    {#                    {% endblocktrans %}#}
+    {#                </div>#}
+    {#                <div class="px-40 vertical spacer"></div>#}
+    {#                <div class="valign-wrapper center-align row">#}
+    {#                    <div class="valign col s6 m3 l3">#}
+    {#                        <a href="http://ssc.ce.sharif.edu">#}
+    {#                            <img class="responsive-img" style="width:80%;"#}
+    {#                                 src="/static/base/image/SSC-unofficial-logo-white.png">#}
+    {#                        </a>#}
+    {#                    </div>#}
+    {#                    <div class="valign col s6 m3 l3">#}
+    {#                        <a href="http://sharif.edu">#}
+    {#                            <img style="width:50%;" src="/static/base/image/Sharif-log-HQ-white.png">#}
+    {#                        </a>#}
+    {#                    </div>#}
+    {#                    <div class="valign col s6 m3 l3">#}
+    {#                        <a href="https://www.instagram.com/AIChallenge/">#}
+    {#                            <img style="width:38%;" src="/static/base/image/insta-logo.png">#}
+    {#                        </a>#}
+    {#                    </div>#}
+    {#                    <div class="valign col s6 m3 l3">#}
+    {#                        <a href="https://twitter.com/AIChallenge">#}
+    {#                            <img style="width:50%;" src="/static/base/image/twitter-logo.png">#}
+    {#                        </a>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#        <div class="footer-copyright">#}
+    {#            <div class="container">#}
+    {#                <div class="grey-text text-lighten-4 left">#}
+    {#                    {% blocktrans with powered_by='<a class="white-text text-lighten-4" href="http://mezzanine.jupo.org/">Mezzanine</a>, <a class="white-text text-lighten-4" href="http://materializecss.com/">Materialize</a>' designer='<a class="white-text text-lighten-4" href="http://mr.amira.li">Mr.AmirA.li</a>' %}#}
+    {#                        Pwered By#}
+    {#                        {{ powered_by }}#}
+    {#                        -#}
+    {#                        Designed By#}
+    {#                        {{ designer }}#}
+    {#                    {% endblocktrans %}#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
     </footer>
 
     <div class="footer">

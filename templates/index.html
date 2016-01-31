@@ -5,17 +5,19 @@
 <!--[if IE 8]>    <html class="ie8 lt-ie10 lt-ie9" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if IE 9]>    <html class="ie9 lt-ie10" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if gt IE 9]><!-->
+
 <html lang="{{ LANGUAGE_CODE }}"> <!--<![endif]-->
 <head>
     <title>{{ settings.SITE_TITLE }}</title>
     <meta charset="UTF-8"/>
-    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/images/logo-site.ico" type="image/x-icon">
     <link href="/static/styles/screen.css" media="screen, projection" rel="stylesheet" type="text/css"/>
     <link href="/static/styles/sharedrtl.css" media="screen, projection" rel="stylesheet" type="text/css"/>
 
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width, height=device-height">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
 
     <link rel="apple-touch-icon" sizes="57x57" href="/static/apple-touch-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/static/apple-touch-icon-60x60.png">
@@ -65,7 +67,7 @@
         <ul class="menu landingPage">
             <li><a href="#index" tabindex="-1" hidefocus="true">{% trans 'خانه' %}</a></li>
             <li><a href="#info" tabindex="-1" hidefocus="true">{% trans 'معرفی مسابقه' %}</a></li>
-            <li><a href="#program" tabindex="-1" hidefocus="true">{% trans 'برنامه مسابقات' %}</a></li>
+            <li><a href="#program" tabindex="-1" hidefocus="true">{% trans 'برنامه مسابقه' %}</a></li>
             <li><a href="#history" tabindex="-1" hidefocus="true">{% trans 'تاریخچه' %}</a></li>
             <li><a href="#award" tabindex="-1" hidefocus="true">{% trans 'جوایز' %}</a></li>
             <li><a href="#about" tabindex="-1" hidefocus="true">{% trans 'معرفی' %}</a></li>
@@ -83,7 +85,7 @@
             <ul class="menu landingPage">
                 <li><a href="#index" tabindex="-1" hidefocus="true">{% trans 'خانه' %}</a></li>
                 <li><a href="#info" tabindex="-1" hidefocus="true">{% trans 'معرفی مسابقه' %}</a></li>
-                <li><a href="#program" tabindex="-1" hidefocus="true">{% trans 'برنامه مسابقات' %}</a></li>
+                <li><a href="#program" tabindex="-1" hidefocus="true">{% trans 'برنامه مسابقه' %}</a></li>
                 <li><a href="#history" tabindex="-1" hidefocus="true">{% trans 'تاریخچه' %}</a></li>
                 <li><a href="#award" tabindex="-1" hidefocus="true">{% trans 'جوایز' %}</a></li>
                 <li><a href="#about" tabindex="-1" hidefocus="true">{% trans 'معرفی' %}</a></li>
@@ -110,7 +112,7 @@
     <div class="section section-index" id="index">
         <div class="contest-logo"></div>
         <div class="background-img"
-             style="background-image: url('/static/images/index-1.jpg');background-size: cover;background-repeat: no-repeat;">
+             style="background-image: url('/static/images/Header3.jpg');background-size: cover;background-repeat: no-repeat;">
             <!-- <img src="images/index-1.jpg" alt="" /> -->
         </div>
         <div class="mouse-animate">
@@ -129,26 +131,31 @@
     <div class="section clearfix section-info odd" id="info">
         <div class="sp-wp">
             <h2 class="title run">{% blocktrans %}معرفی مسابقه{% endblocktrans %}</h2>
-            <h3 class="subtitle run">{% blocktrans %}معرفی و اطلاعاتی از مسابقه و سرگذشت{% endblocktrans %}</h3>
+            <h3 class="subtitle run">{% blocktrans %}
+نبرد هوش‌مصنوعی شریف ۹۴
+                {% endblocktrans %}</h3>
             <div class="content" style="text-align: justify">
-                <h4>{% blocktrans %}مسابقه نبرد هوش مصنوعی شریف٬ ۹۴{% endblocktrans %}</h4>{% blocktrans %}
-                فیلیپ هاموند وزیر امور خارجه انگلستان با اشاره به شرایط ایجاد شده در زمینه روابط دو کشور گفت: دلایل
-                مختلف موانع و چالش‌هایی بین روابط تجاری ایران و انگلستان به وجود آمد و امیدواریم بعد از رفع تحریم‌ها این
-                چالش‌ها رفع شود. وی افزود: بانک‌های اروپایی با توجه به همکاری با بانک‌های ایران از ناحیه آمریکا با جریمه
-                روبرو شدند و به همین دلیل احتیاط زیادی را برای از سر گرفتن روابط دارند. وزیر خارجه انگلستان با بیان
-                اینکه بانک‌های انگلستان علاقه به فعالیت در ایران و همکاری با بانک‌های ایران دارند، افزود: گام اول برای
-                بهبود روابط تجاری صحبت دولت ایران با دولت انگلستان است تا موانع بروکراتیک برداشته شود.
+                <h4>{% blocktrans %}مسابقه نبرد هوش مصنوعی شریف ۹۴{% endblocktrans %}</h4>{% blocktrans %}
+نبرد هوش مصنوعی شریف، مسابقه برنامه‌ نویسی دانشجویی است که شرکت‌کنندگان در قالب تیم‌های سه نفره برای بازی طراحی شده توسط تیم فنی، برنامه‌ای می‌نویسند تا بتواند حریفان را یکی پس از دیگری شکست دهد.
+در واقع، این مسابقه هشتمین دوره‌ی مسابقه‌ی نبرد به زبان جاوا (JavaChallenge) است که از امسال، علاوه بر جاوا،
+ C++ و پایتون را هم به طور رسمی پشتیبانی می‌کند و با نام نبرد هوش مصنوعی (AIChallenege) به حیات خود ادامه می‌دهد! همچنین در این دوره از رقابت‌ها امکان حضور تیم‌ها از سراسر جهان فراهم شده است و مسابقات به شکل بین‌المللی برگزار خواهد شد.
+شرکت در مسابقه نیاز به هیچ گونه اطلاعات تخصصی از مباحث و الگوریتم‌های هوش مصنوعی ندارد (البته استفاده از این الگوریتم‌ها به موفق‌تر بودن برنامه‌ها کمک خواهد کرد.) و مهارت  برنامه‌نویسی به یکی از زبان‌های فوق برای حضور در مسابقه کافی خواهد بود!<br>
+                اخبار و اطلاعات تکمیلی مسابقه از طریق
+                <a href="aichallenge.blog.ir" style="color: blue">وبلاگ</a>
+                مسابقه در دستس شما خواهد بود. به امید دیدار شما در این دوره از مسابقات!
             {% endblocktrans %}</div>
         </div>
     </div>
     <div class="section clearfix section-program even" id="program">
         <div class="sp-wp">
             <h2 class="title run">{% blocktrans %}برنامه مسابقه{% endblocktrans %}</h2>
-            <h3 class="subtitle run">{% blocktrans %}برنامه پیش روی مسابقه برای زمان اجراء{% endblocktrans %}</h3>
+            <h3 class="subtitle run">{% blocktrans %}
+                تاریخ‌های مهم پیشرو در مسابقه‌ی سال ۹۴
+            {% endblocktrans %}</h3>
             <div class="content">
                 <div class="column col-right" style="text-align: justify;padding-left: 2em;">
                     <ul class="regchallenge">
-                        <li>ثبت نام : <b>۱۰</b> تا <b>۲۰</b> بهمن</li>
+                        <li>ثبت نام : <b>۱۲</b> تا <b>۱۹</b> بهمن</li>
                         <li>مرحله انتخابی(غیرحضوری) : <b>۲۱</b> تا <b>۲۸</b> بهمن</li>
                         <li>مرحله نهایی : <b>۱۲</b> و <b>۱۳</b> اسفند</li>
                     </ul>
@@ -175,22 +182,58 @@
     <div class="section clearfix section-history white" id="history">
         <div class="sp-wp">
             <h2 class="title run">{% blocktrans %}تاریخچه{% endblocktrans %}</h2>
-            <h3 class="subtitle run">{% blocktrans %}جدول تاریخچه داستان این مسابقه{% endblocktrans %}</h3>
+            <h3 class="subtitle run">{% blocktrans %}دوره‌های گذشته مسابقه{% endblocktrans %}</h3>
             <div class="content">
 
                 <!-- timeline -->
                 <ul class="timeline run">
                     <li class="timeline-event">
-                        <label class="timeline-event-icon"></label>
-                        <div class="timeline-event-copy">
-                            <p class="timeline-event-thumbnail">۱۳۹۰</p>
-                            <h3>{% blocktrans %}طرح اولیه از مسابقه{% endblocktrans %}</h3>
-                            <h4>{% blocktrans %}ارائه طرح اولیه از مسابقه به تیم فنی{% endblocktrans %}</h4>
-                            <p>{% blocktrans %}اولین مراحل شکل گیری این مسابقه کلید خرد٬ و خب با تلاش های زیاد
-                                و توکل به خدا تونستیم مرحله مقدماتی اجرائی رو پیش رو بزاریم
-                            {% endblocktrans %}</p>
-                        </div>
-                    </li>
+			    	<label class="timeline-event-icon"></label>
+			    	<div class="timeline-event-copy">
+			      		<p class="timeline-event-thumbnail">۱۳۸۹-۱۳۸۷</p> <!--  ۱  ۳  ۹  ۰  -->
+			      		<h3>سه دوره ی نخست مسابقه</h3>
+			      		<h4>برگزاری مسابقه به صورت درون دانشگاهی</h4>
+		      			<p><span class="red">۷ سال پیش</span>
+								تعدادی از اعضای انجمن علمی دانشکده ی مهندسی کامپیوتر ، تصمیم گرفتند تا مسابقه‌ی برنامه نویسی در کنار مسابقات
+								 ACM
+						 در دانشکده برگزار کنند.
+							 با شرکت در این مسابقه مهارت های برنامه نویسی دانشجویان سنجیده و تقویت می‌شد.
+در دو سال بعد هم مسابقه  با همین شرایط برگزار شد. به طوری که برگزاری این مسابقه به رویدادی سالیانه در دانشکده تبدیل شده بود.
+</p>
+			    	</div>
+			  	</li>
+			  	<li class="timeline-event">
+			    	<label class="timeline-event-icon"></label>
+			    	<div class="timeline-event-copy">
+			      		<p class="timeline-event-thumbnail">۱۳۹۲-۱۳۹۰</p>
+			      		<h3>دوره ی چهارم تا ششم مسابقه</h3>
+			      		<h4>با حضور تیم هایی از دانشگاه های دیگر شهر تهران</h4>
+		      			<p><span class="red">دوره‌ی چهارم </span> مسابقه با نام «نبرد به زبان جاوا» معرفی شد وبا تصمیم  انجمن علمی ، علاوه بر تیم های داخلی ،تیم هایی از دانشگاه های دیگر هم در این مسابقه حضور داشتند. در آن دوره فقط چند تیم از دانشگاه های تهران و امیرکبیر به عنوان تیم خارجی در مسابقه شرکت کردند.
+						<br> <span class="red">پنج</span> سال از اولین دوره ی مسابقات گذشته بود و انجمن علمی دانشکده خود را ملزم به برگزاری مسابقه میدانست. درواقع نبرد به زبان جاوا به یکی از برنامه های ثابت سالیانه‌ی دانشکده تبدیل شده بود. دوره‌ی پنجم هم با حضور تیم هایی از دانشگاه های تهران و امیرکبیر و شریف برگزار شد.
+						<br> در <span class="red">دوره‌ی ششم </span> برگزاری مسابقه، تبلیغات به صورت گسترده تری انجام شد و تیم های محدودی از دانشگاه‌های خارج از شهر تهران هم در آن مسابقه شرکت کردند.
+						</p>
+			    	</div>
+			  	</li>
+			  	<li class="timeline-event">
+			    	<label class="timeline-event-icon"></label>
+			    	<div class="timeline-event-copy">
+			      		<p class="timeline-event-thumbnail">۱۳۹۳</p>
+			      		<h3>دوره ی هفتم مسابقه</h3>
+			      		<h4>پشتیبانی از زبان های برنامه نویسی C++ و پایتون </h4>
+		      			<p><span class="red">دوره‌ی هفتم </span>با درنظر گرفتن مشکلات و تجربه های دوره های قبل، به گونه ای متفاوت برگزار شد.نتیجه‌ی تلاش برگزار کنندگان در این دوره ، حضور ۱۵۸ تیم از ۲۸ دانشگاه کشور در مرحله ی غیرحضوری و یک رقابت جدی برای انتخاب ۳۲ تیم در مرحله‌ی حضوری بود. همچنین به همت تیم فنی ، زبان های c++ و python هم در مسابقه پشتیبانی می‌شدند.
+						</p>
+			    	</div>
+			  	</li>
+				<li class="timeline-event">
+			    	<label class="timeline-event-icon"></label>
+			    	<div class="timeline-event-copy">
+			      		<p class="timeline-event-thumbnail">۱۳۹۴</p>
+			      		<h3>دوره هشتم مسابقه</h3>
+			      		<h4>برگزاری مسابقه در سطح بین المللی</h4>
+		      			<p>باتوجه به تجربه‌ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه نویسی ، دوره‌ی هشتم این مسابقات با تغییر نام خود به <span class="red">«نبرد هوش مصنوعی شریف»</span> برگزار خواهد شد . همچنین این دوره از مسابقات به صورت بین المللی برگزار می شود.
+						</p>
+			    	</div>
+			  	</li>
                 </ul>
                 <!-- /timeline -->
             </div>
@@ -199,7 +242,7 @@
     <div class="section clearfix section-award odd run" id="award">
         <div class="sp-wp">
             <h2 class="title run">{% blocktrans %}جوایز{% endblocktrans %}</h2>
-            <h3 class="subtitle run">{% blocktrans %}جوایز سومین دوره‌ی مسابقات نبرد هوش مصنوعی{% endblocktrans %}</h3>
+            <h3 class="subtitle run">{% blocktrans %}جوایز این دوره از مسابقات{% endblocktrans %}</h3>
             <div class="content">
                 <div class="column col-left">
                     <div class="content-img">
@@ -207,28 +250,25 @@
                     </div>
                 </div>
                 <div class="column col-right prizes-text">
-                    <h5>{% blocktrans %}نفر اول{% endblocktrans %}</h5>
-                    <p>{% blocktrans %}۳ سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه{% endblocktrans %}</p>
-                    <h5>{% blocktrans %}نفر دوم{% endblocktrans %}</h5>
-                    <p>{% blocktrans %}۲ سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه{% endblocktrans %}</p>
-                    <h5>{% blocktrans %}نفر سوم{% endblocktrans %}</h5>
-                    <p>{% blocktrans %}یک سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه{% endblocktrans %}</p>
-                </div>
+					<h5>تیم اول</h5>
+					<p>سه تمام سکه بهار آزادی + تندیس مسابقات</p>
+					<h5>تیم دوم </h5>
+					<p>سه نیم سکه بهار آزادی + تندیس مسابقات</p>
+					<h5>تیم سوم </h5>
+					<p>سه ربع سکه بهار آزادی + تندیس مسابقات</p>
+					<h5>۳۲ تیم راه یافته به مرحله حضوری</h5>
+					<p>یاد بود مسابقات شامل: تی شرت، ماگ و فلش مموری مسابقه</p>
+			    </div>
             </div>
         </div>
     </div>
     <div class="section clearfix section-about even" id="about">
         <div class="sp-wp">
-            <h2 class="title run">{% blocktrans %}درباره ما{% endblocktrans %}</h2>
-            <h3 class="subtitle run">{% blocktrans %}درباره کادر مسابقه{% endblocktrans %}</h3>
-            <div class="content">{% blocktrans %}
-                فیلیپ هاموند وزیر امور خارجه انگلستان با اشاره به شرایط ایجاد شده در زمینه روابط دو کشور گفت: دلایل
-                مختلف موانع و چالش‌هایی بین روابط تجاری ایران و انگلستان به وجود آمد و امیدواریم بعد از رفع تحریم‌ها این
-                چالش‌ها رفع شود. وی افزود: بانک‌های اروپایی با توجه به همکاری با بانک‌های ایران از ناحیه آمریکا با جریمه
-                روبرو شدند و به همین دلیل احتیاط زیادی را برای از سر گرفتن روابط دارند. وزیر خارجه انگلستان با بیان
-                اینکه بانک‌های انگلستان علاقه به فعالیت در ایران و همکاری با بانک‌های ایران دارند، افزود: گام اول برای
-                بهبود روابط تجاری صحبت دولت ایران با دولت انگلستان است تا موانع بروکراتیک برداشته شود.
-            {% endblocktrans %}</div>
+            <h2 class="title run">{% blocktrans %}معرفی{% endblocktrans %}</h2>
+            <h3 class="subtitle run">درباره تیم برگزارکننده مسابقه</h3>
+			<div class="content">
+				نبرد هوش مصنوعی شریف به همت انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه شریف برگزار می‌شود. برگزار کنندکان این مسابقه که همگی از دانشجویان کارشناسی و کارشناسی ارشد دانشکده هستند در دو تیم اجرایی و تیم فنی همکاری میکنند تا این مسابقه در بالاترین سطح اجرایی و علمی و به صورت کاملا دانشجویی برگزار شود.
+			</div>
         </div>
     </div>
     <div class="section clearfix section-sponsors odd" id="sponsors">
@@ -299,7 +339,7 @@
                 <div class="container">
                     <div class="footer-container">
                         <div class="copyright-text">
-                            © Scientific Students Chapter of Computer Engineering Department, Sharif University of
+                            © Student's Scientific Chapter of Computer Engineering Department, Sharif University of
                             Technology
                         </div>
 

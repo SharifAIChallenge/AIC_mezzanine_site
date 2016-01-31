@@ -1,7 +1,9 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
 import os
 from django.utils.translation import ugettext_lazy as _
+
 
 ######################
 # MEZZANINE SETTINGS #
@@ -346,7 +348,6 @@ LOGIN_URL = "/login/"
 LOGOUT_URL = "/logout/"
 SIGNUP_URL = "/signup/"
 ACCOUNTS_PROFILE_FORM_CLASS = "base.forms.ProfileForm"
-
 
 COUNTRIES_FIRST = [
     'IR'

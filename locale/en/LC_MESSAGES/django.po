@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-29 00:32+0330\n"
+"POT-Creation-Date: 2016-01-31 16:40+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: 2016_template/templates/base.html:87 templates/index.html:64
+#: 2016_template/templates/base.html:87 templates/en.html:61
+#: templates/index.html:60
 #: venv/lib/python2.7/site-packages/django/forms/widgets.py:346
 msgid "Change"
 msgstr ""
@@ -267,129 +268,162 @@ msgstr ""
 msgid "base"
 msgstr ""
 
-#: base/forms.py:43
+#: base/forms.py:53
 msgid "user not found"
 msgstr ""
 
-#: base/forms.py:51
+#: base/forms.py:61
 msgid "AIChallenge team invitation"
 msgstr ""
 
-#: base/forms.py:52
+#: base/forms.py:62
 #, python-format
 msgid ""
 "you have been invited to team %(name)s, follow the link to accept:\n"
 "%(link)s"
 msgstr ""
 
-#: base/models.py:12
+#: base/models.py:13
 msgid "phone_number"
 msgstr ""
 
-#: base/models.py:13
+#: base/models.py:14
 msgid "education place"
 msgstr ""
 
-#: base/models.py:14
+#: base/models.py:15
 msgid "avatar"
 msgstr ""
 
-#: base/models.py:18 base/models.py:32 base/models.py:38 game/models.py:8
-#: game/models.py:21
-msgid "timestamp"
+#: base/models.py:16
+msgid "country"
 msgstr ""
 
-#: base/models.py:19 game/models.py:16 game/models.py:22
-msgid "competition"
+#: base/models.py:16
+msgid "choose your country"
 msgstr ""
 
-#: base/models.py:20
-msgid "name"
-msgstr ""
-
-#: base/models.py:21
-msgid "members"
-msgstr ""
-
-#: base/models.py:27 base/models.py:33 base/models.py:40 base/models.py:70
+#: base/models.py:17 base/models.py:30 base/models.py:44 base/models.py:76
 msgid "team"
 msgstr ""
 
-#: base/models.py:28
+#: base/models.py:21 base/models.py:42 game/models.py:8 game/models.py:23
+msgid "timestamp"
+msgstr ""
+
+#: base/models.py:22 game/models.py:18 game/models.py:24
+msgid "competition"
+msgstr ""
+
+#: base/models.py:23
+msgid "name"
+msgstr ""
+
+#: base/models.py:24
+msgid "team head"
+msgstr ""
+
+#: base/models.py:31
 msgid "teams"
 msgstr ""
 
-#: base/models.py:34 base/models.py:71
-msgid "member"
-msgstr ""
-
-#: base/models.py:39
+#: base/models.py:43
 msgid "code"
 msgstr ""
 
-#: base/models.py:42
+#: base/models.py:46
+msgid "programming language"
+msgstr ""
+
+#: base/models.py:48
 msgid "played"
 msgstr ""
 
-#: base/models.py:43
+#: base/models.py:49
 msgid "won"
 msgstr ""
 
-#: base/models.py:49
+#: base/models.py:55
 msgid "submit"
 msgstr ""
 
-#: base/models.py:50
+#: base/models.py:56
 msgid "submits"
 msgstr ""
 
-#: base/models.py:69
+#: base/models.py:75
 msgid "accepted"
 msgstr ""
 
-#: base/models.py:72
+#: base/models.py:77
+msgid "member"
+msgstr ""
+
+#: base/models.py:78
 msgid "slug"
 msgstr ""
 
-#: base/models.py:80
+#: base/models.py:86
 msgid "invitation"
 msgstr ""
 
-#: base/models.py:81
+#: base/models.py:87
 msgid "invitations"
 msgstr ""
 
-#: base/views.py:52
+#: base/views.py:26
+msgid ""
+"you are not in a team, create one below or request your team leader to "
+"invite you"
+msgstr ""
+
+#: base/views.py:54
 msgid "register new team"
 msgstr ""
 
-#: base/views.py:67
-msgid "choose your team"
+#: base/views.py:65
+msgid "already part of the team"
 msgstr ""
 
-#: base/views.py:77
+#: base/views.py:67
+msgid "already part of another team"
+msgstr ""
+
+#: base/views.py:69
+msgid "you have invited this user before!"
+msgstr ""
+
+#: base/views.py:72
 #, python-format
 msgid "successfully invited user %(name)s"
 msgstr ""
 
-#: base/views.py:81
+#: base/views.py:76
 msgid "invite member to team"
 msgstr ""
 
-#: base/views.py:96
+#: base/views.py:83
+msgid "your team does not have enough members"
+msgstr ""
+
+#: base/views.py:94
 msgid "submit new code"
 msgstr ""
 
-#: base/views.py:108
+#: base/views.py:106
+msgid "the team has reached max members"
+msgstr ""
+
+#: base/views.py:109
 #, python-format
 msgid "successfully joined team %s"
 msgstr ""
 
-#: game/apps.py:8 game/models.py:33 game/models.py:39
+#: game/apps.py:8 game/models.py:35 game/models.py:41
 msgid "game"
 msgstr ""
 
-#: game/models.py:9 game/models.py:23
+#: game/models.py:9 game/models.py:25
 msgid "title"
 msgstr ""
 
@@ -397,87 +431,99 @@ msgstr ""
 msgid "site"
 msgstr ""
 
-#: game/models.py:17
+#: game/models.py:11
+msgid "max team members count"
+msgstr ""
+
+#: game/models.py:12
+msgid "min team members count"
+msgstr ""
+
+#: game/models.py:19
 msgid "competitions"
 msgstr ""
 
-#: game/models.py:24
+#: game/models.py:26
 msgid "players"
 msgstr ""
 
-#: game/models.py:25
+#: game/models.py:27
 msgid "config"
 msgstr ""
 
-#: game/models.py:27
+#: game/models.py:29
 msgid "pre games"
 msgstr ""
 
-#: game/models.py:34
+#: game/models.py:36
 msgid "games"
 msgstr ""
 
-#: game/models.py:38
+#: game/models.py:40
 msgid "team submit"
 msgstr ""
 
-#: game/models.py:41
+#: game/models.py:43
 msgid "score"
 msgstr ""
 
-#: templates/index.html:70 templates/index.html.py:94
+#: templates/index.html:66 templates/index.html.py:84
 msgid "خانه"
 msgstr "Home"
 
-#: templates/index.html:71 templates/index.html.py:95 templates/index.html:140
+#: templates/index.html:67 templates/index.html.py:85 templates/index.html:131
 msgid "معرفی مسابقه"
 msgstr "Introduction"
 
-#: templates/index.html:72 templates/index.html.py:96
+#: templates/index.html:68 templates/index.html.py:86
 msgid "برنامه مسابقات"
 msgstr "Schedule"
 
-#: templates/index.html:73 templates/index.html.py:97 templates/index.html:186
+#: templates/index.html:69 templates/index.html.py:87 templates/index.html:177
 msgid "تاریخچه"
 msgstr "History"
 
-#: templates/index.html:74 templates/index.html.py:98 templates/index.html:210
+#: templates/index.html:70 templates/index.html.py:88 templates/index.html:201
 msgid "جوایز"
 msgstr "Prizes"
 
-#: templates/index.html:75 templates/index.html.py:99
+#: templates/index.html:71 templates/index.html.py:89
 msgid "معرفی"
 msgstr "About us"
 
-#: templates/index.html:77 templates/index.html.py:101
+#: templates/index.html:72 templates/index.html.py:91
 msgid "حامیان"
 msgstr "Sponsors"
 
-#: templates/index.html:79 templates/index.html.py:103
+#: templates/index.html:73 templates/index.html.py:93
 msgid "تماس با ما"
 msgstr "Contact Us"
 
-#: templates/index.html:80 templates/index.html.py:104
+#: templates/index.html:74 templates/index.html.py:94
 msgid "وبلاگ"
 msgstr "Weblog"
 
-#: templates/index.html:113
+#: templates/index.html:100
+msgid "خروج"
+msgstr ""
+
+#: templates/index.html:102
 msgid "ورود"
 msgstr "login"
 
-#: templates/index.html:114
+#: templates/index.html:104
 msgid "ثبت‌نام"
 msgstr "sign up"
 
-#: templates/index.html:141
+#: templates/index.html:132
 msgid "معرفی و اطلاعاتی از مسابقه و سرگذشت"
 msgstr ""
 
-#: templates/index.html:143
+#: templates/index.html:134
 msgid "مسابقه نبرد هوش مصنوعی شریف٬ ۹۴"
 msgstr ""
 
-#: templates/index.html:143 templates/index.html.py:233
+#: templates/index.html:134 templates/index.html.py:224
 msgid ""
 "\n"
 "                فیلیپ هاموند وزیر امور خارجه انگلستان با اشاره به شرایط "
@@ -495,27 +541,27 @@ msgid ""
 "            "
 msgstr ""
 
-#: templates/index.html:155
+#: templates/index.html:146
 msgid "برنامه مسابقه"
 msgstr ""
 
-#: templates/index.html:156
+#: templates/index.html:147
 msgid "برنامه پیش روی مسابقه برای زمان اجراء"
 msgstr ""
 
-#: templates/index.html:187
+#: templates/index.html:178
 msgid "جدول تاریخچه داستان این مسابقه"
 msgstr ""
 
-#: templates/index.html:196
+#: templates/index.html:187
 msgid "طرح اولیه از مسابقه"
 msgstr ""
 
-#: templates/index.html:197
+#: templates/index.html:188
 msgid "ارائه طرح اولیه از مسابقه به تیم فنی"
 msgstr ""
 
-#: templates/index.html:198
+#: templates/index.html:189
 msgid ""
 "اولین مراحل شکل گیری این مسابقه کلید خرد٬ و خب با تلاش های زیاد\n"
 "                                و توکل به خدا تونستیم مرحله مقدماتی اجرائی "
@@ -523,46 +569,53 @@ msgid ""
 "                            "
 msgstr ""
 
-#: templates/index.html:211
+#: templates/index.html:202
 msgid "جوایز سومین دوره‌ی مسابقات نبرد هوش مصنوعی"
 msgstr ""
 
-#: templates/index.html:219
+#: templates/index.html:210
 msgid "نفر اول"
 msgstr ""
 
-#: templates/index.html:220
+#: templates/index.html:211
 msgid "۳ سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه"
 msgstr ""
 
-#: templates/index.html:221
+#: templates/index.html:212
 msgid "نفر دوم"
 msgstr ""
 
-#: templates/index.html:222
+#: templates/index.html:213
 msgid "۲ سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه"
 msgstr ""
 
-#: templates/index.html:223
+#: templates/index.html:214
 msgid "نفر سوم"
 msgstr ""
 
-#: templates/index.html:224
+#: templates/index.html:215
 msgid "یک سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه"
 msgstr ""
 
-#: templates/index.html:231
+#: templates/index.html:222
 msgid "درباره ما"
 msgstr ""
 
-#: templates/index.html:232
+#: templates/index.html:223
 msgid "درباره کادر مسابقه"
 msgstr ""
 
-#: templates/index.html:291 templates/index.html.py:293
+#: templates/index.html:282
+#, fuzzy
+#| msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
+msgid ""
+"انجمن علمی دانشجویی دانشکده کامپیوتر\n"
+"                    دانشگاه شریف"
+msgstr "Student`s Scientific Chapter of Computer Engineering Department"
+
+#: templates/index.html:285
 msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
-msgstr ""
-"Student`s Scientific Chapter of Computer Engineering Department"
+msgstr "Student`s Scientific Chapter of Computer Engineering Department"
 
 #: venv/lib/python2.7/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"

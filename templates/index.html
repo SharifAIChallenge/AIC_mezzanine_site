@@ -12,10 +12,6 @@
     <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
     <link href="/static/styles/screen.css" media="screen, projection" rel="stylesheet" type="text/css"/>
     <link href="/static/styles/sharedrtl.css" media="screen, projection" rel="stylesheet" type="text/css"/>
-    {% if LANGUAGE_BIDI %}
-    {% else %}
-        <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    {% endif %}
 
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width, height=device-height">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -48,7 +44,7 @@
         }
     </script>
 </head>
-<body class="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
+<body class="rtl">
 
 {% get_language_info_list for LANGUAGES as languages %}
 <form action="{% url 'set_language' %}" method="post" id="language_selector_form" style="display: none">
@@ -73,16 +69,10 @@
             <li><a href="#history" tabindex="-1" hidefocus="true">{% trans 'تاریخچه' %}</a></li>
             <li><a href="#award" tabindex="-1" hidefocus="true">{% trans 'جوایز' %}</a></li>
             <li><a href="#about" tabindex="-1" hidefocus="true">{% trans 'معرفی' %}</a></li>
-            {% if LANGUAGE_BIDI %}
-                <li><a href="#sponsors" tabindex="-1" hidefocus="true">{% trans 'حامیان' %}</a></li>
-            {% endif %}
+            <li><a href="#sponsors" tabindex="-1" hidefocus="true">{% trans 'حامیان' %}</a></li>
             <li><a href="/contact-us/" tabindex="-1" hidefocus="true">{% trans 'تماس با ما' %}</a></li>
             <li><a href="//aichallenge.blog.ir" tabindex="-1" hidefocus="true">{% trans 'وبلاگ' %}</a></li>
-            {% if LANGUAGE_BIDI %}
-                <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
-            {% else %}
-                <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
-            {% endif %}
+            <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
         </ul>
         <div class="mobile">
             <a id="menu-toggle" href="#" class="menu-button">
@@ -102,11 +92,7 @@
                 {% endif %}
                 <li><a href="/contact-us/" tabindex="-1" hidefocus="true">{% trans 'تماس با ما' %}</a></li>
                 <li><a href="//aichallenge.blog.ir" tabindex="-1" hidefocus="true">{% trans 'وبلاگ' %}</a></li>
-                {% if LANGUAGE_BIDI %}
-                    <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
-                {% else %}
-                    <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
-                {% endif %}
+                <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
             </ul>
         </div>
         <div class="float">
@@ -245,34 +231,32 @@
             {% endblocktrans %}</div>
         </div>
     </div>
-    {% if LANGUAGE_BIDI %}
-        <div class="section clearfix section-sponsors odd" id="sponsors">
-            <div class="sp-wp">
-                <h2 class="title run">حامیان مسابقه</h2>
-                <div id="cross" class="inconsolata bold">
-                    <div class="col">
-                        <a href="//farhang.isti.ir" tabindex="-1" hidefocus="true" target="_blank"><span><span
-                                style="font: 12px BYekan;">ستاد توسعه فرهنگ علم٬ فناوری و اقتصاد دانش بنیان</span> معاونت علمی فناوری ریاست جمهوری</span><img
-                                alt="bayan" src="/static/images/bonyad.png"></a>
-                    </div>
-                    <div class="col">
-                        <a href="//bmn.ir" tabindex="-1" hidefocus="true"
-                           target="_blank"><span>بنیاد ملی نخبگان</span><img
-                                alt="bayan" src="/static/images/bmn.png"></a>
-                    </div>
-                    <div class="col">
-                        <a href="//sharif.ir" tabindex="-1" hidefocus="true" target="_blank"><span>معاونت پژوهشی دانشگاه شریف</span><img
-                                alt="bayan" src="/static/images/sharif-color.png"></a>
-                    </div>
-                    <div class="col">
-                        <a href="//bayan.co.ir" tabindex="-1" hidefocus="true"
-                           target="_blank"><span>شرکت دانش بنیان بیان</span><img alt="bayan"
-                                                                                 src="/static/images/sponsors/bayan.png"></a>
-                    </div>
+    <div class="section clearfix section-sponsors odd" id="sponsors">
+        <div class="sp-wp">
+            <h2 class="title run">حامیان مسابقه</h2>
+            <div id="cross" class="inconsolata bold">
+                <div class="col">
+                    <a href="//farhang.isti.ir" tabindex="-1" hidefocus="true" target="_blank"><span><span
+                            style="font: 12px BYekan;">ستاد توسعه فرهنگ علم٬ فناوری و اقتصاد دانش بنیان</span> معاونت علمی فناوری ریاست جمهوری</span><img
+                            alt="bayan" src="/static/images/bonyad.png"></a>
+                </div>
+                <div class="col">
+                    <a href="//bmn.ir" tabindex="-1" hidefocus="true"
+                       target="_blank"><span>بنیاد ملی نخبگان</span><img
+                            alt="bayan" src="/static/images/bmn.png"></a>
+                </div>
+                <div class="col">
+                    <a href="//sharif.ir" tabindex="-1" hidefocus="true" target="_blank"><span>معاونت پژوهشی دانشگاه شریف</span><img
+                            alt="bayan" src="/static/images/sharif-color.png"></a>
+                </div>
+                <div class="col">
+                    <a href="//bayan.co.ir" tabindex="-1" hidefocus="true"
+                       target="_blank"><span>شرکت دانش بنیان بیان</span><img alt="bayan"
+                                                                             src="/static/images/sponsors/bayan.png"></a>
                 </div>
             </div>
         </div>
-    {% endif %}
+    </div>
 
     <div class="footer">
         <div class="information-site">
@@ -280,18 +264,16 @@
             {#            <p>ایران٬ تهران٬ دانشگاه شریف٬ سالن جبار</p>#}
             {#            <p>+۹۸۲۱۶۱۵۳</p>#}
 
-            {% if LANGUAGE_BIDI %}
-                <ul class="social-media">
-                    <li><a href="http://twitter.com/aichallenge" title="twitter" target="_blank"><i
-                            class="icon-twitter-circled"></i></a></li>
-                    <li><a href="http://instagram.com/aichallenge" title="instagram" target="_blank"><i
-                            class="icon-instagram-circled"></i></a></li>
-                    <!-- <li><a href="http://instagram.com/@username" title="Sharif University" target="_blank"><i class="icon-sharif-circled"></i></a></li> -->
-                    <li><a href="http://aichallenge.blog.ir/" title="blog" target="_blank"><i
-                            class="icon-blog-circled"></i></a>
-                    </li>
-                </ul>
-            {% endif %}
+            <ul class="social-media">
+                <li><a href="http://twitter.com/aichallenge" title="twitter" target="_blank"><i
+                        class="icon-twitter-circled"></i></a></li>
+                <li><a href="http://instagram.com/aichallenge" title="instagram" target="_blank"><i
+                        class="icon-instagram-circled"></i></a></li>
+                <!-- <li><a href="http://instagram.com/@username" title="Sharif University" target="_blank"><i class="icon-sharif-circled"></i></a></li> -->
+                <li><a href="http://aichallenge.blog.ir/" title="blog" target="_blank"><i
+                        class="icon-blog-circled"></i></a>
+                </li>
+            </ul>
             <div class="logos">
                 <!--<a href="//bayan.ir" tabindex="-1" hidefocus="true"><img src="/static/images/bayan.png" class="logo-bayan"></i></a>-->
                 <a href="" tabindex="-1" hidefocus="true" class="sharif"><img src="/static/images/sharif.png"

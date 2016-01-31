@@ -3,22 +3,23 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-29 00:32+0330\n"
-"PO-Revision-Date: 2016-01-31 12:54+0330\n"
-"Language: fa\n"
+"POT-Creation-Date: 2016-01-31 16:40+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"X-Generator: Poedit 1.8.6\n"
 
-#: 2016_template/templates/base.html:87 templates/index.html:64
+#: 2016_template/templates/base.html:87 templates/en.html:61
+#: templates/index.html:60
 #: venv/lib/python2.7/site-packages/django/forms/widgets.py:346
 msgid "Change"
 msgstr "تغییر"
@@ -40,8 +41,8 @@ msgstr "حامیان"
 msgid ""
 "\n"
 "                        &copy;\n"
-"                        <a %(ssc_link_attrs)s >Scientific Students Chapter of "
-"Computer Engineering Department</a>,\n"
+"                        <a %(ssc_link_attrs)s >Scientific Students Chapter "
+"of Computer Engineering Department</a>,\n"
 "                        <a %(sharif_link_attrs)s >Sharif University of "
 "Technology</a>\n"
 "                    "
@@ -269,12 +270,12 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"Showing %(start)s to %(end)s of %(total)s results in %(search_type)s matching "
-"your query: %(query)s\n"
+"Showing %(start)s to %(end)s of %(total)s results in %(search_type)s "
+"matching your query: %(query)s\n"
 msgstr ""
 "\n"
-"Showing %(start)s to %(end)s of %(total)s results in %(search_type)s matching "
-"your query: %(query)s\n"
+"Showing %(start)s to %(end)s of %(total)s results in %(search_type)s "
+"matching your query: %(query)s\n"
 
 #: 2016_template/templates/search_results.html:37
 msgid "read more"
@@ -305,15 +306,15 @@ msgstr "انگلیسی"
 msgid "base"
 msgstr "اصلی"
 
-#: base/forms.py:43
+#: base/forms.py:53
 msgid "user not found"
 msgstr "کاربر یافت نشد"
 
-#: base/forms.py:51
+#: base/forms.py:61
 msgid "AIChallenge team invitation"
 msgstr "دعوت عضویت تیم در AIChallenge"
 
-#: base/forms.py:52
+#: base/forms.py:62
 #, python-format
 msgid ""
 "you have been invited to team %(name)s, follow the link to accept:\n"
@@ -322,116 +323,151 @@ msgstr ""
 "شما به تیم %(name)s دعوت شده‌اید، جهت پذیرفتن روی لینک زیر کلیک کنید:\n"
 "%(link)s"
 
-#: base/models.py:12
-#, fuzzy
-#| msgid "member"
-msgid "phone_number"
-msgstr "کاربر"
-
 #: base/models.py:13
-msgid "education place"
-msgstr ""
+msgid "phone_number"
+msgstr "شماره تماس"
 
 #: base/models.py:14
+msgid "education place"
+msgstr "محل تحصیل"
+
+#: base/models.py:15
 msgid "avatar"
-msgstr ""
+msgstr "عکس پروفایل"
 
-#: base/models.py:18 base/models.py:32 base/models.py:38 game/models.py:8
-#: game/models.py:21
-msgid "timestamp"
-msgstr "زمان"
+#: base/models.py:16
+msgid "country"
+msgstr "کشور"
 
-#: base/models.py:19 game/models.py:16 game/models.py:22
-msgid "competition"
-msgstr "مسابقه"
+#: base/models.py:16
+#, fuzzy
+#| msgid "choose your team"
+msgid "choose your country"
+msgstr "تیم را انتخاب کنید"
 
-#: base/models.py:20
-msgid "name"
-msgstr "نام"
-
-#: base/models.py:21
-msgid "members"
-msgstr "اعضا"
-
-#: base/models.py:27 base/models.py:33 base/models.py:40 base/models.py:70
+#: base/models.py:17 base/models.py:30 base/models.py:44 base/models.py:76
 msgid "team"
 msgstr "تیم"
 
-#: base/models.py:28
+#: base/models.py:21 base/models.py:42 game/models.py:8 game/models.py:23
+msgid "timestamp"
+msgstr "زمان"
+
+#: base/models.py:22 game/models.py:18 game/models.py:24
+msgid "competition"
+msgstr "مسابقه"
+
+#: base/models.py:23
+msgid "name"
+msgstr "نام"
+
+#: base/models.py:24
+#, fuzzy
+#| msgid "team"
+msgid "team head"
+msgstr "تیم"
+
+#: base/models.py:31
 msgid "teams"
 msgstr "تیم‌ها"
 
-#: base/models.py:34 base/models.py:71
-msgid "member"
-msgstr "کاربر"
-
-#: base/models.py:39
+#: base/models.py:43
 msgid "code"
 msgstr "کد"
 
-#: base/models.py:42
+#: base/models.py:46
+msgid "programming language"
+msgstr "زبان برنامه نویسی"
+
+#: base/models.py:48
 msgid "played"
 msgstr "بازی کرده"
 
-#: base/models.py:43
+#: base/models.py:49
 msgid "won"
 msgstr "برده"
 
-#: base/models.py:49
+#: base/models.py:55
 msgid "submit"
 msgstr "کد سابمیت شده"
 
-#: base/models.py:50
+#: base/models.py:56
 msgid "submits"
 msgstr "کدهای سابمیت شده"
 
-#: base/models.py:69
+#: base/models.py:75
 msgid "accepted"
 msgstr "پذیرفته"
 
-#: base/models.py:72
+#: base/models.py:77
+msgid "member"
+msgstr "کاربر"
+
+#: base/models.py:78
 msgid "slug"
 msgstr "اسلاگ"
 
-#: base/models.py:80
+#: base/models.py:86
 msgid "invitation"
 msgstr "دعوت"
 
-#: base/models.py:81
+#: base/models.py:87
 msgid "invitations"
 msgstr "دعوت‌ها"
 
-#: base/views.py:52
+#: base/views.py:26
+msgid ""
+"you are not in a team, create one below or request your team leader to "
+"invite you"
+msgstr "شما در هیچ تیمی نیستید، هم اکنون یک تیم بسازید یا از سرگروه بخواهید شما را دعوت کند."
+
+#: base/views.py:54
 msgid "register new team"
 msgstr "ثبت تیم جدید"
 
-#: base/views.py:67
-msgid "choose your team"
-msgstr "تیم را انتخاب کنید"
+#: base/views.py:65
+msgid "already part of the team"
+msgstr "عضو تیم است."
 
-#: base/views.py:77
+#: base/views.py:67
+msgid "already part of another team"
+msgstr "عضو تیم دیگری است."
+
+#: base/views.py:69
+msgid "you have invited this user before!"
+msgstr "شما قبلا این کاربر را دعوت کرده‌اید."
+
+#: base/views.py:72
 #, python-format
 msgid "successfully invited user %(name)s"
 msgstr "کاربر %(name)s با موفقیت دعوت شد"
 
-#: base/views.py:81
+#: base/views.py:76
 msgid "invite member to team"
 msgstr "دعوت کاربر به تیم"
 
-#: base/views.py:96
+#: base/views.py:83
+msgid "your team does not have enough members"
+msgstr "تیم شما تعداد اعضای کافی ندارد"
+
+#: base/views.py:94
 msgid "submit new code"
 msgstr "ارسال کد"
 
-#: base/views.py:108
+#: base/views.py:106
+msgid "the team has reached max members"
+msgstr "تیم شما به حداکثر تعداد رسیده است"
+
+#: base/views.py:109
 #, python-format
 msgid "successfully joined team %s"
 msgstr "با موفقیت به تیم %s ملحق شدید"
 
-#: game/apps.py:8 game/models.py:33 game/models.py:39
+#: game/apps.py:8 game/models.py:35 game/models.py:41
 msgid "game"
 msgstr "بازی"
 
-#: game/models.py:9 game/models.py:23
+#: game/models.py:9 game/models.py:25
 msgid "title"
 msgstr "عنوان"
 
@@ -439,97 +475,109 @@ msgstr "عنوان"
 msgid "site"
 msgstr "سایت"
 
-#: game/models.py:17
+#: game/models.py:11
+msgid "max team members count"
+msgstr "حداکثر تعداد اعضای تیم ها"
+
+#: game/models.py:12
+msgid "min team members count"
+msgstr "حداقل تعداد اعضای تیم ها"
+
+#: game/models.py:19
 msgid "competitions"
 msgstr "مسابقات"
 
-#: game/models.py:24
+#: game/models.py:26
 msgid "players"
 msgstr "بازیکنان"
 
-#: game/models.py:25
+#: game/models.py:27
 msgid "config"
 msgstr "تنظیمات"
 
-#: game/models.py:27
+#: game/models.py:29
 msgid "pre games"
 msgstr "بازی‌های مقدماتی"
 
-#: game/models.py:34
+#: game/models.py:36
 msgid "games"
 msgstr "بازی‌ها"
 
-#: game/models.py:38
+#: game/models.py:40
 #, fuzzy
 #| msgid "submit"
 msgid "team submit"
 msgstr "کد سابمیت شده"
 
-#: game/models.py:41
+#: game/models.py:43
 msgid "score"
 msgstr "امتیاز"
 
-#: templates/index.html:70 templates/index.html.py:94
+#: templates/index.html:66 templates/index.html.py:84
 msgid "خانه"
 msgstr ""
 
-#: templates/index.html:71 templates/index.html.py:95 templates/index.html:140
+#: templates/index.html:67 templates/index.html.py:85 templates/index.html:131
 msgid "معرفی مسابقه"
 msgstr ""
 
-#: templates/index.html:72 templates/index.html.py:96
+#: templates/index.html:68 templates/index.html.py:86
 msgid "برنامه مسابقات"
 msgstr ""
 
-#: templates/index.html:73 templates/index.html.py:97 templates/index.html:186
+#: templates/index.html:69 templates/index.html.py:87 templates/index.html:177
 msgid "تاریخچه"
 msgstr "پیشینه"
 
-#: templates/index.html:74 templates/index.html.py:98 templates/index.html:210
+#: templates/index.html:70 templates/index.html.py:88 templates/index.html:201
 msgid "جوایز"
 msgstr ""
 
-#: templates/index.html:75 templates/index.html.py:99
+#: templates/index.html:71 templates/index.html.py:89
 msgid "معرفی"
-msgstr "درباره ما"
+msgstr ""
 
-#: templates/index.html:77 templates/index.html.py:101
+#: templates/index.html:72 templates/index.html.py:91
 msgid "حامیان"
 msgstr ""
 
-#: templates/index.html:79 templates/index.html.py:103
+#: templates/index.html:73 templates/index.html.py:93
 msgid "تماس با ما"
 msgstr ""
 
-#: templates/index.html:80 templates/index.html.py:104
+#: templates/index.html:74 templates/index.html.py:94
 msgid "وبلاگ"
 msgstr ""
 
-#: templates/index.html:113
+#: templates/index.html:100
+msgid "خروج"
+msgstr ""
+
+#: templates/index.html:102
 msgid "ورود"
 msgstr ""
 
-#: templates/index.html:114
+#: templates/index.html:104
 msgid "ثبت‌نام"
 msgstr ""
 
-#: templates/index.html:141
+#: templates/index.html:132
 msgid "معرفی و اطلاعاتی از مسابقه و سرگذشت"
-msgstr "نبرد هوش مصنوعی شریف ۹۴"
+msgstr ""
 
-#: templates/index.html:143
+#: templates/index.html:134
 msgid "مسابقه نبرد هوش مصنوعی شریف٬ ۹۴"
 msgstr ""
 
-#: templates/index.html:143 templates/index.html.py:233
+#: templates/index.html:134 templates/index.html.py:224
 msgid ""
 "\n"
-"                فیلیپ هاموند وزیر امور خارجه انگلستان با اشاره به شرایط ایجاد "
-"شده در زمینه روابط دو کشور گفت: دلایل\n"
+"                فیلیپ هاموند وزیر امور خارجه انگلستان با اشاره به شرایط "
+"ایجاد شده در زمینه روابط دو کشور گفت: دلایل\n"
 "                مختلف موانع و چالش‌هایی بین روابط تجاری ایران و انگلستان به "
 "وجود آمد و امیدواریم بعد از رفع تحریم‌ها این\n"
-"                چالش‌ها رفع شود. وی افزود: بانک‌های اروپایی با توجه به همکاری با "
-"بانک‌های ایران از ناحیه آمریکا با جریمه\n"
+"                چالش‌ها رفع شود. وی افزود: بانک‌های اروپایی با توجه به همکاری "
+"با بانک‌های ایران از ناحیه آمریکا با جریمه\n"
 "                روبرو شدند و به همین دلیل احتیاط زیادی را برای از سر گرفتن "
 "روابط دارند. وزیر خارجه انگلستان با بیان\n"
 "                اینکه بانک‌های انگلستان علاقه به فعالیت در ایران و همکاری با "
@@ -538,84 +586,80 @@ msgid ""
 "موانع بروکراتیک برداشته شود.\n"
 "            "
 msgstr ""
-"‏\n"
-"نبرد هوش مصنوعی شریف، مسابقه برنامه‌ نویسی دانشجویی است که شرکت‌کنندگان در قالب "
-"تیم‌های سه نفره برای بازی طراحی شده توسط تیم فنی، برنامه‌ای می‌نویسند تا بتواند "
-"حریفان را یکی پس از دیگری شکست دهد.\n"
-"در واقع، این مسابقه هشتمین دوره‌ی مسابقه‌ی نبرد به زبان جاوا (JavaChallenge) است "
-"که از امسال، علاوه بر جاوا، C++ و پایتون را هم به طور رسمی پشتیبانی می‌کند و با "
-"نام نبرد هوش مصنوعی (AIChallenege) به حیات خود ادامه می‌دهد!\n"
-"شرکت در مسابقه نیاز به هیچ گونه اطلاعات تخصصی از مباحث و الگوریتم‌های هوش "
-"مصنوعی ندارد (البته استفاده از این الگوریتم‌ها به موفق‌تر بودن برنامه‌ها کمک "
-"خواهد کرد.) و مهارت  برنامه‌نویسی به یکی از زبان‌های فوق برای حضور در مسابقه "
-"کافی خواهد بود!\n"
-"به امید دیدار شما در این دوره از مسابقه!"
 
-#: templates/index.html:155
+#: templates/index.html:146
 msgid "برنامه مسابقه"
 msgstr ""
 
-#: templates/index.html:156
+#: templates/index.html:147
 msgid "برنامه پیش روی مسابقه برای زمان اجراء"
 msgstr ""
 
-#: templates/index.html:187
+#: templates/index.html:178
 msgid "جدول تاریخچه داستان این مسابقه"
 msgstr ""
 
-#: templates/index.html:196
+#: templates/index.html:187
 msgid "طرح اولیه از مسابقه"
 msgstr ""
 
-#: templates/index.html:197
+#: templates/index.html:188
 msgid "ارائه طرح اولیه از مسابقه به تیم فنی"
 msgstr ""
 
-#: templates/index.html:198
+#: templates/index.html:189
 msgid ""
 "اولین مراحل شکل گیری این مسابقه کلید خرد٬ و خب با تلاش های زیاد\n"
-"                                و توکل به خدا تونستیم مرحله مقدماتی اجرائی رو "
-"پیش رو بزاریم\n"
+"                                و توکل به خدا تونستیم مرحله مقدماتی اجرائی "
+"رو پیش رو بزاریم\n"
 "                            "
 msgstr ""
 
-#: templates/index.html:211
+#: templates/index.html:202
 msgid "جوایز سومین دوره‌ی مسابقات نبرد هوش مصنوعی"
 msgstr ""
 
-#: templates/index.html:219
+#: templates/index.html:210
 msgid "نفر اول"
 msgstr ""
 
-#: templates/index.html:220
+#: templates/index.html:211
 msgid "۳ سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه"
 msgstr ""
 
-#: templates/index.html:221
+#: templates/index.html:212
 msgid "نفر دوم"
 msgstr ""
 
-#: templates/index.html:222
+#: templates/index.html:213
 msgid "۲ سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه"
 msgstr ""
 
-#: templates/index.html:223
+#: templates/index.html:214
 msgid "نفر سوم"
 msgstr ""
 
-#: templates/index.html:224
+#: templates/index.html:215
 msgid "یک سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه"
 msgstr ""
 
-#: templates/index.html:231
+#: templates/index.html:222
 msgid "درباره ما"
 msgstr ""
 
-#: templates/index.html:232
+#: templates/index.html:223
 msgid "درباره کادر مسابقه"
 msgstr ""
 
-#: templates/index.html:291 templates/index.html.py:293
+#: templates/index.html:282
+#, fuzzy
+#| msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
+msgid ""
+"انجمن علمی دانشجویی دانشکده کامپیوتر\n"
+"                    دانشگاه شریف"
+msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
+
+#: templates/index.html:285
 msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
 msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
 
@@ -752,7 +796,8 @@ msgstr ""
 #. Eg: "Title must be unique for pub_date year"
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:114
 #, python-format
-msgid "%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:132
@@ -792,7 +837,8 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1188
 #, python-format
 msgid ""
-"'%(value)s' value has an invalid date format. It must be in YYYY-MM-DD format."
+"'%(value)s' value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1190
@@ -817,8 +863,8 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1342
 #, python-format
 msgid ""
-"'%(value)s' value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]) "
-"but it is an invalid date/time."
+"'%(value)s' value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/db/models/fields/__init__.py:1346
@@ -1120,8 +1166,8 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/forms/models.py:722
 #, python-format
 msgid ""
-"Please correct the duplicate data for %(field_name)s which must be unique for "
-"the %(lookup)s in %(date_field)s."
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/forms/models.py:730
@@ -1144,8 +1190,8 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/forms/utils.py:165
 #, python-format
 msgid ""
-"%(datetime)s couldn't be interpreted in time zone %(current_timezone)s; it may "
-"be ambiguous or it may not exist."
+"%(datetime)s couldn't be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/forms/widgets.py:345
@@ -1600,14 +1646,14 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/django/views/csrf.py:122
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when "
-"submitting forms. This cookie is required for security reasons, to ensure that "
-"your browser is not being hijacked by third parties."
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/views/csrf.py:127
 msgid ""
-"If you have configured your browser to disable cookies, please re-enable them, "
-"at least for this site, or for 'same-origin' requests."
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for 'same-origin' requests."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/views/csrf.py:132
@@ -1628,14 +1674,14 @@ msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/views/debug.py:586
 msgid ""
-"Of course, you haven't actually done any work yet. Next, start your first app "
-"by running <code>python manage.py startapp [app_label]</code>."
+"Of course, you haven't actually done any work yet. Next, start your first "
+"app by running <code>python manage.py startapp [app_label]</code>."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/views/debug.py:588
 msgid ""
-"You're seeing this message because you have <code>DEBUG = True</code> in your "
-"Django settings file and you haven't configured any URLs. Get to work!"
+"You're seeing this message because you have <code>DEBUG = True</code> in "
+"your Django settings file and you haven't configured any URLs. Get to work!"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/views/generic/dates.py:48
@@ -1770,7 +1816,8 @@ msgid_plural "Watch your mouth! The words %s are not allowed here."
 msgstr[0] ""
 
 #: venv/lib/python2.7/site-packages/django_comments/forms.py:197
-msgid "If you enter anything in this field your comment will be treated as spam"
+msgid ""
+"If you enter anything in this field your comment will be treated as spam"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/models.py:29
@@ -1815,7 +1862,8 @@ msgid "is public"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/models.py:73
-msgid "Uncheck this box to make the comment effectively disappear from the site."
+msgid ""
+"Uncheck this box to make the comment effectively disappear from the site."
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/models.py:75
@@ -1972,6 +2020,9 @@ msgstr ""
 #: venv/lib/python2.7/site-packages/modeltranslation/widgets.py:26
 msgid "None"
 msgstr ""
+
+#~ msgid "members"
+#~ msgstr "اعضا"
 
 #~ msgid "Media Library"
 #~ msgstr "مدیریت رسانه‌ها"

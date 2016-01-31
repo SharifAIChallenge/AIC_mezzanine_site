@@ -83,8 +83,7 @@
 {% endif %}
 
 <div id="main-content" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-
-    {% block header %}
+{% block header %}
 {#        <div class="main-header card">#}
 {#            <div class="card-image">#}
 {#                {% block header_image %}#}
@@ -93,34 +92,46 @@
 {#            </div>#}
 {#        </div>#}
 
-        <nav class="">
-            <div class="nav-wrapper container" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
-                <ul class="menu landingPage">
-                    <li class="right"><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
-                    {% if request.user.is_authenticated %}
-                        <li class="right"><a href="#">{% trans "My Team" %}</a></li>
-                        <li class="right"><a href="#">{% trans "Teams" %}</a></li>
-                        <li class="right"><a href="#">{% trans "Documentations" %}</a></li>
-                        <li class="right"><a href="#">{% trans "Contact us" %}</a></li>
-                        <li class="right"><a href="http://aichallenge.blog.ir">{% trans "blog" %}</a></li>
-                        <li class="right"><a href="#">{% trans "logout" %}</a></li>
-                    {% else %}
-                        <li class="right"><a href="#">{% trans "Login" %}</a></li>
-                        <li class="right"><a href="#">{% trans "Register" %}</a></li>
-                    {% endif %}
+<div id="header">
+    <div class="wrapper" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+        <ul class="menu landingPage">
+            <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
+            {% if request.user.is_authenticated %}
+                <li><a href="#">{% trans "My Team" %}</a></li>
+                <li><a href="#">{% trans "Teams" %}</a></li>
+                <li><a href="#">{% trans "Documentations" %}</a></li>
+                <li><a href="#">{% trans "Contact us" %}</a></li>
+                <li><a href="http://aichallenge.blog.ir">{% trans "blog" %}</a></li>
+                <li><a href="{% url 'logout' %}">{% trans "خروج" %}</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">{% trans "ورود" %}</a></li>
+                <li><a href="{% url 'signup' %}">{% trans "ثبت‌نام" %}</a></li>
+            {% endif %}
 
-                    {% for language in languages %}
-                        <li class="left"><a href="#" class="text-darken-2 right col s6 m6 l6"
-                           onclick="setlang('{{ language.code }}');">
-                                {{ language.name_local }}
-                        </a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </nav>
-    {% endblock %}
+{#            {% for language in languages %}#}
+{#                <li><a href="#" onclick="setlang('{{ language.code }}');">{{ language.name_local }}</a></li>#}
+{#            {% endfor %}#}
 
-    <div class="px-20 vertical spacer"></div>
+            {% if LANGUAGE_BIDI %}
+                <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
+            {% else %}
+                <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
+            {% endif %}
+        </ul>
+        <div class="float left">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">{% trans 'خروج' %}</a>
+            {% else %}
+                <a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">{% trans 'ورود' %}</a>
+                <a href="{% url 'signup' %}" tabindex="-1" hidefocus="true" class="signup-dump">{% trans 'ثبت‌نام' %}</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+    <div class="px-40 vertical spacer"></div>
+    <div class="px-40 vertical spacer"></div>
 
     {% block main_wrapper %}
         <div class="container">
@@ -160,7 +171,7 @@
 {#                    </a>#}
                 </div>
             {% endcomment %}
-                <div class="col s12 m12 l12 card panel">
+                <div class="col s12 m12 l12">
                     {% block main %}
 
                     {% endblock %}

@@ -5,7 +5,7 @@
 
 <div class="col-md-{% block main_col_size %}8{% endblock %}">
 {% block main %}
-    <div class="card-panel">
+    <div class="card panel">
     {{ block.super }}
     {% if request.GET.sent %}
         {% editable page.form.response %}

@@ -349,10 +349,8 @@ msgid "name"
 msgstr "نام"
 
 #: base/models.py:24
-#, fuzzy
-#| msgid "team"
 msgid "team head"
-msgstr "تیم"
+msgstr "سرگروه"
 
 #: base/models.py:31
 msgid "teams"
@@ -388,7 +386,7 @@ msgstr "پذیرفته"
 
 #: base/models.py:77
 msgid "member"
-msgstr "کاربر"
+msgstr "عضو"
 
 #: base/models.py:78
 msgid "slug"

@@ -3,7 +3,7 @@ from functools import wraps
 from urlparse import urlparse
 
 from base.forms import SubmitForm, TeamForm, InvitationForm
-from base.models import TeamInvitation
+from base.models import TeamInvitation, Team
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -32,7 +32,7 @@ def team_required(function=None):
                 path = request.get_full_path()
             from django.contrib.auth.views import redirect_to_login
             return redirect_to_login(
-                    path, resolved_login_url, 'next')
+                path, resolved_login_url, 'next')
 
         return _wrapped_view
 
@@ -108,3 +108,9 @@ def accept_invite(request, slug):
         invitation.accept()
         messages.success(request, _('successfully joined team %s') % invitation.team.name)
     return redirect('home')
+
+
+@login_required
+def teams(request):
+    teams = Team.objects.all()
+    return render(request, 'teams_list.html', {'teams': teams})

@@ -17,6 +17,9 @@
     {% endifinstalled %}
 
     {% compress css %}
+        <link type="text/css" rel="stylesheet" href="/static/css/bootstrap.css">
+        <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-rtl.css">
+        <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-theme.css">
         <!-- Import iransans font -->
         <link type="text/css" rel="stylesheet" href="/static/base/font/iransans/style.css"/>
         <!-- Import materialize.css -->
@@ -47,6 +50,7 @@
 
     {% compress js %}
         <script type="text/javascript" src="/static/base/js/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript" src="/static/js/bootstrap.js"></script>
         <script type="text/javascript" src="/static/materialize/js/materialize.min.js"></script>
         <script type="text/javascript" src="/static/base/js/masonry.pkgd.min.js"></script>
         <script type="text/javascript" src="/static/base/js/imagesloaded.pkgd.min.js"></script>
@@ -96,11 +100,11 @@
                     <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
                     {% if request.user.is_authenticated %}
                         <li><a href="#">{% trans "My Team" %}</a></li>
-                        <li><a href="#">{% trans "Teams" %}</a></li>
+                        <li><a href="/team/list">{% trans "Teams" %}</a></li>
                         <li><a href="#">{% trans "Documentations" %}</a></li>
                         <li><a href="http://aichallenge.blog.ir">{% trans "blog" %}</a></li>
                     {% endif %}
-                        <li><a href="#">{% trans "Contact us" %}</a></li>
+                    <li><a href="#">{% trans "Contact us" %}</a></li>
 
                     {#            {% for language in languages %}#}
                     {#                <li><a href="#" onclick="setlang('{{ language.code }}');">{{ language.name_local }}</a></li>#}

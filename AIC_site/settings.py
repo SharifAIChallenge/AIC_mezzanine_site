@@ -123,6 +123,7 @@ DEBUG = False
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 SITE_ID = 2
+SITE_URL = 'aichallenge.sharif.edu/'
 
 AUTH_USER_MODEL = 'base.Member'
 

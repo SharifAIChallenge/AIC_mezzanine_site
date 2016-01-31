@@ -79,8 +79,9 @@ class TeamInvitation(models.Model):
 
     def __init__(self, *args, **kwargs):
         super(TeamInvitation, self).__init__(*args, **kwargs)
-        self.slug = base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)[:-1] \
-            .replace('+', 'O').replace('/', 'O')
+        if not self.slug:
+            self.slug = base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)[:-1] \
+                .replace('+', 'O').replace('/', 'O')
 
     class Meta:
         verbose_name = _('invitation')

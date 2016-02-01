@@ -43,6 +43,8 @@ def team_required(function=None):
 
 @login_required
 def register_team(request):
+    if request.user.team:
+        return redirect('my_team')
     if request.method == 'POST':
         form = TeamForm(data=request.POST)
         if form.is_valid():
@@ -57,6 +59,9 @@ def register_team(request):
 @login_required
 @team_required
 def invite_member(request):
+    if request.user.id != request.team.head_id:
+        messages.error(request, _("only head can invite"))
+        return redirect('my_team')
     if request.method == 'POST':
         form = InvitationForm(data=request.POST)
         if form.is_valid():
@@ -114,3 +119,10 @@ def accept_invite(request, slug):
 def teams(request):
     teams = Team.objects.all()
     return render(request, 'teams_list.html', {'teams': teams})
+
+
+@login_required
+@team_required
+def my_team(request):
+    team = request.team
+    return render(request, 'my_team.html', {'team': team})

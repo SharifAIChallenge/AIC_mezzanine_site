@@ -345,6 +345,7 @@ LOGGING = {
 }
 
 LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/team/my"
 LOGOUT_URL = "/logout/"
 SIGNUP_URL = "/signup/"
 ACCOUNTS_PROFILE_FORM_CLASS = "base.forms.ProfileForm"

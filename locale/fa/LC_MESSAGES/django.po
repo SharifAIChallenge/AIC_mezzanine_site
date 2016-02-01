@@ -433,6 +433,10 @@ msgstr "کاربر %(name)s با موفقیت دعوت شد"
 msgid "invite member to team"
 msgstr "دعوت کاربر به تیم"
 
+
+msgid "only head can invite"
+msgstr "فقط سرگروه می‌تواند عضو جدید دعوت کند"
+
 #: base/views.py:83
 msgid "your team does not have enough members"
 msgstr "تیم شما تعداد اعضای کافی ندارد"

@@ -74,7 +74,8 @@ def invite_member(request):
                 messages.warning(request, _("you have invited this user before!"))
             else:
                 form.save(team=request.team)
-                messages.success(request, _('successfully invited user %(name)s') % {'name': form.user.get_full_name()})
+                messages.success(request,
+                                 _('successfully invited user %(name)s') % {'name': form.member.get_full_name()})
                 return redirect('invite_member')
     else:
         form = InvitationForm()

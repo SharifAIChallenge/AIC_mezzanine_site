@@ -3,10 +3,14 @@
 
 {% block meta_title %}{% trans 'My Team' %}{% endblock %}
 {% block title %}{% trans 'My Team' %}{% endblock %}
+{% block extra_css %}
+    {{ block.super }}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
 
 {% block main %}
     <div class="row">
-        <div class="col s12 m12 l12">
+        <div class="col s12 m12 l8 offset-l2">
             <div class="card">
                 <div class="panel">
 
@@ -29,25 +33,22 @@
                             <th>
                                 {% trans 'name' %}
                             </th>
-                            <th>
-                                {% trans 'team head' %}
-                            </th>
-                            <th>
-                                {% trans 'member' %}
-                            </th>
-                            <th>
-                                {% trans 'member' %}
-                            </th>
+                            <th></th>
                         </tr>
-                        <tr>
-                            <td>{{ team.name }}</td>
-                            <td>{{ team.head.get_full_name }}</td>
-                            <td>{% if team.get_members.0 %}{{ team.get_members.0.get_full_name }}{% else %}
-                                -{% endif %}</td>
-                            <td>{% if team.get_members.1 %}{{ team.get_members.1.get_full_name }}{% else %}
-                                -{% endif %}</td>
-                        </tr>
+                        {% with member=team.head %}
+                            <tr>
+                                <td>{{ member.get_full_name }}</td>
+                                <td></td>
+                            </tr>
+                        {% endwith %}
+                        {% with team_members=team.get_members %}
+                            {% for member in team_members %}
+                                {% include 'team_member_row.html' %}
+                            {% endfor %}
+                        {% endwith %}
                     </table>
+
+                    <div class="px-20 vertical spacer"></div>
                     <div class="col s6 m4 l3 offset-m1">
                         <a href="{% url 'invite_member' %}">
                             <button type="button" class="btn btn-primary">
@@ -55,6 +56,17 @@
                             </button>
                         </a>
                     </div>
+                    {# TODO: اینجا باید چک بشه که ادمین تیم هست یا عضو  معمولی، یکی از اینا رو نشون بده #}
+                    <div class="col s6 m4 l3 offset-m1">
+                        <form method="post" action="{% url 'remove' %}">
+                            <input type="hidden" name="id" value="{{ request.user.pk }}"/>
+                            <input type="hidden" name="type" value="member"/>
+                            <button type="submit" class="btn btn-error">
+                                {% trans 'leave team' %}
+                            </button>
+                        </form>
+                    </div>
+                    <div class="px-20 vertical spacer"></div>
                 </div>
             </div>
         </div>

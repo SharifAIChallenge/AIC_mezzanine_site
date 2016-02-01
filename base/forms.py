@@ -5,6 +5,7 @@ from django.template import Context
 from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django_countries.widgets import CountrySelectWidget
+from mezzanine.utils.email import send_mail_template
 from mezzanine.accounts.forms import ProfileForm as mezzanine_profile_form
 
 
@@ -56,9 +57,7 @@ class InvitationForm(forms.Form):
 
     def save(self, team):
         invitation, is_new = TeamInvitation.objects.get_or_create(member=self.member, team=team)
-        message = get_template('mail/invitation_mail.html').render(
-                Context({'team': team.name, 'link': invitation.accept_link}))
-        self.member.email_user(_('AIChallenge team invitation'),
-                               _('you have been invited to team %(name)s, follow the link to accept:\n%(link)s') % {
-                                   'name': team.name, 'link': invitation.accept_link}, html_message=message)
+        send_mail_template(_('AIChallenge team invitation'), 'mail/invitation_mail', '',
+                           self.member.email, context={'team': team.name, 'link': 'http://%s' % invitation.accept_link})
+
         return

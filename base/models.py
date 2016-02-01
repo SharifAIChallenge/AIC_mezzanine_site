@@ -30,6 +30,9 @@ class Team(models.Model):
         verbose_name = _('team')
         verbose_name_plural = _('teams')
 
+    def get_members(self):
+        return [member for member in self.member_set.all() if member != self.head]
+
 
 class Submit(models.Model):
     PL_CHOICES = (

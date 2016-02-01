@@ -145,41 +145,7 @@
     {% block main_wrapper %}
         <div class="container">
             <div class="row">
-                {% comment %}
-                    <div class="{% if LANGUAGE_BIDI %}right{% endif %} col s12 m4 l4">
-                        {% block right_panel %}
 
-
-                            {#                        {% include "includes/user_panel.html" %}#}
-
-
-                            {% block menu_wrapper %}
-                                <ul class="collapsible card" data-collapsible="accordion">
-                                    {% page_menu "pages/menus/main_menu.html" %}
-                                </ul>
-                            {% endblock %}
-                            {% if page %}
-                                {% block child_wrapper %}
-                                    {% page_menu page "pages/menus/children.html" %}
-                                {% endblock %}
-                            {% endif %}
-                        {% endblock %}
-
-{#                    <div class="px-40 vertical spacer"></div>#}
-{#                    <h4 class="center-align cyan lighten-3 red-text text-darken-2 card-panel">{% trans "Sponsers" %}</h4>#}
-{##}
-{#                    <a class="red-text text-darken-2" href="http://bayan.ir">#}
-{#                        <div class="card">#}
-{#                            <div class="card-image">#}
-{#                                <img src="/static/base/image/sponsers/bayan.png">#}
-{#                            </div>#}
-{#                            <div class="center-align card-content">#}
-{#                                گروه راهبردی بیان#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </a>#}
-                </div>
-            {% endcomment %}
                 <div class="col s12 m12 l12">
                     <div class="px-20 vertical spacer"></div>
                     {% block main_hack %}
@@ -192,68 +158,17 @@
             </div>
         </div>
     {% endblock %}
+
+    <div id="pre-footer-space"></div>
 </div>
 
 
 <div id="main-wrapper">
 
-
     <!-- Start of StatCounter Code for Default Guide -->
     <!-- End of StatCounter Code for Default Guide -->
-    {##}
-    {##}
-    {#    <footer class="cyan page-footer white-text" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>#}
-    {#        <div class="container">#}
-    {#            <div class="row">#}
-    {#                <div class="center-align">#}
-    {#                    {% blocktrans with ssc_link_attrs='class="white-text text-lighten-4" href="http://ssc.ce.sharif.edu"' sharif_link_attrs='class="white-text text-lighten-4" href="http://sharif.edu"' %}#}
-    {#                        &copy;#}
-    {#                        <a {{ ssc_link_attrs }} >Scientific Students Chapter of Computer Engineering Department</a>,#}
-    {#                        <a {{ sharif_link_attrs }} >Sharif University of Technology</a>#}
-    {#                    {% endblocktrans %}#}
-    {#                </div>#}
-    {#                <div class="px-40 vertical spacer"></div>#}
-    {#                <div class="valign-wrapper center-align row">#}
-    {#                    <div class="valign col s6 m3 l3">#}
-    {#                        <a href="http://ssc.ce.sharif.edu">#}
-    {#                            <img class="responsive-img" style="width:80%;"#}
-    {#                                 src="/static/base/image/SSC-unofficial-logo-white.png">#}
-    {#                        </a>#}
-    {#                    </div>#}
-    {#                    <div class="valign col s6 m3 l3">#}
-    {#                        <a href="http://sharif.edu">#}
-    {#                            <img style="width:50%;" src="/static/base/image/Sharif-log-HQ-white.png">#}
-    {#                        </a>#}
-    {#                    </div>#}
-    {#                    <div class="valign col s6 m3 l3">#}
-    {#                        <a href="https://www.instagram.com/AIChallenge/">#}
-    {#                            <img style="width:38%;" src="/static/base/image/insta-logo.png">#}
-    {#                        </a>#}
-    {#                    </div>#}
-    {#                    <div class="valign col s6 m3 l3">#}
-    {#                        <a href="https://twitter.com/AIChallenge">#}
-    {#                            <img style="width:50%;" src="/static/base/image/twitter-logo.png">#}
-    {#                        </a>#}
-    {#                    </div>#}
-    {#                </div>#}
-    {#            </div>#}
-    {#        </div>#}
-    {#        <div class="footer-copyright">#}
-    {#            <div class="container">#}
-    {#                <div class="grey-text text-lighten-4 left">#}
-    {#                    {% blocktrans with powered_by='<a class="white-text text-lighten-4" href="http://mezzanine.jupo.org/">Mezzanine</a>, <a class="white-text text-lighten-4" href="http://materializecss.com/">Materialize</a>' designer='<a class="white-text text-lighten-4" href="http://mr.amira.li">Mr.AmirA.li</a>' %}#}
-    {#                        Pwered By#}
-    {#                        {{ powered_by }}#}
-    {#                        -#}
-    {#                        Designed By#}
-    {#                        {{ designer }}#}
-    {#                    {% endblocktrans %}#}
-    {#                </div>#}
-    {#            </div>#}
-    {#        </div>#}
-    </footer>
 
-    <div class="footer">
+    <div class="footer" id="footer">
         <div class="information-site">
             {#            <h2 class="pull-title" style="color: #C3C7D8;font-size: 2.6em;cursor: default;">ارتباط با ما</h2>#}
             {#            <p>ایران٬ تهران٬ دانشگاه شریف٬ سالن جبار</p>#}
@@ -272,14 +187,10 @@
                 </ul>
             {% endif %}
             <div class="logos">
-                <!--<a href="//bayan.ir" tabindex="-1" hidefocus="true"><img src="/static/images/bayan.png" class="logo-bayan"></i></a>-->
-                <a href="" tabindex="-1" hidefocus="true" class="sharif"><img src="/static/images/sharif.png"
-                                                                              class="logo-sharif"></a>
-                <a href="//ssc.ce.sharif.edu" tabindex="-1" hidefocus="true" class="ssc"></a>
-                <div class="divider" style="display: none;"><p>{% blocktrans %}انجمن علمی دانشجویی دانشکده کامپیوتر
-                    دانشگاه شریف{% endblocktrans %}</p>
-                </div>
-                <p>{% blocktrans %}انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف{% endblocktrans %}</p>
+                <a class="white-text" href="http://ssc.ce.sharif.edu">
+                    <img src="/static/base/image/SSC-unofficial-logo-white.png" width="18%">
+                    <p>{% blocktrans %}انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف{% endblocktrans %}</p>
+                </a>
             </div>
         </div>
         <div class="bottom-layout">
@@ -304,7 +215,14 @@
     <script type="text/javascript" src="/static/lightbox/js/lightbox.min.js"></script>
     <script type="text/javascript" src="/static/base/js/main.js"></script>
 {% endcompress %}
-{% block extra_body %}{% endblock %}
+
+{% block extra_body %}
+    <script>
+        $(function() {
+            $('#pre-footer-space').height($(window).height() - $('#footer').height() - $('#footer').position().top);
+        });
+    </script>
+{% endblock %}
 
 
 </body>

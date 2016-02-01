@@ -18,7 +18,9 @@
 
     {% compress css %}
         <link type="text/css" rel="stylesheet" href="/static/css/bootstrap.css">
+        {% if LANGUAGE_BIDI %}
         <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-rtl.css">
+        {% endif %}
         <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-theme.css">
         <!-- Import iransans font -->
         <link type="text/css" rel="stylesheet" href="/static/base/font/iransans/style.css"/>
@@ -33,7 +35,6 @@
         <link type="text/css" rel="stylesheet" href="/static/base/css/materialize-config.css"/>
 
         <link type="text/css" rel="stylesheet" href="/static/styles/screen.css"/>
-
         <style>
             nav {
                 background: #244273;
@@ -45,6 +46,11 @@
             .footer .information-site {
                 margin: 0 auto !important;
             }
+            {% if LANGUAGE_BIDI %}
+            body {
+                direction: rtl;
+            }
+            {% endif %}
         </style>
 
         {% block extra_css %}{% endblock %}
@@ -118,7 +124,7 @@
                         <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
                     {% endif %}
                 </ul>
-                <div class="float left">
+                <div class="float {% if LANGUAGE_BIDI %}left{% else %}right{% endif %}">
                     {% if user.is_authenticated %}
                         <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true"
                            class="signout-dump">{% trans 'logout' %}</a>

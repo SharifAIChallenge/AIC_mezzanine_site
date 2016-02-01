@@ -3,12 +3,12 @@ from functools import wraps
 from urlparse import urlparse
 
 from base.forms import SubmitForm, TeamForm, InvitationForm
-from base.models import TeamInvitation, Team
+from base.models import TeamInvitation, Team, Member
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
 from game.models import Competition
@@ -126,3 +126,26 @@ def teams(request):
 def my_team(request):
     team = request.team
     return render(request, 'my_team.html', {'team': team})
+
+
+@login_required
+@team_required
+def remove(request):
+    if request.method != 'POST':
+        return PermissionDenied
+    type = request.POST.get('type')
+    id = request.POST.get('id')
+    if type == 'team':
+        team = Team.objects.get(id=id)
+        if team != request.team:
+            return PermissionDenied
+        team.delete()
+    elif type == 'member':
+        member = Member.objects.get(id=id)
+        if not request.team.member_set.filter(id=id).exists:
+            return Http404
+        if member != request.user and request.team.head_id != id:
+            return PermissionDenied
+        member.team = None
+        member.save()
+    return HttpResponse("", content_type='application/json')

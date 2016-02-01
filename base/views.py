@@ -2,13 +2,13 @@
 from functools import wraps
 from urlparse import urlparse
 
-from base.forms import SubmitForm, TeamForm, InvitationForm, ChooseTeamForm
-from base.models import Team, TeamInvitation
+from base.forms import SubmitForm, TeamForm, InvitationForm
+from base.models import TeamInvitation, Team, Member
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
 from game.models import Competition
@@ -18,11 +18,13 @@ def team_required(function=None):
     def decorator(view_func):
         @wraps(view_func)
         def _wrapped_view(request, *args, **kwargs):
-            if 'team' in request.session and request.session['team']:
-                request.team = Team.objects.get(id=request.session['team'])
+            if hasattr(request.user, 'team') and request.user.team:
+                request.team = request.user.team
                 return view_func(request, *args, **kwargs)
             path = request.build_absolute_uri()
-            resolved_login_url = reverse('choose_team')
+            messages.info(request,
+                          _("you are not in a team, create one below or request your team leader to invite you"))
+            resolved_login_url = reverse('register_team')
             login_scheme, login_netloc = urlparse(resolved_login_url)[:2]
             current_scheme, current_netloc = urlparse(path)[:2]
             if ((not login_scheme or login_scheme == current_scheme) and
@@ -30,7 +32,7 @@ def team_required(function=None):
                 path = request.get_full_path()
             from django.contrib.auth.views import redirect_to_login
             return redirect_to_login(
-                    path, resolved_login_url, 'next')
+                path, resolved_login_url, 'next')
 
         return _wrapped_view
 
@@ -41,6 +43,8 @@ def team_required(function=None):
 
 @login_required
 def register_team(request):
+    if request.user.team:
+        return redirect('my_team')
     if request.method == 'POST':
         form = TeamForm(data=request.POST)
         if form.is_valid():
@@ -53,29 +57,25 @@ def register_team(request):
 
 
 @login_required
-def choose_team(request):
-    if request.method == 'POST':
-        form = ChooseTeamForm(data=request.POST, user=request.user)
-        if form.is_valid():
-            request.session['team'] = form.cleaned_data['team'].id
-            redirect_url = request.GET.get('next')
-            if redirect_url:
-                return redirect(redirect_url)
-            return redirect('invite_member')
-    else:
-        form = ChooseTeamForm(user=request.user)
-    return render(request, 'accounts/account_form.html', {'form': form, 'title': _('choose your team')})
-
-
-@login_required
 @team_required
 def invite_member(request):
+    if request.user.id != request.team.head_id:
+        messages.error(request, _("only head can invite"))
+        return redirect('my_team')
     if request.method == 'POST':
         form = InvitationForm(data=request.POST)
         if form.is_valid():
-            form.save(team=request.team)
-            messages.success(request, _('successfully invited user %(name)s') % {'name': form.user.get_full_name()})
-            return redirect('invite_member')
+            if form.member.team:
+                if form.member.team == request.team:
+                    messages.info(request, _("already part of the team"))
+                else:
+                    messages.error(request, _("already part of another team"))
+            elif TeamInvitation.objects.filter(member=form.member, team=request.team).exists():
+                messages.warning(request, _("you have invited this user before!"))
+            else:
+                form.save(team=request.team)
+                messages.success(request, _('successfully invited user %(name)s') % {'name': form.user.get_full_name()})
+                return redirect('invite_member')
     else:
         form = InvitationForm()
     return render(request, 'accounts/account_form.html', {'form': form, 'title': _('invite member to team')})
@@ -84,6 +84,9 @@ def invite_member(request):
 @login_required
 @team_required
 def submit(request):
+    if request.team.member_set.count() < request.team.competition.min_members:
+        messages.error(request, _("your team does not have enough members"))
+        return redirect('invite_member')
     if request.method == 'POST':
         form = SubmitForm(data=request.POST, files=request.FILES)
         if form.is_valid():
@@ -104,6 +107,45 @@ def accept_invite(request, slug):
         raise Http404()
     if not invitation.member == request.user:
         raise PermissionDenied()
-    invitation.accept()
-    messages.success(request, _('successfully joined team %s') % invitation.team.name)
+    if invitation.team.member_set.count() == invitation.team.competition.max_members:
+        messages.error(request, _("the team has reached max members"))
+    else:
+        invitation.accept()
+        messages.success(request, _('successfully joined team %s') % invitation.team.name)
     return redirect('home')
+
+
+@login_required
+def teams(request):
+    teams = Team.objects.all()
+    return render(request, 'teams_list.html', {'teams': teams})
+
+
+@login_required
+@team_required
+def my_team(request):
+    team = request.team
+    return render(request, 'my_team.html', {'team': team})
+
+
+@login_required
+@team_required
+def remove(request):
+    if request.method != 'POST':
+        return PermissionDenied
+    type = request.POST.get('type')
+    id = request.POST.get('id')
+    if type == 'team':
+        team = Team.objects.get(id=id)
+        if team != request.team:
+            return PermissionDenied
+        team.delete()
+    elif type == 'member':
+        member = Member.objects.get(id=id)
+        if not request.team.member_set.filter(id=id).exists:
+            return Http404
+        if member != request.user and request.team.head_id != id:
+            return PermissionDenied
+        member.team = None
+        member.save()
+    return HttpResponse("", content_type='application/json')

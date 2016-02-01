@@ -62,7 +62,7 @@ $(document).ready(function(e){
     	offset: 100    
    	});
    	$('#remaining').countdown({
-		date: '02/01/2016 23:59:59',
+		date: '03/02/2016 23:59:59',
 		offset: -8,
 		day: 'روز',
 		days: 'روز'

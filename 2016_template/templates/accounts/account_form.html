@@ -15,6 +15,20 @@
         <div class="col s12 m12 l8 offset-l4">
             <div class="card">
                 <div class="panel">
+
+                    {% nevercache %}
+                        {% if messages %}
+                            <div class="messages">
+                                {% for message in messages %}
+                                    <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                                aria-hidden="true">&times;</button>
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endnevercache %}
                     {% errors_for form %}
 
                     <form method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>

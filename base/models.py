@@ -5,20 +5,24 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import SET_NULL
 from django.utils.translation import ugettext_lazy as _
+from django_countries.fields import CountryField
 
 
 class Member(AbstractUser):
     phone_number = models.CharField(verbose_name=_("phone_number"), max_length=20, blank=True)
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
     avatar = models.ImageField(verbose_name=_("avatar"), blank=True)
+    country = CountryField(verbose_name=_("country"), blank_label=_("choose your country"), default='IR')
+    team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True, on_delete=SET_NULL)
 
 
 class Team(models.Model):
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=True)
     name = models.CharField(verbose_name=_('name'), max_length=200)
-    members = models.ManyToManyField(Member, verbose_name=_('members'), through='base.TeamMember')
+    head = models.ForeignKey('base.Member', verbose_name=_("team head"), related_name='+')
 
     def __unicode__(self):
         return 'Team%d(%s)' % (self.id, self.name)
@@ -27,17 +31,23 @@ class Team(models.Model):
         verbose_name = _('team')
         verbose_name_plural = _('teams')
 
-
-class TeamMember(models.Model):
-    timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
-    team = models.ForeignKey('base.Team', verbose_name=_('team'))
-    member = models.ForeignKey(Member, verbose_name=_('member'))
+    def get_members(self):
+        return [member for member in self.member_set.all() if member != self.head]
 
 
 class Submit(models.Model):
+    PL_CHOICES = (
+        ('jav', 'java'),
+        ('cpp', 'c++'),
+        ('py2', 'python2'),
+        ('py3', 'python3'),
+    )
+
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     code = models.FileField(verbose_name=_('code'), upload_to='submits/temp')
     team = models.ForeignKey(Team, verbose_name=_('team'))
+
+    pl = models.CharField(verbose_name=_("programming language"), choices=PL_CHOICES, null=True, max_length=3)
 
     played = models.IntegerField(verbose_name=_('played'), default=0)
     won = models.IntegerField(verbose_name=_('won'), default=0)
@@ -68,20 +78,22 @@ class Submit(models.Model):
 class TeamInvitation(models.Model):
     accepted = models.BooleanField(verbose_name=_('accepted'), default=False)
     team = models.ForeignKey('base.Team', verbose_name=_('team'))
-    member = models.ForeignKey(Member, verbose_name=_('member'))
+    member = models.ForeignKey('base.Member', verbose_name=_('member'))
     slug = models.CharField(verbose_name=_('slug'), max_length=100)
 
     def __init__(self, *args, **kwargs):
         super(TeamInvitation, self).__init__(*args, **kwargs)
-        self.slug = base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)[:-1] \
-            .replace('+', 'O').replace('/', 'O')
+        if not self.slug:
+            self.slug = base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)[:-1] \
+                .replace('+', 'O').replace('/', 'O')
 
     class Meta:
         verbose_name = _('invitation')
         verbose_name_plural = _('invitations')
 
     def accept(self):
-        TeamMember.objects.create(member=self.member, team=self.team)
+        self.member.team = self.team
+        self.member.save()
         self.accepted = True
         self.save()
 

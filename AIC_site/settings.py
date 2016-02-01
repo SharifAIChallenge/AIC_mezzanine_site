@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import absolute_import, unicode_literals
 
 import os
@@ -121,7 +122,8 @@ DEBUG = False
 # Whether a user's session cookie expires when the Web browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-SITE_ID = 1
+SITE_ID = 2
+SITE_URL = 'aichallenge.sharif.edu/'
 
 AUTH_USER_MODEL = 'base.Member'
 
@@ -231,6 +233,7 @@ INSTALLED_APPS = (
     "AIC_configs",
     "base",
     "game",
+    "django_countries",
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -342,9 +345,14 @@ LOGGING = {
 }
 
 LOGIN_URL = "/login/"
+LOGIN_REDIRECT_URL = "/team/my"
 LOGOUT_URL = "/logout/"
 SIGNUP_URL = "/signup/"
 ACCOUNTS_PROFILE_FORM_CLASS = "base.forms.ProfileForm"
+
+COUNTRIES_FIRST = [
+    'IR'
+]
 
 ##################
 # LOCAL SETTINGS #

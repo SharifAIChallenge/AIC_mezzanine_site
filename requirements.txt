@@ -3,4 +3,4 @@ django-modeltranslation==0.10.2
 django-debug-toolbar==1.4
 django-compressor==1.6
 jdatetime==1.7.1
-
+django-countries

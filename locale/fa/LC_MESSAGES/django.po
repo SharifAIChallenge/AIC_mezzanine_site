@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-29 00:32+0330\n"
+"POT-Creation-Date: 2016-02-01 01:30+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,67 +18,62 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: 2016_template/templates/base.html:87 templates/index.html:64
+#: 2016_template/templates/base.html:73 templates/en.html:61
+#: templates/index.html:62
 #: venv/lib/python2.7/site-packages/django/forms/widgets.py:346
 msgid "Change"
 msgstr "تغییر"
 
-#: 2016_template/templates/base.html:122
-msgid "Sponsers"
-msgstr "حامیان"
+#: 2016_template/templates/base.html:96 2016_template/templates/index.html:3
+#: 2016_template/templates/index.html:4 2016_template/templates/index.html:13
+#: 2016_template/templates/pages/menus/main_menu.html:13
+#: 2016_template/templates/search_results.html:13
+msgid "Home"
+msgstr "صفحه‌ی اصلی"
 
-#: 2016_template/templates/base.html:157
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "                    &copy;\n"
-#| "                    <a %(ssc_link_attrs)s >Scientific Students Chapter of "
-#| "Computer Engineering Department</a>,\n"
-#| "                    <a %(sharif_link_attrs)s >Sharif University of "
-#| "Technology</a>\n"
-#| "                    "
-msgid ""
-"\n"
-"                        &copy;\n"
-"                        <a %(ssc_link_attrs)s >Scientific Students Chapter "
-"of Computer Engineering Department</a>,\n"
-"                        <a %(sharif_link_attrs)s >Sharif University of "
-"Technology</a>\n"
-"                    "
-msgstr ""
-"\n"
-"                    &copy; کلیه‌ی حقوق این سایت متعلق به \n"
-"                    <a %(ssc_link_attrs)s >انجمن علمی دانشجویی دانشکده‌ی "
-"کامپیوتر</a> \n"
-"                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
-"                    "
+#: 2016_template/templates/base.html:98
+msgid "My Team"
+msgstr "تیم من"
 
-#: 2016_template/templates/base.html:192
-#, fuzzy, python-format
-#| msgid ""
-#| "\n"
-#| "                    Pwered By\n"
-#| "                    %(powered_by)s\n"
-#| "                    -\n"
-#| "                    Designed By\n"
-#| "                    %(designer)s\n"
-#| "                    "
+#: 2016_template/templates/base.html:99
+msgid "Teams"
+msgstr "تیم‌ها"
+
+#: 2016_template/templates/base.html:100
+msgid "Documentations"
+msgstr "مستندات"
+
+#: 2016_template/templates/base.html:101
+msgid "Contact us"
+msgstr "تماس با ما"
+
+#: 2016_template/templates/base.html:102
+msgid "blog"
+msgstr "وبلاگ"
+
+#: 2016_template/templates/base.html:118
+msgid "logout"
+msgstr "خروج"
+
+#: 2016_template/templates/base.html:121
+msgid "login"
+msgstr "ورود"
+
+#: 2016_template/templates/base.html:123
+msgid "signup"
+msgstr "ثبت نام"
+
+#: 2016_template/templates/base.html:264 templates/index.html:322
+#, fuzzy
+#| msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
 msgid ""
-"\n"
-"                        Pwered By\n"
-"                        %(powered_by)s\n"
-"                        -\n"
-"                        Designed By\n"
-"                        %(designer)s\n"
-"                    "
-msgstr ""
-"\n"
-"                    قدرت گرفته از \n"
-"                    %(powered_by)s\n"
-"                    -\n"
-"                    طراحی شده به دست \n"
-"                    %(designer)s\n"
-"                    "
+"انجمن علمی دانشجویی دانشکده کامپیوتر\n"
+"                    دانشگاه شریف"
+msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
+
+#: 2016_template/templates/base.html:267 templates/index.html:325
+msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
+msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
 
 #: 2016_template/templates/blog/blog_post_detail.html:42
 msgid "Related News"
@@ -211,13 +206,6 @@ msgstr "صفحه"
 msgid "of"
 msgstr "از"
 
-#: 2016_template/templates/index.html:3 2016_template/templates/index.html:4
-#: 2016_template/templates/index.html:13
-#: 2016_template/templates/pages/menus/main_menu.html:13
-#: 2016_template/templates/search_results.html:13
-msgid "Home"
-msgstr "صفحه‌ی اصلی"
-
 #: 2016_template/templates/index.html:42
 msgid "password"
 msgstr "گذرواژه"
@@ -232,11 +220,11 @@ msgstr "اکنون در مانیتور‌های لابی"
 
 #: 2016_template/templates/mail/invitation_mail.html:9
 msgid "you have been invited to team:"
-msgstr ""
+msgstr "شما به تیمی با این نام دعوت شده‌اید:"
 
 #: 2016_template/templates/mail/invitation_mail.html:11
 msgid "click on below link to accept:"
-msgstr ""
+msgstr "برای پذیرفتن روی لینک زیر کلیک کنید:"
 
 #: 2016_template/templates/pages/gallery.html:48
 #, python-format
@@ -280,23 +268,23 @@ msgstr ""
 msgid "read more"
 msgstr "ادامه‌ی نوشتار"
 
-#: AIC_site/settings.py:43
+#: AIC_site/settings.py:45
 msgid "Top navigation bar"
 msgstr "نوار بالایی"
 
-#: AIC_site/settings.py:44
+#: AIC_site/settings.py:46
 msgid "Left-hand tree"
 msgstr "نوار کناری"
 
-#: AIC_site/settings.py:62
+#: AIC_site/settings.py:64
 msgid "Featured Image"
 msgstr "تصویر ویژه"
 
-#: AIC_site/settings.py:112
+#: AIC_site/settings.py:114
 msgid "Persian"
 msgstr "فارسی"
 
-#: AIC_site/settings.py:113
+#: AIC_site/settings.py:115
 #: venv/lib/python2.7/site-packages/mezzanine/project_template/project_name/settings.py:113
 msgid "English"
 msgstr "انگلیسی"
@@ -305,15 +293,15 @@ msgstr "انگلیسی"
 msgid "base"
 msgstr "اصلی"
 
-#: base/forms.py:43
+#: base/forms.py:53
 msgid "user not found"
 msgstr "کاربر یافت نشد"
 
-#: base/forms.py:51
+#: base/forms.py:61
 msgid "AIChallenge team invitation"
 msgstr "دعوت عضویت تیم در AIChallenge"
 
-#: base/forms.py:52
+#: base/forms.py:62
 #, python-format
 msgid ""
 "you have been invited to team %(name)s, follow the link to accept:\n"
@@ -322,116 +310,155 @@ msgstr ""
 "شما به تیم %(name)s دعوت شده‌اید، جهت پذیرفتن روی لینک زیر کلیک کنید:\n"
 "%(link)s"
 
-#: base/models.py:12
-#, fuzzy
-#| msgid "member"
-msgid "phone_number"
-msgstr "کاربر"
-
 #: base/models.py:13
-msgid "education place"
-msgstr ""
+msgid "phone_number"
+msgstr "شماره تماس"
 
 #: base/models.py:14
+msgid "education place"
+msgstr "محل تحصیل"
+
+#: base/models.py:15
 msgid "avatar"
-msgstr ""
+msgstr "عکس پروفایل"
 
-#: base/models.py:18 base/models.py:32 base/models.py:38 game/models.py:8
-#: game/models.py:21
-msgid "timestamp"
-msgstr "زمان"
+#: base/models.py:16
+msgid "country"
+msgstr "کشور"
 
-#: base/models.py:19 game/models.py:16 game/models.py:22
-msgid "competition"
-msgstr "مسابقه"
+#: base/models.py:16
+#, fuzzy
+#| msgid "choose your team"
+msgid "choose your country"
+msgstr "تیم را انتخاب کنید"
 
-#: base/models.py:20
-msgid "name"
-msgstr "نام"
-
-#: base/models.py:21
-msgid "members"
-msgstr "اعضا"
-
-#: base/models.py:27 base/models.py:33 base/models.py:40 base/models.py:70
+#: base/models.py:17 base/models.py:30 base/models.py:44 base/models.py:76
 msgid "team"
 msgstr "تیم"
 
-#: base/models.py:28
+#: base/models.py:21 base/models.py:42 game/models.py:8 game/models.py:23
+msgid "timestamp"
+msgstr "زمان"
+
+#: base/models.py:22 game/models.py:18 game/models.py:24
+msgid "competition"
+msgstr "مسابقه"
+
+#: base/models.py:23
+msgid "name"
+msgstr "نام"
+
+#: base/models.py:24
+msgid "team head"
+msgstr "سرگروه"
+
+#: base/models.py:31
 msgid "teams"
 msgstr "تیم‌ها"
 
-#: base/models.py:34 base/models.py:71
-msgid "member"
-msgstr "کاربر"
-
-#: base/models.py:39
+#: base/models.py:43
 msgid "code"
 msgstr "کد"
 
-#: base/models.py:42
+#: base/models.py:46
+msgid "programming language"
+msgstr "زبان برنامه نویسی"
+
+#: base/models.py:48
 msgid "played"
 msgstr "بازی کرده"
 
-#: base/models.py:43
+#: base/models.py:49
 msgid "won"
 msgstr "برده"
 
-#: base/models.py:49
+#: base/models.py:55
 msgid "submit"
 msgstr "کد سابمیت شده"
 
-#: base/models.py:50
+#: base/models.py:56
 msgid "submits"
 msgstr "کدهای سابمیت شده"
 
-#: base/models.py:69
+#: base/models.py:75
 msgid "accepted"
 msgstr "پذیرفته"
 
-#: base/models.py:72
+#: base/models.py:77
+msgid "member"
+msgstr "عضو"
+
+#: base/models.py:78
 msgid "slug"
 msgstr "اسلاگ"
 
-#: base/models.py:80
+#: base/models.py:86
 msgid "invitation"
 msgstr "دعوت"
 
-#: base/models.py:81
+#: base/models.py:87
 msgid "invitations"
 msgstr "دعوت‌ها"
 
-#: base/views.py:52
+#: base/views.py:26
+msgid ""
+"you are not in a team, create one below or request your team leader to "
+"invite you"
+msgstr ""
+"شما در هیچ تیمی نیستید، هم اکنون یک تیم بسازید یا از سرگروه بخواهید شما را "
+"دعوت کند."
+
+#: base/views.py:54
 msgid "register new team"
 msgstr "ثبت تیم جدید"
 
-#: base/views.py:67
-msgid "choose your team"
-msgstr "تیم را انتخاب کنید"
+#: base/views.py:65
+msgid "already part of the team"
+msgstr "عضو تیم است."
 
-#: base/views.py:77
+#: base/views.py:67
+msgid "already part of another team"
+msgstr "عضو تیم دیگری است."
+
+#: base/views.py:69
+msgid "you have invited this user before!"
+msgstr "شما قبلا این کاربر را دعوت کرده‌اید."
+
+#: base/views.py:72
 #, python-format
 msgid "successfully invited user %(name)s"
 msgstr "کاربر %(name)s با موفقیت دعوت شد"
 
-#: base/views.py:81
+#: base/views.py:76
 msgid "invite member to team"
 msgstr "دعوت کاربر به تیم"
 
-#: base/views.py:96
+
+msgid "only head can invite"
+msgstr "فقط سرگروه می‌تواند عضو جدید دعوت کند"
+
+#: base/views.py:83
+msgid "your team does not have enough members"
+msgstr "تیم شما تعداد اعضای کافی ندارد"
+
+#: base/views.py:94
 msgid "submit new code"
 msgstr "ارسال کد"
 
-#: base/views.py:108
+#: base/views.py:106
+msgid "the team has reached max members"
+msgstr "تیم شما به حداکثر تعداد رسیده است"
+
+#: base/views.py:109
 #, python-format
 msgid "successfully joined team %s"
 msgstr "با موفقیت به تیم %s ملحق شدید"
 
-#: game/apps.py:8 game/models.py:33 game/models.py:39
+#: game/apps.py:8 game/models.py:35 game/models.py:41
 msgid "game"
 msgstr "بازی"
 
-#: game/models.py:9 game/models.py:23
+#: game/models.py:9 game/models.py:25
 msgid "title"
 msgstr "عنوان"
 
@@ -439,173 +466,141 @@ msgstr "عنوان"
 msgid "site"
 msgstr "سایت"
 
-#: game/models.py:17
+#: game/models.py:11
+msgid "max team members count"
+msgstr "حداکثر تعداد اعضای تیم ها"
+
+#: game/models.py:12
+msgid "min team members count"
+msgstr "حداقل تعداد اعضای تیم ها"
+
+#: game/models.py:19
 msgid "competitions"
 msgstr "مسابقات"
 
-#: game/models.py:24
+#: game/models.py:26
 msgid "players"
 msgstr "بازیکنان"
 
-#: game/models.py:25
+#: game/models.py:27
 msgid "config"
 msgstr "تنظیمات"
 
-#: game/models.py:27
+#: game/models.py:29
 msgid "pre games"
 msgstr "بازی‌های مقدماتی"
 
-#: game/models.py:34
+#: game/models.py:36
 msgid "games"
 msgstr "بازی‌ها"
 
-#: game/models.py:38
+#: game/models.py:40
 #, fuzzy
 #| msgid "submit"
 msgid "team submit"
 msgstr "کد سابمیت شده"
 
-#: game/models.py:41
+#: game/models.py:43
 msgid "score"
 msgstr "امتیاز"
 
-#: templates/index.html:70 templates/index.html.py:94
+#: templates/index.html:68 templates/index.html.py:86
 msgid "خانه"
 msgstr ""
 
-#: templates/index.html:71 templates/index.html.py:95 templates/index.html:140
+#: templates/index.html:69 templates/index.html.py:87 templates/index.html:133
 msgid "معرفی مسابقه"
 msgstr ""
 
-#: templates/index.html:72 templates/index.html.py:96
-msgid "برنامه مسابقات"
-msgstr ""
-
-#: templates/index.html:73 templates/index.html.py:97 templates/index.html:186
-msgid "تاریخچه"
-msgstr "پیشینه"
-
-#: templates/index.html:74 templates/index.html.py:98 templates/index.html:210
-msgid "جوایز"
-msgstr ""
-
-#: templates/index.html:75 templates/index.html.py:99
-msgid "معرفی"
-msgstr ""
-
-#: templates/index.html:77 templates/index.html.py:101
-msgid "حامیان"
-msgstr ""
-
-#: templates/index.html:79 templates/index.html.py:103
-msgid "تماس با ما"
-msgstr ""
-
-#: templates/index.html:80 templates/index.html.py:104
-msgid "وبلاگ"
-msgstr ""
-
-#: templates/index.html:113
-msgid "ورود"
-msgstr ""
-
-#: templates/index.html:114
-msgid "ثبت‌نام"
-msgstr ""
-
-#: templates/index.html:141
-msgid "معرفی و اطلاعاتی از مسابقه و سرگذشت"
-msgstr ""
-
-#: templates/index.html:143
-msgid "مسابقه نبرد هوش مصنوعی شریف٬ ۹۴"
-msgstr ""
-
-#: templates/index.html:143 templates/index.html.py:233
-msgid ""
-"\n"
-"                فیلیپ هاموند وزیر امور خارجه انگلستان با اشاره به شرایط "
-"ایجاد شده در زمینه روابط دو کشور گفت: دلایل\n"
-"                مختلف موانع و چالش‌هایی بین روابط تجاری ایران و انگلستان به "
-"وجود آمد و امیدواریم بعد از رفع تحریم‌ها این\n"
-"                چالش‌ها رفع شود. وی افزود: بانک‌های اروپایی با توجه به همکاری "
-"با بانک‌های ایران از ناحیه آمریکا با جریمه\n"
-"                روبرو شدند و به همین دلیل احتیاط زیادی را برای از سر گرفتن "
-"روابط دارند. وزیر خارجه انگلستان با بیان\n"
-"                اینکه بانک‌های انگلستان علاقه به فعالیت در ایران و همکاری با "
-"بانک‌های ایران دارند، افزود: گام اول برای\n"
-"                بهبود روابط تجاری صحبت دولت ایران با دولت انگلستان است تا "
-"موانع بروکراتیک برداشته شود.\n"
-"            "
-msgstr ""
-
-#: templates/index.html:155
+#: templates/index.html:70 templates/index.html.py:88 templates/index.html:151
 msgid "برنامه مسابقه"
 msgstr ""
 
-#: templates/index.html:156
-msgid "برنامه پیش روی مسابقه برای زمان اجراء"
+#: templates/index.html:71 templates/index.html.py:89 templates/index.html:184
+msgid "تاریخچه"
+msgstr "پیشینه"
+
+#: templates/index.html:72 templates/index.html.py:90 templates/index.html:244
+msgid "جوایز"
 msgstr ""
 
-#: templates/index.html:187
-msgid "جدول تاریخچه داستان این مسابقه"
+#: templates/index.html:73 templates/index.html.py:91 templates/index.html:267
+msgid "معرفی"
 msgstr ""
 
-#: templates/index.html:196
-msgid "طرح اولیه از مسابقه"
+#: templates/index.html:74 templates/index.html.py:93
+msgid "حامیان"
 msgstr ""
 
-#: templates/index.html:197
-msgid "ارائه طرح اولیه از مسابقه به تیم فنی"
+#: templates/index.html:75 templates/index.html.py:95
+msgid "تماس با ما"
 msgstr ""
 
-#: templates/index.html:198
+#: templates/index.html:76 templates/index.html.py:96
+msgid "وبلاگ"
+msgstr ""
+
+#: templates/index.html:102
+msgid "خروج"
+msgstr ""
+
+#: templates/index.html:104
+msgid "ورود"
+msgstr ""
+
+#: templates/index.html:106
+msgid "ثبت‌نام"
+msgstr ""
+
+#: templates/index.html:134
 msgid ""
-"اولین مراحل شکل گیری این مسابقه کلید خرد٬ و خب با تلاش های زیاد\n"
-"                                و توکل به خدا تونستیم مرحله مقدماتی اجرائی "
-"رو پیش رو بزاریم\n"
-"                            "
+"\n"
+"نبرد هوش‌مصنوعی شریف ۹۴\n"
+"                "
 msgstr ""
 
-#: templates/index.html:211
-msgid "جوایز سومین دوره‌ی مسابقات نبرد هوش مصنوعی"
+#: templates/index.html:138
+msgid "مسابقه نبرد هوش مصنوعی شریف ۹۴"
 msgstr ""
 
-#: templates/index.html:219
-msgid "نفر اول"
+#: templates/index.html:138
+msgid ""
+"\n"
+"نبرد هوش مصنوعی شریف، مسابقه برنامه‌ نویسی دانشجویی است که شرکت‌کنندگان در "
+"قالب تیم‌های سه نفره برای بازی طراحی شده توسط تیم فنی، برنامه‌ای می‌نویسند تا "
+"بتواند حریفان را یکی پس از دیگری شکست دهد.\n"
+"در واقع، این مسابقه هشتمین دوره‌ی مسابقه‌ی نبرد به زبان جاوا (JavaChallenge) "
+"است که از امسال، علاوه بر جاوا،\n"
+" C++ و پایتون را هم به طور رسمی پشتیبانی می‌کند و با نام نبرد هوش مصنوعی "
+"(AIChallenege) به حیات خود ادامه می‌دهد! همچنین در این دوره از رقابت‌ها امکان "
+"حضور تیم‌ها از سراسر جهان فراهم شده است و مسابقات به شکل بین‌المللی برگزار "
+"خواهد شد.\n"
+"شرکت در مسابقه نیاز به هیچ گونه اطلاعات تخصصی از مباحث و الگوریتم‌های هوش "
+"مصنوعی ندارد (البته استفاده از این الگوریتم‌ها به موفق‌تر بودن برنامه‌ها کمک "
+"خواهد کرد.) و مهارت  برنامه‌نویسی به یکی از زبان‌های فوق برای حضور در مسابقه "
+"کافی خواهد بود!<br>\n"
+"                اخبار و اطلاعات تکمیلی مسابقه از طریق\n"
+"                <a href=\"//aichallenge.blog.ir\" style=\"color: blue"
+"\">وبلاگ</a>\n"
+"                مسابقه در دستس شما خواهد بود. به امید دیدار شما در این دوره "
+"از مسابقات!\n"
+"            "
 msgstr ""
 
-#: templates/index.html:220
-msgid "۳ سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه"
+#: templates/index.html:152
+msgid ""
+"\n"
+"                تاریخ‌های مهم پیشرو در مسابقه‌ی سال ۹۴\n"
+"            "
 msgstr ""
 
-#: templates/index.html:221
-msgid "نفر دوم"
+#: templates/index.html:185
+msgid "دوره‌های گذشته مسابقه"
 msgstr ""
 
-#: templates/index.html:222
-msgid "۲ سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه"
+#: templates/index.html:245
+msgid "جوایز این دوره از مسابقات"
 msgstr ""
-
-#: templates/index.html:223
-msgid "نفر سوم"
-msgstr ""
-
-#: templates/index.html:224
-msgid "یک سکه‌ی تمام بهارآزادی + صنایع دستی ایران + تی شرت مسابقه"
-msgstr ""
-
-#: templates/index.html:231
-msgid "درباره ما"
-msgstr ""
-
-#: templates/index.html:232
-msgid "درباره کادر مسابقه"
-msgstr ""
-
-#: templates/index.html:291 templates/index.html.py:293
-msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
-msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
 
 #: venv/lib/python2.7/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"
@@ -1965,6 +1960,63 @@ msgstr ""
 msgid "None"
 msgstr ""
 
+#~ msgid "Sponsers"
+#~ msgstr "حامیان"
+
+#, fuzzy
+#~| msgid ""
+#~| "\n"
+#~| "                    &copy;\n"
+#~| "                    <a %(ssc_link_attrs)s >Scientific Students Chapter "
+#~| "of Computer Engineering Department</a>,\n"
+#~| "                    <a %(sharif_link_attrs)s >Sharif University of "
+#~| "Technology</a>\n"
+#~| "                    "
+#~ msgid ""
+#~ "\n"
+#~ "                        &copy;\n"
+#~ "                        <a %(ssc_link_attrs)s >Scientific Students "
+#~ "Chapter of Computer Engineering Department</a>,\n"
+#~ "                        <a %(sharif_link_attrs)s >Sharif University of "
+#~ "Technology</a>\n"
+#~ "                    "
+#~ msgstr ""
+#~ "\n"
+#~ "                    &copy; کلیه‌ی حقوق این سایت متعلق به \n"
+#~ "                    <a %(ssc_link_attrs)s >انجمن علمی دانشجویی دانشکده‌ی "
+#~ "کامپیوتر</a> \n"
+#~ "                    <a %(sharif_link_attrs)s >دانشگاه صنعتی شریف</a> است\n"
+#~ "                    "
+
+#, fuzzy
+#~| msgid ""
+#~| "\n"
+#~| "                    Pwered By\n"
+#~| "                    %(powered_by)s\n"
+#~| "                    -\n"
+#~| "                    Designed By\n"
+#~| "                    %(designer)s\n"
+#~| "                    "
+#~ msgid ""
+#~ "\n"
+#~ "                        Pwered By\n"
+#~ "                        %(powered_by)s\n"
+#~ "                        -\n"
+#~ "                        Designed By\n"
+#~ "                        %(designer)s\n"
+#~ "                    "
+#~ msgstr ""
+#~ "\n"
+#~ "                    قدرت گرفته از \n"
+#~ "                    %(powered_by)s\n"
+#~ "                    -\n"
+#~ "                    طراحی شده به دست \n"
+#~ "                    %(designer)s\n"
+#~ "                    "
+
+#~ msgid "members"
+#~ msgstr "اعضا"
+
 #~ msgid "Media Library"
 #~ msgstr "مدیریت رسانه‌ها"
 
@@ -2202,8 +2254,47 @@ msgstr ""
 #~ msgid "related_posts"
 #~ msgstr "نوشتار‌های مرتبط"
 
-#~ msgid "Login"
-#~ msgstr "ورود"
-
 #~ msgid "%(sometime)s ago"
 #~ msgstr "%(sometime)s پیش"
+
+msgid "Brunei"
+msgstr "برونئی"
+
+msgid "Bolivia"
+msgstr "بولیوی"
+
+msgid "Iran"
+msgstr "ایران"
+
+msgid "North Korea"
+msgstr "کره شمالی"
+
+msgid "South Korea"
+msgstr "کره جنوبی"
+
+msgid "Laos"
+msgstr "لائوس"
+
+msgid "Macedonia"
+msgstr "مقدونیه"
+
+msgid "Russia"
+msgstr "روسیه"
+
+msgid "Syria"
+msgstr "سوریه"
+
+msgid "Taiwan"
+msgstr "تایوان"
+
+msgid "Tanzania"
+msgstr "تانزانیا"
+
+msgid "Venezuela"
+msgstr "ونزوئلا"
+
+msgid "Vietnam"
+msgstr "ویتنام"
+
+msgid "United States of America"
+msgstr "ایالات متحده آمریکا"

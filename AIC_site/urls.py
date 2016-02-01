@@ -27,7 +27,7 @@ if settings.USE_MODELTRANSLATION:
 
 urlpatterns += patterns(
         '',
-        url("^$", direct_to_template, {"template": "index.html"}, name="home"),
+        url("^$", 'AIC_site.views.index', name="home"),
         url("^team/", include('base.urls')),
         ("^", include("mezzanine.urls")),
 )

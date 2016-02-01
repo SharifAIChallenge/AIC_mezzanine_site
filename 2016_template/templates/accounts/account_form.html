@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n mezzanine_tags %}
+{% load i18n mezzanine_tags other_ssc_tags %}
 
 {% block meta_title %}{{ title }}{% endblock %}
 {% block title %}{{ title }}{% endblock %}
@@ -29,7 +29,8 @@
                 {% endnevercache %}
                 {% errors_for form %}
 
-                <form class="mezzanine-form" method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+                <form class="mezzanine-form" method="post"{% if form.is_multipart %}
+                      enctype="multipart/form-data"{% endif %}>
                     <fieldset>
                         <legend>{{ title }}</legend>
                         {% fields_for form %}
@@ -50,25 +51,25 @@
 
 
 {% block extra_body %}
-{{ block.super }}
-<script>
-if ($('.acc-hints').children().length == 0)
-    $('.acc-hints').hide();
+    {{ block.super }}
+    <script>
+        if ($('.acc-hints').children().length == 0)
+            $('.acc-hints').hide();
 
-$(function() {
-    $('.mezzanine-form :input:visible:enabled:first').focus();
-    $('.mezzanine-form textarea').addClass("materialize-textarea");
-    $('.mezzanine-form input[type=checkbox]').addClass("filled-in");
-    $('.mezzanine-form input').addClass("validate");
-    $('.mezzanine-form select').material_select();
-    $('.mezzanine-form .select-dropdown').css("text-align", "center");
-    $('.mezzanine-form .select-wrapper li').css("text-align", "center");
-    $('.mezzanine-form input[type=date]').pickadate({selectMonths: true, selectYears: 15});
+        $(function () {
+            $('.mezzanine-form :input:visible:enabled:first').focus();
+            $('.mezzanine-form textarea').addClass("materialize-textarea");
+            $('.mezzanine-form input[type=checkbox]').addClass("filled-in");
+            $('.mezzanine-form input').addClass("validate");
+            $('.mezzanine-form select').material_select();
+            $('.mezzanine-form .select-dropdown').css("text-align", "center");
+            $('.mezzanine-form .select-wrapper li').css("text-align", "center");
+            $('.mezzanine-form input[type=date]').pickadate({selectMonths: true, selectYears: 15});
 
-    $('span.caret').html('');
+            $('span.caret').html('');
 
-    if ($('.acc-hints').children().length == 0)
-        $('.acc-hints').hide();
-});
-</script>
+            if ($('.acc-hints').children().length == 0)
+                $('.acc-hints').hide();
+        });
+    </script>
 {% endblock %}

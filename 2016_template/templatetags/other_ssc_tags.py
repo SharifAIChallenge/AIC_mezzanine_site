@@ -1,9 +1,10 @@
-import locale
 import datetime
+
 from django import template
-from django.utils import timezone
 from django.forms.widgets import RadioSelect, CheckboxSelectMultiple, FileInput, ClearableFileInput
+from django.utils import timezone
 from .jdate_tags import farsi_digits
+
 register = template.Library()
 
 

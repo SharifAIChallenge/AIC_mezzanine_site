@@ -40,14 +40,14 @@
         </span>
         {% endfor %}
     <p></p>
-    {% elif field.field.type == "filefield" %}
+    {% elif field.field.widget|is_file_input %}
         <div class="file-field input-field">
             <div class="btn">
                 <span>{% trans "Choose File" %}</span>
                 <input id="{{ field.auto_id }}" name="{{ field.name }}"  type="file">
             </div>
             <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
+                <input class="file-path validate" type="text" placeholder="{{ field.label }}">
             </div>
         </div>
     {% else %}

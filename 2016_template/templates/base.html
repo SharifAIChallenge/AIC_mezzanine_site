@@ -173,9 +173,13 @@
                     </div>
                 {% endcomment %}
                 <div class="col s12 m12 l12">
+                    <div class="px-20 vertical spacer"></div>
+                    {% block main_hack %}
                     {% block main %}
 
                     {% endblock %}
+                    {% endblock %}
+                    <div class="px-20 vertical spacer"></div>
                 </div>
             </div>
         </div>

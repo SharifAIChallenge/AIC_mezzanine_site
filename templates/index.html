@@ -77,7 +77,7 @@
                 <li><a href="#sponsors" tabindex="-1" hidefocus="true">{% trans 'حامیان' %}</a></li>
             {% endif %}
             <li><a href="/contact-us/" tabindex="-1" hidefocus="true">{% trans 'تماس با ما' %}</a></li>
-            <li><a href="//aichallenge.blog.ir" tabindex="-1" hidefocus="true">{% trans 'وبلاگ' %}</a></li>
+            <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true">{% trans 'وبلاگ' %}</a></li>
             {% if LANGUAGE_BIDI %}
                 <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
             {% else %}
@@ -101,7 +101,7 @@
                     <li><a href="#sponsors" tabindex="-1" hidefocus="true">{% trans 'حامیان' %}</a></li>
                 {% endif %}
                 <li><a href="/contact-us/" tabindex="-1" hidefocus="true">{% trans 'تماس با ما' %}</a></li>
-                <li><a href="//aichallenge.blog.ir" tabindex="-1" hidefocus="true">{% trans 'وبلاگ' %}</a></li>
+                <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true">{% trans 'وبلاگ' %}</a></li>
                 {% if LANGUAGE_BIDI %}
                     <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
                 {% else %}

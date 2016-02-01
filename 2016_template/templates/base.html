@@ -101,7 +101,7 @@
                 <li><a href="#">{% trans "Teams" %}</a></li>
                 <li><a href="#">{% trans "Documentations" %}</a></li>
                 <li><a href="#">{% trans "Contact us" %}</a></li>
-                <li><a href="http://aichallenge.blog.ir">{% trans "blog" %}</a></li>
+                <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/">{% trans "blog" %}</a></li>
                 <li><a href="{% url 'logout' %}">{% trans "خروج" %}</a></li>
             {% else %}
                 <li><a href="{% url 'login' %}">{% trans "ورود" %}</a></li>

@@ -28,8 +28,10 @@
                             <tr>
                                 <td>{{ team.name }}</td>
                                 <td>{{ team.head.get_full_name }}</td>
-                                <td>{% if team.member_set.all.1 %}{{ team.member_set.all.1 }}{% else %}-{% endif %}</td>
-                                <td>{% if team.member_set.all.2 %}{{ team.member_set.all.2 }}{% else %}-{% endif %}</td>
+                                <td>{% if team.get_members.0 %}{{ team.get_members.0.get_full_name }}{% else %}
+                                    -{% endif %}</td>
+                                <td>{% if team.get_members.1 %}{{ team.get_members.1.get_full_name }}{% else %}
+                                    -{% endif %}</td>
                             </tr>
                         {% endfor %}
                     </table>

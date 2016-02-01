@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import SET_NULL
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 
@@ -14,7 +15,7 @@ class Member(AbstractUser):
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
     avatar = models.ImageField(verbose_name=_("avatar"), blank=True)
     country = CountryField(verbose_name=_("country"), blank_label=_("choose your country"), default='IR')
-    team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True)
+    team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True, on_delete=SET_NULL)
 
 
 class Team(models.Model):
@@ -29,6 +30,9 @@ class Team(models.Model):
     class Meta:
         verbose_name = _('team')
         verbose_name_plural = _('teams')
+
+    def get_members(self):
+        return [member for member in self.member_set.all() if member != self.head]
 
 
 class Submit(models.Model):

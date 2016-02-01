@@ -34,11 +34,13 @@
                     <fieldset>
                         <legend>{{ title }}</legend>
                         {% fields_for form %}
+                        {% block before_account_form_actions %}{% endblock %}
                         <div class="form-actions">
                             {% block account_form_actions %}
-                                <input class="btn" type="submit" value="{{ title }}">
+                                <input class="right btn" type="submit" value="{{ title }}">
                             {% endblock %}
                         </div>
+                        {% block after_account_form_actions %}{% endblock %}
                     </fieldset>
                 </form>
             </div>

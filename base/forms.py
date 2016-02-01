@@ -10,6 +10,8 @@ from mezzanine.accounts.forms import ProfileForm as mezzanine_profile_form
 
 
 class ProfileForm(mezzanine_profile_form):
+    terms = forms.BooleanField(required=True, label=_("Accept Terms"), help_text=_("terms_of_service_text"))
+
     class Meta:
         model = Member
         fields = (

@@ -13,11 +13,11 @@
         <div>
 
             {% if field.help_text and field.help_text != "required" and field.help_text != "ضروری" %}
-                <span class="right help-block">{{ field.help_text }}</span>
+                <div class="{% if LANGUAGE_BIDI %}right-aligned {% endif %}help-block">{{ field.help_text|safe }}</div>
             {% endif %}
 
 
-            <div class="input-field left-align" {% if field.field.type == "booleanfield" %} dir="ltr" {% endif %}>
+            <div class="input-field left-align" {% if field.field.type == "booleanfield" %} {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} {% endif %}>
                 {% if field.field.widget|is_radio_select %}
                     {% if field.label %}<p class="grey-text text-lighten-1">&nbsp;&nbsp;{{ field.label }}</p>{% endif %}
                     {% for radio in field %}
@@ -53,7 +53,7 @@
                 {% else %}
                     {{ field }}
                     {% if field.label %}
-                        <label class="control-label" for="{{ field.auto_id }}" dir="rtl">
+                        <label class="control-label" for="{{ field.auto_id }}" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
                             {% if field.field.required %} * {% endif %}{{ field.label }}
                         </label>
                     {% endif %}
@@ -61,7 +61,7 @@
             </div>
 
             {% if field.errors %}
-                <p class="help-block">
+                <p class="red-text help-block">
                     {% for e in field.errors %}
                         {% if not forloop.first %} / {% endif %}{{ e }}
                     {% endfor %}

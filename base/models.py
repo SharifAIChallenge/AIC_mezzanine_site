@@ -24,6 +24,7 @@ class Team(models.Model):
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=True)
     name = models.CharField(verbose_name=_('name'), max_length=200)
     head = models.ForeignKey('base.Member', verbose_name=_("team head"), related_name='+')
+    show = models.BooleanField(default=True)
 
     def __unicode__(self):
         return 'Team%d(%s)' % (self.id, self.name)

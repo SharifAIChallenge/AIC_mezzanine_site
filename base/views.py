@@ -120,7 +120,7 @@ def accept_invite(request, slug):
 
 @login_required
 def teams(request):
-    teams = Team.objects.all()
+    teams = Team.objects.exclude(show=False).all()
     return render(request, 'custom/teams_list.html', {'teams': teams})
 
 

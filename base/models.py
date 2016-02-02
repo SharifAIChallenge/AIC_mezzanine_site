@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import base64
 import uuid
 
@@ -32,7 +33,10 @@ class Team(models.Model):
         verbose_name_plural = _('teams')
 
     def get_members(self):
-        return [member for member in self.member_set.all() if member != self.head]
+        print ("old way", [member for member in self.member_set.all() if member != self.head])
+        print ("new way", self.member_set.exclude(pk=self.head.pk).all())
+        return self.member_set.exclude(pk=self.head.pk).all()
+        # return [member for member in self.member_set.all() if member != self.head]
 
 
 class Submit(models.Model):
@@ -86,6 +90,10 @@ class TeamInvitation(models.Model):
         if not self.slug:
             self.slug = base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)[:-1] \
                 .replace('+', 'O').replace('/', 'O')
+
+    def __unicode__(self):
+        return str(_('invitation of {} to join {} [{}]')).decode('utf-8')\
+            .format(self.member, self.team, u'✓' if self.accepted else u'✗')
 
     class Meta:
         verbose_name = _('invitation')

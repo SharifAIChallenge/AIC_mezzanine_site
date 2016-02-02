@@ -322,6 +322,12 @@ msgstr "قوانین را می‌پذیرم"
 #: base/forms.py:13
 msgid "terms_of_service_text"
 msgstr ""
+"۱- شرکت‌کنندگان متعهدند که در زمان ثبت نام، اقدام به ارائه‌ی اطلاعات معتبر نمایند.ند."
+"۲- انتخاب اسامی خلاف عرف و تولید محتوای نامناسب توسط تیم ها، بنا به تشخیص تیم برگزاری می‌تواند منجر به حذف تیم از مسابقات گردد.\n"
+"۳- مالکیت معنوی و انتشار آزاد محتوای تولید شده در تمام مراحل مسابقه، از جمله کدهای نوشته شده توسط تیم‌ها، برای انجمن علمی دانشکده کامپیوتر محفوظ میباشد.\n"
+"۴- حضور در محل برگزاری مسابقات در مرحله نهایی بر عهده شرکت‌کنندگان است.\n"
+"۵- امکان اعمال تغییرات مقتضی در زمان‌بندی های اعلام شده درصورت نیاز، برای تیم برگزار کننده مسابقات محفوظ می‌باشد."
+
 
 #: base/forms.py:56
 msgid "user not found"
@@ -947,44 +953,44 @@ msgstr "امتیاز"
 #~ msgid "%(sometime)s ago"
 #~ msgstr "%(sometime)s پیش"
 
-#~ msgid "Brunei"
-#~ msgstr "برونئی"
+msgid "Brunei"
+msgstr "برونئی"
 
-#~ msgid "Bolivia"
-#~ msgstr "بولیوی"
+msgid "Bolivia"
+msgstr "بولیوی"
 
-#~ msgid "Iran"
-#~ msgstr "ایران"
+msgid "Iran"
+msgstr "ایران"
 
-#~ msgid "North Korea"
-#~ msgstr "کره شمالی"
+msgid "North Korea"
+msgstr "کره شمالی"
 
-#~ msgid "South Korea"
-#~ msgstr "کره جنوبی"
+msgid "South Korea"
+msgstr "کره جنوبی"
 
-#~ msgid "Laos"
-#~ msgstr "لائوس"
+msgid "Laos"
+msgstr "لائوس"
 
-#~ msgid "Macedonia"
-#~ msgstr "مقدونیه"
+msgid "Macedonia"
+msgstr "مقدونیه"
 
-#~ msgid "Russia"
-#~ msgstr "روسیه"
+msgid "Russia"
+msgstr "روسیه"
 
-#~ msgid "Syria"
-#~ msgstr "سوریه"
+msgid "Syria"
+msgstr "سوریه"
 
-#~ msgid "Taiwan"
-#~ msgstr "تایوان"
+msgid "Taiwan"
+msgstr "تایوان"
 
-#~ msgid "Tanzania"
-#~ msgstr "تانزانیا"
+msgid "Tanzania"
+msgstr "تانزانیا"
 
-#~ msgid "Venezuela"
-#~ msgstr "ونزوئلا"
+msgid "Venezuela"
+msgstr "ونزوئلا"
 
-#~ msgid "Vietnam"
-#~ msgstr "ویتنام"
+msgid "Vietnam"
+msgstr "ویتنام"
 
-#~ msgid "United States of America"
-#~ msgstr "ایالات متحده آمریکا"
+msgid "United States of America"
+msgstr "ایالات متحده آمریکا"

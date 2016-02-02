@@ -4,8 +4,8 @@
 
 
 <div class="col-md-{% block main_col_size %}8{% endblock %}">
-{% block main %}
-    <div class="card panel">
+{% block main_hack %}
+    <div class="card-panel">
     {{ block.super }}
     {% if request.GET.sent %}
         {% editable page.form.response %}
@@ -45,6 +45,8 @@ $(function() {
     $('.mezzanine-form .select-dropdown').css("text-align", "center");
     $('.mezzanine-form .select-wrapper li').css("text-align", "center");
     $('.mezzanine-form input[type=date]').pickadate({selectMonths: true, selectYears: 15});
+
+    $('span.caret').html('');
 });
 
 var button_enabled = true;

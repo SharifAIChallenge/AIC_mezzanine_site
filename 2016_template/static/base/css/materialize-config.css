@@ -112,7 +112,3 @@ body .card .card-content .card-title {
 .main.card-panel ol li {
     list-style: persian inside;
 }
-
-select {
-    display: inherit !important;
-}

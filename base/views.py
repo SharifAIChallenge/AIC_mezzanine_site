@@ -74,7 +74,8 @@ def invite_member(request):
                 messages.warning(request, _("you have invited this user before!"))
             else:
                 form.save(team=request.team)
-                messages.success(request, _('successfully invited user %(name)s') % {'name': form.user.get_full_name()})
+                messages.success(request,
+                                 _('successfully invited user %(name)s') % {'name': form.member.get_full_name()})
                 return redirect('invite_member')
     else:
         form = InvitationForm()
@@ -118,14 +119,14 @@ def accept_invite(request, slug):
 @login_required
 def teams(request):
     teams = Team.objects.all()
-    return render(request, 'teams_list.html', {'teams': teams})
+    return render(request, 'custom/teams_list.html', {'teams': teams})
 
 
 @login_required
 @team_required
 def my_team(request):
     team = request.team
-    return render(request, 'my_team.html', {'team': team})
+    return render(request, 'custom/my_team.html', {'team': team})
 
 
 @login_required

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n mezzanine_tags %}
+{% load i18n mezzanine_tags other_ssc_tags %}
 
 {% block meta_title %}{{ title }}{% endblock %}
 {% block title %}{{ title }}{% endblock %}
@@ -10,40 +10,68 @@
     <li>{{ title }}</li>
 {% endblock %}
 
-{% block main %}
+{% block main_hack %}
     <div class="row">
-        <div class="col s12 m12 l8 offset-l2">
-            <div class="card">
-                <div class="panel">
+        <div class="col s12 m12 l8 offset-l4">
+            <div class="card-panel">
+                {% nevercache %}
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">&times;</button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endnevercache %}
+                {% errors_for form %}
 
-                    {% nevercache %}
-                        {% if messages %}
-                            <div class="messages">
-                                {% for message in messages %}
-                                    <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                                        <button type="button" class="close" data-dismiss="alert"
-                                                aria-hidden="true">&times;</button>
-                                        {{ message }}
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    {% endnevercache %}
-                    {% errors_for form %}
-
-                    <form method="post"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
-                        <fieldset>
-                            <legend>{{ title }}</legend>
-                            {% fields_for form %}
-                            <div class="form-actions">
-                                {% block account_form_actions %}
-                                    <input class="btn btn-primary btn-lg pull-right" type="submit" value="{{ title }}">
-                                {% endblock %}
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
+                <form class="mezzanine-form" method="post"{% if form.is_multipart %}
+                      enctype="multipart/form-data"{% endif %}>
+                    <fieldset>
+                        <legend>{{ title }}</legend>
+                        {% fields_for form %}
+                        {% block before_account_form_actions %}{% endblock %}
+                        <div class="form-actions">
+                            {% block account_form_actions %}
+                                <input class="right btn" type="submit" value="{{ title }}">
+                            {% endblock %}
+                        </div>
+                        {% block after_account_form_actions %}{% endblock %}
+                    </fieldset>
+                </form>
+            </div>
+            <div class="card-panel acc-hints">
+                {% block main %}{% endblock %}
             </div>
         </div>
     </div>
+{% endblock %}
+
+
+{% block extra_body %}
+    {{ block.super }}
+    <script>
+        if ($('.acc-hints').children().length == 0)
+            $('.acc-hints').hide();
+
+        $(function () {
+            $('.mezzanine-form :input:visible:enabled:first').focus();
+            $('.mezzanine-form textarea').addClass("materialize-textarea");
+            $('.mezzanine-form input[type=checkbox]').addClass("filled-in");
+            $('.mezzanine-form input').addClass("validate");
+            $('.mezzanine-form select').material_select();
+            $('.mezzanine-form .select-dropdown').css("text-align", "center");
+            $('.mezzanine-form .select-wrapper li').css("text-align", "center");
+            $('.mezzanine-form input[type=date]').pickadate({selectMonths: true, selectYears: 15});
+
+            $('span.caret').html('');
+
+            if ($('.acc-hints').children().length == 0)
+                $('.acc-hints').hide();
+        });
+    </script>
 {% endblock %}

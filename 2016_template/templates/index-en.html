@@ -94,6 +94,7 @@
         </div>
         <div class="float">
             {% if user.is_authenticated %}
+                <a href="{% url 'my_team' %}" tabindex="-1" hidefocus="true"  class="signup-dump">{% trans "My Team" %}</a>
                 <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">logout</a>
             {% else %}
                 <a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">login</a>
@@ -251,9 +252,9 @@
                     <h5 style="text-align: left; margin-left: 40px">First Team</h5>
                     <p style="text-align: left; margin-left: 40px">3 Bahar Azadi Golden Coin + Token of Challenge</p>
                     <h5 style="text-align: left; margin-left: 40px">Second Team</h5>
-                    <p style="text-align: left; margin-left: 40px">2 Bahar Azadi Golden Coin + Token of Challenge</p>
+                    <p style="text-align: left; margin-left: 40px">3 ½Bahar Azadi Golden Coin + Token of Challenge</p>
                     <h5 style="text-align: left; margin-left: 40px">Third Team</h5>
-                    <p style="text-align: left; margin-left: 40px">1 Bahar Azadi Golden Coin + Token of Challenge</p>
+                    <p style="text-align: left; margin-left: 40px">3 ¼Bahar Azadi Golden Coin + Token of Challenge</p>
                     <h5 style="text-align: left; margin-left: 40px">32 Teams of Final Phase</h5>
                     <p style="text-align: left; margin-left: 40px">Tshirt + Mug + Flash Memory</p>
                 </div>
@@ -332,12 +333,20 @@
             </div>
         </div>
     </div>
+
+    <!-- Start of StatCounter Code for Default Guide -->
+    <a title="shopify traffic stats"
+    href="http://statcounter.com/shopify/" target="_blank"><img
+    src="http://c.statcounter.com/10808005/0/005c1cbf/1/"
+    alt="shopify traffic stats" style="border:none;"></a>
+    <!-- End of StatCounter Code for Default Guide -->
+
     <div class="footer">
         <div class="information-site">
             <!-- 		<h2 class="pull-title" style="color: #C3C7D8;font-size: 2.6em;cursor: default;">Contact Us</h2>
                     <p>ایران٬ تهران٬ دانشگاه شریف٬ سالن جبار</p>
                     <p>+۹۸۲۱۶۱۵۳</p> -->
-            <ul class="social-media" style="display: none;">
+            <ul class="social-media">
                 <li><a href="http://twitter.com/aichallenge" title="twitter" target="_blank"><i
                         class="icon-twitter-circled"></i></a></li>
                 <li><a href="http://instagram.com/aichallenge" title="instagram" target="_blank"><i
@@ -350,11 +359,13 @@
                 <!--<a href="//bayan.ir" tabindex="-1" hidefocus="true"><img src="images/bayan.png" class="logo-bayan"></i></a>-->
                 <a href="#0" tabindex="-1" hidefocus="true" class="sharif"><img src="/static/images/sharif.png"
                                                                                 class="logo-sharif"></a>
-                <a href="//ssc.ce.sharif.edu" tabindex="-1" hidefocus="true" class="ssc"></a>
-                <div class="divider" style="display: none;"><p>Student's Scientific Chapter of Computer Engineering
-                    Department</p>
-                </div>
-                <p>Student's Scientific Chapter of Computer Engineering Department</p>
+                <a style="color:white;" href="http://ssc.ce.sharif.edu">
+                    <img src="/static/base/image/SSC-unofficial-logo-white.png" width="18%">
+                    <div class="divider" style="display: none;"><p>Students Scientific Chapter of Computer Engineering
+                        Department</p>
+                    </div>
+                    <p>Students Scientific Chapter of Computer Engineering Department</p>
+                </a>
             </div>
         </div>
         <div class="bottom-layout">
@@ -371,7 +382,7 @@
                 <div class="container">
                     <div class="footer-container">
                         <div class="copyright-text">
-                            © Student's Scientific Chapter of Computer Engineering Department, Sharif University of
+                            © Students Scientific Chapter of Computer Engineering Department, Sharif University of
                             Technology
                         </div>
                     </div>

@@ -48,7 +48,7 @@
                     id: '{{ team.pk }}'
                 }
             }).done(function (response) {
-                Materialize.toast('{% trans 'Team is deleted' %}', 3000, 'rounded', function() {
+                Materialize.toast('{% trans 'Team deleted' %}', 3000, 'rounded', function() {
                     location.reload();
                 });
             });
@@ -85,7 +85,6 @@
 
                     {% nevercache %}
                         {% if messages %}
-                            <div class="row">
                             <div class="messages">
                                 {% for message in messages %}
                                     <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
@@ -95,11 +94,11 @@
                                     </div>
                                 {% endfor %}
                             </div>
-                            </div>
                         {% endif %}
                     {% endnevercache %}
 
                     <div class="row">
+                    <div class="col m12 s12 l12">
                     <table class="teams-list">
                         <tr>
                             <th>
@@ -119,6 +118,7 @@
                             {% endfor %}
                         {% endwith %}
                     </table>
+                    </div>
                     </div>
                     <div class="px-20 vertical spacer"></div>
                     <div class="row">

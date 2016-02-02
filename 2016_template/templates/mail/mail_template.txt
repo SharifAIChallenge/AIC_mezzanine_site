@@ -1,0 +1,4 @@
+{{ email_title }}
+-------------
+
+{{ email_body }}

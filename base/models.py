@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import base64
 import uuid
 
@@ -15,7 +16,7 @@ class Member(AbstractUser):
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
     avatar = models.ImageField(verbose_name=_("avatar"), blank=True)
     country = CountryField(verbose_name=_("country"), blank_label=_("choose your country"), default='IR')
-    team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True, on_delete=SET_NULL)
+    team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True, blank=True, on_delete=SET_NULL)
 
 
 class Team(models.Model):
@@ -32,7 +33,7 @@ class Team(models.Model):
         verbose_name_plural = _('teams')
 
     def get_members(self):
-        return [member for member in self.member_set.all() if member != self.head]
+        return self.member_set.exclude(pk=self.head.pk).all()
 
 
 class Submit(models.Model):
@@ -86,6 +87,10 @@ class TeamInvitation(models.Model):
         if not self.slug:
             self.slug = base64.b64encode(uuid.uuid4().bytes + uuid.uuid4().bytes)[:-1] \
                 .replace('+', 'O').replace('/', 'O')
+
+    def __unicode__(self):
+        return str(_('invitation of {} to join {} [{}]')).decode('utf-8')\
+            .format(self.member, self.team, u'✓' if self.accepted else u'✗')
 
     class Meta:
         verbose_name = _('invitation')

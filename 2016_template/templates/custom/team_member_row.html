@@ -1,0 +1,11 @@
+{% spaceless %}
+
+<tr data-id="{{ member.pk }}">
+    <td>{{ member.get_full_name }}</td>
+    <td>
+        {% if request.user == team.head %}
+        <button type="button" class="remove"><i class="material-icons">delete</i></button>
+        {% endif %}
+    </td>
+</tr>
+{% endspaceless %}

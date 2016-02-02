@@ -115,7 +115,7 @@
                         {% endwith %}
                         {% with team_members=team.get_members %}
                             {% for member in team_members %}
-                                {% include 'custom/team_member_row.html' %}
+                                {% include 'custom/includes/team_member_row.html' %}
                             {% endfor %}
                         {% endwith %}
                     </table>

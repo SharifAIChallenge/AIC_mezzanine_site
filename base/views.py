@@ -140,8 +140,9 @@ def remove(request):
     type = request.POST.get('type')
     id = request.POST.get('id')
     if type == 'team':
-        team = Team.objects.get(id=id)
-        if team != request.team:
+        team = Team.objects.get(pk=id)
+        is_head = request.team.head == request.user
+        if not is_head or team != request.team:
             raise PermissionDenied()
         team.delete()
     elif type == 'member':

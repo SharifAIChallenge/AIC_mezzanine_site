@@ -213,6 +213,8 @@ LOCALE_PATHS = (os.path.join(PROJECT_ROOT, "locale"),)
 ################
 
 INSTALLED_APPS = (
+    'djcelery_email',
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -354,6 +356,14 @@ ACCOUNTS_PROFILE_FORM_CLASS = "base.forms.ProfileForm"
 COUNTRIES_FIRST = [
     'IR'
 ]
+
+# celery
+BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+CELERY_EMAIL_TASK_CONFIG = {
+    'max_retries': 10,
+}
 
 ##################
 # LOCAL SETTINGS #

@@ -126,7 +126,7 @@
                     {% if request.user == team.head %}
                     <div class="col s6 m4 l3 offset-m1">
                         <a href="{% url 'invite_member' %}">
-                            <button type="button" class="btn waves-effect waves-green">
+                            <button type="button" class="btn btn-primary waves-effect waves-green">
                                 {% trans 'invite member to team' %}
                             </button>
                         </a>
@@ -138,7 +138,7 @@
                     </div>
                     {% else %}
                     <div class="col s6 m4 l3 offset-m1">
-                        <button type="button" class="btn waves-effect waves-red leaveteam">
+                        <button type="button" class="btn btn-primary waves-effect waves-red leaveteam">
                             {% trans 'leave team' %}
                         </button>
                     </div>

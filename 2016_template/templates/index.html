@@ -87,15 +87,15 @@
     <div class="wrapper">
         <a href="#0" class="logo" tabindex="-1" hidefocus="true"></a>
         <ul class="menu landingPage">
-            <li><a href="#index" tabindex="-1" hidefocus="true">{% trans 'خانه' %}</a></li>
-            <li><a href="#info" tabindex="-1" hidefocus="true">{% trans 'معرفی مسابقه' %}</a></li>
-            <li><a href="#program" tabindex="-1" hidefocus="true">{% trans 'برنامه مسابقه' %}</a></li>
-            <li><a href="#history" tabindex="-1" hidefocus="true">{% trans 'تاریخچه' %}</a></li>
-            <li><a href="#award" tabindex="-1" hidefocus="true">{% trans 'جوایز' %}</a></li>
-            <li><a href="#about" tabindex="-1" hidefocus="true">{% trans 'معرفی' %}</a></li>
-            <li><a href="#sponsors" tabindex="-1" hidefocus="true">{% trans 'حامیان' %}</a></li>
-            <li><a href="/contact-us/" tabindex="-1" hidefocus="true">{% trans 'تماس با ما' %}</a></li>
-            <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true">{% trans 'وبلاگ' %}</a></li>
+            <li><a href="#index" tabindex="-1" hidefocus="true">خانه</a></li>
+            <li><a href="#info" tabindex="-1" hidefocus="true">معرفی مسابقه</a></li>
+            <li><a href="#program" tabindex="-1" hidefocus="true">برنامه مسابقه</a></li>
+            <li><a href="#history" tabindex="-1" hidefocus="true">تاریخچه</a></li>
+            <li><a href="#award" tabindex="-1" hidefocus="true">جوایز</a></li>
+            <li><a href="#about" tabindex="-1" hidefocus="true">معرفی</a></li>
+            <li><a href="#sponsors" tabindex="-1" hidefocus="true">حامیان</a></li>
+            <li><a href="/contact-us/" tabindex="-1" hidefocus="true">تماس با ما</a></li>
+            <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true">وبلاگ</a></li>
             <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
         </ul>
         <div class="mobile">
@@ -105,26 +105,26 @@
                 <span class="menu-bar bar3"></span>
             </a>
             <ul class="menu landingPage">
-                <li><a href="#index" tabindex="-1" hidefocus="true">{% trans 'خانه' %}</a></li>
-                <li><a href="#info" tabindex="-1" hidefocus="true">{% trans 'معرفی مسابقه' %}</a></li>
-                <li><a href="#program" tabindex="-1" hidefocus="true">{% trans 'برنامه مسابقه' %}</a></li>
-                <li><a href="#history" tabindex="-1" hidefocus="true">{% trans 'تاریخچه' %}</a></li>
-                <li><a href="#award" tabindex="-1" hidefocus="true">{% trans 'جوایز' %}</a></li>
-                <li><a href="#about" tabindex="-1" hidefocus="true">{% trans 'معرفی' %}</a></li>
-                <li><a href="#sponsors" tabindex="-1" hidefocus="true">{% trans 'حامیان' %}</a></li>
-                <li><a href="/contact-us/" tabindex="-1" hidefocus="true">{% trans 'تماس با ما' %}</a></li>
-                <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true">{% trans 'وبلاگ' %}</a></li>
+                <li><a href="#index" tabindex="-1" hidefocus="true">خانه</a></li>
+                <li><a href="#info" tabindex="-1" hidefocus="true">معرفی مسابقه</a></li>
+                <li><a href="#program" tabindex="-1" hidefocus="true">برنامه مسابقه</a></li>
+                <li><a href="#history" tabindex="-1" hidefocus="true">تاریخچه</a></li>
+                <li><a href="#award" tabindex="-1" hidefocus="true">جوایز</a></li>
+                <li><a href="#about" tabindex="-1" hidefocus="true">معرفی</a></li>
+                <li><a href="#sponsors" tabindex="-1" hidefocus="true">حامیان</a></li>
+                <li><a href="/contact-us/" tabindex="-1" hidefocus="true">تماس با ما</a></li>
+                <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true">وبلاگ</a></li>
                 <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
             </ul>
         </div>
         <div class="float">
             {% if user.is_authenticated %}
                 <a href="{% url 'my_team' %}" tabindex="-1" hidefocus="true"  class="signup-dump">{% trans "My Team" %}</a>
-                <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">{% trans 'خروج' %}</a>
+                <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">خروج</a>
             {% else %}
-                <a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">{% trans 'ورود' %}</a>
+                <a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">ورود</a>
                 <a href="{% url 'signup' %}" tabindex="-1" hidefocus="true"
-                   class="signup-dump">{% trans 'ثبت‌نام' %}</a>
+                   class="signup-dump">ثبت‌نام</a>
             {% endif %}
         </div>
     </div>
@@ -151,12 +151,12 @@
     </div>
     <div class="section clearfix section-info odd" id="info">
         <div class="sp-wp">
-            <h2 class="title run">{% blocktrans %}معرفی مسابقه{% endblocktrans %}</h2>
-            <h3 class="subtitle run">{% blocktrans %}
+            <h2 class="title run">معرفی مسابقه</h2>
+            <h3 class="subtitle run">
                 نبرد هوش‌مصنوعی شریف ۹۴
-            {% endblocktrans %}</h3>
+            </h3>
             <div class="content" style="text-align: justify">
-                <h4>{% blocktrans %}مسابقه نبرد هوش مصنوعی شریف ۹۴{% endblocktrans %}</h4>{% blocktrans %}
+                <h4>مسابقه نبرد هوش مصنوعی شریف ۹۴</h4>
                 نبرد هوش مصنوعی شریف، مسابقه برنامه‌ نویسی دانشجویی است که شرکت‌کنندگان در قالب تیم‌های سه نفره برای
                 بازی طراحی شده توسط تیم فنی، برنامه‌ای می‌نویسند تا بتواند حریفان را یکی پس از دیگری شکست دهد.
                 در واقع، این مسابقه هشتمین دوره‌ی مسابقه‌ی نبرد به زبان جاوا (JavaChallenge) است که از امسال، علاوه بر
@@ -170,15 +170,15 @@
                 اخبار و اطلاعات تکمیلی مسابقه از طریق
                 <a href="//aichallenge.blog.ir" style="color: blue">وبلاگ</a>
                 مسابقه در دستس شما خواهد بود. به امید دیدار شما در این دوره از مسابقات!
-            {% endblocktrans %}</div>
+            </div>
         </div>
     </div>
     <div class="section clearfix section-program even" id="program">
         <div class="sp-wp">
-            <h2 class="title run">{% blocktrans %}برنامه مسابقه{% endblocktrans %}</h2>
-            <h3 class="subtitle run">{% blocktrans %}
+            <h2 class="title run">برنامه مسابقه</h2>
+            <h3 class="subtitle run">
                 تاریخ‌های مهم پیشرو در مسابقه‌ی سال ۹۴
-            {% endblocktrans %}</h3>
+            </h3>
             <div class="content">
                 <div class="column col-right" style="text-align: justify;padding-left: 2em;">
                     <ul class="regchallenge">
@@ -208,8 +208,8 @@
 
     <div class="section clearfix section-history white" id="history">
         <div class="sp-wp">
-            <h2 class="title run">{% blocktrans %}تاریخچه{% endblocktrans %}</h2>
-            <h3 class="subtitle run">{% blocktrans %}دوره‌های گذشته مسابقه{% endblocktrans %}</h3>
+            <h2 class="title run">تاریخچه</h2>
+            <h3 class="subtitle run">دوره‌های گذشته مسابقه</h3>
             <div class="content">
 
                 <!-- timeline -->
@@ -283,8 +283,8 @@
     </div>
     <div class="section clearfix section-award odd run" id="award">
         <div class="sp-wp">
-            <h2 class="title run">{% blocktrans %}جوایز{% endblocktrans %}</h2>
-            <h3 class="subtitle run">{% blocktrans %}جوایز این دوره از مسابقات{% endblocktrans %}</h3>
+            <h2 class="title run">جوایز</h2>
+            <h3 class="subtitle run">جوایز این دوره از مسابقات</h3>
             <div class="content">
                 <div class="column col-left">
                     <div class="content-img">
@@ -306,7 +306,7 @@
     </div>
     <div class="section clearfix section-about even" id="about">
         <div class="sp-wp">
-            <h2 class="title run">{% blocktrans %}معرفی{% endblocktrans %}</h2>
+            <h2 class="title run">معرفی</h2>
             <h3 class="subtitle run">درباره تیم برگزارکننده مسابقه</h3>
             <div class="content">
                 نبرد هوش مصنوعی شریف به همت انجمن علمی دانشکده مهندسی کامپیوتر دانشگاه شریف برگزار می‌شود. برگزار
@@ -367,11 +367,11 @@
                                                                               class="logo-sharif"></a>
                 <a style="color:white;" href="http://ssc.ce.sharif.edu">
                     <img src="/static/base/image/SSC-unofficial-logo-white.png" width="18%">
-                    <div class="divider" style="display: none;"><p>{% blocktrans %}انجمن علمی دانشجویی دانشکده کامپیوتر
-                        دانشگاه شریف{% endblocktrans %}</p>
+                    <div class="divider" style="display: none;"><p>انجمن علمی دانشجویی دانشکده کامپیوتر
+                        دانشگاه شریف</p>
                     </div>
                     <!--answer-->
-                    <p>{% blocktrans %}انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف{% endblocktrans %}</p>
+                    <p>انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف</p>
                 </a>
             </div>
         </div>

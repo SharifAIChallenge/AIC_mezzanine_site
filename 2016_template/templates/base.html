@@ -112,7 +112,7 @@
 
                     {% page_menu "pages/menus/partial_menu.html" %}
 
-                    <li><a href="http://aichallenge.blog.ir">{% trans "blog" %}</a></li>
+                    <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir">{% trans "blog" %}</a></li>
 
                     {% if LANGUAGE_BIDI %}
                         <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
@@ -181,7 +181,7 @@
                     <li><a href="http://instagram.com/aichallenge" title="instagram" target="_blank"><i
                             class="icon-instagram-circled"></i></a></li>
                     <!-- <li><a href="http://instagram.com/@username" title="Sharif University" target="_blank"><i class="icon-sharif-circled"></i></a></li> -->
-                    <li><a href="http://aichallenge.blog.ir/" title="blog" target="_blank"><i
+                    <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir" title="blog" target="_blank"><i
                             class="icon-blog-circled"></i></a>
                     </li>
                 </ul>

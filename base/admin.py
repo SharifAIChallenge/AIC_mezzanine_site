@@ -26,9 +26,15 @@ admin.site.unregister(Member)
 admin.site.register(Member, MemberAdmin)
 
 
-class MembersInline(admin.TabularInline):
+class MembersInline(admin.StackedInline):
     model = Member
-    extra = 1
+    fields = ('username', 'email')
+    readonly_fields = fields
+    extra = 0
+
+    def get_max_num(self, request, obj=None, **kwargs):
+        team = obj
+        return team.competition.max_members
 
 
 class TeamAdmin(admin.ModelAdmin):
@@ -36,7 +42,7 @@ class TeamAdmin(admin.ModelAdmin):
     fields = (
         ('name', 'head'),
         ('competition',),
-        ('timestamp',),
+        # ('members',)
     )
     inlines = [MembersInline]
 

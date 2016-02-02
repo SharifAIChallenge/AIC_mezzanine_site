@@ -16,7 +16,7 @@ class Member(AbstractUser):
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
     avatar = models.ImageField(verbose_name=_("avatar"), blank=True)
     country = CountryField(verbose_name=_("country"), blank_label=_("choose your country"), default='IR')
-    team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True, on_delete=SET_NULL)
+    team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True, related_name='members', blank=True, on_delete=SET_NULL)
 
 
 class Team(models.Model):

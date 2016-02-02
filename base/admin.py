@@ -34,13 +34,17 @@ class MembersInline(admin.StackedInline):
 
     def get_max_num(self, request, obj=None, **kwargs):
         team = obj
-        return team.competition.max_members
+        if team is None:
+            return 1000
+        else:
+            return team.competition.max_members
+
 
 
 class TeamAdmin(admin.ModelAdmin):
-    list_display = ('name', 'competition', 'head')
+    list_display = ('name', 'competition', 'head', 'show')
     fields = (
-        ('name', 'head'),
+        ('name', 'head', 'show'),
         ('competition',),
         # ('members',)
     )

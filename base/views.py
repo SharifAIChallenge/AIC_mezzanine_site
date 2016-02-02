@@ -53,8 +53,7 @@ def register_team(request):
             return redirect('invite_member')
     else:
         form = TeamForm()
-    return render(request, 'accounts/account_form.html', {'form': form, 'title': _('register new team')})
-
+    return render(request, 'accounts/invite_team.html', {'form': form, 'title': _('register new team')})
 
 @login_required
 @team_required
@@ -79,7 +78,7 @@ def invite_member(request):
                 return redirect('invite_member')
     else:
         form = InvitationForm()
-    return render(request, 'accounts/account_form.html', {'form': form, 'title': _('invite member to team')})
+    return render(request, 'accounts/invite_team.html', {'form': form, 'title': _('invite member to team')})
 
 
 @login_required
@@ -140,8 +139,9 @@ def remove(request):
     type = request.POST.get('type')
     id = request.POST.get('id')
     if type == 'team':
-        team = Team.objects.get(id=id)
-        if team != request.team:
+        team = Team.objects.get(pk=id)
+        is_head = request.team.head == request.user
+        if not is_head or team != request.team:
             raise PermissionDenied()
         team.delete()
     elif type == 'member':

@@ -1,0 +1,6 @@
+{% extends "accounts/account_form.html" %}
+{% load i18n mezzanine_tags other_ssc_tags %}
+
+{% block main %}
+    <a class="btn" href="{% url 'teams_list' %}">{% trans "Teams" %}</a>
+{% endblock %}

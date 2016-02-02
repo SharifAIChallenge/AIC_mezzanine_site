@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 from base.models import Submit, Team, TeamInvitation, Member
 from django import forms
-from django.template import Context
-from django.template.loader import get_template
 from django.utils.translation import ugettext_lazy as _
 from django_countries.widgets import CountrySelectWidget
-from mezzanine.utils.email import send_mail_template
 from mezzanine.accounts.forms import ProfileForm as mezzanine_profile_form
+from mezzanine.utils.email import send_mail_template
 
 
 class ProfileForm(mezzanine_profile_form):

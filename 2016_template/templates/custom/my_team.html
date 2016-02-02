@@ -35,6 +35,24 @@
                 $self.parents('tr').remove();
             });
         });
+        $('.deleteteam').on('click', function () {
+            var $self = $(this);
+
+            $self.addClass('disabled');
+            $.ajax({
+                url: remove_url,
+                method: 'post',
+                data: {
+                    csrfmiddlewaretoken: csrf_token,
+                    type: 'team',
+                    id: '{{ team.pk }}'
+                }
+            }).done(function (response) {
+                Materialize.toast('{% trans 'Team deleted' %}', 3000, 'rounded', function() {
+                    location.reload();
+                });
+            });
+        });
         {% else %}
         $('.leaveteam').on('click', function () {
             var $self = $(this);
@@ -79,6 +97,8 @@
                         {% endif %}
                     {% endnevercache %}
 
+                    <div class="row">
+                    <div class="col m12 s12 l12">
                     <table class="teams-list">
                         <tr>
                             <th>
@@ -94,31 +114,43 @@
                         {% endwith %}
                         {% with team_members=team.get_members %}
                             {% for member in team_members %}
-                                {% include 'custom/team_member_row.html' %}
+                                {% include 'custom/includes/team_member_row.html' %}
                             {% endfor %}
                         {% endwith %}
                     </table>
-
+                    </div>
+                    </div>
                     <div class="px-20 vertical spacer"></div>
+                    <div class="row">
                     {% spaceless %}
                     {% if request.user == team.head %}
                     <div class="col s6 m4 l3 offset-m1">
                         <a href="{% url 'invite_member' %}">
-                            <button type="button" class="btn btn-primary">
+                            <button type="button" class="btn btn-primary waves-effect waves-green">
                                 {% trans 'invite member to team' %}
                             </button>
                         </a>
                     </div>
+                    <div class="col s6 m4 l3">
+                        <button type="button" class="btn waves-effect waves-red deleteteam">
+                            {% trans 'remove team' %}
+                        </button>
+                    </div>
                     {% else %}
                     <div class="col s6 m4 l3 offset-m1">
-                        <button type="button" class="btn btn-error leaveteam">
+                        <button type="button" class="btn btn-primary waves-effect waves-red leaveteam">
                             {% trans 'leave team' %}
                         </button>
                     </div>
                     {% endif %}
                     {% endspaceless %}
+                    </div>
                     <div class="px-20 vertical spacer"></div>
                 </div>
+            </div>
+
+            <div class="card-panel acc-hints">
+                <a class="btn" href="{% url 'teams_list' %}">{% trans "Teams" %}</a>
             </div>
         </div>
     </div>

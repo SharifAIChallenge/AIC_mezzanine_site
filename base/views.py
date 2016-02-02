@@ -55,7 +55,6 @@ def register_team(request):
         form = TeamForm()
     return render(request, 'accounts/account_form.html', {'form': form, 'title': _('register new team')})
 
-
 @login_required
 @team_required
 def invite_member(request):
@@ -79,7 +78,7 @@ def invite_member(request):
                 return redirect('invite_member')
     else:
         form = InvitationForm()
-    return render(request, 'accounts/account_form.html', {'form': form, 'title': _('invite member to team')})
+    return render(request, 'accounts/invite_team.html', {'form': form, 'title': _('invite member to team')})
 
 
 @login_required

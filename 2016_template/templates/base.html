@@ -108,7 +108,6 @@
                     <li><a href="{% url 'home' %}">{% trans 'Home' %}</a></li>
                     {% if request.user.is_authenticated %}
                         <li><a href="{% url 'my_team' %}">{% trans "My Team" %}</a></li>
-                        <li><a href="{% url 'teams_list' %}">{% trans "Teams" %}</a></li>
                         {#                        <li><a href="#">{% trans "Documentations" %}</a></li>#}
                     {% endif %}
                     <li><a href="/contact-us/">{% trans "Contact us" %}</a></li>

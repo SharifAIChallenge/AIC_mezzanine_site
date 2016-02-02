@@ -449,6 +449,9 @@ msgstr "ارسال کد"
 msgid "the team has reached max members"
 msgstr "تیم شما به حداکثر تعداد رسیده است"
 
+msgid "you already have a team"
+msgstr "شما در حال حاضر عضو این تیم هستید"
+
 #: base/views.py:109
 #, python-format
 msgid "successfully joined team %s"

@@ -3,69 +3,104 @@
 
 {% block meta_title %}{% trans 'My Team' %}{% endblock %}
 {% block title %}{% trans 'My Team' %}{% endblock %}
+{% block extra_css %}
+    {{ block.super }}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script type="text/javascript">
+    $(function () {
+        var csrf_token = '{{ csrf_token }}';
+        var remove_url = '{% url 'remove' %}';
+
+        $('tr button.remove').on('click', function () {
+            var $self = $(this);
+
+            $self.addClass('disabled');
+            $.ajax({
+                url: remove_url,
+                method: 'post',
+                data: {
+                    csrfmiddlewaretoken: csrf_token,
+                    type: 'member',
+                    id: $self.parents('tr').data('id')
+                },
+                complete: function () {
+                    $self.removeClass('disabled');
+                }
+            }).done(function (response) {
+                Materialize.toast('{% trans 'User removed from team' %}', 3000, 'rounded');
+                $self.parents('tr').remove();
+            });
+        });
+    });
+    </script>
+{% endblock %}
 
 {% block main %}
     <div class="row">
-        <div class="col s12 m12 l12">
-            <div class="card-panel">
+        <div class="col s12 m12 l8 offset-l2">
+            <div class="card">
+                <div class="panel">
 
-                {% nevercache %}
-                    {% if messages %}
-                        <div class="messages">
-                            {% for message in messages %}
-                                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                                    <button type="button" class="close" data-dismiss="alert"
-                                            aria-hidden="true">&times;</button>
-                                    {{ message }}
-                                </div>
+                    {% nevercache %}
+                        {% if messages %}
+                            <div class="messages">
+                                {% for message in messages %}
+                                    <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                                aria-hidden="true">&times;</button>
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endnevercache %}
+
+                    <table class="teams-list">
+                        <tr>
+                            <th>
+                                {% trans 'name' %}
+                            </th>
+                            <th></th>
+                        </tr>
+                        {% with member=team.head %}
+                            <tr>
+                                <td>{{ member.get_full_name }}</td>
+                                <td></td>
+                            </tr>
+                        {% endwith %}
+                        {% with team_members=team.get_members %}
+                            {% for member in team_members %}
+                                {% include 'custom/team_member_row.html' %}
                             {% endfor %}
-                        </div>
+                        {% endwith %}
+                    </table>
+
+                    <div class="px-20 vertical spacer"></div>
+                    {% if request.user == team.head %}
+                    <div class="col s6 m4 l3 offset-m1">
+                        <a href="{% url 'invite_member' %}">
+                            <button type="button" class="btn btn-primary">
+                                {% trans 'invite member to team' %}
+                            </button>
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="col s6 m4 l3 offset-m1">
+                        <form method="post" action="{% url 'remove' %}">
+                            <input type="hidden" name="id" value="{{ request.user.pk }}"/>
+                            <input type="hidden" name="type" value="member"/>
+                            <button type="submit" class="btn btn-error">
+                                {% trans 'leave team' %}
+                            </button>
+                        </form>
+                    </div>
                     {% endif %}
-                {% endnevercache %}
-
-                <table class="teams-list">
-                    <tr>
-                        <th>
-                            {% trans 'name' %}
-                        </th>
-                        <th>
-                            {% trans 'team head' %}
-                        </th>
-                        <th>
-                            {% trans 'member' %}
-                        </th>
-                        <th>
-                            {% trans 'member' %}
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>{{ team.name }}</td>
-                        <td>{{ team.head.get_full_name }}</td>
-                        {% if team.get_members.0 %}
-                            <td>{{ team.get_members.0.get_full_name }}</td>
-                        {% else %}
-                            <td width="20%"><a href="{% url 'invite_member' %}">
-                                <button type="button" class="btn" style="width:100%;">
-                                    {% trans 'invite member to team' %}
-                                </button>
-                            </a></td>
-                        {% endif %}
-                        {% if team.get_members.1 %}
-                            <td>{{ team.get_members.1.get_full_name }}</td>
-                        {% elif not team.get_members.0 %}
-                            <td>-</td>
-                        {% else %}
-                            <td width="20%"><a href="{% url 'invite_member' %}">
-                                <button type="button" class="btn" style="width:100%;">
-                                    {% trans 'invite member to team' %}
-                                </button>
-                            </a></td>
-                        {% endif %}
-                        {% if team.head == request.user %}
-
-                        {% endif %}
-                    </tr>
-                </table>
+                    <div class="px-20 vertical spacer"></div>
+                </div>
             </div>
         </div>
     </div>

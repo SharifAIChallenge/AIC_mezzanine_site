@@ -133,20 +133,22 @@ def my_team(request):
 @team_required
 def remove(request):
     if request.method != 'POST':
-        return PermissionDenied
+        raise PermissionDenied()
     type = request.POST.get('type')
     id = request.POST.get('id')
     if type == 'team':
         team = Team.objects.get(id=id)
         if team != request.team:
-            return PermissionDenied
+            raise PermissionDenied()
         team.delete()
     elif type == 'member':
-        member = Member.objects.get(id=id)
-        if not request.team.member_set.filter(id=id).exists:
-            return Http404
-        if member != request.user and request.team.head_id != id:
-            return PermissionDenied
+        member = Member.objects.get(pk=id)
+        if not request.team.member_set.filter(id=id).exists():
+            raise Http404()
+        is_head = request.team.head == request.user
+        if not is_head and member != request.user:
+            raise PermissionDenied()
         member.team = None
         member.save()
-    return HttpResponse("", content_type='application/json')
+    import json
+    return HttpResponse(json.dumps({"success": True}), content_type='application/json')

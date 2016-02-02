@@ -1,0 +1,36 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags staticfiles i18n pages_tags %}
+
+{% block left_wrapper %}
+{% endblock %}
+
+{% block main_wrapper %}
+
+<div class="container">
+    <div class="row" id="all_item_container">
+        {% page_menu page 'includes/container_card.html' %}
+    </div>
+    <div class="row">
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block extra_body %}
+<script type="text/javascript">
+	$('#all_item_container').imagesLoaded( function() {
+		$('#all_item_container').masonry({
+		    isOriginLeft: false,
+			itemSelector: '.item-container',
+			transitionDuration: 1,
+		});
+	});
+	$(document).ready(function(){
+      $('.slider').slider({indicators: false, height: 500});
+    });
+</script>
+{% endblock %}
+
+

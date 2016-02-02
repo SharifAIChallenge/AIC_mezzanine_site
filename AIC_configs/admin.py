@@ -14,9 +14,15 @@ page_fieldsets = deepcopy(PageAdmin.fieldsets)
 page_fieldsets[0][1]["fields"].insert(+2, "featured_image")
 PageAdmin.fieldsets = page_fieldsets
 
-admin.site.unregister(Form)
-admin.site.register(Form, FormAdmin)
-# admin.site.unregister(Gallery)
-# admin.site.register(Gallery, GalleryAdmin)
+admin.site.unregister(Gallery)
+admin.site.register(Gallery, GalleryAdmin)
 admin.site.unregister(RichTextPage)
 admin.site.register(RichTextPage, PageAdmin)
+
+page_fieldsets = deepcopy(FormAdmin.fieldsets)
+page_fieldsets[0][1]["fields"].insert(+2, "featured_image")
+FormAdmin.fieldsets = page_fieldsets
+
+
+admin.site.unregister(Form)
+admin.site.register(Form, FormAdmin)

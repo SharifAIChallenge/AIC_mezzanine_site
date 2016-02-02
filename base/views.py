@@ -108,6 +108,9 @@ def accept_invite(request, slug):
         raise Http404()
     if not invitation.member == request.user:
         raise PermissionDenied()
+    if request.user.team:
+        messages.error(request, _("you already have a team"))
+        return redirect('my_team')
     if invitation.team.member_set.count() == invitation.team.competition.max_members:
         messages.error(request, _("the team has reached max members"))
     else:

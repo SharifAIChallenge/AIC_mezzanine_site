@@ -87,6 +87,7 @@ FORMS_USE_HTML5 = True
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
+    'aichallenge.sharif.edu:2016',
     'aichallenge.sharif.edu',
     'localhost:8000',
     'localhost',

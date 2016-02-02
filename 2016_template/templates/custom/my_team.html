@@ -15,6 +15,7 @@
         var csrf_token = '{{ csrf_token }}';
         var remove_url = '{% url 'remove' %}';
 
+        {% if request.user == team.head %}
         $('tr button.remove').on('click', function () {
             var $self = $(this);
 
@@ -35,6 +36,26 @@
                 $self.parents('tr').remove();
             });
         });
+        {% else %}
+        $('.leaveteam').on('click', function () {
+            var $self = $(this);
+
+            $self.addClass('disabled');
+            $.ajax({
+                url: remove_url,
+                method: 'post',
+                data: {
+                    csrfmiddlewaretoken: csrf_token,
+                    type: 'member',
+                    id: '{{ request.user.pk }}'
+                }
+            }).done(function (response) {
+                Materialize.toast('{% trans 'You left the team' %}', 3000, 'rounded', function() {
+                    location.reload();
+                });
+            });
+        });
+        {% endif %}
     });
     </script>
 {% endblock %}
@@ -80,6 +101,7 @@
                     </table>
 
                     <div class="px-20 vertical spacer"></div>
+                    {% spaceless %}
                     {% if request.user == team.head %}
                     <div class="col s6 m4 l3 offset-m1">
                         <a href="{% url 'invite_member' %}">
@@ -90,15 +112,12 @@
                     </div>
                     {% else %}
                     <div class="col s6 m4 l3 offset-m1">
-                        <form method="post" action="{% url 'remove' %}">
-                            <input type="hidden" name="id" value="{{ request.user.pk }}"/>
-                            <input type="hidden" name="type" value="member"/>
-                            <button type="submit" class="btn btn-error">
-                                {% trans 'leave team' %}
-                            </button>
-                        </form>
+                        <button type="button" class="btn btn-error leaveteam">
+                            {% trans 'leave team' %}
+                        </button>
                     </div>
                     {% endif %}
+                    {% endspaceless %}
                     <div class="px-20 vertical spacer"></div>
                 </div>
             </div>

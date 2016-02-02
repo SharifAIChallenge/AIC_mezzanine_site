@@ -19,6 +19,7 @@
 
 
 {% block extra_body %}
+{{ block.super }}
 <script type="text/javascript">
 	$('#all_item_container').imagesLoaded( function() {
 		$('#all_item_container').masonry({

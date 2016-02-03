@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-02 23:49+0330\n"
+"POT-Creation-Date: 2016-02-03 15:52+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,12 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: 2016_template/templates/accounts/invite_team.html:5
+#: 2016_template/templates/custom/my_team.html:153
+#: 2016_template/templates/custom/teams_list.html:4
+#: 2016_template/templates/custom/teams_list.html:5
+msgid "Teams"
+msgstr ""
+
 #: 2016_template/templates/base.html:85 2016_template/templates/index.html:84
 msgid "Change"
 msgstr ""
 
 #: 2016_template/templates/base.html:108
-#: 2016_template/templates/pages/menus/main_menu.html:13
 #: 2016_template/templates/search_results.html:13
 msgid "Home"
 msgstr ""
@@ -34,33 +40,23 @@ msgstr ""
 msgid "My Team"
 msgstr ""
 
-#: 2016_template/templates/base.html:111
-#: 2016_template/templates/custom/teams_list.html:4
-#: 2016_template/templates/custom/teams_list.html:5
-msgid "Teams"
-msgstr ""
-
-#: 2016_template/templates/base.html:114
-msgid "Contact us"
-msgstr ""
-
 #: 2016_template/templates/base.html:115
 msgid "blog"
 msgstr ""
 
-#: 2016_template/templates/base.html:130
+#: 2016_template/templates/base.html:126
 msgid "logout"
 msgstr ""
 
-#: 2016_template/templates/base.html:133
+#: 2016_template/templates/base.html:129
 msgid "login"
 msgstr ""
 
-#: 2016_template/templates/base.html:135
+#: 2016_template/templates/base.html:131
 msgid "signup"
 msgstr ""
 
-#: 2016_template/templates/base.html:196
+#: 2016_template/templates/base.html:192
 msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
 msgstr "Student`s Scientific Chapter of Computer Engineering Department"
 
@@ -147,20 +143,28 @@ msgstr ""
 msgid "User removed from team"
 msgstr ""
 
-#: 2016_template/templates/custom/my_team.html:52
+#: 2016_template/templates/custom/my_team.html:51
+msgid "Team deleted"
+msgstr ""
+
+#: 2016_template/templates/custom/my_team.html:70
 msgid "You left the team"
 msgstr ""
 
-#: 2016_template/templates/custom/my_team.html:85
+#: 2016_template/templates/custom/my_team.html:105
 #: 2016_template/templates/custom/teams_list.html:14 base/models.py:25
 msgid "name"
 msgstr ""
 
-#: 2016_template/templates/custom/my_team.html:108 base/views.py:82
+#: 2016_template/templates/custom/my_team.html:130 base/views.py:81
 msgid "invite member to team"
 msgstr ""
 
-#: 2016_template/templates/custom/my_team.html:115
+#: 2016_template/templates/custom/my_team.html:136
+msgid "remove team"
+msgstr ""
+
+#: 2016_template/templates/custom/my_team.html:142
 msgid "leave team"
 msgstr ""
 
@@ -169,7 +173,7 @@ msgid "team head"
 msgstr ""
 
 #: 2016_template/templates/custom/teams_list.html:20
-#: 2016_template/templates/custom/teams_list.html:23 base/models.py:82
+#: 2016_template/templates/custom/teams_list.html:23 base/models.py:83
 msgid "member"
 msgstr ""
 
@@ -241,11 +245,11 @@ msgid ""
 "                   "
 msgstr ""
 
-#: 2016_template/templates/pages/qapage.html:40
+#: 2016_template/templates/pages/qapage.html:41
 msgid "No answer provided yet"
 msgstr ""
 
-#: 2016_template/templates/pages/qapage.html:50
+#: 2016_template/templates/pages/qapage.html:52
 msgid "Send Question"
 msgstr ""
 
@@ -306,19 +310,25 @@ msgstr ""
 msgid "base"
 msgstr ""
 
-#: base/forms.py:13
+#: base/forms.py:11
 msgid "Accept Terms"
 msgstr ""
 
-#: base/forms.py:13
+#: base/forms.py:11
 msgid "terms_of_service_text"
 msgstr ""
+"1. Participants must enter valid information in time of registration.<br>2. "
+"Teams with inappropriate names may be banned from participating in contest."
+"<br>3. SSC has right to publish all codes and documentations.<br>4. Teams "
+"selected for onsite phase have all the responsibilities to be present in "
+"onsite phase.<br>5. Timetable may change and it will be announced to teams "
+"if needed.<br>"
 
-#: base/forms.py:56
+#: base/forms.py:54
 msgid "user not found"
 msgstr ""
 
-#: base/forms.py:62
+#: base/forms.py:60
 msgid "AIChallenge team invitation"
 msgstr ""
 
@@ -342,11 +352,11 @@ msgstr ""
 msgid "choose your country"
 msgstr ""
 
-#: base/models.py:19 base/models.py:32 base/models.py:49 base/models.py:81
+#: base/models.py:19 base/models.py:33 base/models.py:50 base/models.py:82
 msgid "team"
 msgstr ""
 
-#: base/models.py:23 base/models.py:47 game/models.py:8 game/models.py:23
+#: base/models.py:23 base/models.py:48 game/models.py:8 game/models.py:23
 msgid "timestamp"
 msgstr ""
 
@@ -354,51 +364,51 @@ msgstr ""
 msgid "competition"
 msgstr ""
 
-#: base/models.py:33
+#: base/models.py:34
 msgid "teams"
 msgstr ""
 
-#: base/models.py:48
+#: base/models.py:49
 msgid "code"
 msgstr ""
 
-#: base/models.py:51
+#: base/models.py:52
 msgid "programming language"
 msgstr ""
 
-#: base/models.py:53
+#: base/models.py:54
 msgid "played"
 msgstr ""
 
-#: base/models.py:54
+#: base/models.py:55
 msgid "won"
 msgstr ""
 
-#: base/models.py:60
+#: base/models.py:61
 msgid "submit"
 msgstr ""
 
-#: base/models.py:61
+#: base/models.py:62
 msgid "submits"
 msgstr ""
 
-#: base/models.py:80
+#: base/models.py:81
 msgid "accepted"
 msgstr ""
 
-#: base/models.py:83
+#: base/models.py:84
 msgid "slug"
 msgstr ""
 
-#: base/models.py:92
+#: base/models.py:93
 msgid "invitation of {} to join {} [{}]"
 msgstr ""
 
-#: base/models.py:96
+#: base/models.py:97
 msgid "invitation"
 msgstr ""
 
-#: base/models.py:97
+#: base/models.py:98
 msgid "invitations"
 msgstr ""
 
@@ -412,44 +422,44 @@ msgstr ""
 msgid "register new team"
 msgstr ""
 
-#: base/views.py:63
+#: base/views.py:62
 msgid "only head can invite"
 msgstr ""
 
-#: base/views.py:70
+#: base/views.py:69
 msgid "already part of the team"
 msgstr ""
 
-#: base/views.py:72
+#: base/views.py:71
 msgid "already part of another team"
 msgstr ""
 
-#: base/views.py:74
+#: base/views.py:73
 msgid "you have invited this user before!"
 msgstr ""
 
-#: base/views.py:78
+#: base/views.py:77
 #, python-format
 msgid "successfully invited user %(name)s"
 msgstr ""
 
-#: base/views.py:89
+#: base/views.py:88
 msgid "your team does not have enough members"
 msgstr ""
 
-#: base/views.py:100
+#: base/views.py:99
 msgid "submit new code"
 msgstr ""
 
-#: base/views.py:112
+#: base/views.py:111
 msgid "you already have a team"
 msgstr ""
 
-#: base/views.py:115
+#: base/views.py:114
 msgid "the team has reached max members"
 msgstr ""
 
-#: base/views.py:118
+#: base/views.py:117
 #, python-format
 msgid "successfully joined team %s"
 msgstr ""

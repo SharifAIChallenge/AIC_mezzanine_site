@@ -357,6 +357,9 @@ ACCOUNTS_PROFILE_FORM_CLASS = "base.forms.ProfileForm"
 COUNTRIES_FIRST = [
     'IR'
 ]
+COUNTRIES_OVERRIDE = {
+    'IL': None
+}
 
 # celery
 BROKER_URL = 'redis://localhost:6379/0'

@@ -1,3 +1,5 @@
+from django.contrib.gis.geoip import GeoIP
+
 class ForceDefaultLanguageMiddleware(object):
     """
     Ignore Accept-Language HTTP headers
@@ -9,5 +11,15 @@ class ForceDefaultLanguageMiddleware(object):
     namely django.middleware.locale.LocaleMiddleware
     """
     def process_request(self, request):
-        if request.META.has_key('HTTP_ACCEPT_LANGUAGE'):
-            del request.META['HTTP_ACCEPT_LANGUAGE']
+        geo_ip = GeoIP()
+        ip = request.META.get('REMOTE_ADDR', None)
+        if ip:
+            if ip.startswith("213.233."):
+                country_code = 'IR'
+            else:
+                country_code = geo_ip.country_code(ip)
+        else:
+            country_code = 'IR'
+        if country_code == 'IR':
+            if request.META.has_key('HTTP_ACCEPT_LANGUAGE'):
+                del request.META['HTTP_ACCEPT_LANGUAGE']

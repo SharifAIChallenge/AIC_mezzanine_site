@@ -176,6 +176,9 @@ PROJECT_ROOT = BASE_DIR = os.path.dirname(PROJECT_APP_PATH)
 # project specific.
 CACHE_MIDDLEWARE_KEY_PREFIX = PROJECT_APP
 
+GEOIP_PATH = "GeoIP.dat"
+print(GEOIP_PATH)
+
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = "/static/"

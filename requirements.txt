@@ -3,5 +3,7 @@ django-modeltranslation==0.10.2
 django-debug-toolbar==1.4
 django-compressor==1.6
 jdatetime==1.7.1
-django-countries
-django-celery-email
+django-countries==3.4.1
+django-celery-email==1.1.4
+psycopg2==2.6.1
+redis==2.10.5

@@ -30,11 +30,11 @@
         {% if question.is_approved %}
             <div class="card">
                 <div class="card-content">
-                    {{ question.question }}
+                    {{ question.question|linebreaks }}
                 </div>
                 {% if question.answer %}
                     <div class="card-action">
-                        {{ question.answer }}
+                        {{ question.answer|richtext_filters|safe }}
                     </div>
                 {% else %}
                     <div class="center-align card-action">
@@ -46,6 +46,15 @@
     {% endfor %}
 
     <div class="card-panel">
+        {% if request.GET.sent == '1' %}
+            <div class="messages">
+                <div class="alert alert-dismissable alert-success" data-alert="alert">
+                    <button type="button" class="close" data-dismiss="alert"
+                            aria-hidden="true">&times;</button>
+                    {% trans 'Thanks for asking a question.' %}
+                </div>
+            </div>
+        {% endif %}
         <form class="mezzanine-form" method="post">
             {% fields_for form %}
             <div class="form-actions">

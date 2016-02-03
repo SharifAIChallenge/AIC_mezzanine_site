@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-03 22:25+0330\n"
+"POT-Creation-Date: 2016-02-04 00:30+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: 2016_template/templates/accounts/invite_team.html:7
+#, python-format
 msgid ""
 "\n"
 "            Click <a href='%(url)s'>here</a> to view documentation of team "
@@ -157,7 +158,7 @@ msgstr ""
 
 #: 2016_template/templates/custom/includes/team_member_row.html:15
 msgid "Delete"
-msgstr ""
+msgstr "حذف"
 
 #: 2016_template/templates/custom/my_team.html:44
 msgid "User removed from team"
@@ -298,7 +299,11 @@ msgstr ""
 msgid "No answer provided yet"
 msgstr "هنوز پاسخی داده نشده‌است"
 
-#: 2016_template/templates/pages/qapage.html:52
+#: 2016_template/templates/pages/qapage.html:54
+msgid "Thanks for asking a question."
+msgstr "از این که یک سوال پرسیدید سپاسگزاریم."
+
+#: 2016_template/templates/pages/qapage.html:61
 msgid "Send Question"
 msgstr "ارسال پرسش"
 
@@ -572,6 +577,10 @@ msgstr "سوال پرسیده شده"
 #: custom_pages/models.py:53
 msgid "Asked Questions"
 msgstr "سوالات پرسیده شده"
+
+#: custom_pages/page_processors.py:21
+msgid "A new question is waiting for you!"
+msgstr "یک سوال در انتظار شما نشسته است!"
 
 #: game/apps.py:8 game/models.py:35 game/models.py:41
 msgid "game"

@@ -3,7 +3,7 @@ from mezzanine.core.models import Orderable
 from mezzanine.core.fields import RichTextField
 from mezzanine.pages.models import Page, RichText
 from django.utils.translation import ugettext_lazy as _
-
+from django.utils.html import escape
 
 class ContainerPage(Page):
     pass
@@ -27,13 +27,13 @@ class AskedQuestion(Orderable):
     questioner = models.ForeignKey('base.Member', null=False, verbose_name=_("Questioner"))
     question = models.CharField(max_length=1024, null=False, blank=False,
                                 verbose_name=_("Question"), help_text=_('Ask New Question'))
-    answer = models.CharField(max_length=4096, null=True, blank=True, verbose_name=_("Answer"))
+    answer = RichTextField(null=True, blank=True, verbose_name=_("Answer"))
     is_approved = models.BooleanField(default=True, verbose_name=_("Approved"))
 
     def question_head(self):
         if len(self.question) > 128:
-            return self.question[:128] + "..."
-        return self.question
+            return escape(self.question)[:128] + "..."
+        return escape(self.question)
 
     question_head.allow_tags = True
     question_head.short_description = _("Question")
@@ -42,8 +42,8 @@ class AskedQuestion(Orderable):
         if self.answer is None:
             return 'No Answer'
         if len(self.answer) > 128:
-            return self.answer[:128] + "..."
-        return self.answer
+            return escape(self.answer)[:128] + "..."
+        return escape(self.answer)
 
     answer_head.allow_tags = True
     answer_head.short_description = _("Answer")

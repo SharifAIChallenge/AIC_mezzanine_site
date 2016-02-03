@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-03 22:25+0330\n"
+"POT-Creation-Date: 2016-02-04 00:30+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -292,7 +292,11 @@ msgstr ""
 msgid "No answer provided yet"
 msgstr ""
 
-#: 2016_template/templates/pages/qapage.html:52
+#: 2016_template/templates/pages/qapage.html:54
+msgid "Thanks for asking a question."
+msgstr ""
+
+#: 2016_template/templates/pages/qapage.html:61
 msgid "Send Question"
 msgstr ""
 
@@ -553,6 +557,10 @@ msgstr ""
 
 #: custom_pages/models.py:53
 msgid "Asked Questions"
+msgstr ""
+
+#: custom_pages/page_processors.py:21
+msgid "A new question is waiting for you!"
 msgstr ""
 
 #: game/apps.py:8 game/models.py:35 game/models.py:41

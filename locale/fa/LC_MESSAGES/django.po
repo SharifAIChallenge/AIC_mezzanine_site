@@ -967,44 +967,44 @@ msgstr "امتیاز"
 #~ msgid "%(sometime)s ago"
 #~ msgstr "%(sometime)s پیش"
 
-#~ msgid "Brunei"
-#~ msgstr "برونئی"
+msgid "Brunei"
+msgstr "برونئی"
 
-#~ msgid "Bolivia"
-#~ msgstr "بولیوی"
+msgid "Bolivia"
+msgstr "بولیوی"
 
-#~ msgid "Iran"
-#~ msgstr "ایران"
+msgid "Iran"
+msgstr "ایران"
 
-#~ msgid "North Korea"
-#~ msgstr "کره شمالی"
+msgid "North Korea"
+msgstr "کره شمالی"
 
-#~ msgid "South Korea"
-#~ msgstr "کره جنوبی"
+msgid "South Korea"
+msgstr "کره جنوبی"
 
-#~ msgid "Laos"
-#~ msgstr "لائوس"
+msgid "Laos"
+msgstr "لائوس"
 
-#~ msgid "Macedonia"
-#~ msgstr "مقدونیه"
+msgid "Macedonia"
+msgstr "مقدونیه"
 
-#~ msgid "Russia"
-#~ msgstr "روسیه"
+msgid "Russia"
+msgstr "روسیه"
 
-#~ msgid "Syria"
-#~ msgstr "سوریه"
+msgid "Syria"
+msgstr "سوریه"
 
-#~ msgid "Taiwan"
-#~ msgstr "تایوان"
+msgid "Taiwan"
+msgstr "تایوان"
 
-#~ msgid "Tanzania"
-#~ msgstr "تانزانیا"
+msgid "Tanzania"
+msgstr "تانزانیا"
 
-#~ msgid "Venezuela"
-#~ msgstr "ونزوئلا"
+msgid "Venezuela"
+msgstr "ونزوئلا"
 
-#~ msgid "Vietnam"
-#~ msgstr "ویتنام"
+msgid "Vietnam"
+msgstr "ویتنام"
 
-#~ msgid "United States of America"
-#~ msgstr "ایالات متحده آمریکا"
+msgid "United States of America"
+msgstr "ایالات متحده آمریکا"

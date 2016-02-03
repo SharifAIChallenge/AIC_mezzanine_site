@@ -4,7 +4,7 @@
 {% block meta_title %}{% trans 'My Team' %}{% endblock %}
 {% block title %}{% trans 'My Team' %}{% endblock %}
 {% block extra_head %}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <style>
     td.name-avatar {
         text-align: right;
@@ -90,90 +90,89 @@
 {% block main %}
     <div class="row">
         <div class="col s12 m12 l8 offset-l2">
-            <div class="card">
-                <div class="panel">
-
-                    {% nevercache %}
-                        {% if messages %}
-                            <div class="messages">
-                                {% for message in messages %}
-                                    <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                                        <button type="button" class="close" data-dismiss="alert"
-                                                aria-hidden="true">&times;</button>
-                                        {{ message }}
-                                    </div>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    {% endnevercache %}
-
-                    {% if request.user == team.head %}
-                    <div class="row">
-                        <div class="col m12 s12 l12">
-                            <h4>{% trans 'team' %}</h4>
-
-                            <p class="muted">{{ team.name }}</p>
-                            <button type="button" class="btn waves-effect waves-red deleteteam">
-                                {% trans 'remove team' %}
-                            </button>
-
-                            <button data-target="change_team_name" class="btn waves-effect waves-red modal-trigger">
-                                {% trans 'change team name' %}
-                            </button>
-                        </div>
-                    </div>
-                    {% endif %}
-                    <div class="row">
-                    <div class="col m12 s12 l12">
-                    <h4>{% trans 'team members' %}</h4>
-                    <table class="table-striped ">
-                        <tr>
-                            <th>
-                                {% trans 'name' %}
-                            </th>
-                            <th>
-                                {% if request.user == team.head %}
-                                {% trans 'remove user from team' %}
-                                {% endif %}
-                            </th>
-                        </tr>
-                        {% with member=team.head %}
-                            {% include 'custom/includes/team_member_row.html' %}
-                        {% endwith %}
-                        {% with team_members=team.get_members %}
-                            {% for member in team_members %}
-                                {% include 'custom/includes/team_member_row.html' %}
+            <div class="card-panel">
+                {% nevercache %}
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">&times;</button>
+                                    {{ message }}
+                                </div>
                             {% endfor %}
-                        {% endwith %}
-                    </table>
+                        </div>
+                    {% endif %}
+                {% endnevercache %}
+
+                {% if request.user == team.head %}
+                <h4>{% trans 'team' %}</h4>
+                <p class="muted">{{ team.name }}</p>
+                <div class="row">
+                    <div class="center-align col m12 s6 l6">
+                        <button type="button" class="btn waves-effect waves-red deleteteam">
+                            {% trans 'remove team' %}
+                        </button>
                     </div>
+                    <div class="center-align col m12 s6 l6">
+                        <button data-target="change_team_name" class="btn waves-effect waves-red modal-trigger">
+                            {% trans 'change team name' %}
+                        </button>
                     </div>
-                    <div class="px-20 vertical spacer"></div>
-                    <div class="row">
-                    {% spaceless %}
-                    {% if request.user == team.head %}
-                    <div class="col s6 m4 l3 offset-m1">
+                </div>
+                {% endif %}
+                <div class="row">
+                <div class="col m12 s12 l12">
+                <h4>{% trans 'team members' %}</h4>
+                <table class="table-striped ">
+                    <tr>
+                        <th>
+                            {% trans 'name' %}
+                        </th>
+                        <th>
+                            {% if request.user == team.head %}
+                            {% trans 'remove user from team' %}
+                            {% endif %}
+                        </th>
+                    </tr>
+                    {% with member=team.head %}
+                        {% include 'custom/includes/team_member_row.html' %}
+                    {% endwith %}
+                    {% with team_members=team.get_members %}
+                        {% for member in team_members %}
+                            {% include 'custom/includes/team_member_row.html' %}
+                        {% endfor %}
+                    {% endwith %}
+                </table>
+                </div>
+                </div>
+                <div class="px-20 vertical spacer"></div>
+                <div class="row">
+                {% spaceless %}
+                {% if request.user == team.head %}
+                <div class="col s6 m6 l6 offset-m1">
+                    {% if not team.get_members.0 or not team.get_members.1 %}
                         <a href="{% url 'invite_member' %}">
-                            <button type="button" class="btn btn-primary waves-effect waves-green">
+                            <button type="button" class="btn waves-effect waves-green">
                                 {% trans 'invite member to team' %}
                             </button>
                         </a>
-                    </div>
-                    {% else %}
-                    <div class="col s6 m4 l3 offset-m1">
-                        <button type="button" class="btn btn-primary waves-effect waves-red leaveteam">
-                            {% trans 'leave team' %}
-                        </button>
-                    </div>
-                    {% endif %}
-                    {% endspaceless %}
-                    </div>
-                    <div class="px-20 vertical spacer"></div>
+                     {% endif %}
                 </div>
+                {% else %}
+                <div class="col s12 m12 l12 offset-m1">
+                    <button type="button" class="btn waves-effect waves-red leaveteam">
+                        {% trans 'leave team' %}
+                    </button>
+                </div>
+                {% endif %}
+                {% endspaceless %}
+                </div>
+                <div class="px-20 vertical spacer"></div>
             </div>
 
             <div class="card-panel acc-hints">
-                <a class="btn" href="{% url 'teams_list' %}">{% trans "Teams" %}</a>
+                <a class="white-text btn" href="{% url 'teams_list' %}">{% trans "Teams" %}</a>
             </div>
         </div>
     </div>

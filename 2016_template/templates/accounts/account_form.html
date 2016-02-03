@@ -27,6 +27,9 @@
                         </div>
                     {% endif %}
                 {% endnevercache %}
+
+                {% block pre_form_part %}{% endblock %}
+
                 {% errors_for form %}
 
                 <form class="mezzanine-form" method="post"{% if form.is_multipart %}

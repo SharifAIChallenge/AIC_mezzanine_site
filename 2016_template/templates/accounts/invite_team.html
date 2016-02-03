@@ -1,6 +1,16 @@
 {% extends "accounts/account_form.html" %}
 {% load i18n mezzanine_tags other_ssc_tags %}
 
+
+{% block pre_form_part %}
+    <p>
+        {% blocktrans with url="/docs/site/registration/" %}
+            Click <a href='{{ url }}'>here</a> to view documentation of team registration.
+        {% endblocktrans %}
+    </p>
+{% endblock %}
+
+
 {% block main %}
     <a class="btn" href="{% url 'teams_list' %}">{% trans "Teams" %}</a>
 {% endblock %}

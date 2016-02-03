@@ -1,15 +1,19 @@
 {% load gravatar %}
+{% load i18n %}
+
+{% spaceless %}
 
 <tr data-id="{{ member.pk }}">
-    <td class="name-avatar">
-        <div>
+    <td class="name-avatar" width="50%">
+        <div class="center-align">
             <img class="circle" style="vertical-align: middle; margin: 5px;" src="{% gravatar_url member.email 40 %}"/>
             <span style="vertical-align: middle; margin-right: 5px">{{ member.get_full_name }}</span>
         </div>
     </td>
     <td style="vertical-align: middle;" class="action-button">
         {% if request.user == team.head and member != team.head %}
-            <a class="remove" href="#"><i class="material-icons">delete</i></a>
+            <button class="btn remove">{% trans 'Delete' %}</button>
         {% endif %}
     </td>
 </tr>
+{% endspaceless %}

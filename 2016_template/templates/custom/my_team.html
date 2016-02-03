@@ -5,6 +5,14 @@
 {% block title %}{% trans 'My Team' %}{% endblock %}
 {% block extra_head %}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+    td.name-avatar {
+        text-align: right;
+    }
+    td.action-buttons {
+        text-align: center;
+    }
+    </style>
 {% endblock %}
 
 {% block extra_js %}
@@ -14,8 +22,10 @@
         var csrf_token = '{{ csrf_token }}';
         var remove_url = '{% url 'remove' %}';
 
+        $('.modal-trigger').leanModal({dismissible: true, opacity: .5});
+
         {% if request.user == team.head %}
-        $('tr button.remove').on('click', function () {
+        $('.remove').on('click', function () {
             var $self = $(this);
 
             $self.addClass('disabled');
@@ -97,20 +107,38 @@
                         {% endif %}
                     {% endnevercache %}
 
+                    {% if request.user == team.head %}
+                    <div class="row">
+                        <div class="col m12 s12 l12">
+                            <h4>{% trans 'team' %}</h4>
+
+                            <p class="muted">{{ team.name }}</p>
+                            <button type="button" class="btn waves-effect waves-red deleteteam">
+                                {% trans 'remove team' %}
+                            </button>
+
+                            <button data-target="change_team_name" class="btn waves-effect waves-red modal-trigger">
+                                {% trans 'change team name' %}
+                            </button>
+                        </div>
+                    </div>
+                    {% endif %}
                     <div class="row">
                     <div class="col m12 s12 l12">
-                    <table class="teams-list">
+                    <h4>{% trans 'team members' %}</h4>
+                    <table class="table-striped ">
                         <tr>
                             <th>
                                 {% trans 'name' %}
                             </th>
-                            <th></th>
+                            <th>
+                                {% if request.user == team.head %}
+                                {% trans 'remove user from team' %}
+                                {% endif %}
+                            </th>
                         </tr>
                         {% with member=team.head %}
-                            <tr>
-                                <td>{{ member.get_full_name }}</td>
-                                <td></td>
-                            </tr>
+                            {% include 'custom/includes/team_member_row.html' %}
                         {% endwith %}
                         {% with team_members=team.get_members %}
                             {% for member in team_members %}
@@ -131,11 +159,6 @@
                             </button>
                         </a>
                     </div>
-                    <div class="col s6 m4 l3">
-                        <button type="button" class="btn waves-effect waves-red deleteteam">
-                            {% trans 'remove team' %}
-                        </button>
-                    </div>
                     {% else %}
                     <div class="col s6 m4 l3 offset-m1">
                         <button type="button" class="btn btn-primary waves-effect waves-red leaveteam">
@@ -154,4 +177,24 @@
             </div>
         </div>
     </div>
+
+    {% if team.head == request.user %}
+        <div id="change_team_name" class="modal bottom-sheet">
+            <form method="post" action="{% url 'change_team_name' id=team.id %}">
+                <div class="modal-content">
+                    <h4>{% trans 'change team name' %}</h4>
+
+                    <div>
+                        {{ team_name_form }}{% csrf_token %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit"
+                            class="waves-effect waves-green btn-flat">{% trans 'change' %}</button>
+                    <a href="#!"
+                       class=" modal-action modal-close waves-effect waves-red btn-flat">{% trans 'cancel' %}</a>
+                </div>
+            </form>
+        </div>
+    {% endif %}
 {% endblock %}

@@ -2,7 +2,7 @@
 from functools import wraps
 from urlparse import urlparse
 
-from base.forms import SubmitForm, TeamForm, InvitationForm
+from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm
 from base.models import TeamInvitation, Team, Member
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -126,9 +126,24 @@ def teams(request):
 
 @login_required
 @team_required
+def change_team_name(request, id):
+    if request.method != 'POST':
+        raise PermissionDenied()
+    team_name_form = TeamNameForm(request.POST, instance = Team.objects.get(id=id))
+    if team_name_form.is_valid():
+        if team_name_form.instance.head.pk != request.user.pk:
+            raise PermissionDenied()
+        team_name_form.save()
+
+    return redirect('my_team')
+
+
+@login_required
+@team_required
 def my_team(request):
     team = request.team
-    return render(request, 'custom/my_team.html', {'team': team})
+    team_name_form = TeamNameForm(instance=team)
+    return render(request, 'custom/my_team.html', {'team': team, 'team_name_form': team_name_form})
 
 
 @login_required

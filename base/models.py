@@ -14,7 +14,6 @@ from django_countries.fields import CountryField
 class Member(AbstractUser):
     phone_number = models.CharField(verbose_name=_("phone_number"), max_length=20, blank=True)
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
-    avatar = models.ImageField(verbose_name=_("avatar"), blank=True)
     country = CountryField(verbose_name=_("country"), blank_label=_("choose your country"), default='IR')
     team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True, blank=True, on_delete=SET_NULL)
 

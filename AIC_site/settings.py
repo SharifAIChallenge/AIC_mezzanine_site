@@ -238,6 +238,7 @@ INSTALLED_APPS = (
     "custom_pages",
     "game",
     "django_countries",
+    "django_gravatar",
 )
 
 # List of processors used by RequestContext to populate the context.

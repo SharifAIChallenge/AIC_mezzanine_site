@@ -12,7 +12,7 @@ class ForceDefaultLanguageMiddleware(object):
     """
     def process_request(self, request):
         geo_ip = GeoIP()
-        ip = request.META.get('REMOTE_ADDR', None)
+        ip = request.META.get('REMOTE_ADDR', None) or request.META.get('HTTP_X_REAL_IP', None)
         if ip:
             if ip.startswith("213.233."):
                 country_code = 'IR'

@@ -3,6 +3,17 @@
 
 {% block meta_title %}{% trans 'Teams' %}{% endblock %}
 {% block title %}{% trans 'Teams' %}{% endblock %}
+{% block extra_head %}
+<style>
+    .aligned {
+    {% if LANGUAGE_BIDI %}
+        text-align: right;
+    {% else %}
+        text-align: left;
+    {% endif %}
+    }
+</style>
+{% endblock %}
 
 {% block main %}
     <div class="row">
@@ -28,20 +39,20 @@
                         <tr>
                             <td>{{ forloop.counter }}</td>
                             <td>{{ team.name }}</td>
-                            <td>
+                            <td class="aligned">
                                 <div>
                                     <img class="circle" style="vertical-align: middle; margin: 5px;" src="{% gravatar_url team.head.email 40 %}"/>
                                     <span style="vertical-align: middle; margin-right: 5px">{{ team.head.get_full_name }}</span>
                                 </div>
                             </td>
-                            <td>{% if team.get_members.0 %}
-                                <div>
+                            <td class="aligned">{% if team.get_members.0 %}
+                                <div class="aligned">
                                     <img class="circle" style="vertical-align: middle; margin: 5px;" src="{% gravatar_url team.get_members.0.email 40 %}"/>
                                     <span style="vertical-align: middle; margin-right: 5px">{{ team.get_members.0.get_full_name }}</span>
                                 </div>
                             {% else %}-{% endif %}</td>
                             <td>{% if team.get_members.1 %}
-                                <div>
+                                <div class="aligned">
                                     <img class="circle" style="vertical-align: middle; margin: 5px;" src="{% gravatar_url team.get_members.1.email 40 %}"/>
                                     <span style="vertical-align: middle; margin-right: 5px">{{ team.get_members.1.get_full_name }}</span>
                                 </div>

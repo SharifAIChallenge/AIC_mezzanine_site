@@ -3,9 +3,7 @@ from base.models import Team, Submit, TeamInvitation, Member
 from django.contrib import admin
 from django.conf import settings
 
-admin_models = [Submit]
-if settings.DEBUG:
-    admin_models += [TeamInvitation]
+admin_models = [Submit, TeamInvitation]
 
 list(map(admin.site.register, admin_models))
 

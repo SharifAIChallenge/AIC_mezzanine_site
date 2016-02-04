@@ -53,7 +53,14 @@ def register_team(request):
             return redirect('invite_member')
     else:
         form = TeamForm()
-    return render(request, 'accounts/invite_team.html', {'form': form, 'title': _('register new team')})
+    context = {'form': form, 'title': _('register new team')}
+
+    invitation = TeamInvitation.objects.filter(member=request.user).select_related('team').all()[:1]
+    is_invited = len(invitation) > 0
+    context['is_invited'] = is_invited
+    if is_invited:
+        context['invitation'] = invitation[0]
+    return render(request, 'accounts/invite_team.html', context)
 
 @login_required
 @team_required
@@ -115,6 +122,7 @@ def accept_invite(request, slug):
     else:
         invitation.accept()
         messages.success(request, _('successfully joined team %s') % invitation.team.name)
+        return redirect('my_team')
     return redirect('home')
 
 

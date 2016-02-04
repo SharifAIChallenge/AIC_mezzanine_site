@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-04 21:35+0330\n"
+"POT-Creation-Date: 2016-02-04 22:33+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: 2016_template/templates/accounts/invite_team.html:7
+#: 2016_template/templates/accounts/invite_team.html:10
+#, python-format
+msgid ""
+"\n"
+"                    You are invited to team %(team_name)s. <a class=\"btn "
+"btn-primary\" href=\"%(invitation_accept_link)s\">accept</a>\n"
+"                "
+msgstr ""
+
+#: 2016_template/templates/accounts/invite_team.html:18
 #, python-format
 msgid ""
 "\n"
@@ -26,7 +35,7 @@ msgid ""
 "        "
 msgstr ""
 
-#: 2016_template/templates/accounts/invite_team.html:15
+#: 2016_template/templates/accounts/invite_team.html:26
 #: 2016_template/templates/custom/my_team.html:196
 #: 2016_template/templates/custom/teams_list.html:4
 #: 2016_template/templates/custom/teams_list.html:5
@@ -46,7 +55,8 @@ msgstr ""
 #: 2016_template/templates/base.html:110
 #: 2016_template/templates/custom/my_team.html:4
 #: 2016_template/templates/custom/my_team.html:5
-#: 2016_template/templates/index.html:122
+#: 2016_template/templates/index.html:119
+#: 2016_template/templates/index.html:130
 msgid "My Team"
 msgstr ""
 
@@ -163,7 +173,7 @@ msgid "Delete"
 msgstr ""
 
 #: 2016_template/templates/custom/includes/team_member_row.html:27
-#: 2016_template/templates/custom/teams_list.html:17 base/models.py:25
+#: 2016_template/templates/custom/teams_list.html:29 base/models.py:25
 msgid "team head"
 msgstr ""
 
@@ -210,7 +220,7 @@ msgid "team members"
 msgstr "Team members"
 
 #: 2016_template/templates/custom/my_team.html:143
-#: 2016_template/templates/custom/teams_list.html:14 base/models.py:24
+#: 2016_template/templates/custom/teams_list.html:26 base/models.py:24
 #: venv/lib/python2.7/site-packages/kombu/transport/django/models.py:12
 msgid "name"
 msgstr ""
@@ -223,7 +233,7 @@ msgstr "remove"
 msgid "membership status"
 msgstr "Status"
 
-#: 2016_template/templates/custom/my_team.html:178 base/views.py:81
+#: 2016_template/templates/custom/my_team.html:178 base/views.py:88
 msgid "invite member to team"
 msgstr ""
 
@@ -239,8 +249,8 @@ msgstr ""
 msgid "cancel"
 msgstr ""
 
-#: 2016_template/templates/custom/teams_list.html:20
-#: 2016_template/templates/custom/teams_list.html:23 base/models.py:82
+#: 2016_template/templates/custom/teams_list.html:32
+#: 2016_template/templates/custom/teams_list.html:35 base/models.py:82
 msgid "member"
 msgstr ""
 
@@ -488,44 +498,44 @@ msgstr ""
 msgid "register new team"
 msgstr ""
 
-#: base/views.py:62
+#: base/views.py:69
 msgid "only head can invite"
 msgstr ""
 
-#: base/views.py:69
+#: base/views.py:76
 msgid "already part of the team"
 msgstr ""
 
-#: base/views.py:71
+#: base/views.py:78
 msgid "already part of another team"
 msgstr ""
 
-#: base/views.py:73
+#: base/views.py:80
 msgid "you have invited this user before!"
 msgstr ""
 
-#: base/views.py:77
+#: base/views.py:84
 #, python-format
 msgid "successfully invited user %(name)s"
 msgstr ""
 
-#: base/views.py:88
+#: base/views.py:95
 msgid "your team does not have enough members"
 msgstr ""
 
-#: base/views.py:99
+#: base/views.py:106
 msgid "submit new code"
 msgstr ""
 
-#: base/views.py:111
+#: base/views.py:118
 msgid "you already have a team"
 msgstr ""
 
-#: base/views.py:114
+#: base/views.py:121
 msgid "the team has reached max members"
 msgstr ""
 
-#: base/views.py:117
+#: base/views.py:124
 #, python-format
 msgid "successfully joined team %s"
 msgstr ""

@@ -55,7 +55,7 @@ def register_team(request):
         form = TeamForm()
     context = {'form': form, 'title': _('register new team')}
 
-    invitation = TeamInvitation.objects.filter(member=request.user).select_related('team').all()[:1]
+    invitation = TeamInvitation.objects.filter(member=request.user, accepted=False).select_related('team').all()[:1]
     is_invited = len(invitation) > 0
     context['is_invited'] = is_invited
     if is_invited:

@@ -7,10 +7,17 @@
     <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <style>
     td.name-avatar {
+    {% if LANGUAGE_BIDI %}
         text-align: right;
+    {% else %}
+        text-align: left;
+    {% endif %}
     }
     td.action-buttons {
         text-align: center;
+    }
+    td {
+        vertical-align: middle;
     }
     </style>
 {% endblock %}
@@ -25,16 +32,22 @@
         $('.modal-trigger').leanModal({dismissible: true, opacity: .5});
 
         {% if request.user == team.head %}
-        $('.remove').on('click', function () {
+        $('.remove, .withdraw').on('click', function () {
             var $self = $(this);
 
             $self.addClass('disabled');
+            var type = '';
+            if ($self.hasClass('withdraw')) {
+                type = 'invitation';
+            } else {
+                type = 'member';
+            }
             $.ajax({
                 url: remove_url,
                 method: 'post',
                 data: {
                     csrfmiddlewaretoken: csrf_token,
-                    type: 'member',
+                    type: type,
                     id: $self.parents('tr').data('id')
                 },
                 complete: function () {
@@ -134,15 +147,23 @@
                             {% trans 'remove user from team' %}
                             {% endif %}
                         </th>
+                        <th>
+                            {% trans 'membership status' %}
+                        </th>
                     </tr>
-                    {% with member=team.head %}
+                    {% with member=team.head invited=False %}
                         {% include 'custom/includes/team_member_row.html' %}
                     {% endwith %}
-                    {% with team_members=team.get_members %}
+                    {% with team_members=team.get_members invited=False %}
                         {% for member in team_members %}
                             {% include 'custom/includes/team_member_row.html' %}
                         {% endfor %}
                     {% endwith %}
+                    {% for invitation in invited_members %}
+                        {% with member=invitation.member invited=True invitation_id=invitation.pk %}
+                            {% include 'custom/includes/team_member_row.html' %}
+                        {% endwith %}
+                    {% endfor %}
                 </table>
                 </div>
                 </div>

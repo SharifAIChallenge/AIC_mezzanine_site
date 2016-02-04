@@ -10,6 +10,7 @@
             <div class="card-panel">
                 <table class="teams-list">
                     <tr>
+                        <th>#</th>
                         <th>
                             {% trans 'name' %}
                         </th>
@@ -25,6 +26,7 @@
                     </tr>
                     {% for team in teams %}
                         <tr>
+                            <td>{{ forloop.counter }}</td>
                             <td>{{ team.name }}</td>
                             <td>
                                 <div>

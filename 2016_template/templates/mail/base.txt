@@ -1,0 +1,6 @@
+{{ email_title }}
+-------------
+
+{% block main %}
+{{ email_body }}
+{% endblock %}

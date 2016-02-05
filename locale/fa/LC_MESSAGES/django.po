@@ -566,6 +566,12 @@ msgstr "شما در حال حاضر عضو این تیم هستید"
 msgid "the team has reached max members"
 msgstr "تیم شما به حداکثر تعداد رسیده است"
 
+msgid "join request has been sent"
+msgstr "درخواست عضویت ارسال شد"
+
+msgid "request join"
+msgstr "درخواست عضویت"
+
 #: base/views.py:124
 #, python-format
 msgid "successfully joined team %s"

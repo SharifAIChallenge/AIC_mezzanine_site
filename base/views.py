@@ -224,7 +224,6 @@ def resend_invitation_mail(request):
 @login_required
 @team_required
 def accept_decline_request(request):
-    print request.POST
     if request.method != 'POST':
         raise PermissionDenied()
     try:
@@ -247,9 +246,23 @@ def accept_decline_request(request):
             success = False
             message = _("the team has reached max members")
         else:
-            req.member.team = req.team
-            req.accepted = True
-            req.member.save()
-            req.save()
+            req.accept()
 
     return HttpResponse(json.dumps({'success': success, 'message': str(message)}), content_type='application/json')
+
+
+@login_required
+def request_join(request, team_id):
+    try:
+        team = Team.objects.get(id=team_id)
+    except Team.DoesNotExist:
+        raise Http404()
+    if request.user.team:
+        messages.error(request, _("you already have a team"))
+    if team.member_set.count() == team.competition.max_members:
+        messages.error(request, _("the team has reached max members"))
+    else:
+        JoinRequest.objects.get_or_create(team=team, member=request.user)
+        # TODO send email
+        messages.success(request, _('join request has been sent'))
+    return redirect('teams_list')

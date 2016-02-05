@@ -90,9 +90,6 @@
                             csrfmiddlewaretoken: csrf_token,
                             id: $self.parents('tr').data('id'),
                             type: 'accept'
-                        },
-                        complete: function () {
-                            $self.removeClass('disabled');
                         }
                     }).success(function (response) {
                         if (response['success']) {
@@ -113,9 +110,6 @@
                             csrfmiddlewaretoken: csrf_token,
                             id: $self.parents('tr').data('id'),
                             type: 'decline'
-                        },
-                        complete: function () {
-                            $self.removeClass('disabled');
                         }
                     }).success(function (response) {
                         if (response['success']) {

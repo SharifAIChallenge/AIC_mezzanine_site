@@ -60,7 +60,7 @@
                                     <img src="{{ team.head.country.flag }}"/>
                                 </div>
                             </td>
-                            <td class="aligned">{% if team.get_members.0 %}
+                            <td>{% if team.get_members.0 %}
                                 <div class="aligned">
                                     <img class="circle" style="vertical-align: middle; margin: 5px;"
                                          src="{% gravatar_url team.get_members.0.email 40 %}"/>
@@ -76,8 +76,7 @@
                                     <img src="{{ team.get_members.1.country.flag }}"/>
                                 </div>
                             {% else %}
-{#                                {% if user.team %}#}
-                                {% if 1 %}
+                                {% if user.team %}
                                     -
                                 {% else %}
                                     <div class="aligned">

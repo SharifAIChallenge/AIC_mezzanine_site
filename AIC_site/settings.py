@@ -177,7 +177,6 @@ PROJECT_ROOT = BASE_DIR = os.path.dirname(PROJECT_APP_PATH)
 CACHE_MIDDLEWARE_KEY_PREFIX = PROJECT_APP
 
 GEOIP_PATH = "GeoIP.dat"
-print(GEOIP_PATH)
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -226,6 +225,7 @@ INSTALLED_APPS = (
     "django.contrib.sites",
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
+    "import_export",
     "2016_template",
     "mezzanine.boot",
     "mezzanine.conf",

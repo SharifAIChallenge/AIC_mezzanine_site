@@ -433,6 +433,9 @@ msgstr "کاربر یافت نشد"
 msgid "AIChallenge team invitation"
 msgstr "دعوت عضویت تیم در AIChallenge"
 
+msgid "AIChallenge team join request"
+msgstr "درخواست عضویت تیم در AIChallenge"
+
 #: base/models.py:15
 msgid "phone_number"
 msgstr "شماره تماس"
@@ -554,6 +557,9 @@ msgstr "کاربر %(name)s با موفقیت دعوت شد"
 msgid "your team does not have enough members"
 msgstr "تیم شما تعداد اعضای کافی ندارد"
 
+msgid "you have requested to join this team before"
+msgstr "شما قبلا درخواست عضویت در این تیم را داده‌اید"
+
 #: base/views.py:106
 msgid "submit new code"
 msgstr "ارسال کد"
@@ -576,6 +582,15 @@ msgstr "درخواست عضویت"
 #, python-format
 msgid "successfully joined team %s"
 msgstr "با موفقیت به تیم %s ملحق شدید"
+
+msgid "following user has requested to join your team:"
+msgstr "کابر زیر درخواست عضویت در تیم شما را دارد"
+
+msgid "you can accept or decline this request in the 'my tean' page"
+msgstr "شما می‌توانید از صفحه‌ی تیم من این درخواست را قبول یا رد کنید"
+
+msgid "invitation resend successful"
+msgstr "با موفقیت بازارسال شد"
 
 #: custom_pages/models.py:12
 msgid "Container Page"

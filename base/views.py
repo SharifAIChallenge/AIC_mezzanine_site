@@ -13,6 +13,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
 from game.models import Competition
+from mezzanine.utils.email import send_mail_template
 
 
 def team_required(function=None):
@@ -216,9 +217,13 @@ def resend_invitation_mail(request):
     if not is_head or request.team.pk != invitation.team.pk:
         raise PermissionDenied()
 
-    # TODO: naser , resend invitation mail
-    # TODO: Return localized message. Will show the message in UI.
-    return HttpResponse(json.dumps({"success": True, "message": ""}), content_type='application/json')
+    send_mail_template(_('AIChallenge team invitation'), 'mail/invitation_mail', '', invitation.member.email,
+                       context={
+                           'team': invitation.team.name,
+                           'link': 'http://%s' % invitation.accept_link
+                       })
+    return HttpResponse(json.dumps({"success": True, "message": _("invitation resend successful")}),
+                        content_type='application/json')
 
 
 @login_required
@@ -262,7 +267,11 @@ def request_join(request, team_id):
     if team.member_set.count() == team.competition.max_members:
         messages.error(request, _("the team has reached max members"))
     else:
-        JoinRequest.objects.get_or_create(team=team, member=request.user)
-        # TODO send email
-        messages.success(request, _('join request has been sent'))
+        is_new = JoinRequest.objects.get_or_create(team=team, member=request.user)[1]
+        if is_new:
+            send_mail_template(_('AIChallenge team join request'), 'mail/join_request_mail', '', team.head.email,
+                               context={'member': request.user.get_full_name()})
+            messages.success(request, _('join request has been sent'))
+        else:
+            messages.warning(request, _('you have requested to join this team before'))
     return redirect('teams_list')

@@ -267,11 +267,14 @@ def request_join(request, team_id):
     if team.member_set.count() == team.competition.max_members:
         messages.error(request, _("the team has reached max members"))
     else:
-        is_new = JoinRequest.objects.get_or_create(team=team, member=request.user)[1]
+        req, is_new = JoinRequest.objects.get_or_create(team=team, member=request.user)
         if is_new:
             send_mail_template(_('AIChallenge team join request'), 'mail/join_request_mail', '', team.head.email,
                                context={'member': request.user.get_full_name()})
             messages.success(request, _('join request has been sent'))
         else:
-            messages.warning(request, _('you have requested to join this team before'))
+            if req.accepted is False:
+                messages.error(request, _('your request to join this team has been declined'))
+            else:
+                messages.warning(request, _('you have requested to join this team before'))
     return redirect('teams_list')

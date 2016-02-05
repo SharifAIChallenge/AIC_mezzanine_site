@@ -560,6 +560,9 @@ msgstr "تیم شما تعداد اعضای کافی ندارد"
 msgid "you have requested to join this team before"
 msgstr "شما قبلا درخواست عضویت در این تیم را داده‌اید"
 
+msgid "your request to join this team has been declined"
+msgstr "درخواست شما توسط سرگروه این تیم رد شده است"
+
 #: base/views.py:106
 msgid "submit new code"
 msgstr "ارسال کد"

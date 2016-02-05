@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+import json
 from functools import wraps
 from urlparse import urlparse
 
 from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm
-from base.models import TeamInvitation, Team, Member
+from base.models import TeamInvitation, Team, Member, JoinRequest
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -61,6 +62,7 @@ def register_team(request):
     if is_invited:
         context['invitation'] = invitation[0]
     return render(request, 'accounts/invite_team.html', context)
+
 
 @login_required
 @team_required
@@ -137,7 +139,7 @@ def teams(request):
 def change_team_name(request, id):
     if request.method != 'POST':
         raise PermissionDenied()
-    team_name_form = TeamNameForm(request.POST, instance = Team.objects.get(id=id))
+    team_name_form = TeamNameForm(request.POST, instance=Team.objects.get(id=id))
     if team_name_form.is_valid():
         if team_name_form.instance.head.pk != request.user.pk:
             raise PermissionDenied()
@@ -152,7 +154,13 @@ def my_team(request):
     team = request.team
     team_name_form = TeamNameForm(instance=team)
     invited_members = TeamInvitation.objects.filter(team=team, accepted=False).select_related('member').all()
-    return render(request, 'custom/my_team.html', {'team': team, 'team_name_form': team_name_form, 'invited_members': invited_members})
+    join_requests = JoinRequest.objects.filter(team=team, accepted__isnull=True).select_related('member').all()
+    return render(request, 'custom/my_team.html', {
+        'team': team,
+        'team_name_form': team_name_form,
+        'invited_members': invited_members,
+        'join_requests': join_requests,
+    })
 
 
 @login_required
@@ -197,8 +205,6 @@ def remove(request):
 @login_required
 @team_required
 def resend_invitation_mail(request):
-    import json
-
     if request.method != 'POST':
         raise PermissionDenied()
     id = request.POST.get('id')
@@ -213,3 +219,37 @@ def resend_invitation_mail(request):
     # TODO: naser , resend invitation mail
     # TODO: Return localized message. Will show the message in UI.
     return HttpResponse(json.dumps({"success": True, "message": ""}), content_type='application/json')
+
+
+@login_required
+@team_required
+def accept_decline_request(request):
+    print request.POST
+    if request.method != 'POST':
+        raise PermissionDenied()
+    try:
+        req = JoinRequest.objects.get(pk=request.POST.get('id'))
+    except JoinRequest.DoesNotExist:
+        raise Http404()
+    if req.team != request.team or req.team.head != request.user:
+        raise PermissionDenied()
+    type = request.POST.get('type', 'decline')
+    success = True
+    message = ""
+    if type == 'decline':
+        req.accepted = False
+        req.save()
+    elif type == 'accept':
+        if req.member.team:
+            success = False
+            message = _("already part of another team")
+        elif req.team.member_set.count() == req.team.competition.max_members:
+            success = False
+            message = _("the team has reached max members")
+        else:
+            req.member.team = req.team
+            req.accepted = True
+            req.member.save()
+            req.save()
+
+    return HttpResponse(json.dumps({'success': success, 'message': str(message)}), content_type='application/json')

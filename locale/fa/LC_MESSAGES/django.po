@@ -489,6 +489,12 @@ msgstr "کدهای سابمیت شده"
 msgid "accepted"
 msgstr "پذیرفته"
 
+msgid "accept"
+msgstr "قبول"
+
+msgid "decline"
+msgstr "رد"
+
 #: base/models.py:83
 msgid "slug"
 msgstr "اسلاگ"
@@ -504,6 +510,12 @@ msgstr "دعوت"
 #: base/models.py:97
 msgid "invitations"
 msgstr "دعوت‌ها"
+
+msgid "join request"
+msgstr "درخواست عضویت"
+
+msgid "join requests"
+msgstr "درخواست‌های عضویت"
 
 #: base/views.py:26
 msgid ""

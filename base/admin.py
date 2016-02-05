@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from base.models import Team, Submit, TeamInvitation, Member
+from base.models import Team, Submit, TeamInvitation, Member, JoinRequest
 from django.contrib import admin
 from import_export import resources, fields
 from import_export.admin import ImportExportModelAdmin
 
-admin_models = [Submit, TeamInvitation]
+admin_models = [Submit, TeamInvitation, JoinRequest]
 
 list(map(admin.site.register, admin_models))
 

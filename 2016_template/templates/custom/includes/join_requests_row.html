@@ -1,0 +1,24 @@
+{% load gravatar %}
+{% load i18n %}
+
+{% spaceless %}
+    <tr data-id="{{ req.pk }}">
+        <td class="name-avatar" width="50%">
+            <div>
+                <img class="circle" style="vertical-align: middle; margin: 5px;"
+                     src="{% gravatar_url req.member.email 40 %}"/>
+                <a href="mailto:{{ req.member.email }}">
+                    <span style="vertical-align: middle; margin-right: 5px">
+                            {{ req.member.get_full_name }}
+                    </span>
+                </a>
+            </div>
+        </td>
+        <td class="action-button">
+            <button class="btn accept">{% trans 'accept' %}</button>
+        </td>
+        <td class="action-button">
+            <button class="btn decline">{% trans 'decline' %}</button>
+        </td>
+    </tr>
+{% endspaceless %}

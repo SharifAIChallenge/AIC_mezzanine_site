@@ -89,7 +89,7 @@ class TeamInvitation(models.Model):
                 .replace('+', 'O').replace('/', 'O')
 
     def __unicode__(self):
-        return str(_('invitation of {} to join {} [{}]')).decode('utf-8')\
+        return str(_('invitation of {} to join {} [{}]')).decode('utf-8') \
             .format(self.member, self.team, u'✓' if self.accepted else u'✗')
 
     class Meta:
@@ -105,3 +105,23 @@ class TeamInvitation(models.Model):
     @property
     def accept_link(self):
         return 'http://' + settings.SITE_URL[:-1] + reverse('accept_invitation', args=(self.slug,))
+
+
+class JoinRequest(models.Model):
+    accepted = models.NullBooleanField(verbose_name=_('accepted'))
+    team = models.ForeignKey('base.Team', verbose_name=_('team'))
+    member = models.ForeignKey('base.Member', verbose_name=_('member'))
+
+    def __unicode__(self):
+        return str(_('invitation of {} to join {} [{}]')).decode('utf-8') \
+            .format(self.member, self.team, u'✓' if self.accepted else u'✗')
+
+    class Meta:
+        verbose_name = _('join request')
+        verbose_name_plural = _('join requests')
+
+    def accept(self):
+        self.member.team = self.team
+        self.member.save()
+        self.accepted = True
+        self.save()

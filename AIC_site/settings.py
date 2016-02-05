@@ -370,7 +370,7 @@ BROKER_URL = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 CELERY_EMAIL_TASK_CONFIG = {
-    'max_retries': 10,
+    'max_retries': 30,
 }
 
 ##################

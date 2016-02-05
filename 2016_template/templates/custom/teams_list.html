@@ -79,9 +79,9 @@
                                 {% if user.team %}
                                     -
                                 {% else %}
-                                    <div class="action-button">
+                                    <div class="aligned">
                                         <a href="{% url 'request_join' team_id=team.id %}">
-                                            <button class="btn">{% trans 'request join' %}</button>
+                                            {% trans 'request join' %}
                                         </a>
                                     </div>
                                 {% endif %}

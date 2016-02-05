@@ -42,7 +42,7 @@ class MemberResource(resources.ModelResource):
 
 class MemberAdmin(ImportExportModelAdmin):
     resource_class = MemberResource
-    list_display = ('username', 'first_name', 'last_name', 'team', 'is_active')
+    list_display = ('username', 'first_name', 'last_name', 'country', 'education_place', 'team', 'is_active')
     fields = (
         ('first_name', 'last_name'),
         ('username', 'email', 'phone_number'),
@@ -113,7 +113,6 @@ class TeamAdmin(ImportExportModelAdmin):
     fields = (
         ('name', 'head', 'show'),
         ('competition',),
-        # ('members',)
     )
     inlines = [MembersInline]
 

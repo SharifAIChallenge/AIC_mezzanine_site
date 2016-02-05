@@ -36,7 +36,7 @@
             </tr>
             <tr>
               <td class="bodycopy">
-				{{ email_body }}
+                  {% block main %}{{ email_body }}{% endblock %}
               </td>
             </tr>
           </table>

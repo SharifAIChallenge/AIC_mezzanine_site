@@ -10,5 +10,6 @@ urlpatterns = patterns(
     url("^accept/(?P<slug>\w+)$", 'accept_invite', name='accept_invitation'),
     url("^list$", 'teams', name='teams_list'),
     url("^my$", 'my_team', name='my_team'),
+    url("^change_name/(?P<id>[0-9]+)$", 'change_team_name', name='change_team_name'),
     url("^remove$", 'remove', name='remove'),
 )

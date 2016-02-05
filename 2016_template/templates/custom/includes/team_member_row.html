@@ -1,10 +1,34 @@
-{% spaceless %}
+{% load gravatar %}
+{% load i18n %}
 
+{% spaceless %}
+{% if invited %}
+<tr data-id="{{ invitation_id }}">
+{% else %}
 <tr data-id="{{ member.pk }}">
-    <td>{{ member.get_full_name }}</td>
+{% endif %}
+    <td class="name-avatar" width="50%">
+        <div>
+            <img class="circle" style="vertical-align: middle; margin: 5px;" src="{% gravatar_url member.email 40 %}"/>
+            <span style="vertical-align: middle; margin-right: 5px">{{ member.get_full_name }}</span>
+        </div>
+    </td>
+    <td class="action-button">
+        {% if request.user == team.head and member != team.head %}
+            {% if invited %}
+            <button class="btn withdraw">{% trans 'Withdraw' %}</button>
+            {% else %}
+            <button class="btn remove">{% trans 'Delete' %}</button>
+            {% endif %}
+        {% endif %}
+    </td>
     <td>
-        {% if request.user == team.head %}
-        <button type="button" class="remove"><i class="material-icons">delete</i></button>
+        {% if member == team.head %}
+            {% trans 'team head' %}
+        {% elif not invited %}
+            {% trans 'team member' %}
+        {% else %}
+            {% trans 'invited member' %}
         {% endif %}
     </td>
 </tr>

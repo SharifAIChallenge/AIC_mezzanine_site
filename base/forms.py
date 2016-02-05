@@ -13,7 +13,7 @@ class ProfileForm(mezzanine_profile_form):
     class Meta:
         model = Member
         fields = (
-            "first_name", "last_name", "phone_number", "country", "education_place", "avatar", "email", "username"
+            "first_name", "last_name", "phone_number", "country", "education_place", "email", "username"
         )
         widgets = {'country': CountrySelectWidget()}
 
@@ -22,7 +22,6 @@ class ProfileForm(mezzanine_profile_form):
         self.fields['phone_number'].required = False
         # self.fields['phone_number'].initial = "+989123456789"
         self.fields['education_place'].required = False
-        self.fields['avatar'].required = False
 
 
 class SubmitForm(forms.ModelForm):
@@ -44,6 +43,12 @@ class TeamForm(forms.ModelForm):
         user.team = instance
         user.save()
         return instance
+
+
+class TeamNameForm(forms.ModelForm):
+    class Meta:
+        model = Team
+        fields = ('name', 'id')
 
 
 class InvitationForm(forms.Form):

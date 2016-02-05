@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-03 19:50+0330\n"
+"POT-Creation-Date: 2016-02-04 22:33+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: 2016_template/templates/accounts/invite_team.html:5
-#: 2016_template/templates/custom/my_team.html:153
+#: 2016_template/templates/accounts/invite_team.html:10
+#, python-format
+msgid ""
+"\n"
+"                    You are invited to team %(team_name)s. <a class=\"btn "
+"btn-primary\" href=\"%(invitation_accept_link)s\">accept</a>\n"
+"                "
+msgstr ""
+
+#: 2016_template/templates/accounts/invite_team.html:18
+#, python-format
+msgid ""
+"\n"
+"            Click <a href='%(url)s'>here</a> to view documentation of team "
+"registration.\n"
+"        "
+msgstr ""
+
+#: 2016_template/templates/accounts/invite_team.html:26
+#: 2016_template/templates/custom/my_team.html:196
 #: 2016_template/templates/custom/teams_list.html:4
 #: 2016_template/templates/custom/teams_list.html:5
 msgid "Teams"
@@ -37,7 +55,8 @@ msgstr ""
 #: 2016_template/templates/base.html:110
 #: 2016_template/templates/custom/my_team.html:4
 #: 2016_template/templates/custom/my_team.html:5
-#: 2016_template/templates/index.html:122
+#: 2016_template/templates/index.html:119
+#: 2016_template/templates/index.html:130
 msgid "My Team"
 msgstr ""
 
@@ -144,42 +163,94 @@ msgstr ""
 msgid "Atom"
 msgstr ""
 
-#: 2016_template/templates/custom/my_team.html:34
+#: 2016_template/templates/custom/includes/team_member_row.html:19
+msgid "Withdraw"
+msgstr ""
+
+#: 2016_template/templates/custom/includes/team_member_row.html:21
+#: venv/lib/python2.7/site-packages/django/forms/formsets.py:372
+msgid "Delete"
+msgstr ""
+
+#: 2016_template/templates/custom/includes/team_member_row.html:27
+#: 2016_template/templates/custom/teams_list.html:29 base/models.py:25
+msgid "team head"
+msgstr ""
+
+#: 2016_template/templates/custom/includes/team_member_row.html:29
+#, fuzzy
+#| msgid "team members"
+msgid "team member"
+msgstr "Team members"
+
+#: 2016_template/templates/custom/includes/team_member_row.html:31
+#, fuzzy
+#| msgid "team members"
+msgid "invited member"
+msgstr "Team members"
+
+#: 2016_template/templates/custom/my_team.html:57
 msgid "User removed from team"
 msgstr ""
 
-#: 2016_template/templates/custom/my_team.html:51
+#: 2016_template/templates/custom/my_team.html:74
 msgid "Team deleted"
-msgstr ""
+msgstr "Your team is removed from competitions"
 
-#: 2016_template/templates/custom/my_team.html:70
+#: 2016_template/templates/custom/my_team.html:93
 msgid "You left the team"
-msgstr ""
+msgstr "You left the team"
 
-#: 2016_template/templates/custom/my_team.html:105
-#: 2016_template/templates/custom/teams_list.html:14 base/models.py:25
+#: 2016_template/templates/custom/my_team.html:122 base/models.py:18
+#: base/models.py:32 base/models.py:49 base/models.py:81
+msgid "team"
+msgstr "Team"
+
+#: 2016_template/templates/custom/my_team.html:127
+msgid "remove team"
+msgstr "Remove team from competitions"
+
+#: 2016_template/templates/custom/my_team.html:132
+#: 2016_template/templates/custom/my_team.html:205
+msgid "change team name"
+msgstr "Change team name"
+
+#: 2016_template/templates/custom/my_team.html:139
+msgid "team members"
+msgstr "Team members"
+
+#: 2016_template/templates/custom/my_team.html:143
+#: 2016_template/templates/custom/teams_list.html:26 base/models.py:24
 #: venv/lib/python2.7/site-packages/kombu/transport/django/models.py:12
 msgid "name"
 msgstr ""
 
-#: 2016_template/templates/custom/my_team.html:130 base/views.py:81
+#: 2016_template/templates/custom/my_team.html:147
+msgid "remove user from team"
+msgstr "remove"
+
+#: 2016_template/templates/custom/my_team.html:151
+msgid "membership status"
+msgstr "Status"
+
+#: 2016_template/templates/custom/my_team.html:178 base/views.py:88
 msgid "invite member to team"
 msgstr ""
 
-#: 2016_template/templates/custom/my_team.html:136
-msgid "remove team"
-msgstr ""
-
-#: 2016_template/templates/custom/my_team.html:142
+#: 2016_template/templates/custom/my_team.html:186
 msgid "leave team"
 msgstr ""
 
-#: 2016_template/templates/custom/teams_list.html:17 base/models.py:26
-msgid "team head"
+#: 2016_template/templates/custom/my_team.html:213
+msgid "change"
 msgstr ""
 
-#: 2016_template/templates/custom/teams_list.html:20
-#: 2016_template/templates/custom/teams_list.html:23 base/models.py:83
+#: 2016_template/templates/custom/my_team.html:215
+msgid "cancel"
+msgstr ""
+
+#: 2016_template/templates/custom/teams_list.html:32
+#: 2016_template/templates/custom/teams_list.html:35 base/models.py:82
 msgid "member"
 msgstr ""
 
@@ -257,7 +328,11 @@ msgstr ""
 msgid "No answer provided yet"
 msgstr ""
 
-#: 2016_template/templates/pages/qapage.html:52
+#: 2016_template/templates/pages/qapage.html:54
+msgid "Thanks for asking a question."
+msgstr ""
+
+#: 2016_template/templates/pages/qapage.html:61
 msgid "Send Question"
 msgstr ""
 
@@ -333,11 +408,11 @@ msgstr ""
 "onsite phase.<br>5. Timetable may change and it will be announced to teams "
 "if needed.<br>"
 
-#: base/forms.py:54
+#: base/forms.py:59
 msgid "user not found"
 msgstr ""
 
-#: base/forms.py:60
+#: base/forms.py:65
 msgid "AIChallenge team invitation"
 msgstr ""
 
@@ -350,74 +425,66 @@ msgid "education place"
 msgstr ""
 
 #: base/models.py:17
-msgid "avatar"
-msgstr ""
-
-#: base/models.py:18
 msgid "country"
 msgstr ""
 
-#: base/models.py:18
+#: base/models.py:17
 msgid "choose your country"
 msgstr ""
 
-#: base/models.py:19 base/models.py:33 base/models.py:50 base/models.py:82
-msgid "team"
-msgstr ""
-
-#: base/models.py:23 base/models.py:48 game/models.py:8 game/models.py:23
+#: base/models.py:22 base/models.py:47 game/models.py:8 game/models.py:23
 msgid "timestamp"
 msgstr ""
 
-#: base/models.py:24 game/models.py:18 game/models.py:24
+#: base/models.py:23 game/models.py:18 game/models.py:24
 msgid "competition"
 msgstr ""
 
-#: base/models.py:34
+#: base/models.py:33
 msgid "teams"
 msgstr ""
 
-#: base/models.py:49
+#: base/models.py:48
 msgid "code"
 msgstr ""
 
-#: base/models.py:52
+#: base/models.py:51
 msgid "programming language"
 msgstr ""
 
-#: base/models.py:54
+#: base/models.py:53
 msgid "played"
 msgstr ""
 
-#: base/models.py:55
+#: base/models.py:54
 msgid "won"
 msgstr ""
 
-#: base/models.py:61
+#: base/models.py:60
 msgid "submit"
 msgstr ""
 
-#: base/models.py:62
+#: base/models.py:61
 msgid "submits"
 msgstr ""
 
-#: base/models.py:81
+#: base/models.py:80
 msgid "accepted"
 msgstr ""
 
-#: base/models.py:84
+#: base/models.py:83
 msgid "slug"
 msgstr ""
 
-#: base/models.py:93
+#: base/models.py:92
 msgid "invitation of {} to join {} [{}]"
 msgstr ""
 
-#: base/models.py:97
+#: base/models.py:96
 msgid "invitation"
 msgstr ""
 
-#: base/models.py:98
+#: base/models.py:97
 msgid "invitations"
 msgstr ""
 
@@ -431,44 +498,44 @@ msgstr ""
 msgid "register new team"
 msgstr ""
 
-#: base/views.py:62
+#: base/views.py:69
 msgid "only head can invite"
 msgstr ""
 
-#: base/views.py:69
+#: base/views.py:76
 msgid "already part of the team"
 msgstr ""
 
-#: base/views.py:71
+#: base/views.py:78
 msgid "already part of another team"
 msgstr ""
 
-#: base/views.py:73
+#: base/views.py:80
 msgid "you have invited this user before!"
 msgstr ""
 
-#: base/views.py:77
+#: base/views.py:84
 #, python-format
 msgid "successfully invited user %(name)s"
 msgstr ""
 
-#: base/views.py:88
+#: base/views.py:95
 msgid "your team does not have enough members"
 msgstr ""
 
-#: base/views.py:99
+#: base/views.py:106
 msgid "submit new code"
 msgstr ""
 
-#: base/views.py:111
+#: base/views.py:118
 msgid "you already have a team"
 msgstr ""
 
-#: base/views.py:114
+#: base/views.py:121
 msgid "the team has reached max members"
 msgstr ""
 
-#: base/views.py:117
+#: base/views.py:124
 #, python-format
 msgid "successfully joined team %s"
 msgstr ""
@@ -527,6 +594,10 @@ msgstr ""
 
 #: custom_pages/models.py:53
 msgid "Asked Questions"
+msgstr ""
+
+#: custom_pages/page_processors.py:21
+msgid "A new question is waiting for you!"
 msgstr ""
 
 #: game/apps.py:8 game/models.py:35 game/models.py:41
@@ -1067,10 +1138,6 @@ msgstr[1] ""
 msgid "Order"
 msgstr ""
 
-#: venv/lib/python2.7/site-packages/django/forms/formsets.py:372
-msgid "Delete"
-msgstr ""
-
 #: venv/lib/python2.7/site-packages/django/forms/models.py:712
 #, python-format
 msgid "Please correct the duplicate data for %(field)s."
@@ -1294,8 +1361,10 @@ msgid "November"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:20
+#, fuzzy
+#| msgid "team members"
 msgid "December"
-msgstr ""
+msgstr "Team members"
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:23
 msgid "jan"
@@ -1461,9 +1530,11 @@ msgid "November"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django/utils/dates.py:56
+#, fuzzy
+#| msgid "team members"
 msgctxt "alt. month"
 msgid "December"
-msgstr ""
+msgstr "Team members"
 
 #: venv/lib/python2.7/site-packages/django/utils/ipv6.py:10
 msgid "This is not a valid IPv6 address."
@@ -1691,10 +1762,12 @@ msgid "Approve selected comments"
 msgstr ""
 
 #: venv/lib/python2.7/site-packages/django_comments/admin.py:72
+#, fuzzy
+#| msgid "remove team"
 msgid "removed"
 msgid_plural "removed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Remove team from competitions"
+msgstr[1] "Remove team from competitions"
 
 #: venv/lib/python2.7/site-packages/django_comments/admin.py:74
 msgid "Remove selected comments"

@@ -2,7 +2,7 @@
 from functools import wraps
 from urlparse import urlparse
 
-from base.forms import SubmitForm, TeamForm, InvitationForm
+from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm
 from base.models import TeamInvitation, Team, Member
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -53,7 +53,14 @@ def register_team(request):
             return redirect('invite_member')
     else:
         form = TeamForm()
-    return render(request, 'accounts/invite_team.html', {'form': form, 'title': _('register new team')})
+    context = {'form': form, 'title': _('register new team')}
+
+    invitation = TeamInvitation.objects.filter(member=request.user, accepted=False).select_related('team').all()[:1]
+    is_invited = len(invitation) > 0
+    context['is_invited'] = is_invited
+    if is_invited:
+        context['invitation'] = invitation[0]
+    return render(request, 'accounts/invite_team.html', context)
 
 @login_required
 @team_required
@@ -115,6 +122,7 @@ def accept_invite(request, slug):
     else:
         invitation.accept()
         messages.success(request, _('successfully joined team %s') % invitation.team.name)
+        return redirect('my_team')
     return redirect('home')
 
 
@@ -126,14 +134,32 @@ def teams(request):
 
 @login_required
 @team_required
+def change_team_name(request, id):
+    if request.method != 'POST':
+        raise PermissionDenied()
+    team_name_form = TeamNameForm(request.POST, instance = Team.objects.get(id=id))
+    if team_name_form.is_valid():
+        if team_name_form.instance.head.pk != request.user.pk:
+            raise PermissionDenied()
+        team_name_form.save()
+
+    return redirect('my_team')
+
+
+@login_required
+@team_required
 def my_team(request):
     team = request.team
-    return render(request, 'custom/my_team.html', {'team': team})
+    team_name_form = TeamNameForm(instance=team)
+    invited_members = TeamInvitation.objects.filter(team=team, accepted=False).select_related('member').all()
+    return render(request, 'custom/my_team.html', {'team': team, 'team_name_form': team_name_form, 'invited_members': invited_members})
 
 
 @login_required
 @team_required
 def remove(request):
+    import json
+
     if request.method != 'POST':
         raise PermissionDenied()
     type = request.POST.get('type')
@@ -153,5 +179,37 @@ def remove(request):
             raise PermissionDenied()
         member.team = None
         member.save()
-    import json
+    elif type == 'invitation':
+        try:
+            invitation = TeamInvitation.objects.get(pk=id)
+        except TeamInvitation.DoesNotExist:
+            raise Http404()
+        is_head = request.team.head == request.user
+        if not is_head or request.team.pk != invitation.team.pk:
+            raise PermissionDenied()
+        invitation.delete()
+    else:
+        return HttpResponse(json.dumps({"success": False}), content_type='application/json')
+
     return HttpResponse(json.dumps({"success": True}), content_type='application/json')
+
+
+@login_required
+@team_required
+def resend_invitation_mail(request):
+    import json
+
+    if request.method != 'POST':
+        raise PermissionDenied()
+    id = request.POST.get('id')
+    try:
+        invitation = TeamInvitation.objects.get(pk=id)
+    except TeamInvitation.DoesNotExist:
+        raise Http404()
+    is_head = request.team.head == request.user
+    if not is_head or request.team.pk != invitation.team.pk:
+        raise PermissionDenied()
+
+    # TODO: naser , resend invitation mail
+    # TODO: Return localized message. Will show the message in UI.
+    return HttpResponse(json.dumps({"success": True, "message": ""}), content_type='application/json')

@@ -3,9 +3,7 @@ from base.models import Team, Submit, TeamInvitation, Member
 from django.contrib import admin
 from django.conf import settings
 
-admin_models = [Submit]
-if settings.DEBUG:
-    admin_models += [TeamInvitation]
+admin_models = [Submit, TeamInvitation]
 
 list(map(admin.site.register, admin_models))
 
@@ -13,7 +11,7 @@ list(map(admin.site.register, admin_models))
 class MemberAdmin(admin.ModelAdmin):
     list_display = ('username', 'first_name', 'last_name', 'team', 'is_active')
     fields = (
-        ('first_name', 'last_name', 'avatar'),
+        ('first_name', 'last_name'),
         ('username', 'email', 'phone_number'),
         ('password',),
         ('country', 'education_place'),

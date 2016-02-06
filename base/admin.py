@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from base.models import Team, Submit, TeamInvitation, Member, JoinRequest, Email, Message
+from base.models import Team, Submit, TeamInvitation, Member, JoinRequest, Email, Message, GameRequest
 from django.contrib import admin
 from import_export import resources, fields
 from import_export.admin import ImportExportModelAdmin
@@ -126,3 +126,9 @@ class TeamAdmin(ImportExportModelAdmin):
 
 
 admin.site.register(Team, TeamAdmin)
+
+
+@admin.register(GameRequest)
+class GameRequestAdmin(admin.ModelAdmin):
+    list_display = ('requester', 'requestee', 'accepted', 'accepted_time')
+

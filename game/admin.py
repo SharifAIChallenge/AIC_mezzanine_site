@@ -10,6 +10,7 @@ class SubmitInline(mezzanineAdmin.StackedDynamicInlineAdmin):
     model = GameTeamSubmit
 
 
+@admin.register(Game)
 class GameAdmin(admin.ModelAdmin):
     inlines = (SubmitInline,)
 
@@ -21,4 +22,11 @@ class GameAdmin(admin.ModelAdmin):
     search_fields = ("title",)
 
 
-admin.site.register(Game, GameAdmin)
+class GameInline(admin.StackedInline):
+    model = Game
+
+
+@admin.register(GameTeamSubmit)
+class GameTeamSubmitAdmin(admin.ModelAdmin):
+    list_display = ('submit', 'game', 'score')
+    inlines = [GameInline]

@@ -33,7 +33,7 @@ class Team(models.Model):
         verbose_name_plural = _('teams')
 
     def get_members(self):
-        return self.member_set.exclude(pk=self.head.pk).all()
+        return self.member_set.exclude(pk=self.head.pk).distinct()
 
 
 class Submit(models.Model):

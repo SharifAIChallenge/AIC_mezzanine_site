@@ -372,6 +372,7 @@ EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 CELERY_EMAIL_TASK_CONFIG = {
     'max_retries': 30,
 }
+CELERY_EMAIL_CHUNK_SIZE = 1
 
 ##################
 # LOCAL SETTINGS #

@@ -520,6 +520,12 @@ msgstr "درخواست عضویت"
 msgid "join requests"
 msgstr "درخواست‌های عضویت"
 
+msgid "registration start date"
+msgstr "زمان شروع ثبت‌نام"
+
+msgid "registration finish date"
+msgstr "زمان اتمام ثبت‌نام"
+
 #: base/views.py:26
 msgid ""
 "you are not in a team, create one below or request your team leader to "

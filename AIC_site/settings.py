@@ -313,9 +313,6 @@ OPTIONAL_APPS = (
 
 RAVEN_CONFIG = {
     'dsn': 'https://9a1ad950872847a8b2e3dc6208a40b77:5b913a0fdf4d4501b4e0773bca1a04d3@app.getsentry.com/66411',
-    # If you are using git, you can also automatically configure the
-    # release based on the git info.
-    'release': raven.fetch_git_sha(os.path.dirname(__file__)),
 }
 
 LOGGING = {

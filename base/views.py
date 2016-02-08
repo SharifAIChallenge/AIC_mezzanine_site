@@ -122,6 +122,9 @@ def accept_invite(request, slug):
         return redirect('my_team')
     if invitation.team.member_set.count() == invitation.team.competition.max_members:
         messages.error(request, _("the team has reached max members"))
+        return redirect('my_team')
+    if invitation.team.final:
+        messages.error(request, _("The team is final."))
     else:
         invitation.accept()
         messages.success(request, _('successfully joined team %s') % invitation.team.name)
@@ -144,6 +147,9 @@ def change_team_name(request, id):
     if team_name_form.is_valid():
         if team_name_form.instance.head.pk != request.user.pk:
             raise PermissionDenied()
+        if team_name_form.instance.final:
+            messages.error(request, _("The team is final."))
+            return redirect('my_team')
         team_name_form.save()
 
     return redirect('my_team')
@@ -167,8 +173,6 @@ def my_team(request):
 @login_required
 @team_required
 def remove(request):
-    import json
-
     if request.method != 'POST':
         raise PermissionDenied()
     type = request.POST.get('type')
@@ -176,7 +180,9 @@ def remove(request):
     if type == 'team':
         team = Team.objects.get(pk=id)
         is_head = request.team.head == request.user
-        if not is_head or team != request.team:
+        if not is_head or team != request.team or team.final:
+            if team.final:
+                messages.error(request, _("The team is final."))
             raise PermissionDenied()
         team.delete()
     elif type == 'member':
@@ -185,6 +191,9 @@ def remove(request):
             raise Http404()
         is_head = request.team.head == request.user
         if not is_head and member != request.user:
+            raise PermissionDenied()
+        if member.team.final:
+            messages.error(request, _("The team is final."))
             raise PermissionDenied()
         member.team = None
         member.save()
@@ -199,6 +208,23 @@ def remove(request):
         invitation.delete()
     else:
         return HttpResponse(json.dumps({"success": False}), content_type='application/json')
+
+    return HttpResponse(json.dumps({"success": True}), content_type='application/json')
+
+
+@login_required
+@team_required
+def finalize(request):
+    if request.method != 'POST':
+        raise PermissionDenied()
+    id = request.POST.get('id')
+    team = Team.objects.get(pk=id)
+    is_head = request.team.head == request.user
+    if not is_head or team != request.team:
+        raise PermissionDenied()
+
+    team.final = True
+    team.save()
 
     return HttpResponse(json.dumps({"success": True}), content_type='application/json')
 
@@ -266,6 +292,8 @@ def request_join(request, team_id):
         messages.error(request, _("you already have a team"))
     if team.member_set.count() == team.competition.max_members:
         messages.error(request, _("the team has reached max members"))
+    elif team.final:
+        messages.error(request, _("The team is final."))
     else:
         req, is_new = JoinRequest.objects.get_or_create(team=team, member=request.user)
         if is_new:

@@ -14,4 +14,5 @@ urlpatterns = patterns(
     url("^remove$", 'remove', name='remove'),
     url("^accept-decline$", 'accept_decline_request', name='accept_decline'),
     url("^join/(?P<team_id>[0-9]+)$", 'request_join', name="request_join"),
+    url("^finalize$", 'finalize', name="finalize"),
 )

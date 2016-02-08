@@ -26,11 +26,13 @@
 
 {% block extra_js %}
     {{ block.super }}
+    {% if not team.final %}
     <script type="text/javascript">
         $(function () {
             var csrf_token = '{{ csrf_token }}';
             var remove_url = '{% url 'remove' %}';
             var accept_decline_url = '{% url 'accept_decline' %}';
+            var finalize_url = '{% url 'finalize' %}';
 
             $('.modal-trigger').leanModal({dismissible: true, opacity: .5});
 
@@ -59,6 +61,23 @@
                     }).done(function (response) {
                         Materialize.toast('{% trans 'User removed from team' %}', 3000, 'rounded');
                         $self.parents('tr').remove();
+                    });
+                });
+                $('.finalizeteam').on('click', function () {
+                    var $self = $(this);
+
+                    $self.addClass('disabled');
+                    $.ajax({
+                        url: finalize_url,
+                        method: 'post',
+                        data: {
+                            csrfmiddlewaretoken: csrf_token,
+                            id: '{{ team.pk }}'
+                        }
+                    }).done(function (response) {
+                        Materialize.toast('{% trans 'team is now finalized' %}', 3000, 'rounded', function() {
+                            location.reload();
+                        });
                     });
                 });
                 $('.deleteteam').on('click', function () {
@@ -141,6 +160,7 @@
             {% endif %}
         });
     </script>
+    {% endif %}
 {% endblock %}
 
 {% block main %}
@@ -164,19 +184,26 @@
                 {% if request.user == team.head %}
                     <h4>{% trans 'team' %}</h4>
                     <p class="muted">{{ team.name }}</p>
+                    {% if not team.final %}
                     <div class="row">
-                        <div class="center-align col m12 s6 l6">
+                        <div class="center-align col m12 s4 l4">
                             <button type="button" class="btn waves-effect waves-red deleteteam">
                                 {% trans 'remove team' %}
                             </button>
                         </div>
-                        <div class="center-align col m12 s6 l6">
+                        <div class="center-align col m12 s4 l4">
                             <button data-target="change_team_name" class="btn waves-effect waves-red modal-trigger">
                                 {% trans 'change team name' %}
                             </button>
                         </div>
+                            <div class="center-align col m12 s4 l4">
+                                <button class="btn waves-effect waves-red finalizeteam">
+                                    {% trans 'finalize team' %}
+                                </button>
+                            </div>
                     </div>
-                    {% if join_requests %}
+                    {% endif %}
+                    {% if join_requests and not team.final %}
                         <div class="row">
                             <div class="col l12 s12 m12">
                                 <h4>{% trans 'join requests' %}</h4>
@@ -235,7 +262,7 @@
                 </div>
                 <div class="px-20 vertical spacer"></div>
                 <div class="row">
-                    {% spaceless %}
+                    {% if not team.final %}
                         {% if request.user == team.head %}
                             <div class="col s6 m6 l6 offset-m1">
                                 {% if not team.get_members.0 or not team.get_members.1 %}
@@ -253,7 +280,7 @@
                                 </button>
                             </div>
                         {% endif %}
-                    {% endspaceless %}
+                    {% endif %}
                 </div>
                 <div class="px-20 vertical spacer"></div>
             </div>
@@ -264,7 +291,7 @@
         </div>
     </div>
 
-    {% if team.head == request.user %}
+    {% if team.head == request.user and not team.final %}
         <div id="change_team_name" class="modal bottom-sheet">
             <form method="post" action="{% url 'change_team_name' id=team.id %}">
                 <div class="modal-content">

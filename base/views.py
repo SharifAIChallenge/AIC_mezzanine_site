@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
+from django.views.decorators.http import require_POST
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
@@ -140,9 +141,8 @@ def teams(request):
 
 @login_required
 @team_required
+@require_POST
 def change_team_name(request, id):
-    if request.method != 'POST':
-        raise PermissionDenied()
     team_name_form = TeamNameForm(request.POST, instance=Team.objects.get(id=id))
     if team_name_form.is_valid():
         if team_name_form.instance.head.pk != request.user.pk:
@@ -172,9 +172,8 @@ def my_team(request):
 
 @login_required
 @team_required
+@require_POST
 def remove(request):
-    if request.method != 'POST':
-        raise PermissionDenied()
     type = request.POST.get('type')
     id = request.POST.get('id')
     if type == 'team':
@@ -214,9 +213,8 @@ def remove(request):
 
 @login_required
 @team_required
+@require_POST
 def finalize(request):
-    if request.method != 'POST':
-        raise PermissionDenied()
     id = request.POST.get('id')
     team = Team.objects.get(pk=id)
     is_head = request.team.head == request.user
@@ -231,9 +229,8 @@ def finalize(request):
 
 @login_required
 @team_required
+@require_POST
 def resend_invitation_mail(request):
-    if request.method != 'POST':
-        raise PermissionDenied()
     id = request.POST.get('id')
     try:
         invitation = TeamInvitation.objects.get(pk=id)
@@ -254,9 +251,8 @@ def resend_invitation_mail(request):
 
 @login_required
 @team_required
+@require_POST
 def accept_decline_request(request):
-    if request.method != 'POST':
-        raise PermissionDenied()
     try:
         req = JoinRequest.objects.get(pk=request.POST.get('id'))
     except JoinRequest.DoesNotExist:

@@ -373,6 +373,8 @@ CELERY_EMAIL_TASK_CONFIG = {
     'max_retries': 10,
 }
 
+
+
 ##################
 # LOCAL SETTINGS #
 ##################

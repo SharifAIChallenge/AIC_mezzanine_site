@@ -2,6 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 
 import os
+import raven
 from django.utils.translation import ugettext_lazy as _
 
 ######################
@@ -242,6 +243,8 @@ INSTALLED_APPS = (
     "game",
     "django_countries",
     "django_gravatar",
+
+    'raven.contrib.django.raven_compat',
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -308,6 +311,13 @@ OPTIONAL_APPS = (
     PACKAGE_NAME_GRAPPELLI,
 )
 
+RAVEN_CONFIG = {
+    'dsn': 'https://9a1ad950872847a8b2e3dc6208a40b77:5b913a0fdf4d4501b4e0773bca1a04d3@app.getsentry.com/66411',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': raven.fetch_git_sha(os.path.dirname(__file__)),
+}
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -324,6 +334,10 @@ LOGGING = {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
             'include_html': True,
+        },
+        'sentry': {
+            'level': 'ERROR',
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
         },
     },
     'loggers': {

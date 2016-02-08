@@ -312,7 +312,7 @@ OPTIONAL_APPS = (
 )
 
 RAVEN_CONFIG = {
-    'dsn': 'https://9a1ad950872847a8b2e3dc6208a40b77:5b913a0fdf4d4501b4e0773bca1a04d3@app.getsentry.com/66411',
+    'dsn': 'http://f6e84572aef74086a69ff611fe8eacba:bc2fcec591574775a7ca16e492a990fd@aichallenge.sharif.edu:4444/2'
 }
 
 LOGGING = {
@@ -339,11 +339,11 @@ LOGGING = {
     },
     'loggers': {
         '': {
-            'handlers': ['console'],
+            'handlers': ['console', 'sentry'],
             'level': 'WARNING',
         },
         'AIC_site': {
-            'handlers': ['console'],
+            'handlers': ['console', 'sentry'],
             'level': 'DEBUG',
         },
         'sync': {

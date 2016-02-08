@@ -6,97 +6,140 @@
 {% block extra_head %}
     <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
     <style>
-    td.name-avatar {
-    {% if LANGUAGE_BIDI %}
-        text-align: right;
-    {% else %}
-        text-align: left;
-    {% endif %}
-    }
-    td.action-buttons {
-        text-align: center;
-    }
-    td {
-        vertical-align: middle;
-    }
+        td.name-avatar {
+        {% if LANGUAGE_BIDI %}
+            text-align: right;
+        {% else %}
+            text-align: left;
+        {% endif %}
+        }
+
+        td.action-buttons {
+            text-align: center;
+        }
+
+        td {
+            vertical-align: middle;
+        }
     </style>
 {% endblock %}
 
 {% block extra_js %}
     {{ block.super }}
     <script type="text/javascript">
-    $(function () {
-        var csrf_token = '{{ csrf_token }}';
-        var remove_url = '{% url 'remove' %}';
+        $(function () {
+            var csrf_token = '{{ csrf_token }}';
+            var remove_url = '{% url 'remove' %}';
+            var accept_decline_url = '{% url 'accept_decline' %}';
 
-        $('.modal-trigger').leanModal({dismissible: true, opacity: .5});
+            $('.modal-trigger').leanModal({dismissible: true, opacity: .5});
 
-        {% if request.user == team.head %}
-        $('.remove, .withdraw').on('click', function () {
-            var $self = $(this);
+            {% if request.user == team.head %}
+                $('.remove, .withdraw').on('click', function () {
+                    var $self = $(this);
 
-            $self.addClass('disabled');
-            var type = '';
-            if ($self.hasClass('withdraw')) {
-                type = 'invitation';
-            } else {
-                type = 'member';
-            }
-            $.ajax({
-                url: remove_url,
-                method: 'post',
-                data: {
-                    csrfmiddlewaretoken: csrf_token,
-                    type: type,
-                    id: $self.parents('tr').data('id')
-                },
-                complete: function () {
-                    $self.removeClass('disabled');
-                }
-            }).done(function (response) {
-                Materialize.toast('{% trans 'User removed from team' %}', 3000, 'rounded');
-                $self.parents('tr').remove();
-            });
-        });
-        $('.deleteteam').on('click', function () {
-            var $self = $(this);
-
-            $self.addClass('disabled');
-            $.ajax({
-                url: remove_url,
-                method: 'post',
-                data: {
-                    csrfmiddlewaretoken: csrf_token,
-                    type: 'team',
-                    id: '{{ team.pk }}'
-                }
-            }).done(function (response) {
-                Materialize.toast('{% trans 'Team deleted' %}', 3000, 'rounded', function() {
-                    location.reload();
+                    $self.addClass('disabled');
+                    var type = '';
+                    if ($self.hasClass('withdraw')) {
+                        type = 'invitation';
+                    } else {
+                        type = 'member';
+                    }
+                    $.ajax({
+                        url: remove_url,
+                        method: 'post',
+                        data: {
+                            csrfmiddlewaretoken: csrf_token,
+                            type: type,
+                            id: $self.parents('tr').data('id')
+                        },
+                        complete: function () {
+                            $self.removeClass('disabled');
+                        }
+                    }).done(function (response) {
+                        Materialize.toast('{% trans 'User removed from team' %}', 3000, 'rounded');
+                        $self.parents('tr').remove();
+                    });
                 });
-            });
-        });
-        {% else %}
-        $('.leaveteam').on('click', function () {
-            var $self = $(this);
+                $('.deleteteam').on('click', function () {
+                    var $self = $(this);
 
-            $self.addClass('disabled');
-            $.ajax({
-                url: remove_url,
-                method: 'post',
-                data: {
-                    csrfmiddlewaretoken: csrf_token,
-                    type: 'member',
-                    id: '{{ request.user.pk }}'
-                }
-            }).done(function (response) {
-                Materialize.toast('{% trans 'You left the team' %}', 3000, 'rounded', function() {
-                    location.reload();
+                    $self.addClass('disabled');
+                    $.ajax({
+                        url: remove_url,
+                        method: 'post',
+                        data: {
+                            csrfmiddlewaretoken: csrf_token,
+                            type: 'team',
+                            id: '{{ team.pk }}'
+                        }
+                    }).done(function (response) {
+                        Materialize.toast('{% trans 'Team deleted' %}', 3000, 'rounded', function () {
+                            location.reload();
+                        });
+                    });
                 });
-            });
+                $('.accept').on('click', function () {
+                    var $self = $(this);
+
+                    $self.addClass('disabled');
+                    $.ajax({
+                        url: accept_decline_url,
+                        method: 'post',
+                        data: {
+                            csrfmiddlewaretoken: csrf_token,
+                            id: $self.parents('tr').data('id'),
+                            type: 'accept'
+                        }
+                    }).success(function (response) {
+                        if (response['success']) {
+                            location.reload(true);
+                        } else {
+                            Materialize.toast(response['message'], 3000, 'rounded');
+                        }
+                    });
+                });
+                $('.decline').on('click', function () {
+                    var $self = $(this);
+
+                    $self.addClass('disabled');
+                    $.ajax({
+                        url: accept_decline_url,
+                        method: 'post',
+                        data: {
+                            csrfmiddlewaretoken: csrf_token,
+                            id: $self.parents('tr').data('id'),
+                            type: 'decline'
+                        }
+                    }).success(function (response) {
+                        if (response['success']) {
+                            location.reload(true);
+                        } else {
+                            Materialize.toast(response['message'], 3000, 'rounded');
+                        }
+                    });
+                });
+            {% else %}
+                $('.leaveteam').on('click', function () {
+                    var $self = $(this);
+
+                    $self.addClass('disabled');
+                    $.ajax({
+                        url: remove_url,
+                        method: 'post',
+                        data: {
+                            csrfmiddlewaretoken: csrf_token,
+                            type: 'member',
+                            id: '{{ request.user.pk }}'
+                        }
+                    }).done(function (response) {
+                        Materialize.toast('{% trans 'You left the team' %}', 3000, 'rounded', function () {
+                            location.reload();
+                        });
+                    });
+                });
+            {% endif %}
         });
-        {% endif %}
-    });
     </script>
 {% endblock %}
 
@@ -119,75 +162,98 @@
                 {% endnevercache %}
 
                 {% if request.user == team.head %}
-                <h4>{% trans 'team' %}</h4>
-                <p class="muted">{{ team.name }}</p>
-                <div class="row">
-                    <div class="center-align col m12 s6 l6">
-                        <button type="button" class="btn waves-effect waves-red deleteteam">
-                            {% trans 'remove team' %}
-                        </button>
+                    <h4>{% trans 'team' %}</h4>
+                    <p class="muted">{{ team.name }}</p>
+                    <div class="row">
+                        <div class="center-align col m12 s6 l6">
+                            <button type="button" class="btn waves-effect waves-red deleteteam">
+                                {% trans 'remove team' %}
+                            </button>
+                        </div>
+                        <div class="center-align col m12 s6 l6">
+                            <button data-target="change_team_name" class="btn waves-effect waves-red modal-trigger">
+                                {% trans 'change team name' %}
+                            </button>
+                        </div>
                     </div>
-                    <div class="center-align col m12 s6 l6">
-                        <button data-target="change_team_name" class="btn waves-effect waves-red modal-trigger">
-                            {% trans 'change team name' %}
-                        </button>
-                    </div>
-                </div>
+                    {% if join_requests %}
+                        <div class="row">
+                            <div class="col l12 s12 m12">
+                                <h4>{% trans 'join requests' %}</h4>
+                                <table class="table-striped ">
+                                    <tr>
+                                        <th>
+                                            {% trans 'name' %}
+                                        </th>
+                                        <th>
+                                            {% trans 'accept' %}
+                                        </th>
+                                        <th>
+                                            {% trans 'decline' %}
+                                        </th>
+                                    </tr>
+                                    {% for req in join_requests %}
+                                        {% include 'custom/includes/join_requests_row.html' %}
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    {% endif %}
                 {% endif %}
                 <div class="row">
-                <div class="col m12 s12 l12">
-                <h4>{% trans 'team members' %}</h4>
-                <table class="table-striped ">
-                    <tr>
-                        <th>
-                            {% trans 'name' %}
-                        </th>
-                        <th>
-                            {% if request.user == team.head %}
-                            {% trans 'remove user from team' %}
-                            {% endif %}
-                        </th>
-                        <th>
-                            {% trans 'membership status' %}
-                        </th>
-                    </tr>
-                    {% with member=team.head invited=False %}
-                        {% include 'custom/includes/team_member_row.html' %}
-                    {% endwith %}
-                    {% with team_members=team.get_members invited=False %}
-                        {% for member in team_members %}
-                            {% include 'custom/includes/team_member_row.html' %}
-                        {% endfor %}
-                    {% endwith %}
-                    {% for invitation in invited_members %}
-                        {% with member=invitation.member invited=True invitation_id=invitation.pk %}
-                            {% include 'custom/includes/team_member_row.html' %}
-                        {% endwith %}
-                    {% endfor %}
-                </table>
-                </div>
+                    <div class="col m12 s12 l12">
+                        <h4>{% trans 'team members' %}</h4>
+                        <table class="table-striped ">
+                            <tr>
+                                <th>
+                                    {% trans 'name' %}
+                                </th>
+                                <th>
+                                    {% if request.user == team.head %}
+                                        {% trans 'remove user from team' %}
+                                    {% endif %}
+                                </th>
+                                <th>
+                                    {% trans 'membership status' %}
+                                </th>
+                            </tr>
+                            {% with member=team.head invited=False %}
+                                {% include 'custom/includes/team_member_row.html' %}
+                            {% endwith %}
+                            {% with team_members=team.get_members invited=False %}
+                                {% for member in team_members %}
+                                    {% include 'custom/includes/team_member_row.html' %}
+                                {% endfor %}
+                            {% endwith %}
+                            {% for invitation in invited_members %}
+                                {% with member=invitation.member invited=True invitation_id=invitation.pk %}
+                                    {% include 'custom/includes/team_member_row.html' %}
+                                {% endwith %}
+                            {% endfor %}
+                        </table>
+                    </div>
                 </div>
                 <div class="px-20 vertical spacer"></div>
                 <div class="row">
-                {% spaceless %}
-                {% if request.user == team.head %}
-                <div class="col s6 m6 l6 offset-m1">
-                    {% if not team.get_members.0 or not team.get_members.1 %}
-                        <a href="{% url 'invite_member' %}">
-                            <button type="button" class="btn waves-effect waves-green">
-                                {% trans 'invite member to team' %}
-                            </button>
-                        </a>
-                     {% endif %}
-                </div>
-                {% else %}
-                <div class="col s12 m12 l12 offset-m1">
-                    <button type="button" class="btn waves-effect waves-red leaveteam">
-                        {% trans 'leave team' %}
-                    </button>
-                </div>
-                {% endif %}
-                {% endspaceless %}
+                    {% spaceless %}
+                        {% if request.user == team.head %}
+                            <div class="col s6 m6 l6 offset-m1">
+                                {% if not team.get_members.0 or not team.get_members.1 %}
+                                    <a href="{% url 'invite_member' %}">
+                                        <button type="button" class="btn waves-effect waves-green">
+                                            {% trans 'invite member to team' %}
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <div class="col s12 m12 l12 offset-m1">
+                                <button type="button" class="btn waves-effect waves-red leaveteam">
+                                    {% trans 'leave team' %}
+                                </button>
+                            </div>
+                        {% endif %}
+                    {% endspaceless %}
                 </div>
                 <div class="px-20 vertical spacer"></div>
             </div>

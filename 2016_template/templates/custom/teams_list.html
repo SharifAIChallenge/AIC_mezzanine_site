@@ -4,21 +4,34 @@
 {% block meta_title %}{% trans 'Teams' %}{% endblock %}
 {% block title %}{% trans 'Teams' %}{% endblock %}
 {% block extra_head %}
-<style>
-    .aligned {
-    {% if LANGUAGE_BIDI %}
-        text-align: right;
-    {% else %}
-        text-align: left;
-    {% endif %}
-    }
-</style>
+    <style>
+        .aligned {
+        {% if LANGUAGE_BIDI %}
+            text-align: right;
+        {% else %}
+            text-align: left;
+        {% endif %}
+        }
+    </style>
 {% endblock %}
 
 {% block main %}
     <div class="row">
         <div class="col s12 m12 l12">
             <div class="card-panel">
+                {% nevercache %}
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">&times;</button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endnevercache %}
                 <table class="teams-list">
                     <tr>
                         <th>#</th>
@@ -41,22 +54,38 @@
                             <td>{{ team.name }}</td>
                             <td class="aligned">
                                 <div>
-                                    <img class="circle" style="vertical-align: middle; margin: 5px;" src="{% gravatar_url team.head.email 40 %}"/>
+                                    <img class="circle" style="vertical-align: middle; margin: 5px;"
+                                         src="{% gravatar_url team.head.email 40 %}"/>
                                     <span style="vertical-align: middle; margin-right: 5px">{{ team.head.get_full_name }}</span>
+                                    <img src="{{ team.head.country.flag }}"/>
                                 </div>
                             </td>
-                            <td class="aligned">{% if team.get_members.0 %}
+                            <td>{% if team.get_members.0 %}
                                 <div class="aligned">
-                                    <img class="circle" style="vertical-align: middle; margin: 5px;" src="{% gravatar_url team.get_members.0.email 40 %}"/>
+                                    <img class="circle" style="vertical-align: middle; margin: 5px;"
+                                         src="{% gravatar_url team.get_members.0.email 40 %}"/>
                                     <span style="vertical-align: middle; margin-right: 5px">{{ team.get_members.0.get_full_name }}</span>
+                                    <img src="{{ team.get_members.0.country.flag }}"/>
                                 </div>
                             {% else %}-{% endif %}</td>
                             <td>{% if team.get_members.1 %}
                                 <div class="aligned">
-                                    <img class="circle" style="vertical-align: middle; margin: 5px;" src="{% gravatar_url team.get_members.1.email 40 %}"/>
+                                    <img class="circle" style="vertical-align: middle; margin: 5px;"
+                                         src="{% gravatar_url team.get_members.1.email 40 %}"/>
                                     <span style="vertical-align: middle; margin-right: 5px">{{ team.get_members.1.get_full_name }}</span>
+                                    <img src="{{ team.get_members.1.country.flag }}"/>
                                 </div>
-                            {% else %}-{% endif %}</td>
+                            {% else %}
+                                {% if user.team %}
+                                    -
+                                {% else %}
+                                    <div class="aligned">
+                                        <a href="{% url 'request_join' team_id=team.id %}">
+                                            {% trans 'join request' %}
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endif %}</td>
                         </tr>
                     {% endfor %}
                 </table>

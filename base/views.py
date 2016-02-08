@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+import json
 from functools import wraps
 from urlparse import urlparse
 
 from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm
-from base.models import TeamInvitation, Team, Member
+from base.models import TeamInvitation, Team, Member, JoinRequest
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -12,6 +13,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
 from game.models import Competition
+from mezzanine.utils.email import send_mail_template
 
 
 def team_required(function=None):
@@ -61,6 +63,7 @@ def register_team(request):
     if is_invited:
         context['invitation'] = invitation[0]
     return render(request, 'accounts/invite_team.html', context)
+
 
 @login_required
 @team_required
@@ -137,7 +140,7 @@ def teams(request):
 def change_team_name(request, id):
     if request.method != 'POST':
         raise PermissionDenied()
-    team_name_form = TeamNameForm(request.POST, instance = Team.objects.get(id=id))
+    team_name_form = TeamNameForm(request.POST, instance=Team.objects.get(id=id))
     if team_name_form.is_valid():
         if team_name_form.instance.head.pk != request.user.pk:
             raise PermissionDenied()
@@ -152,7 +155,13 @@ def my_team(request):
     team = request.team
     team_name_form = TeamNameForm(instance=team)
     invited_members = TeamInvitation.objects.filter(team=team, accepted=False).select_related('member').all()
-    return render(request, 'custom/my_team.html', {'team': team, 'team_name_form': team_name_form, 'invited_members': invited_members})
+    join_requests = JoinRequest.objects.filter(team=team, accepted__isnull=True).select_related('member').all()
+    return render(request, 'custom/my_team.html', {
+        'team': team,
+        'team_name_form': team_name_form,
+        'invited_members': invited_members,
+        'join_requests': join_requests,
+    })
 
 
 @login_required
@@ -197,8 +206,6 @@ def remove(request):
 @login_required
 @team_required
 def resend_invitation_mail(request):
-    import json
-
     if request.method != 'POST':
         raise PermissionDenied()
     id = request.POST.get('id')
@@ -210,6 +217,64 @@ def resend_invitation_mail(request):
     if not is_head or request.team.pk != invitation.team.pk:
         raise PermissionDenied()
 
-    # TODO: naser , resend invitation mail
-    # TODO: Return localized message. Will show the message in UI.
-    return HttpResponse(json.dumps({"success": True, "message": ""}), content_type='application/json')
+    send_mail_template(_('AIChallenge team invitation'), 'mail/invitation_mail', '', invitation.member.email,
+                       context={
+                           'team': invitation.team.name,
+                           'link': 'http://%s' % invitation.accept_link
+                       })
+    return HttpResponse(json.dumps({"success": True, "message": _("invitation resend successful")}),
+                        content_type='application/json')
+
+
+@login_required
+@team_required
+def accept_decline_request(request):
+    if request.method != 'POST':
+        raise PermissionDenied()
+    try:
+        req = JoinRequest.objects.get(pk=request.POST.get('id'))
+    except JoinRequest.DoesNotExist:
+        raise Http404()
+    if req.team != request.team or req.team.head != request.user:
+        raise PermissionDenied()
+    type = request.POST.get('type', 'decline')
+    success = True
+    message = ""
+    if type == 'decline':
+        req.accepted = False
+        req.save()
+    elif type == 'accept':
+        if req.member.team:
+            success = False
+            message = _("already part of another team")
+        elif req.team.member_set.count() == req.team.competition.max_members:
+            success = False
+            message = _("the team has reached max members")
+        else:
+            req.accept()
+
+    return HttpResponse(json.dumps({'success': success, 'message': str(message)}), content_type='application/json')
+
+
+@login_required
+def request_join(request, team_id):
+    try:
+        team = Team.objects.get(id=team_id)
+    except Team.DoesNotExist:
+        raise Http404()
+    if request.user.team:
+        messages.error(request, _("you already have a team"))
+    if team.member_set.count() == team.competition.max_members:
+        messages.error(request, _("the team has reached max members"))
+    else:
+        req, is_new = JoinRequest.objects.get_or_create(team=team, member=request.user)
+        if is_new:
+            send_mail_template(_('AIChallenge team join request'), 'mail/join_request_mail', '', team.head.email,
+                               context={'member': request.user.get_full_name()})
+            messages.success(request, _('join request has been sent'))
+        else:
+            if req.accepted is False:
+                messages.error(request, _('your request to join this team has been declined'))
+            else:
+                messages.warning(request, _('you have requested to join this team before'))
+    return redirect('teams_list')

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-from base.models import Team, Submit, TeamInvitation, Member
+from base.models import Team, Submit, TeamInvitation, Member, JoinRequest, Email
 from django.contrib import admin
 from import_export import resources, fields
 from import_export.admin import ImportExportModelAdmin
 
-admin_models = [Submit, TeamInvitation]
+admin_models = [Submit, TeamInvitation, JoinRequest, Email]
 
 list(map(admin.site.register, admin_models))
 
@@ -42,7 +42,7 @@ class MemberResource(resources.ModelResource):
 
 class MemberAdmin(ImportExportModelAdmin):
     resource_class = MemberResource
-    list_display = ('username', 'first_name', 'last_name', 'team', 'is_active')
+    list_display = ('username', 'first_name', 'last_name', 'country', 'education_place', 'team', 'is_active')
     fields = (
         ('first_name', 'last_name'),
         ('username', 'email', 'phone_number'),
@@ -113,7 +113,6 @@ class TeamAdmin(ImportExportModelAdmin):
     fields = (
         ('name', 'head', 'show'),
         ('competition',),
-        # ('members',)
     )
     inlines = [MembersInline]
 

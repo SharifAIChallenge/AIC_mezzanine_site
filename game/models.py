@@ -11,6 +11,9 @@ class Competition(models.Model):
     max_members = models.PositiveSmallIntegerField(verbose_name=_("max team members count"), default=3)
     min_members = models.PositiveSmallIntegerField(verbose_name=_("min team members count"), default=3)
 
+    registration_start_date = models.DateTimeField(verbose_name=_("registration start date"), null=True)
+    registration_finish_date = models.DateTimeField(verbose_name=_("registration finish date"), null=True)
+
     def __unicode__(self):
         return self.title
 

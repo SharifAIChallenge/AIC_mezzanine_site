@@ -2,11 +2,14 @@
 import base64
 import uuid
 
+import re
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
+from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import SET_NULL
+from django.db.models.signals import post_save
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 
@@ -33,7 +36,7 @@ class Team(models.Model):
         verbose_name_plural = _('teams')
 
     def get_members(self):
-        return self.member_set.exclude(pk=self.head.pk).all()
+        return self.member_set.exclude(pk=self.head.pk).distinct()
 
 
 class Submit(models.Model):
@@ -89,7 +92,7 @@ class TeamInvitation(models.Model):
                 .replace('+', 'O').replace('/', 'O')
 
     def __unicode__(self):
-        return str(_('invitation of {} to join {} [{}]')).decode('utf-8')\
+        return str(_('invitation of {} to join {} [{}]')).decode('utf-8') \
             .format(self.member, self.team, u'✓' if self.accepted else u'✗')
 
     class Meta:
@@ -105,3 +108,45 @@ class TeamInvitation(models.Model):
     @property
     def accept_link(self):
         return 'http://' + settings.SITE_URL[:-1] + reverse('accept_invitation', args=(self.slug,))
+
+
+class JoinRequest(models.Model):
+    accepted = models.NullBooleanField(verbose_name=_('accepted'))
+    team = models.ForeignKey('base.Team', verbose_name=_('team'))
+    member = models.ForeignKey('base.Member', verbose_name=_('member'))
+
+    def __unicode__(self):
+        return str(_('invitation of {} to join {} [{}]')).decode('utf-8') \
+            .format(self.member, self.team, u'✓' if self.accepted else u'✗')
+
+    class Meta:
+        verbose_name = _('join request')
+        verbose_name_plural = _('join requests')
+
+    def accept(self):
+        self.member.team = self.team
+        self.member.save()
+        self.accepted = True
+        self.save()
+
+
+class Email(models.Model):
+    receivers = models.TextField()
+    text = models.TextField()
+    subject = models.CharField(max_length=255, blank=True)
+
+    @staticmethod
+    def post_save_callback(sender, **kwargs):
+        instance = kwargs.get('instance')
+        created = kwargs.get('created')
+        if created:
+            text = instance.text
+            subject = instance.subject
+            temp = instance.receivers
+            mails = re.findall(r'[\w.]+@[\w.]+', temp)
+            # message = get_template('mail/base.html').render(Context({'email_title': subject, 'email_body': text}))
+            for mail in mails:
+                send_mail(subject, text, '', [mail])
+
+
+post_save.connect(Email.post_save_callback, sender=Email)

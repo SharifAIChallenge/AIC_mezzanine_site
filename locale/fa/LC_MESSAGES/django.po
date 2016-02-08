@@ -2481,3 +2481,13 @@ msgstr "ویتنام"
 
 msgid "United States of America"
 msgstr "ایالات متحده آمریکا"
+
+
+msgid "show team in public list"
+msgstr "نمایش تیم در لیست"
+
+msgid "team is final"
+msgstr "تیم بسته شده"
+
+msgid "finalize team"
+msgstr "بستن تیم"

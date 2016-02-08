@@ -208,7 +208,7 @@ msgstr "Team"
 
 #: 2016_template/templates/custom/my_team.html:127
 msgid "remove team"
-msgstr "Remove team from competitions"
+msgstr "Remove team"
 
 #: 2016_template/templates/custom/my_team.html:132
 #: 2016_template/templates/custom/my_team.html:205

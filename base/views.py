@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
+from django.views.decorators.http import require_POST
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
@@ -122,6 +123,9 @@ def accept_invite(request, slug):
         return redirect('my_team')
     if invitation.team.member_set.count() == invitation.team.competition.max_members:
         messages.error(request, _("the team has reached max members"))
+        return redirect('my_team')
+    if invitation.team.final:
+        messages.error(request, _("The team is final."))
     else:
         invitation.accept()
         messages.success(request, _('successfully joined team %s') % invitation.team.name)
@@ -137,13 +141,15 @@ def teams(request):
 
 @login_required
 @team_required
+@require_POST
 def change_team_name(request, id):
-    if request.method != 'POST':
-        raise PermissionDenied()
     team_name_form = TeamNameForm(request.POST, instance=Team.objects.get(id=id))
     if team_name_form.is_valid():
         if team_name_form.instance.head.pk != request.user.pk:
             raise PermissionDenied()
+        if team_name_form.instance.final:
+            messages.error(request, _("The team is final."))
+            return redirect('my_team')
         team_name_form.save()
 
     return redirect('my_team')
@@ -166,17 +172,16 @@ def my_team(request):
 
 @login_required
 @team_required
+@require_POST
 def remove(request):
-    import json
-
-    if request.method != 'POST':
-        raise PermissionDenied()
     type = request.POST.get('type')
     id = request.POST.get('id')
     if type == 'team':
         team = Team.objects.get(pk=id)
         is_head = request.team.head == request.user
-        if not is_head or team != request.team:
+        if not is_head or team != request.team or team.final:
+            if team.final:
+                messages.error(request, _("The team is final."))
             raise PermissionDenied()
         team.delete()
     elif type == 'member':
@@ -185,6 +190,9 @@ def remove(request):
             raise Http404()
         is_head = request.team.head == request.user
         if not is_head and member != request.user:
+            raise PermissionDenied()
+        if member.team.final:
+            messages.error(request, _("The team is final."))
             raise PermissionDenied()
         member.team = None
         member.save()
@@ -205,9 +213,24 @@ def remove(request):
 
 @login_required
 @team_required
-def resend_invitation_mail(request):
-    if request.method != 'POST':
+@require_POST
+def finalize(request):
+    id = request.POST.get('id')
+    team = Team.objects.get(pk=id)
+    is_head = request.team.head == request.user
+    if not is_head or team != request.team:
         raise PermissionDenied()
+
+    team.final = True
+    team.save()
+
+    return HttpResponse(json.dumps({"success": True}), content_type='application/json')
+
+
+@login_required
+@team_required
+@require_POST
+def resend_invitation_mail(request):
     id = request.POST.get('id')
     try:
         invitation = TeamInvitation.objects.get(pk=id)
@@ -228,9 +251,8 @@ def resend_invitation_mail(request):
 
 @login_required
 @team_required
+@require_POST
 def accept_decline_request(request):
-    if request.method != 'POST':
-        raise PermissionDenied()
     try:
         req = JoinRequest.objects.get(pk=request.POST.get('id'))
     except JoinRequest.DoesNotExist:
@@ -266,6 +288,8 @@ def request_join(request, team_id):
         messages.error(request, _("you already have a team"))
     if team.member_set.count() == team.competition.max_members:
         messages.error(request, _("the team has reached max members"))
+    elif team.final:
+        messages.error(request, _("The team is final."))
     else:
         req, is_new = JoinRequest.objects.get_or_create(team=team, member=request.user)
         if is_new:

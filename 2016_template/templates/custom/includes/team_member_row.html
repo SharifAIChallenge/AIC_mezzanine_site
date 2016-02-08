@@ -14,12 +14,14 @@
         </div>
     </td>
     <td class="action-button">
+        {% if not team.final %}
         {% if request.user == team.head and member != team.head %}
             {% if invited %}
             <button class="btn withdraw">{% trans 'Withdraw' %}</button>
             {% else %}
             <button class="btn remove">{% trans 'Delete' %}</button>
             {% endif %}
+        {% endif %}
         {% endif %}
     </td>
     <td>

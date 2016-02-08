@@ -26,7 +26,8 @@ class Team(models.Model):
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=True)
     name = models.CharField(verbose_name=_('name'), max_length=200)
     head = models.ForeignKey('base.Member', verbose_name=_("team head"), related_name='+')
-    show = models.BooleanField(default=True)
+    show = models.BooleanField(default=True, verbose_name=_("show team in public list"))
+    final = models.BooleanField(default=False, verbose_name=_("team is final"))
 
     def __unicode__(self):
         return 'Team%d(%s)' % (self.id, self.name)
@@ -116,7 +117,7 @@ class JoinRequest(models.Model):
     member = models.ForeignKey('base.Member', verbose_name=_('member'))
 
     def __unicode__(self):
-        return str(_('invitation of {} to join {} [{}]')).decode('utf-8') \
+        return str(_('request of {} to join {} [{}]')).decode('utf-8') \
             .format(self.member, self.team, u'✓' if self.accepted else u'✗')
 
     class Meta:

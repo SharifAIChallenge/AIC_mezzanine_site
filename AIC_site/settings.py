@@ -2,6 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 
 import os
+import raven
 from django.utils.translation import ugettext_lazy as _
 
 ######################
@@ -242,6 +243,8 @@ INSTALLED_APPS = (
     "game",
     "django_countries",
     "django_gravatar",
+
+    'raven.contrib.django.raven_compat',
 )
 
 # List of processors used by RequestContext to populate the context.
@@ -308,6 +311,10 @@ OPTIONAL_APPS = (
     PACKAGE_NAME_GRAPPELLI,
 )
 
+RAVEN_CONFIG = {
+    'dsn': 'http://f6e84572aef74086a69ff611fe8eacba:bc2fcec591574775a7ca16e492a990fd@aichallenge.sharif.edu:4444/2'
+}
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -325,14 +332,18 @@ LOGGING = {
             'class': 'django.utils.log.AdminEmailHandler',
             'include_html': True,
         },
+        'sentry': {
+            'level': 'ERROR',
+            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+        },
     },
     'loggers': {
         '': {
-            'handlers': ['console'],
+            'handlers': ['console', 'sentry'],
             'level': 'WARNING',
         },
         'AIC_site': {
-            'handlers': ['console'],
+            'handlers': ['console', 'sentry'],
             'level': 'DEBUG',
         },
         'sync': {

@@ -109,10 +109,10 @@ class TeamResource(resources.ModelResource):
 
 class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
-    list_display = ('name', 'competition', 'head', 'show')
+    list_display = ('name', 'competition', 'head', 'show', 'final')
     fields = (
         ('name', 'head', 'show'),
-        ('competition',),
+        ('competition', 'final'),
     )
     inlines = [MembersInline]
 

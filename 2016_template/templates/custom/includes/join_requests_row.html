@@ -15,10 +15,14 @@
             </div>
         </td>
         <td class="action-button">
+            {% if not team.final %}
             <button class="btn accept">{% trans 'accept' %}</button>
+            {% endif %}
         </td>
         <td class="action-button">
+            {% if not team.final %}
             <button class="btn decline">{% trans 'decline' %}</button>
+            {% endif %}
         </td>
     </tr>
 {% endspaceless %}

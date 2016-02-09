@@ -3,6 +3,7 @@ import base64
 import uuid
 
 import re
+from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
@@ -133,7 +134,7 @@ class JoinRequest(models.Model):
 
 class Email(models.Model):
     receivers = models.TextField()
-    text = models.TextField()
+    text = RichTextField()
     subject = models.CharField(max_length=255, blank=True)
 
     @staticmethod
@@ -145,9 +146,8 @@ class Email(models.Model):
             subject = instance.subject
             temp = instance.receivers
             mails = re.findall(r'[\w.]+@[\w.]+', temp)
-            # message = get_template('mail/base.html').render(Context({'email_title': subject, 'email_body': text}))
             for mail in mails:
-                send_mail(subject, text, '', [mail])
+                send_mail(subject, text, None, [mail], html_message=text)
 
 
 post_save.connect(Email.post_save_callback, sender=Email)

@@ -11,3 +11,4 @@ django-gravatar2==1.4.0
 django-import-export
 raven
 tqdm
+django-ckeditor

@@ -244,6 +244,9 @@ INSTALLED_APPS = (
     "django_countries",
     "django_gravatar",
 
+
+    'ckeditor',
+
     'raven.contrib.django.raven_compat',
 )
 

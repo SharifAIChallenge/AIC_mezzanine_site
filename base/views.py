@@ -9,10 +9,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.views.decorators.http import require_POST
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
+from django.views.decorators.http import require_POST
 from game.models import Competition
 from mezzanine.utils.email import send_mail_template
 
@@ -220,6 +220,13 @@ def finalize(request):
     is_head = request.team.head == request.user
     if not is_head or team != request.team:
         raise PermissionDenied()
+
+    member_count = team.member_set.count()
+    if member_count < team.competition.min_members or member_count > team.competition.max_members:
+        return HttpResponse(json.dumps({
+            'success': False,
+            'message': _('your team does not have enough members')
+        }), content_type='application/json')
 
     team.final = True
     team.save()

@@ -60,9 +60,11 @@ class InvitationForm(forms.Form):
         self.member = Member.objects.get(email=self.cleaned_data['email'])
         return self.cleaned_data['email']
 
-    def save(self, team):
+    def save(self, team, host):
         invitation, is_new = TeamInvitation.objects.get_or_create(member=self.member, team=team)
         send_mail_template(_('AIChallenge team invitation'), 'mail/invitation_mail', '',
-                           self.member.email, context={'team': team.name, 'link': 'http://%s' % invitation.accept_link})
+                           self.member.email, context={'team': team.name,
+                                                       'abs_link': invitation.accept_link,
+                                                       'current_host': host})
 
         return

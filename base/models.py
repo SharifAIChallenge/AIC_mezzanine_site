@@ -109,7 +109,7 @@ class TeamInvitation(models.Model):
 
     @property
     def accept_link(self):
-        return 'http://' + settings.SITE_URL[:-1] + reverse('accept_invitation', args=(self.slug,))
+        return reverse('accept_invitation', args=(self.slug,))
 
 
 class JoinRequest(models.Model):

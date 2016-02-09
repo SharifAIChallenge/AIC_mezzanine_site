@@ -83,7 +83,7 @@ def invite_member(request):
             elif TeamInvitation.objects.filter(member=form.member, team=request.team).exists():
                 messages.warning(request, _("you have invited this user before!"))
             else:
-                form.save(team=request.team)
+                form.save(team=request.team, host=request.get_host)
                 messages.success(request,
                                  _('successfully invited user %(name)s') % {'name': form.member.get_full_name()})
                 return redirect('invite_member')
@@ -256,7 +256,8 @@ def resend_invitation_mail(request):
     send_mail_template(_('AIChallenge team invitation'), 'mail/invitation_mail', '', invitation.member.email,
                        context={
                            'team': invitation.team.name,
-                           'link': 'http://%s' % invitation.accept_link
+                           'abs_link': invitation.accept_link,
+                           'current_host': request.get_host
                        })
     return HttpResponse(json.dumps({"success": True, "message": _("invitation resend successful")}),
                         content_type='application/json')

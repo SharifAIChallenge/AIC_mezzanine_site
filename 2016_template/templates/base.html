@@ -110,6 +110,8 @@
                         <li><a href="{% url 'my_team' %}">{% trans "My Team" %}</a></li>
                     {% endif %}
 
+                    <li><a href="{% url 'teams_list' %}?final=1">{% trans "Final teams" %}</a></li>
+
                     {% page_menu "pages/menus/partial_menu.html" %}
 
                     <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir">{% trans "blog" %}</a></li>

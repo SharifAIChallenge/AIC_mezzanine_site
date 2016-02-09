@@ -9,10 +9,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.views.decorators.http import require_POST
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.utils.translation import ugettext_lazy as _
+from django.views.decorators.http import require_POST
 from game.models import Competition
 from mezzanine.utils.email import send_mail_template
 
@@ -83,7 +83,8 @@ def invite_member(request):
             elif TeamInvitation.objects.filter(member=form.member, team=request.team).exists():
                 messages.warning(request, _("you have invited this user before!"))
             else:
-                form.save(team=request.team)
+                form.save(team=request.team, host=request.get_host)
+                messages.info(request, _("please check spams too"))
                 messages.success(request,
                                  _('successfully invited user %(name)s') % {'name': form.member.get_full_name()})
                 return redirect('invite_member')
@@ -135,7 +136,10 @@ def accept_invite(request, slug):
 
 @login_required
 def teams(request):
-    teams = Team.objects.exclude(show=False).all()
+    teams = Team.objects.exclude(show=False)
+    if request.GET.get('final', '0') == '1':
+        teams = teams.filter(final=True)
+    teams = teams.all()
     return render(request, 'custom/teams_list.html', {'teams': teams})
 
 
@@ -221,10 +225,20 @@ def finalize(request):
     if not is_head or team != request.team:
         raise PermissionDenied()
 
+    member_count = team.member_set.count()
+    if member_count < team.competition.min_members or member_count > team.competition.max_members:
+        return HttpResponse(json.dumps({
+            'success': False,
+            'message': _('your team does not have enough members').encode('utf-8')
+        }), content_type='application/json')
+
     team.final = True
     team.save()
 
-    return HttpResponse(json.dumps({"success": True}), content_type='application/json')
+    return HttpResponse(json.dumps({
+        "success": True,
+        "message": _('team is now finalized').encode('utf-8')
+    }), content_type='application/json')
 
 
 @login_required
@@ -243,8 +257,10 @@ def resend_invitation_mail(request):
     send_mail_template(_('AIChallenge team invitation'), 'mail/invitation_mail', '', invitation.member.email,
                        context={
                            'team': invitation.team.name,
-                           'link': 'http://%s' % invitation.accept_link
+                           'abs_link': invitation.accept_link,
+                           'current_host': request.get_host
                        })
+    messages.info(request, _("please check spams too"))
     return HttpResponse(json.dumps({"success": True, "message": _("invitation resend successful")}),
                         content_type='application/json')
 
@@ -296,6 +312,7 @@ def request_join(request, team_id):
             send_mail_template(_('AIChallenge team join request'), 'mail/join_request_mail', '', team.head.email,
                                context={'member': request.user.get_full_name()})
             messages.success(request, _('join request has been sent'))
+            messages.info(request, _("please check spams too"))
         else:
             if req.accepted is False:
                 messages.error(request, _('your request to join this team has been declined'))

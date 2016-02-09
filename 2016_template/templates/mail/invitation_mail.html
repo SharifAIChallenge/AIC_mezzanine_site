@@ -6,9 +6,11 @@
     <title></title>
 </head>
 <body>
-    {% trans 'you have been invited to team:' %}
-    {{ team }}
-    {% trans 'click on below link to accept:' %}
-    <a href="{{ link }}">{{ link }}</a>
+    {% trans 'you have been invited to team:' %}<br>
+    {{ team }}<br>
+    {% trans 'click on below link to accept:' %}<br>
+    <a href="http://{{ current_host }}{{ abs_link }}">
+        http://{{ current_host }}{{ abs_link }}
+    </a>
 </body>
 </html>

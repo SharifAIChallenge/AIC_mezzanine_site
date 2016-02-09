@@ -10,7 +10,9 @@
     <td class="name-avatar" width="50%">
         <div>
             <img class="circle" style="vertical-align: middle; margin: 5px;" src="{% gravatar_url member.email 40 %}"/>
-            <span style="vertical-align: middle; margin-right: 5px">{{ member.get_full_name }}</span>
+            <span style="vertical-align: middle; margin-right: 5px">
+                <a href="mailto:{{ member.email }}">{{ member.get_full_name }} <span class="member-email">({{ member.email }})</span></a>
+            </span>
         </div>
     </td>
     <td class="action-button">

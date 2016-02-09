@@ -3,4 +3,4 @@
 {% trans 'you have been invited to team:' %} {{ team }}
 {% trans 'click on below link to accept:' %}
 
-{{ link }}
+http://{{ current_host }}{{ abs_link }}

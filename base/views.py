@@ -84,6 +84,7 @@ def invite_member(request):
                 messages.warning(request, _("you have invited this user before!"))
             else:
                 form.save(team=request.team, host=request.get_host)
+                messages.info(request, _("please check spams too"))
                 messages.success(request,
                                  _('successfully invited user %(name)s') % {'name': form.member.get_full_name()})
                 return redirect('invite_member')
@@ -259,6 +260,7 @@ def resend_invitation_mail(request):
                            'abs_link': invitation.accept_link,
                            'current_host': request.get_host
                        })
+    messages.info(request, _("please check spams too"))
     return HttpResponse(json.dumps({"success": True, "message": _("invitation resend successful")}),
                         content_type='application/json')
 
@@ -310,6 +312,7 @@ def request_join(request, team_id):
             send_mail_template(_('AIChallenge team join request'), 'mail/join_request_mail', '', team.head.email,
                                context={'member': request.user.get_full_name()})
             messages.success(request, _('join request has been sent'))
+            messages.info(request, _("please check spams too"))
         else:
             if req.accepted is False:
                 messages.error(request, _('your request to join this team has been declined'))

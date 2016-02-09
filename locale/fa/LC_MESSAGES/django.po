@@ -2500,3 +2500,6 @@ msgstr "وقتی همه‌ی اعضای تیم نهایی شدند برای شر
 
 msgid "Final teams"
 msgstr "تیم‌های نهایی"
+
+msgid "please check spams too"
+msgstr "لطفا پوشه‌ی spam را نیز چک کنید."

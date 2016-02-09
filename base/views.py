@@ -135,7 +135,10 @@ def accept_invite(request, slug):
 
 @login_required
 def teams(request):
-    teams = Team.objects.exclude(show=False).all()
+    teams = Team.objects.exclude(show=False)
+    if request.GET.get('final', '0') == '1':
+        teams = teams.filter(final=True)
+    teams = teams.all()
     return render(request, 'custom/teams_list.html', {'teams': teams})
 
 

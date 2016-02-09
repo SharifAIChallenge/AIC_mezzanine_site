@@ -199,7 +199,7 @@
                             </button>
                         </div>
                             <div class="center-align col m12 s4 l4">
-                                <button class="btn waves-effect waves-red finalizeteam">
+                                <button data-target="finalize_team" class="btn waves-effect waves-red modal-trigger">
                                     {% trans 'finalize team' %}
                                 </button>
                             </div>
@@ -310,6 +310,22 @@
                        class=" modal-action modal-close waves-effect waves-red btn-flat">{% trans 'cancel' %}</a>
                 </div>
             </form>
+        </div>
+
+        <div id="finalize_team" class="modal bottom-sheet">
+            <div class="modal-content">
+                <h4>{% trans 'finalize team' %}</h4>
+                <div>
+                    {% trans 'Finalize your team when all members are joined. After finalization no one can join or leave the team, team name cannot be changed and you cannot leave competitions. Finalization is neccessary for submitting the codes.' %}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn waves-effect waves-green btn-flat finalizeteam">
+                    {% trans 'finalize team' %}
+                </button>
+                <a href="#!"
+                   class=" modal-action modal-close waves-effect waves-red btn-flat">{% trans 'cancel' %}</a>
+            </div>
         </div>
     {% endif %}
 {% endblock %}

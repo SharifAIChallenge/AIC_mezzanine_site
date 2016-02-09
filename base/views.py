@@ -225,7 +225,7 @@ def finalize(request):
     if member_count < team.competition.min_members or member_count > team.competition.max_members:
         return HttpResponse(json.dumps({
             'success': False,
-            'message': _('your team does not have enough members')
+            'message': _('your team does not have enough members').encode('utf-8')
         }), content_type='application/json')
 
     team.final = True
@@ -233,7 +233,7 @@ def finalize(request):
 
     return HttpResponse(json.dumps({
         "success": True,
-        "message": _('team is now finalized')
+        "message": _('team is now finalized').encode('utf-8')
     }), content_type='application/json')
 
 

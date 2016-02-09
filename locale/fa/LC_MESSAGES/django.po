@@ -2489,5 +2489,11 @@ msgstr "نمایش تیم در لیست"
 msgid "team is final"
 msgstr "تیم بسته شده"
 
+msgid "team is now finalized"
+msgstr "تبریک! تیم شما بسته شد."
+
 msgid "finalize team"
 msgstr "بستن تیم"
+
+msgid "Finalize your team when all members are joined. After finalization no one can join or leave the team, team name cannot be changed and you cannot leave competitions. Finalization is neccessary for submitting the codes."
+msgstr "وقتی همه‌ی اعضای تیم نهایی شدند برای شرکت در مسابقات باید تیم خود را ببندید. پس از بستن تیم اعضا و نام تیم قابل تغییر نیستند."

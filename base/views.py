@@ -231,7 +231,10 @@ def finalize(request):
     team.final = True
     team.save()
 
-    return HttpResponse(json.dumps({"success": True}), content_type='application/json')
+    return HttpResponse(json.dumps({
+        "success": True,
+        "message": _('team is now finalized')
+    }), content_type='application/json')
 
 
 @login_required

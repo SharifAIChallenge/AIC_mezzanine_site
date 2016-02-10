@@ -29,7 +29,7 @@ class Game(models.Model):
     players = models.ManyToManyField('base.Submit', verbose_name=_('players'), through='game.GameTeamSubmit')
     config = models.FileField(verbose_name=_('config'))
 
-    pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'))
+    pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'), blank=True)
 
     def __unicode__(self):
         return self.title

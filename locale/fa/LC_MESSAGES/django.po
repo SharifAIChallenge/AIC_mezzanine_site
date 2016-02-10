@@ -2512,3 +2512,21 @@ msgstr "مستندات مسابقه"
 
 msgid "just upload zip files"
 msgstr "فقط فایل zip آپلود کنید"
+
+msgid "waiting"
+msgstr "در انتظار"
+
+msgid "compiling"
+msgstr "در حال کامپایل"
+
+msgid "compiled"
+msgstr "کامپایل شده"
+
+msgid "failed"
+msgstr "کامپایل ناموفق"
+
+msgid "log file"
+msgstr "فایل log"
+
+msgid "status"
+msgstr "وضعیت"

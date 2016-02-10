@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import base64
-import re
 import uuid
 
+import re
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
@@ -48,9 +48,19 @@ class Submit(models.Model):
         ('py3', 'python3'),
     )
 
+    STATUSES = (
+        (0, _('waiting')),
+        (1, _('compiling')),
+        (2, _('compiled')),
+        (3, _('failed')),
+    )
+
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     code = models.FileField(verbose_name=_('code'), upload_to='submits/temp')
     team = models.ForeignKey(Team, verbose_name=_('team'))
+
+    compile_log_file = models.FileField(verbose_name=_('log file'), null=True, blank=True)
+    status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
     pl = models.CharField(verbose_name=_("programming language"), choices=PL_CHOICES, null=True, max_length=3)
 

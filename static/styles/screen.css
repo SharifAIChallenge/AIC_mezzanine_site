@@ -82,7 +82,7 @@ body {
     clear: both; }
 
 a {
-  color: #33353F;
+  /*color: #33353F;*/
   text-decoration: none;
   outline-width: 0px;
   outline-style: hidden;

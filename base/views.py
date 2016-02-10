@@ -4,13 +4,15 @@ from functools import wraps
 from urlparse import urlparse
 
 from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm
-from base.models import TeamInvitation, Team, Member, JoinRequest
+from base.models import TeamInvitation, Team, Member, JoinRequest, Message
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
+from django.utils import timezone
+from django.utils.translation import get_language_from_request
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 from game.models import Competition
@@ -96,6 +98,9 @@ def invite_member(request):
 @login_required
 @team_required
 def submit(request):
+    if not request.team.final:
+        messages.error(request, _('your team must be final'))
+        return redirect('my_team')
     if request.team.member_set.count() < request.team.competition.min_members:
         messages.error(request, _("your team does not have enough members"))
         return redirect('invite_member')
@@ -105,7 +110,7 @@ def submit(request):
             new_submit = form.save(commit=False)
             new_submit.team = request.team
             new_submit.save()
-            return redirect('submit_code')
+            return redirect('my_team')
     else:
         form = SubmitForm()
     return render(request, 'accounts/account_form.html', {'form': form, 'title': _('submit new code')})
@@ -162,6 +167,11 @@ def change_team_name(request, id):
 @login_required
 @team_required
 def my_team(request):
+    for message in Message.objects.filter(to_date__gte=timezone.now(), from_date__lte=timezone.now()):
+        if get_language_from_request(request).startswith('en'):
+            messages.info(request, message.english_text)
+        else:
+            messages.info(request, message.persian_text)
     team = request.team
     team_name_form = TeamNameForm(instance=team)
     invited_members = TeamInvitation.objects.filter(team=team, accepted=False).select_related('member').all()

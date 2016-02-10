@@ -4,7 +4,6 @@ import uuid
 
 import re
 from ckeditor.fields import RichTextField
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
@@ -45,13 +44,23 @@ class Submit(models.Model):
     PL_CHOICES = (
         ('jav', 'java'),
         ('cpp', 'c++'),
-        ('py2', 'python2'),
+        # ('py2', 'python2'),
         ('py3', 'python3'),
+    )
+
+    STATUSES = (
+        (0, _('waiting')),
+        (1, _('compiling')),
+        (2, _('compiled')),
+        (3, _('failed')),
     )
 
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     code = models.FileField(verbose_name=_('code'), upload_to='submits/temp')
     team = models.ForeignKey(Team, verbose_name=_('team'))
+
+    compile_log_file = models.FileField(verbose_name=_('log file'), null=True, blank=True)
+    status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
     pl = models.CharField(verbose_name=_("programming language"), choices=PL_CHOICES, null=True, max_length=3)
 
@@ -151,3 +160,10 @@ class Email(models.Model):
 
 
 post_save.connect(Email.post_save_callback, sender=Email)
+
+
+class Message(models.Model):
+    english_text = models.TextField()
+    persian_text = models.TextField()
+    from_date = models.DateTimeField()
+    to_date = models.DateTimeField()

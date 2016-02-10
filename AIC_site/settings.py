@@ -387,9 +387,6 @@ CELERY_EMAIL_TASK_CONFIG = {
 }
 CELERY_EMAIL_CHUNK_SIZE = 1
 
-# CELERY_ROUTES = {
-#     'b': {'queue': 'scan'},
-# }
 
 ##################
 # LOCAL SETTINGS #

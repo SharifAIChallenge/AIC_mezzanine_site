@@ -98,6 +98,9 @@ def invite_member(request):
 @login_required
 @team_required
 def submit(request):
+    if not request.team.final:
+        messages.error(request, _('your team must be final'))
+        return redirect('my_team')
     if request.team.member_set.count() < request.team.competition.min_members:
         messages.error(request, _("your team does not have enough members"))
         return redirect('invite_member')

@@ -29,6 +29,12 @@ class SubmitForm(forms.ModelForm):
         model = Submit
         fields = ('pl', 'code',)
 
+    def clean_code(self):
+        code = self.cleaned_data['code']
+        if not code.content_type == 'application/zip':
+            raise forms.ValidationError(_('just upload zip files'))
+        return code
+
 
 class TeamForm(forms.ModelForm):
     class Meta:

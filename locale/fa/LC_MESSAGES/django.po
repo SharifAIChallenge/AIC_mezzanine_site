@@ -2509,3 +2509,6 @@ msgstr "تیم شما باید بسته‌شده باشد"
 
 msgid "game docs"
 msgstr "مستندات مسابقه"
+
+msgid "just upload zip files"
+msgstr "فقط فایل zip آپلود کنید"

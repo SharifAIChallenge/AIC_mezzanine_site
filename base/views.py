@@ -107,7 +107,7 @@ def submit(request):
             new_submit = form.save(commit=False)
             new_submit.team = request.team
             new_submit.save()
-            return redirect('submit_code')
+            return redirect('my_team')
     else:
         form = SubmitForm()
     return render(request, 'accounts/account_form.html', {'form': form, 'title': _('submit new code')})

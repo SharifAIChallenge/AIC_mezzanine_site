@@ -287,14 +287,15 @@
                                 </button>
                             </div>
                         {% endif %}
+                    {% else %}
+                        <div class="col s6 m6 l6" style="direction: ltr">
+                            <a href="/docs/competition/">
+                                <button type="button" class="btn waves-effect waves-green leaveteam">
+                                    {% trans 'game docs' %}
+                                </button>
+                            </a>
+                        </div>
                     {% endif %}
-                    <div class="col s6 m6 l6" style="direction: ltr">
-                        <a href="/docs/competition/">
-                            <button type="button" class="btn waves-effect waves-green leaveteam">
-                                {% trans 'game docs' %}
-                            </button>
-                        </a>
-                    </div>
                 </div>
                 <div class="px-20 vertical spacer"></div>
             </div>

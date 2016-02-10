@@ -12,6 +12,9 @@
             text-align: left;
         {% endif %}
         }
+        .non-final {
+            background-color: rgba(255, 210, 185, 0.1);
+        }
     </style>
 {% endblock %}
 
@@ -49,7 +52,7 @@
                         </th>
                     </tr>
                     {% for team in teams %}
-                        <tr>
+                        <tr{% if not team.final %} class="non-final"{% endif %}>
                             <td>{{ forloop.counter }}</td>
                             <td>{{ team.name }}</td>
                             <td class="aligned">

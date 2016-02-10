@@ -383,10 +383,13 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 CELERY_EMAIL_TASK_CONFIG = {
     'max_retries': 30,
+    'queue': 'mail_queue',
 }
 CELERY_EMAIL_CHUNK_SIZE = 1
 
-
+# CELERY_ROUTES = {
+#     'b': {'queue': 'scan'},
+# }
 
 ##################
 # LOCAL SETTINGS #

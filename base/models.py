@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 import base64
+import re
 import uuid
 
-import re
 from ckeditor.fields import RichTextField
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
@@ -151,3 +150,10 @@ class Email(models.Model):
 
 
 post_save.connect(Email.post_save_callback, sender=Email)
+
+
+class Message(models.Model):
+    english_text = models.TextField()
+    persian_text = models.TextField()
+    from_date = models.DateTimeField()
+    to_date = models.DateTimeField()

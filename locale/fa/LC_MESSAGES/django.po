@@ -2503,3 +2503,9 @@ msgstr "تیم‌های نهایی"
 
 msgid "please check spams too"
 msgstr "لطفا پوشه‌ی spam را نیز چک کنید."
+
+msgid "your team must be final"
+msgstr "تیم شما باید بسته‌شده باشد"
+
+msgid "game docs"
+msgstr "مستندات مسابقه"

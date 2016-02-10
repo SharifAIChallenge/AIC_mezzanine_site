@@ -32,141 +32,141 @@
 {% block extra_js %}
     {{ block.super }}
     {% if not team.final %}
-    <script type="text/javascript">
-        $(function () {
-            var csrf_token = '{{ csrf_token }}';
-            var remove_url = '{% url 'remove' %}';
-            var accept_decline_url = '{% url 'accept_decline' %}';
-            var finalize_url = '{% url 'finalize' %}';
+        <script type="text/javascript">
+            $(function () {
+                var csrf_token = '{{ csrf_token }}';
+                var remove_url = '{% url 'remove' %}';
+                var accept_decline_url = '{% url 'accept_decline' %}';
+                var finalize_url = '{% url 'finalize' %}';
 
-            $('.modal-trigger').leanModal({dismissible: true, opacity: .5});
+                $('.modal-trigger').leanModal({dismissible: true, opacity: .5});
 
-            {% if request.user == team.head %}
-                $('.remove, .withdraw').on('click', function () {
-                    var $self = $(this);
+                {% if request.user == team.head %}
+                    $('.remove, .withdraw').on('click', function () {
+                        var $self = $(this);
 
-                    $self.addClass('disabled');
-                    var type = '';
-                    if ($self.hasClass('withdraw')) {
-                        type = 'invitation';
-                    } else {
-                        type = 'member';
-                    }
-                    $.ajax({
-                        url: remove_url,
-                        method: 'post',
-                        data: {
-                            csrfmiddlewaretoken: csrf_token,
-                            type: type,
-                            id: $self.parents('tr').data('id')
-                        },
-                        complete: function () {
-                            $self.removeClass('disabled');
+                        $self.addClass('disabled');
+                        var type = '';
+                        if ($self.hasClass('withdraw')) {
+                            type = 'invitation';
+                        } else {
+                            type = 'member';
                         }
-                    }).done(function (response) {
-                        Materialize.toast('{% trans 'User removed from team' %}', 3000, 'rounded');
-                        $self.parents('tr').remove();
+                        $.ajax({
+                            url: remove_url,
+                            method: 'post',
+                            data: {
+                                csrfmiddlewaretoken: csrf_token,
+                                type: type,
+                                id: $self.parents('tr').data('id')
+                            },
+                            complete: function () {
+                                $self.removeClass('disabled');
+                            }
+                        }).done(function (response) {
+                            Materialize.toast('{% trans 'User removed from team' %}', 3000, 'rounded');
+                            $self.parents('tr').remove();
+                        });
                     });
-                });
-                $('.finalizeteam').on('click', function () {
-                    var $self = $(this);
+                    $('.finalizeteam').on('click', function () {
+                        var $self = $(this);
 
-                    $self.addClass('disabled');
-                    $.ajax({
-                        url: finalize_url,
-                        method: 'post',
-                        data: {
-                            csrfmiddlewaretoken: csrf_token,
-                            id: '{{ team.pk }}'
-                        }
-                    }).done(function (response) {
-                        Materialize.toast(response['message'], 3000, 'rounded', function() {
-                            if (response['success']) {
+                        $self.addClass('disabled');
+                        $.ajax({
+                            url: finalize_url,
+                            method: 'post',
+                            data: {
+                                csrfmiddlewaretoken: csrf_token,
+                                id: '{{ team.pk }}'
+                            }
+                        }).done(function (response) {
+                            Materialize.toast(response['message'], 3000, 'rounded', function () {
+                                if (response['success']) {
+                                    location.reload();
+                                }
+                            });
+                        });
+                    });
+                    $('.deleteteam').on('click', function () {
+                        var $self = $(this);
+
+                        $self.addClass('disabled');
+                        $.ajax({
+                            url: remove_url,
+                            method: 'post',
+                            data: {
+                                csrfmiddlewaretoken: csrf_token,
+                                type: 'team',
+                                id: '{{ team.pk }}'
+                            }
+                        }).done(function (response) {
+                            Materialize.toast('{% trans 'Team deleted' %}', 3000, 'rounded', function () {
                                 location.reload();
+                            });
+                        });
+                    });
+                    $('.accept').on('click', function () {
+                        var $self = $(this);
+
+                        $self.addClass('disabled');
+                        $.ajax({
+                            url: accept_decline_url,
+                            method: 'post',
+                            data: {
+                                csrfmiddlewaretoken: csrf_token,
+                                id: $self.parents('tr').data('id'),
+                                type: 'accept'
+                            }
+                        }).success(function (response) {
+                            if (response['success']) {
+                                location.reload(true);
+                            } else {
+                                Materialize.toast(response['message'], 3000, 'rounded');
                             }
                         });
                     });
-                });
-                $('.deleteteam').on('click', function () {
-                    var $self = $(this);
+                    $('.decline').on('click', function () {
+                        var $self = $(this);
 
-                    $self.addClass('disabled');
-                    $.ajax({
-                        url: remove_url,
-                        method: 'post',
-                        data: {
-                            csrfmiddlewaretoken: csrf_token,
-                            type: 'team',
-                            id: '{{ team.pk }}'
-                        }
-                    }).done(function (response) {
-                        Materialize.toast('{% trans 'Team deleted' %}', 3000, 'rounded', function () {
-                            location.reload();
+                        $self.addClass('disabled');
+                        $.ajax({
+                            url: accept_decline_url,
+                            method: 'post',
+                            data: {
+                                csrfmiddlewaretoken: csrf_token,
+                                id: $self.parents('tr').data('id'),
+                                type: 'decline'
+                            }
+                        }).success(function (response) {
+                            if (response['success']) {
+                                location.reload(true);
+                            } else {
+                                Materialize.toast(response['message'], 3000, 'rounded');
+                            }
                         });
                     });
-                });
-                $('.accept').on('click', function () {
-                    var $self = $(this);
+                {% else %}
+                    $('.leaveteam').on('click', function () {
+                        var $self = $(this);
 
-                    $self.addClass('disabled');
-                    $.ajax({
-                        url: accept_decline_url,
-                        method: 'post',
-                        data: {
-                            csrfmiddlewaretoken: csrf_token,
-                            id: $self.parents('tr').data('id'),
-                            type: 'accept'
-                        }
-                    }).success(function (response) {
-                        if (response['success']) {
-                            location.reload(true);
-                        } else {
-                            Materialize.toast(response['message'], 3000, 'rounded');
-                        }
-                    });
-                });
-                $('.decline').on('click', function () {
-                    var $self = $(this);
-
-                    $self.addClass('disabled');
-                    $.ajax({
-                        url: accept_decline_url,
-                        method: 'post',
-                        data: {
-                            csrfmiddlewaretoken: csrf_token,
-                            id: $self.parents('tr').data('id'),
-                            type: 'decline'
-                        }
-                    }).success(function (response) {
-                        if (response['success']) {
-                            location.reload(true);
-                        } else {
-                            Materialize.toast(response['message'], 3000, 'rounded');
-                        }
-                    });
-                });
-            {% else %}
-                $('.leaveteam').on('click', function () {
-                    var $self = $(this);
-
-                    $self.addClass('disabled');
-                    $.ajax({
-                        url: remove_url,
-                        method: 'post',
-                        data: {
-                            csrfmiddlewaretoken: csrf_token,
-                            type: 'member',
-                            id: '{{ request.user.pk }}'
-                        }
-                    }).done(function (response) {
-                        Materialize.toast('{% trans 'You left the team' %}', 3000, 'rounded', function () {
-                            location.reload();
+                        $self.addClass('disabled');
+                        $.ajax({
+                            url: remove_url,
+                            method: 'post',
+                            data: {
+                                csrfmiddlewaretoken: csrf_token,
+                                type: 'member',
+                                id: '{{ request.user.pk }}'
+                            }
+                        }).done(function (response) {
+                            Materialize.toast('{% trans 'You left the team' %}', 3000, 'rounded', function () {
+                                location.reload();
+                            });
                         });
                     });
-                });
-            {% endif %}
-        });
-    </script>
+                {% endif %}
+            });
+        </script>
     {% endif %}
 {% endblock %}
 
@@ -192,23 +192,23 @@
                     <h4>{% trans 'team' %}</h4>
                     <p class="muted">{{ team.name }}</p>
                     {% if not team.final %}
-                    <div class="row">
-                        <div class="center-align col m12 s4 l4">
-                            <button type="button" class="btn waves-effect waves-red deleteteam">
-                                {% trans 'remove team' %}
-                            </button>
-                        </div>
-                        <div class="center-align col m12 s4 l4">
-                            <button data-target="change_team_name" class="btn waves-effect waves-red modal-trigger">
-                                {% trans 'change team name' %}
-                            </button>
-                        </div>
+                        <div class="row">
+                            <div class="center-align col m12 s4 l4">
+                                <button type="button" class="btn waves-effect waves-red deleteteam">
+                                    {% trans 'remove team' %}
+                                </button>
+                            </div>
+                            <div class="center-align col m12 s4 l4">
+                                <button data-target="change_team_name" class="btn waves-effect waves-red modal-trigger">
+                                    {% trans 'change team name' %}
+                                </button>
+                            </div>
                             <div class="center-align col m12 s4 l4">
                                 <button data-target="finalize_team" class="btn waves-effect waves-red modal-trigger">
                                     {% trans 'finalize team' %}
                                 </button>
                             </div>
-                    </div>
+                        </div>
                     {% endif %}
                     {% if join_requests and not team.final %}
                         <div class="row">
@@ -288,6 +288,13 @@
                             </div>
                         {% endif %}
                     {% endif %}
+                    <div class="col s6 m6 l6" style="direction: ltr">
+                        <a href="/docs/competition/">
+                            <button type="button" class="btn waves-effect waves-green leaveteam">
+                                {% trans 'game docs' %}
+                            </button>
+                        </a>
+                    </div>
                 </div>
                 <div class="px-20 vertical spacer"></div>
             </div>

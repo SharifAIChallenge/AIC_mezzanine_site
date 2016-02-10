@@ -42,7 +42,9 @@ class MemberResource(resources.ModelResource):
 
 class MemberAdmin(ImportExportModelAdmin):
     resource_class = MemberResource
-    list_display = ('username', 'first_name', 'last_name', 'country', 'education_place', 'team', 'is_active')
+    search_fields = ('username', 'email', 'first_name', 'last_name', 'education_place')
+    list_filter = ('is_active',)
+    list_display = ('username', 'first_name', 'last_name', 'email', 'country', 'education_place', 'team', 'is_active')
     fields = (
         ('first_name', 'last_name'),
         ('username', 'email', 'phone_number'),
@@ -60,7 +62,7 @@ admin.site.register(Member, MemberAdmin)
 
 class MembersInline(admin.StackedInline):
     model = Member
-    fields = ('username', 'email')
+    fields = ('username', 'first_name', 'last_name', 'email')
     readonly_fields = fields
     extra = 0
 
@@ -109,6 +111,8 @@ class TeamResource(resources.ModelResource):
 
 class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
+    search_fields = ('name',)
+    list_filter = ('final', 'show')
     list_display = ('name', 'competition', 'head', 'show', 'final')
     fields = (
         ('name', 'head', 'show'),

@@ -9,7 +9,7 @@
     <meta name="description" content="{% block meta_description %}{% endblock %}">
     <title>
         {% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
-    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+    <link rel="shortcut icon" href="/static/images/logo-site.ico" type="image/x-icon">
 
     {% ifinstalled mezzanine.blog %}
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url 'blog_post_feed' 'rss' %}">
@@ -19,7 +19,7 @@
     {% compress css %}
         <link type="text/css" rel="stylesheet" href="/static/css/bootstrap.css">
         {% if LANGUAGE_BIDI %}
-        <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-rtl.css">
+            <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-rtl.css">
         {% endif %}
         <link type="text/css" rel="stylesheet" href="/static/css/bootstrap-theme.css">
         <!-- Import iransans font -->
@@ -38,18 +38,17 @@
         <style>
             nav {
                 background: #244273;
-{#                color: whitesmoke;#}
-{#                font-family: 'BYekan','Open Sans',sans-serif;#}
-{#                font-size: 14px;#}
-{#                font-weight: 400;#}
+            {#                color: whitesmoke;#}{#                font-family: 'BYekan','Open Sans',sans-serif;#}{#                font-size: 14px;#}{#                font-weight: 400;#}
             }
+
             .footer .information-site {
                 margin: 0 auto !important;
             }
+
             {% if LANGUAGE_BIDI %}
-            body {
-                direction: rtl;
-            }
+                body {
+                    direction: rtl;
+                }
             {% endif %}
         </style>
 
@@ -114,7 +113,8 @@
 
                     {% page_menu "pages/menus/partial_menu.html" %}
 
-                    <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir">{% trans "blog" %}</a></li>
+                    <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir">{% trans "blog" %}</a>
+                    </li>
 
                     {% if LANGUAGE_BIDI %}
                         <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
@@ -149,9 +149,9 @@
                 <div class="col s12 m12 l12">
                     <div class="px-20 vertical spacer"></div>
                     {% block main_hack %}
-                    {% block main %}
+                        {% block main %}
 
-                    {% endblock %}
+                        {% endblock %}
                     {% endblock %}
                     <div class="px-20 vertical spacer"></div>
                 </div>
@@ -167,9 +167,9 @@
 
     <!-- Start of StatCounter Code for Default Guide -->
     <a title="shopify traffic stats"
-    href="http://statcounter.com/shopify/" target="_blank"><img
-    src="http://c.statcounter.com/10808005/0/005c1cbf/1/"
-    alt="shopify traffic stats" style="border:none;"></a>
+       href="http://statcounter.com/shopify/" target="_blank"><img
+            src="http://c.statcounter.com/10808005/0/005c1cbf/1/"
+            alt="shopify traffic stats" style="border:none;"></a>
     <!-- End of StatCounter Code for Default Guide -->
 
     <div class="footer" id="footer">
@@ -185,7 +185,8 @@
                     <li><a href="http://instagram.com/aichallenge" title="instagram" target="_blank"><i
                             class="icon-instagram-circled"></i></a></li>
                     <!-- <li><a href="http://instagram.com/@username" title="Sharif University" target="_blank"><i class="icon-sharif-circled"></i></a></li> -->
-                    <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir" title="blog" target="_blank"><i
+                    <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir" title="blog"
+                           target="_blank"><i
                             class="icon-blog-circled"></i></a>
                     </li>
                 </ul>
@@ -222,7 +223,7 @@
 
 {% block extra_body %}
     <script>
-        $(function() {
+        $(function () {
             $('#pre-footer-space').height($(window).height() - $('#footer').height() - $('#footer').position().top);
         });
     </script>

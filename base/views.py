@@ -186,6 +186,19 @@ def my_team(request):
 
 @login_required
 @team_required
+def my_games(request):
+    if not request.team.final:
+        messages.error(request, _('your team must be final'))
+        return redirect('my_team')
+
+    # TODO: naser
+    # درخواست بازی‌هایی که هنوز اکسپت نشدن، یا تو صف هستند و منتظر اجرا و بازی‌هایی که انجام شدن و تموم شدن
+    # همراه با نتیجشون. برای template فرستاده شه
+
+
+
+@login_required
+@team_required
 @require_POST
 def remove(request):
     type = request.POST.get('type')

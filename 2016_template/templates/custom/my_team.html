@@ -288,17 +288,24 @@
                             </div>
                         {% endif %}
                     {% else %}
-                        <div class="col s6 m6 l6" style="text-align: center">
+                        <div class="col s4 m4 l4" style="text-align: center">
                             <a href="/docs/competition/">
                                 <button type="button" class="btn waves-effect waves-green gamedocs">
                                     {% trans 'game docs' %}
                                 </button>
                             </a>
                         </div>
-                        <div class="col s6 m6 l6" style="text-align: center">
-                            <a href="/team/submit">
+                        <div class="col s4 m4 l4" style="text-align: center">
+                            <a href="{% url 'submit_code' %}">
                                 <button type="button" class="btn waves-effect waves-green submitcode">
                                     {% trans 'submit new code' %}
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col s4 m4 l4" style="text-align: center">
+                            <a href="{% url 'my_games' %}">
+                                <button type="button" class="btn waves-effect waves-green mygames">
+                                    {% trans 'My games' %}
                                 </button>
                             </a>
                         </div>

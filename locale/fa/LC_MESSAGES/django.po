@@ -2530,3 +2530,6 @@ msgstr "فایل log"
 
 msgid "status"
 msgstr "وضعیت"
+
+msgid "My games"
+msgstr "بازی‌های من"

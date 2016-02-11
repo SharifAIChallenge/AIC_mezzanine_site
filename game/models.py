@@ -23,6 +23,13 @@ class Competition(models.Model):
 
 
 class Game(models.Model):
+    GAME_TYPES = (
+        (0, _('manual')),
+        (1, _('friendly')),
+        (2, _('qualifications')),
+        (3, _('finals')),
+    )
+
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'))
     title = models.CharField(verbose_name=_('title'), max_length=200)
@@ -30,6 +37,8 @@ class Game(models.Model):
     config = models.FileField(verbose_name=_('config'))
 
     pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'), blank=True)
+
+    game_type = models.PositiveSmallIntegerField(verbose_name=_('game type'), choices=GAME_TYPES, default=0)
 
     def __unicode__(self):
         return self.title

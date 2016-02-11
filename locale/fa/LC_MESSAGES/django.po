@@ -2533,3 +2533,27 @@ msgstr "وضعیت"
 
 msgid "My games"
 msgstr "بازی‌های من"
+
+msgid "game type"
+msgstr "نوع بازی"
+
+msgid "manual"
+msgstr "دستی"
+
+msgid "friendly"
+msgstr "دوستانه"
+
+msgid "qualifications"
+msgstr "مقدماتی"
+
+msgid "finals"
+msgstr "نهایی"
+
+msgid "requester"
+msgstr "درخواست دهنده"
+
+msgid "requestee"
+msgstr "مورد درخواست"
+
+msgid "accept time"
+msgstr "زمان قبول"

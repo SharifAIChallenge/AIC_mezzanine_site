@@ -4,7 +4,7 @@ from functools import wraps
 from urlparse import urlparse
 
 from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm
-from base.models import TeamInvitation, Team, Member, JoinRequest, Message
+from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -193,6 +193,8 @@ def my_games(request):
 
     participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game')
     # TODO: mjafar, my scores are accessible from participation.score
+    sent_requests = GameRequest.objects.filter(requester=request.team)
+    received_requests = GameRequest.objects.filter(requestee=request.team)
 
 
 @login_required

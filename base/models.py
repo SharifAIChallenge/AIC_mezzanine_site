@@ -167,3 +167,12 @@ class Message(models.Model):
     persian_text = models.TextField()
     from_date = models.DateTimeField()
     to_date = models.DateTimeField()
+
+
+class GameRequest(models.Model):
+    requester = models.ForeignKey('Team', verbose_name=_('requester'), related_name='+')
+    requestee = models.ForeignKey('Team', verbose_name=_('requestee'), related_name='+')
+    accepted = models.NullBooleanField(_('state'))
+    accept_time = models.DateTimeField(_('accept time'))
+
+    game = models.ForeignKey('game.Game', null=True)

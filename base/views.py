@@ -15,7 +15,7 @@ from django.utils import timezone
 from django.utils.translation import get_language_from_request
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
-from game.models import Competition
+from game.models import Competition, GameTeamSubmit
 from mezzanine.utils.email import send_mail_template
 
 
@@ -191,10 +191,8 @@ def my_games(request):
         messages.error(request, _('your team must be final'))
         return redirect('my_team')
 
-    # TODO: naser
-    # درخواست بازی‌هایی که هنوز اکسپت نشدن، یا تو صف هستند و منتظر اجرا و بازی‌هایی که انجام شدن و تموم شدن
-    # همراه با نتیجشون. برای template فرستاده شه
-
+    participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game')
+    # TODO: mjafar, my scores are accessible from participation.score
 
 
 @login_required

@@ -19,7 +19,9 @@ If redis server is running, the response of command `redis-cli ping` must be `PO
 * Have **a DataStore**:
 
 We highly recommend PostgreSQL for deployment and SQLite for development environment. DBMS settings must be set on `local_settings.py`.
-A file named `dev.db.sample` is a sample and also simple development SQLite DB to work on.
+
+A file named `dev-samples.json` contains initial sample and also simple data for fast development. it contains 13 users and 4 teams. default password used in these samples is `123456`.
+Load this file by command: `python manage.py loaddata dev-samples.json`
    
    
 * Have **a running SMTP server** (maybe a dummy one!):

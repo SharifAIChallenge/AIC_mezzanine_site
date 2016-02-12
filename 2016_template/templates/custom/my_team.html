@@ -64,8 +64,12 @@
                                 $self.removeClass('disabled');
                             }
                         }).done(function (response) {
-                            Materialize.toast('{% trans 'User removed from team' %}', 3000, 'rounded');
-                            $self.parents('tr').remove();
+                            if (response.success) {
+                                Materialize.toast('{% trans 'User removed from team' %}', 3000, 'rounded');
+                                $self.parents('tr').remove();
+                            } else {
+                                Materialize.toast(response.message, 3000, 'rounded');
+                            }
                         });
                     });
                     $('.finalizeteam').on('click', function () {
@@ -100,9 +104,13 @@
                                 id: '{{ team.pk }}'
                             }
                         }).done(function (response) {
-                            Materialize.toast('{% trans 'Team deleted' %}', 3000, 'rounded', function () {
-                                location.reload();
-                            });
+                            if (response.success) {
+                                Materialize.toast('{% trans 'Team deleted' %}', 3000, 'rounded', function () {
+                                    location.reload();
+                                });
+                            } else {
+                                Materialize.toast(response.message, 3000, 'rounded');
+                            }
                         });
                     });
                     $('.accept').on('click', function () {
@@ -302,13 +310,13 @@
                                 </button>
                             </a>
                         </div>
-{#                        <div class="col s4 m4 l4" style="text-align: center">#}
-{#                            <a href="{% url 'my_games' %}">#}
-{#                                <button type="button" class="btn waves-effect waves-green mygames">#}
-{#                                    {% trans 'My games' %}#}
-{#                                </button>#}
-{#                            </a>#}
-{#                        </div>#}
+                        {#                        <div class="col s4 m4 l4" style="text-align: center">#}
+                        {#                            <a href="{% url 'my_games' %}">#}
+                        {#                                <button type="button" class="btn waves-effect waves-green mygames">#}
+                        {#                                    {% trans 'My games' %}#}
+                        {#                                </button>#}
+                        {#                            </a>#}
+                        {#                        </div>#}
                     {% endif %}
                 </div>
                 <div class="px-20 vertical spacer"></div>

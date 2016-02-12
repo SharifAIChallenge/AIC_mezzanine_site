@@ -19,17 +19,27 @@ from game.models import Competition, GameTeamSubmit
 from mezzanine.utils.email import send_mail_template
 
 
-def team_required(function=None):
+def registration_period_ended(request):
+    competition = Competition.objects.get(site_id=request.site_id)
+    return timezone.now() > competition.registration_finish_date
+
+
+def team_required(function=None, register_period_only=False):
     def decorator(view_func):
         @wraps(view_func)
         def _wrapped_view(request, *args, **kwargs):
             if hasattr(request.user, 'team') and request.user.team:
-                request.team = request.user.team
-                return view_func(request, *args, **kwargs)
+                if register_period_only and registration_period_ended(request):
+                    messages.info(request, _("registration period has ended"))
+                    resolved_login_url = reverse('my_team')
+                else:
+                    request.team = request.user.team
+                    return view_func(request, *args, **kwargs)
+            else:
+                messages.info(request,
+                              _("you are not in a team, create one below or request your team leader to invite you"))
+                resolved_login_url = reverse('register_team')
             path = request.build_absolute_uri()
-            messages.info(request,
-                          _("you are not in a team, create one below or request your team leader to invite you"))
-            resolved_login_url = reverse('register_team')
             login_scheme, login_netloc = urlparse(resolved_login_url)[:2]
             current_scheme, current_netloc = urlparse(path)[:2]
             if ((not login_scheme or login_scheme == current_scheme) and
@@ -48,6 +58,9 @@ def team_required(function=None):
 
 @login_required
 def register_team(request):
+    if registration_period_ended(request):
+        messages.error(request, _("registration period has ended"))
+        return redirect('teams_list')
     if request.user.team:
         return redirect('my_team')
     if request.method == 'POST':
@@ -69,7 +82,7 @@ def register_team(request):
 
 
 @login_required
-@team_required
+@team_required(register_period_only=True)
 def invite_member(request):
     if request.user.id != request.team.head_id:
         messages.error(request, _("only head can invite"))
@@ -118,6 +131,9 @@ def submit(request):
 
 @login_required
 def accept_invite(request, slug):
+    if registration_period_ended(request):
+        messages.error(request, _("registration period has ended"))
+        return redirect('teams_list')
     try:
         invitation = TeamInvitation.objects.get(slug=slug)
     except TeamInvitation.DoesNotExist:
@@ -149,7 +165,7 @@ def teams(request):
 
 
 @login_required
-@team_required
+@team_required(register_period_only=True)
 @require_POST
 def change_team_name(request, id):
     team_name_form = TeamNameForm(request.POST, instance=Team.objects.get(id=id))
@@ -201,6 +217,9 @@ def my_games(request):
 @team_required
 @require_POST
 def remove(request):
+    if registration_period_ended(request):
+        return HttpResponse(json.dumps({"success": False, "message": str(_("registration period has ended"))}),
+                            content_type='application/json')
     type = request.POST.get('type')
     id = request.POST.get('id')
     if type == 'team':
@@ -242,6 +261,9 @@ def remove(request):
 @team_required
 @require_POST
 def finalize(request):
+    if registration_period_ended(request):
+        return HttpResponse(json.dumps({"success": False, "message": str(_("registration period has ended"))}),
+                            content_type='application/json')
     id = request.POST.get('id')
     team = Team.objects.get(pk=id)
     is_head = request.team.head == request.user
@@ -268,6 +290,9 @@ def finalize(request):
 @team_required
 @require_POST
 def resend_invitation_mail(request):
+    if registration_period_ended(request):
+        return HttpResponse(json.dumps({"success": False, "message": str(_("registration period has ended"))}),
+                            content_type='application/json')
     id = request.POST.get('id')
     try:
         invitation = TeamInvitation.objects.get(pk=id)
@@ -292,6 +317,9 @@ def resend_invitation_mail(request):
 @team_required
 @require_POST
 def accept_decline_request(request):
+    if registration_period_ended(request):
+        return HttpResponse(json.dumps({"success": False, "message": str(_("registration period has ended"))}),
+                            content_type='application/json')
     try:
         req = JoinRequest.objects.get(pk=request.POST.get('id'))
     except JoinRequest.DoesNotExist:
@@ -319,6 +347,9 @@ def accept_decline_request(request):
 
 @login_required
 def request_join(request, team_id):
+    if registration_period_ended(request):
+        messages.error(request, _("registration period has ended"))
+        return redirect('teams_list')
     try:
         team = Team.objects.get(id=team_id)
     except Team.DoesNotExist:

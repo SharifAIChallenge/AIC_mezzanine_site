@@ -76,29 +76,62 @@
                     {% endif %}
                 {% endnevercache %}
 
-                {% if join_requests and not team.final %}
+                {% if sent_requests or received_requests %}
                     <div class="row">
                         <div class="col l12 s12 m12">
-                            <h4>{% trans 'join requests' %}</h4>
+                            <h4>{% trans 'Game requests' %}</h4>
                             <table class="table-striped ">
                                 <tr>
                                     <th>
-                                        {% trans 'name' %}
+                                        {% trans 'team' %}
                                     </th>
                                     <th>
-                                        {% trans 'accept' %}
+                                        {% trans 'timestamp' %}
                                     </th>
                                     <th>
-                                        {% trans 'decline' %}
+                                        {% trans 'status' %}
                                     </th>
                                 </tr>
-                                {% for req in join_requests %}
-                                    {% include 'custom/includes/join_requests_row.html' %}
+                                {% for request in received_requests %}
+                                    <tr>
+                                        <td>
+                                            {{ request.requester.name }}
+                                        </td>
+                                        <td>{{ request.made_time }}</td>
+                                        <td>
+                                            <a href="#" class="btn">{% trans 'accept' %}</a>
+                                            <a href="#" class="btn">{% trans 'reject' %}</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {% for request in sent_requests %}
+                                    <tr>
+                                        <td>{{ request.requestee.name }}</td>
+                                        <td>
+                                            {% if request.accepted %}
+                                                {{ request.accept_time }}
+                                            {% else %}
+                                                {{ request.made_time }}
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {% if request.accepted %}
+                                                {% if request.game %}
+                                                    <a href="{{ request.game.get_log_url }}">{% trans 'watch game' %}</a>
+                                                {% else %}
+                                                    {% trans 'waiting for run' %}
+                                                {% endif %}
+                                            {% else %}
+                                                {% trans 'waiting for accept' %}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
                                 {% endfor %}
                             </table>
                         </div>
                     </div>
                 {% endif %}
+                {% if participations %}
                 <div class="row">
                     <div class="col m12 s12 l12">
                         <table class="table-striped striped">
@@ -125,6 +158,7 @@
                         </table>
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -2579,3 +2579,15 @@ msgstr "فرستنده"
 
 msgid "c++"
 msgstr "‎C++‎"
+
+msgid "Game requests"
+msgstr "درخواست‌های بازی"
+
+msgid "waiting for accept"
+msgstr "در انتظار تأیید"
+
+msgid "waiting for run"
+msgstr "در انتظار اجرا"
+
+msgid "watch game"
+msgstr "مشاهده‌ی بازی"

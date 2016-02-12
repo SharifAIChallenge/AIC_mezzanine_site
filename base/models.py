@@ -173,6 +173,7 @@ class Message(models.Model):
 class GameRequest(models.Model):
     requester = models.ForeignKey('Team', verbose_name=_('requester'), related_name='+')
     requestee = models.ForeignKey('Team', verbose_name=_('requestee'), related_name='+')
+    made_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     accepted = models.NullBooleanField(_('state'))
     accept_time = models.DateTimeField(_('accept time'))
 

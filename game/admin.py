@@ -22,11 +22,11 @@ class GameAdmin(admin.ModelAdmin):
     search_fields = ("title",)
 
 
-class GameInline(admin.StackedInline):
-    model = Game
+# class GameInline(admin.StackedInline):
+#     model = Game
 
 
 @admin.register(GameTeamSubmit)
 class GameTeamSubmitAdmin(admin.ModelAdmin):
     list_display = ('submit', 'game', 'score')
-    inlines = [GameInline]
+    # inlines = [GameInline]

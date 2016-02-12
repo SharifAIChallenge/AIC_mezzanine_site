@@ -23,7 +23,10 @@ $(document).ready(function() {
     });
 
     $('.tooltipped').tooltip({delay: 50});
-	
+
+    $('button.close').on('click', function () {
+        $(this).parent('div.alert').remove();
+    });
 });
 
 

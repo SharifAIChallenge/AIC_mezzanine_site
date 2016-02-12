@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from base.models import Submit, Team, TeamInvitation, Member
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django_countries.widgets import CountrySelectWidget
 from mezzanine.accounts.forms import ProfileForm as mezzanine_profile_form
 from mezzanine.utils.email import send_mail_template
+
+from base.models import Submit, Team, TeamInvitation, Member
 
 
 class ProfileForm(mezzanine_profile_form):
@@ -31,8 +32,10 @@ class SubmitForm(forms.ModelForm):
 
     def clean_code(self):
         code = self.cleaned_data['code']
-        print ('submitted code with content type', code.content_type)
-        if not code.content_type in ['application/zip', 'application/x-zip']:
+        code_type = code.content_type.replace('"','')
+        print 'submitted code with content type', code_type
+        if code_type not in {u'application/zip', u'application/x-zip', u'application/x-gzip',
+                                     'application/x-gzip', 'application/zip', 'application/x-zip'}:
             # FIXME: should run `file` command to correctly determine file format
             raise forms.ValidationError(_('just upload zip files'))
         return code

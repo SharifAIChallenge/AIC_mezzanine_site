@@ -2560,3 +2560,22 @@ msgstr "زمان قبول"
 
 msgid "registration period has ended"
 msgstr "زمان ثبت‌نام به اتمام رسیده است"
+
+msgid "My Games"
+msgstr "بازی‌های من"
+
+msgid "requested by"
+msgstr "درخواست کننده"
+
+msgid "result"
+msgstr "نتیجه"
+
+msgid "previous submissions"
+msgstr "ارسال‌های قبلی"
+
+
+msgid "submitter"
+msgstr "فرستنده"
+
+msgid "c++"
+msgstr "‎C++‎"

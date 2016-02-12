@@ -22,10 +22,6 @@
         td.action-buttons {
             text-align: center;
         }
-
-        td {
-            vertical-align: middle;
-        }
     </style>
 {% endblock %}
 
@@ -222,7 +218,7 @@
                         <div class="row">
                             <div class="col l12 s12 m12">
                                 <h4>{% trans 'join requests' %}</h4>
-                                <table class="table-striped ">
+                                <table class="table-striped striped">
                                     <tr>
                                         <th>
                                             {% trans 'name' %}
@@ -310,13 +306,13 @@
                                 </button>
                             </a>
                         </div>
-                        {#                        <div class="col s4 m4 l4" style="text-align: center">#}
-                        {#                            <a href="{% url 'my_games' %}">#}
-                        {#                                <button type="button" class="btn waves-effect waves-green mygames">#}
-                        {#                                    {% trans 'My games' %}#}
-                        {#                                </button>#}
-                        {#                            </a>#}
-                        {#                        </div>#}
+                        <div class="col s4 m4 l4" style="text-align: center">
+                            <a href="{% url 'my_games' %}">
+                                <button type="button" class="btn waves-effect waves-green mygames">
+                                    {% trans 'My games' %}
+                                </button>
+                            </a>
+                        </div>
                     {% endif %}
                 </div>
                 <div class="px-20 vertical spacer"></div>

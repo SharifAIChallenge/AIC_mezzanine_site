@@ -58,6 +58,7 @@ class Submit(models.Model):
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     code = models.FileField(verbose_name=_('code'), upload_to='submits/temp')
     team = models.ForeignKey(Team, verbose_name=_('team'))
+    submitter = models.ForeignKey(Member, default=None, null=True, blank=True)
 
     compile_log_file = models.FileField(verbose_name=_('log file'), null=True, blank=True)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)

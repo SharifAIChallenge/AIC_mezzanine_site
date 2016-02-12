@@ -4,7 +4,7 @@ from functools import wraps
 from urlparse import urlparse
 
 from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm
-from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest
+from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -122,11 +122,16 @@ def submit(request):
         if form.is_valid():
             new_submit = form.save(commit=False)
             new_submit.team = request.team
+            new_submit.submitter = request.user
             new_submit.save()
             return redirect('my_team')
     else:
         form = SubmitForm()
-    return render(request, 'accounts/account_form.html', {'form': form, 'title': _('submit new code')})
+    return render(request, 'accounts/submit_code.html', {
+        'form': form,
+        'title': _('submit new code'),
+        'submissions': Submit.objects.filter(team=request.team).order_by('-timestamp').all()
+    })
 
 
 @login_required
@@ -211,6 +216,13 @@ def my_games(request):
     # TODO: mjafar, my scores are accessible from participation.score
     sent_requests = GameRequest.objects.filter(requester=request.team)
     received_requests = GameRequest.objects.filter(requestee=request.team)
+
+    return render(request, 'custom/my_games.html', context={
+        'team': request.user.team,
+        'participations': participations,
+        'sent_requests': sent_requests,
+        'received_requests': received_requests,
+    })
 
 
 @login_required

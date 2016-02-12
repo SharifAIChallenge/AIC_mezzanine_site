@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags %}
+
+{% block meta_title %}{% trans 'My Games' %}{% endblock %}
+{% block title %}{% trans 'My Games' %}{% endblock %}
+{% block extra_head %}
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    {% if not team.final %}
+        <script type="text/javascript">
+            $(function () {
+                var csrf_token = '{{ csrf_token }}';
+
+                $('.accept').on('click', function () {
+                    var $self = $(this);
+
+                    $self.addClass('disabled');
+                    $.ajax({
+                        url: accept_decline_url,
+                        method: 'post',
+                        data: {
+                            csrfmiddlewaretoken: csrf_token,
+                            id: $self.parents('tr').data('id'),
+                            type: 'accept'
+                        }
+                    }).success(function (response) {
+                        if (response['success']) {
+                            location.reload(true);
+                        } else {
+                            Materialize.toast(response['message'], 3000, 'rounded');
+                        }
+                    });
+                });
+                $('.decline').on('click', function () {
+                    var $self = $(this);
+
+                    $self.addClass('disabled');
+                    $.ajax({
+                        url: accept_decline_url,
+                        method: 'post',
+                        data: {
+                            csrfmiddlewaretoken: csrf_token,
+                            id: $self.parents('tr').data('id'),
+                            type: 'decline'
+                        }
+                    }).success(function (response) {
+                        if (response['success']) {
+                            location.reload(true);
+                        } else {
+                            Materialize.toast(response['message'], 3000, 'rounded');
+                        }
+                    });
+                });
+            });
+        </script>
+    {% endif %}
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col s12 m12 l8 offset-l2">
+            <div class="card-panel">
+                {% nevercache %}
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">&times;</button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endnevercache %}
+
+                {% if join_requests and not team.final %}
+                    <div class="row">
+                        <div class="col l12 s12 m12">
+                            <h4>{% trans 'join requests' %}</h4>
+                            <table class="table-striped ">
+                                <tr>
+                                    <th>
+                                        {% trans 'name' %}
+                                    </th>
+                                    <th>
+                                        {% trans 'accept' %}
+                                    </th>
+                                    <th>
+                                        {% trans 'decline' %}
+                                    </th>
+                                </tr>
+                                {% for req in join_requests %}
+                                    {% include 'custom/includes/join_requests_row.html' %}
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="row">
+                    <div class="col m12 s12 l12">
+                        <table class="table-striped striped">
+                            <tr>
+                                <th>
+                                    {% trans 'team' %}
+                                </th>
+                                <th>
+                                    {% trans 'requested by' %}
+                                </th>
+                                <th>
+                                    {% trans 'result' %}
+                                </th>
+                            </tr>
+
+                            {% for submission in participations %}
+                                <tr>
+                                    <td>bemanad</td>
+                                    <td>{{ submission.submit.submitter.name }}</td>
+                                    <td><a href="{{ submission.game.get_log_url }}">{{ submission.score }}</a></td>
+                                </tr>
+                            {% endfor %}
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

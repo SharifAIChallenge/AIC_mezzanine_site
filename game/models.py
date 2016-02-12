@@ -43,6 +43,10 @@ class Game(models.Model):
     def __unicode__(self):
         return self.title
 
+    def get_log_url(self):
+        # TODO: write this
+        return ''
+
     class Meta:
         verbose_name = _('game')
         verbose_name_plural = _('games')

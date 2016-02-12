@@ -145,3 +145,7 @@ th {
 .alert-error .alert-link {
     color: #953b39;
 }
+
+td {
+    vertical-align: middle;
+}

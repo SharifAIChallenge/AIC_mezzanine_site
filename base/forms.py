@@ -31,7 +31,9 @@ class SubmitForm(forms.ModelForm):
 
     def clean_code(self):
         code = self.cleaned_data['code']
-        if not code.content_type == 'application/zip':
+        print ('submitted code with content type', code.content_type)
+        if not code.content_type in ['application/zip', 'application/x-zip']:
+            # FIXME: should run `file` command to correctly determine file format
             raise forms.ValidationError(_('just upload zip files'))
         return code
 

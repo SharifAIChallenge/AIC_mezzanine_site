@@ -30,7 +30,7 @@ def team_required(function=None, register_period_only=False):
         def _wrapped_view(request, *args, **kwargs):
             if hasattr(request.user, 'team') and request.user.team:
                 if register_period_only and registration_period_ended(request):
-                    messages.info(request, _("registration period has ended"))
+                    messages.error(request, _("registration period has ended"))
                     resolved_login_url = reverse('my_team')
                 else:
                     request.team = request.user.team

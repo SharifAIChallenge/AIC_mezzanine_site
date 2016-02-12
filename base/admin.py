@@ -130,5 +130,5 @@ admin.site.register(Team, TeamAdmin)
 
 @admin.register(GameRequest)
 class GameRequestAdmin(admin.ModelAdmin):
-    list_display = ('requester', 'requestee', 'accepted', 'accepted_time')
+    list_display = ('requester', 'requestee', 'accepted', 'accept_time')
 

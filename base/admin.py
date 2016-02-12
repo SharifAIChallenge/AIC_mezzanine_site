@@ -84,10 +84,14 @@ class TeamResource(resources.ModelResource):
         fields = (
             'name',
             'timestamp',
+            'head__email',
+            'final',
         )
         export_order = (
             'name',
             'timestamp',
+            'head__email',
+            'final',
             'head',
             'member1',
             'member2',

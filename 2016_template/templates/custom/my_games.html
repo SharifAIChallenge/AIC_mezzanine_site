@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n mezzanine_tags %}
+{% load i18n mezzanine_tags other_ssc_tags jdate_tags %}
 
 {% block meta_title %}{% trans 'My Games' %}{% endblock %}
 {% block title %}{% trans 'My Games' %}{% endblock %}
@@ -85,7 +85,15 @@
                                         <td>
                                             {{ request.requester.name }}
                                         </td>
-                                        <td>{{ request.made_time }}</td>
+                                        <td>
+                                            {% if LANGUAGE_BIDI %}
+                                            {{ request.made_time|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits }}
+                                            ساعت
+                                            {{ request.made_time|date:'G:i'|farsi_digits }}
+                                            {% else %}
+                                            {{ request.made_time }}
+                                            {% endif %}
+                                        </td>
                                         <td>
                                             <a href="#" class="btn game-request accept"
                                                data-id="{{ request.pk }}">{% trans 'accept' %}</a>
@@ -99,9 +107,21 @@
                                         <td>{{ request.requestee.name }}</td>
                                         <td>
                                             {% if request.is_responded %}
-                                                {{ request.accept_time }}
+                                                {% if LANGUAGE_BIDI %}
+                                                    {{ request.accept_time|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits }}
+                                                    ساعت
+                                                    {{ request.accept_time|date:'G:i'|farsi_digits }}
+                                                {% else %}
+                                                    {{ request.accept_time }}
+                                                {% endif %}
                                             {% else %}
-                                                {{ request.made_time }}
+                                                {% if LANGUAGE_BIDI %}
+                                                    {{ request.made_time|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits }}
+                                                    ساعت
+                                                    {{ request.made_time.time|date:'G:i'|farsi_digits }}
+                                                {% else %}
+                                                    {{ request.made_time }}
+                                                {% endif %}
                                             {% endif %}
                                         </td>
                                         <td>

@@ -165,16 +165,21 @@ def teams(request):
     teams = Team.objects.exclude(show=False)
     if request.GET.get('final', '0') == '1':
         teams = teams.filter(final=True)
-    teams = teams.all()
 
-    show_friendly_button = True
-    if not request.user.team or not request.user.team.final:
-        show_friendly_button = False
-    # TODO: check time restriction and stuff
+    show_friendly_button = False
+    wait_time = 0
+    if hasattr(request.user, 'team') and request.user.team:
+        show_friendly_button = True
+        if not request.user.team.final:
+            show_friendly_button = False
+        wait_time = GameRequest.check_last_time(request.user.team)
+        if wait_time:
+            show_friendly_button = False
 
     return render(request, 'custom/teams_list.html', {
         'teams': teams,
         'show_friendly_button': show_friendly_button,
+        'wait_time': wait_time,  # TODO: mjafar, you can show this in template(even a countdown!)
     })
 
 
@@ -222,7 +227,6 @@ def my_games(request):
         return redirect('my_team')
 
     participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game')
-    # TODO: mjafar, my scores are accessible from participation.score
     sent_requests = GameRequest.objects.filter(requester=request.team)
     received_requests = GameRequest.objects.filter(requestee=request.team)
 
@@ -239,33 +243,39 @@ def my_games(request):
 @require_POST
 def handle_game_request(request):
     if not request.team.final:
-        return HttpResponse({
+        return HttpResponse(json.dumps({
             'success': False,
-            'message': _('your team must be final')
-        }, content_type='application/json')
+            'message': str(_('your team must be final'))
+        }), content_type='application/json')
 
     try:
         game_request = GameRequest.objects.get(id=request.POST.get('id'), requestee=request.team)
     except GameRequest.DoesNotExist:
-        return HttpResponse({
+        return HttpResponse(json.dumps({
             'success': False,
-            'message': _('No such game request found')
-        }, content_type='application/json')
+            'message': str(_('No such game request found'))
+        }), content_type='application/json')
 
     if 'status' not in request.POST or request.POST.get('status') not in {'accept', 'reject'}:
-        return HttpResponse({
+        return HttpResponse(json.dumps({
             'success': False,
-            'message': _('Bad request')
-        }, content_type='application/json')
+            'message': str(_('Bad request'))
+        }), content_type='application/json')
     else:
         accept = request.POST['status'] == 'accept'
 
-    game_request.accept(accept)
+    wait = game_request.accept(accept)
+    if wait:
+        return HttpResponse(json.dumps({
+            'success': False,
+            'message': str(_('this team can not play for %d minutes') % wait)
+        }), content_type='application/json')
 
-    return HttpResponse({
+    return HttpResponse(json.dumps({
         'success': True,
-        'message': _('Done')
-    }, content_type='application/json')
+        'message': str(_('Done'))
+    }), content_type='application/json')
+
 
 @login_required
 @team_required
@@ -275,15 +285,19 @@ def game_request(request):
         messages.error(request, _('your team must be final'))
         return HttpResponseRedirect(reverse('teams_list') + '?final=1')
 
-    # TODO: check time restriction between requests
-
     if 'team_id' not in request.POST:
         return HttpResponseBadRequest()
 
-    GameRequest.objects.create(
-        requester=request.team,
-        requestee_id=request.POST.get('team_id')
-    )
+    try:
+        team = Team.objects.get(id=request.POST.get('team_id'))
+    except Team.DoesNotExist:
+        raise Http404()
+
+    wait = GameRequest.create(requester=request.team, requestee=team)
+    if wait:
+        messages.error(request, _('you must wait %d minutes before another request') % wait)
+        return HttpResponseRedirect(reverse('teams_list') + '?final=1')
+
     messages.info(request, _('Challenged the team successfully'))
     return redirect('my_games')
 

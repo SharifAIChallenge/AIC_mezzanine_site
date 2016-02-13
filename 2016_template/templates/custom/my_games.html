@@ -87,11 +87,11 @@
                                         </td>
                                         <td>
                                             {% if LANGUAGE_BIDI %}
-                                            {{ request.made_time|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits }}
-                                            ساعت
-                                            {{ request.made_time|date:'G:i'|farsi_digits }}
+                                                {{ request.made_time|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits }}
+                                                ساعت
+                                                {{ request.made_time|date:'G:i'|farsi_digits }}
                                             {% else %}
-                                            {{ request.made_time }}
+                                                {{ request.made_time }}
                                             {% endif %}
                                         </td>
                                         <td>
@@ -151,10 +151,10 @@
                             <table class="table-striped striped">
                                 <tr>
                                     <th>
-                                        {% trans 'team' %}
+                                        {% trans 'type' %}
                                     </th>
                                     <th>
-                                        {% trans 'requested by' %}
+                                        {% trans 'team' %}
                                     </th>
                                     <th>
                                         {% trans 'result' %}
@@ -163,8 +163,8 @@
 
                                 {% for submission in participations %}
                                     <tr>
-                                        <td>bemanad</td>
-                                        <td>{{ submission.submit.submitter.name }}</td>
+                                        <td>{{ submission.game.get_game_type_display }}</td>
+                                        <td>{{ submission.game.get_participants }}</td>
                                         <td><a href="{{ submission.game.get_log_url }}">{{ submission.score }}</a></td>
                                     </tr>
                                 {% endfor %}

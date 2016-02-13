@@ -30,16 +30,6 @@ class SubmitForm(forms.ModelForm):
         model = Submit
         fields = ('pl', 'code',)
 
-    def clean_code(self):
-        code = self.cleaned_data['code']
-        code_type = code.content_type.replace('"','')
-        print 'submitted code with content type', code_type
-        if code_type not in {u'application/zip', u'application/x-zip', u'application/x-gzip',
-                                     'application/x-gzip', 'application/zip', 'application/x-zip'}:
-            # FIXME: should run `file` command to correctly determine file format
-            raise forms.ValidationError(_('just upload zip files'))
-        return code
-
 
 class TeamForm(forms.ModelForm):
     class Meta:

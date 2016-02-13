@@ -2600,3 +2600,11 @@ msgstr "بازی دوستانه"
 
 msgid "Challenged the team successfully"
 msgstr "تیم مورد نظر به بازی دوستانه دعوت شد"
+
+#, python-format
+msgid "you must wait %d minutes before another request"
+msgstr "شما باید %d دقیقه تا درخواست بعدی صبر کنید"
+
+#, python-format
+msgid "this team can not play for %d minutes"
+msgstr "این تیم تا %d دقیقه دیگر نمی‌تواند بازی کند"

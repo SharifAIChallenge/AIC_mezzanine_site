@@ -8,7 +8,7 @@ from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models import SET_NULL
+from django.db.models import SET_NULL, Max
 from django.db.models.signals import post_save
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -177,14 +177,33 @@ class GameRequest(models.Model):
     requestee = models.ForeignKey('Team', verbose_name=_('requestee'), related_name='+')
     made_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     accepted = models.NullBooleanField(_('state'))
-    accept_time = models.DateTimeField(_('accept time'), default=None, null=True, blank=True)
+    accept_time = models.DateTimeField(_('accept time'), null=True, blank=True)
 
     game = models.ForeignKey('game.Game', null=True)
 
     def is_responded(self):
-        return self.accept_time != None
+        return self.accept_time is not None
+
+    @classmethod
+    def create(cls, requester, requestee):
+        wait = cls.check_last_time(requester)
+        if wait:
+            return wait
+
+        cls.objects.create(requester=requester, requestee=requestee)
+
+    @classmethod
+    def check_last_time(cls, team):
+        last_time = cls.objects.filter(requester=team, accepted=True).aggregate(Max('accept_time'))['accept_time__max']
+        if last_time:
+            now = timezone.now()
+            return int((now - last_time).total_seconds() / 60)
 
     def accept(self, accepted):
+        wait = GameRequest.check_last_time(self.requester)
+        if wait:
+            return wait
+
         self.accepted = accepted
         self.accept_time = timezone.now()
         if accepted:

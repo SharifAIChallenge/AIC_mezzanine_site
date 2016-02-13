@@ -16,7 +16,6 @@ def question_and_answer_page_processor(request, page):
         question = question_form.save(page.qapage, request.user)
 
         fields = [('questioner', question.questioner), ('question', question.question)]
-        print(fields)
         send_mail_template(page.title, 'email/form_response', None, page.qapage.responder_mail,
                            context={'message': _('A new question is waiting for you!'), 'fields': fields})
 

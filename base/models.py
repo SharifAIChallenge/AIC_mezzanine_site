@@ -3,6 +3,7 @@ import base64
 import uuid
 
 import re
+
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
@@ -24,20 +25,12 @@ class Member(AbstractUser):
 
 
 class Team(models.Model):
-    WILL_COME_CHOICES = (
-        (0, _('yes')),
-        (1, _('no')),
-        (2, _('not decided yet')),
-    )
-
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=True)
     name = models.CharField(verbose_name=_('name'), max_length=200)
     head = models.ForeignKey('base.Member', verbose_name=_("team head"), related_name='+')
     show = models.BooleanField(default=True, verbose_name=_("show team in public list"))
     final = models.BooleanField(default=False, verbose_name=_("team is final"))
-
-    will_come = models.PositiveSmallIntegerField(verbose_name=_("will come to site"), choices=WILL_COME_CHOICES, default=2)
 
     def __unicode__(self):
         return 'Team%d(%s)' % (self.id, self.name)
@@ -50,14 +43,26 @@ class Team(models.Model):
         return self.member_set.exclude(pk=self.head.pk).distinct()
 
 
-class Submit(models.Model):
-    PL_CHOICES = (
-        ('jav', 'java'),
-        ('cpp', 'c++'),
-        # ('py2', 'python2'),
-        ('py3', 'python3'),
-    )
+class ProgrammingLanguage(models.Model):
+    name = models.CharField(verbose_name='title', max_length=200)
+    compile_container = models.ForeignKey('base.DockerContainer', verbose_name=_('compile container'), related_name='+')
+    execute_container = models.ForeignKey('base.DockerContainer', verbose_name=_('execute container'), related_name='+')
 
+
+class ServerConfiguration(models.Model):
+    compiled_code = models.FileField(verbose_name=_('compiled code'))
+    execute_container = models.ForeignKey('base.DockerContainer', verbose_name=_('execute container'), related_name='+')
+
+
+class DockerContainer(models.Model):
+    tag = models.CharField(verbose_name=_('tag'), max_length=50)
+    description = models.TextField(verbose_name=_('description'))
+    dockerfile = models.FileField(verbose_name=_('compile dockerfile'), upload_to='dockerfiles/')
+    version = models.PositiveSmallIntegerField(verbose_name=_('version'), default=1)
+    build_log = models.FileField(verbose_name=_('build log'), null=True, blank=True)
+
+
+class Submit(models.Model):
     STATUSES = (
         (0, _('waiting')),
         (1, _('compiling')),
@@ -70,10 +75,12 @@ class Submit(models.Model):
     team = models.ForeignKey(Team, verbose_name=_('team'))
     submitter = models.ForeignKey(Member, default=None, null=True, blank=True)
 
+    compiled_code = models.FileField(verbose_name=_('compiled code'), null=True, blank=True)
     compile_log_file = models.FileField(verbose_name=_('log file'), null=True, blank=True)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
-    pl = models.CharField(verbose_name=_("programming language"), choices=PL_CHOICES, null=True, max_length=3)
+    # todo: filter to Competition's supported languages
+    lang = models.ForeignKey('base.ProgrammingLanguage', verbose_name=_('programming language'))
 
     played = models.IntegerField(verbose_name=_('played'), default=0)
     won = models.IntegerField(verbose_name=_('won'), default=0)

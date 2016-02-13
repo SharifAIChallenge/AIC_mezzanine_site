@@ -17,4 +17,5 @@ urlpatterns = patterns(
     url("^join/(?P<team_id>[0-9]+)$", 'request_join', name="request_join"),
     url("^finalize$", 'finalize', name="finalize"),
     url("^gamerequest/handle", 'handle_game_request', name='handle_game_request'),
+    url("^gamerequest", 'game_request', name='game_request'),
 )

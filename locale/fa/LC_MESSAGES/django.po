@@ -2594,3 +2594,9 @@ msgstr "مشاهده‌ی بازی"
 
 msgid "friendly game"
 msgstr "بازی دوستانه"
+
+msgid "Challenge"
+msgstr "بازی دوستانه"
+
+msgid "Challenged the team successfully"
+msgstr "تیم مورد نظر به بازی دوستانه دعوت شد"

@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.utils import timezone
 from django.utils.translation import get_language_from_request
@@ -166,7 +166,16 @@ def teams(request):
     if request.GET.get('final', '0') == '1':
         teams = teams.filter(final=True)
     teams = teams.all()
-    return render(request, 'custom/teams_list.html', {'teams': teams})
+
+    show_friendly_button = True
+    if not request.user.team or not request.user.team.final:
+        show_friendly_button = False
+    # TODO: check time restriction and stuff
+
+    return render(request, 'custom/teams_list.html', {
+        'teams': teams,
+        'show_friendly_button': show_friendly_button,
+    })
 
 
 @login_required
@@ -257,6 +266,26 @@ def handle_game_request(request):
         'success': True,
         'message': _('Done')
     }, content_type='application/json')
+
+@login_required
+@team_required
+@require_POST
+def game_request(request):
+    if not request.team.final:
+        messages.error(request, _('your team must be final'))
+        return HttpResponseRedirect(reverse('teams_list') + '?final=1')
+
+    # TODO: check time restriction between requests
+
+    if 'team_id' not in request.POST:
+        return HttpResponseBadRequest()
+
+    GameRequest.objects.create(
+        requester=request.team,
+        requestee_id=request.POST.get('team_id')
+    )
+    messages.info(request, _('Challenged the team successfully'))
+    return redirect('my_games')
 
 
 @login_required

@@ -38,18 +38,13 @@
                 <table class="teams-list">
                     <tr>
                         <th>#</th>
-                        <th>
-                            {% trans 'name' %}
-                        </th>
-                        <th>
-                            {% trans 'team head' %}
-                        </th>
-                        <th>
-                            {% trans 'member' %}
-                        </th>
-                        <th>
-                            {% trans 'member' %}
-                        </th>
+                        <th>{% trans 'name' %}</th>
+                        <th>{% trans 'team head' %}</th>
+                        <th>{% trans 'member' %}</th>
+                        <th>{% trans 'member' %}</th>
+                        {% if show_friendly_button %}
+                        <th>{% trans 'friendly game' %}</th>
+                        {% endif %}
                     </tr>
                     {% for team in teams %}
                         <tr{% if not team.final %} class="non-final"{% endif %}>
@@ -94,6 +89,15 @@
                                     {% endif %}
                                 {% endif %}
                             {% endif %}</td>
+                        {% if show_friendly_button and team.final and team != request.user.team %}
+                            <td>
+                                <form method="post" action="{% url 'game_request' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="team_id" value="{{ team.pk }}" />
+                                    <button type="submit" class="btn btn-primary">{% trans 'Challenge' %}</button>
+                                </form>
+                            </td>
+                        {% endif %}
                         </tr>
                     {% endfor %}
                 </table>

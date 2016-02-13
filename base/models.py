@@ -177,9 +177,12 @@ class GameRequest(models.Model):
     requestee = models.ForeignKey('Team', verbose_name=_('requestee'), related_name='+')
     made_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     accepted = models.NullBooleanField(_('state'))
-    accept_time = models.DateTimeField(_('accept time'))
+    accept_time = models.DateTimeField(_('accept time'), default=None, null=True, blank=True)
 
     game = models.ForeignKey('game.Game', null=True)
+
+    def is_responded(self):
+        return self.accept_time != None
 
     def accept(self, accepted):
         self.accepted = accepted

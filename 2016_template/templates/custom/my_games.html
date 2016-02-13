@@ -98,14 +98,14 @@
                                     <tr>
                                         <td>{{ request.requestee.name }}</td>
                                         <td>
-                                            {% if request.accept_time %}
+                                            {% if request.is_responded %}
                                                 {{ request.accept_time }}
                                             {% else %}
                                                 {{ request.made_time }}
                                             {% endif %}
                                         </td>
                                         <td>
-                                            {% if request.accept_time %}
+                                            {% if request.is_responded %}
                                                 {% if request.accepted %}
                                                     {% if request.game %}
                                                         <a href="{{ request.game.get_log_url }}">{% trans 'watch game' %}</a>

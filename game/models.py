@@ -15,6 +15,12 @@ class Competition(models.Model):
     registration_start_date = models.DateTimeField(verbose_name=_("registration start date"), null=True)
     registration_finish_date = models.DateTimeField(verbose_name=_("registration finish date"), null=True)
 
+    players_per_game = models.PositiveIntegerField(verbose_name=_("number of players per game"), default=2, blank=True)
+    supported_langs = models.ManyToManyField('base.ProgrammingLanguage', verbose_name=_("supported languages"), blank=True)
+    composer = models.FileField(verbose_name=_("docker composer"), null=True, blank=True)
+    server = models.ForeignKey('base.DockerContainer', verbose_name=_("server container"), null=True, blank=True)
+    additional_containers = models.ManyToManyField('base.DockerContainer', verbose_name=_("additional containers"), related_name='+', blank=True)
+
     def __unicode__(self):
         return self.title
 

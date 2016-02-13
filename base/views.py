@@ -3,7 +3,7 @@ import json
 from functools import wraps
 from urlparse import urlparse
 
-from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm
+from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm, WillComeForm
 from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -202,6 +202,13 @@ def change_team_name(request, id):
 @login_required
 @team_required
 def my_team(request):
+    if request.method == 'POST':
+        will_come_form = WillComeForm(request.POST, instance=request.team)
+        if will_come_form.is_valid():
+            will_come_form.save()
+            return redirect('my_team')
+    else:
+        will_come_form = WillComeForm(instance=request.team)
     for message in Message.objects.filter(to_date__gte=timezone.now(), from_date__lte=timezone.now()):
         if get_language_from_request(request).startswith('en'):
             messages.info(request, message.english_text)
@@ -216,6 +223,7 @@ def my_team(request):
         'team_name_form': team_name_form,
         'invited_members': invited_members,
         'join_requests': join_requests,
+        'will_come_form': will_come_form,
     })
 
 

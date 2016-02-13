@@ -192,9 +192,23 @@
                     {% endif %}
                 {% endnevercache %}
 
+                <h4>{% trans 'team' %}</h4>
+                <p class="muted">{{ team.name }}</p>
+                <div class="row">
+                    <form method="post">
+                        {% csrf_token %}
+                        <label for="{{ will_come_form.id_for_will_come }}">
+                            {% blocktrans %}
+                                {#TODO#}
+                            {% endblocktrans %}
+                        </label>
+                        {{ will_come_form.will_come }}
+                        <button type="submit" class="btn waves-effect waves-blue">
+                            {% trans 'submit opinion' %}</button>
+                    </form>
+                </div>
+
                 {% if request.user == team.head %}
-                    <h4>{% trans 'team' %}</h4>
-                    <p class="muted">{{ team.name }}</p>
                     {% if not team.final %}
                         <div class="row">
                             <div class="center-align col m12 s4 l4">

@@ -68,4 +68,9 @@ class InvitationForm(forms.Form):
                                                        'abs_link': invitation.accept_link,
                                                        'current_host': host})
 
-        return
+
+class WillComeForm(forms.ModelForm):
+    class Meta:
+        model = Team
+        fields = ('will_come',)
+        widgets = {'will_come': forms.RadioSelect}

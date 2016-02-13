@@ -2608,3 +2608,18 @@ msgstr "شما باید %d دقیقه تا درخواست بعدی صبر کنی
 #, python-format
 msgid "this team can not play for %d minutes"
 msgstr "این تیم تا %d دقیقه دیگر نمی‌تواند بازی کند"
+
+msgid "yes"
+msgstr "بله"
+
+msgid "no"
+msgstr "خیر"
+
+msgid "not decided yet"
+msgstr "هنوز تصمیم نگرفته‌ام"
+
+msgid "submit opinion"
+msgstr "ثبت نظر"
+
+msgid "will come to site"
+msgstr "به مرحله حضوری می‌آید"

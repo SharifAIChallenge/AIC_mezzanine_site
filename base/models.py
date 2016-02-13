@@ -80,7 +80,7 @@ class Submit(models.Model):
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
     # todo: filter to Competition's supported languages
-    lang = models.ForeignKey('base.ProgrammingLanguage', verbose_name=_('programming language'))
+    lang = models.ForeignKey('base.ProgrammingLanguage', verbose_name=_('programming language'), null=True)
 
     played = models.IntegerField(verbose_name=_('played'), default=0)
     won = models.IntegerField(verbose_name=_('won'), default=0)

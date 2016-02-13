@@ -21,5 +21,5 @@ class ForceDefaultLanguageMiddleware(object):
         else:
             country_code = 'IR'
         if country_code == 'IR':
-            if 'HTTP_ACCEPT_LANGUAGE' in request.META:
+            if request.META.has_key('HTTP_ACCEPT_LANGUAGE'):
                 del request.META['HTTP_ACCEPT_LANGUAGE']

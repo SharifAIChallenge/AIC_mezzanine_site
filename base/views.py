@@ -251,9 +251,7 @@ def handle_game_request(request):
     else:
         accept = request.POST['status'] == 'accept'
 
-    game_request.accepted = accept
-    game_request.accept_time = timezone.now()
-    game_request.save()
+    game_request.accept(accept)
 
     return HttpResponse({
         'success': True,

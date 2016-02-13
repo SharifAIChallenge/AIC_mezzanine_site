@@ -31,7 +31,7 @@
                         }
                     }).success(function (response) {
                         if (response['success']) {
-                            Materialize.toast(response['message'], 1000, 'rounded', function() {
+                            Materialize.toast(response['message'], 1000, 'rounded', function () {
                                 location.reload(true);
                             });
                         } else {
@@ -87,8 +87,10 @@
                                         </td>
                                         <td>{{ request.made_time }}</td>
                                         <td>
-                                            <a href="#" class="btn game-request accept" data-id="{{ request.pk }}">{% trans 'accept' %}</a>
-                                            <a href="#" class="btn game-request reject" data-id="{{ request.pk }}">{% trans 'reject' %}</a>
+                                            <a href="#" class="btn game-request accept"
+                                               data-id="{{ request.pk }}">{% trans 'accept' %}</a>
+                                            <a href="#" class="btn game-request reject"
+                                               data-id="{{ request.pk }}">{% trans 'reject' %}</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -124,32 +126,32 @@
                     </div>
                 {% endif %}
                 {% if participations %}
-                <div class="row">
-                    <div class="col m12 s12 l12">
-                        <table class="table-striped striped">
-                            <tr>
-                                <th>
-                                    {% trans 'team' %}
-                                </th>
-                                <th>
-                                    {% trans 'requested by' %}
-                                </th>
-                                <th>
-                                    {% trans 'result' %}
-                                </th>
-                            </tr>
-
-                            {% for submission in participations %}
+                    <div class="row">
+                        <div class="col m12 s12 l12">
+                            <table class="table-striped striped">
                                 <tr>
-                                    <td>bemanad</td>
-                                    <td>{{ submission.submit.submitter.name }}</td>
-                                    <td><a href="{{ submission.game.get_log_url }}">{{ submission.score }}</a></td>
+                                    <th>
+                                        {% trans 'team' %}
+                                    </th>
+                                    <th>
+                                        {% trans 'requested by' %}
+                                    </th>
+                                    <th>
+                                        {% trans 'result' %}
+                                    </th>
                                 </tr>
-                            {% endfor %}
 
-                        </table>
+                                {% for submission in participations %}
+                                    <tr>
+                                        <td>bemanad</td>
+                                        <td>{{ submission.submit.submitter.name }}</td>
+                                        <td><a href="{{ submission.game.get_log_url }}">{{ submission.score }}</a></td>
+                                    </tr>
+                                {% endfor %}
+
+                            </table>
+                        </div>
                     </div>
-                </div>
                 {% endif %}
             </div>
         </div>

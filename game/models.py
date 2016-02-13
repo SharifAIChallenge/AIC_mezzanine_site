@@ -2,6 +2,7 @@
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from game.tasks import run_game
 
 
 class Competition(models.Model):
@@ -40,16 +41,24 @@ class Game(models.Model):
 
     game_type = models.PositiveSmallIntegerField(verbose_name=_('game type'), choices=GAME_TYPES, default=0)
 
+    class Meta:
+        verbose_name = _('game')
+        verbose_name_plural = _('games')
+
     def __unicode__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.config:
+            self.config = ''  # TODO: where are they?
+        super(Game, self).save(*args, **kwargs)
 
     def get_log_url(self):
         # TODO: write this
         return ''
 
-    class Meta:
-        verbose_name = _('game')
-        verbose_name_plural = _('games')
+    def run(self):
+        run_game.delay(self.id)
 
 
 class GameTeamSubmit(models.Model):

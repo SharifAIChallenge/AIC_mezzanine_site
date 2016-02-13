@@ -2591,3 +2591,6 @@ msgstr "در انتظار اجرا"
 
 msgid "watch game"
 msgstr "مشاهده‌ی بازی"
+
+msgid "friendly game"
+msgstr "بازی دوستانه"

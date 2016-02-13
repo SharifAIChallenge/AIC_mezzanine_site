@@ -10,8 +10,10 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import SET_NULL
 from django.db.models.signals import post_save
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
+from game.models import Game, GameTeamSubmit
 
 
 class Member(AbstractUser):
@@ -178,3 +180,18 @@ class GameRequest(models.Model):
     accept_time = models.DateTimeField(_('accept time'))
 
     game = models.ForeignKey('game.Game', null=True)
+
+    def accept(self, accepted):
+        self.accepted = accepted
+        self.accept_time = timezone.now()
+        if accepted:
+            self.game = Game.objects.create(
+                competition=self.requestee.competition,
+                title=_('friendly game'),
+                game_type=1,
+            )
+            # TODO: better for teams to have final submit
+            GameTeamSubmit.objects.create(game=self.game, submit=self.requestee.submit_set.last())
+            GameTeamSubmit.objects.create(game=self.game, submit=self.requester.submit_set.last())
+            self.game.run()
+        self.save()

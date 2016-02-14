@@ -35,3 +35,8 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'some_user'
 EMAIL_HOST_PASSWORD = 'TOPSECRET'
 DEFAULT_FROM_EMAIL = 'YOUR NAME <someone@somehost>'
+
+
+SFTP_STORAGE_HOST = 'localhost'
+SFTP_STORAGE_ROOT = '/home/user/media'
+SFTP_STORAGE_PARAMS = {'username': 'user'}

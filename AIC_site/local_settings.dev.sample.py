@@ -31,3 +31,8 @@ EMAIL_HOST_PASSWORD = 'TOPSECRET'
 EMAIL_PORT = 25
 EMAIL_USE_TLS = True
 "A_TOP_SECRET_KEY"
+
+
+SFTP_STORAGE_HOST = 'localhost'
+SFTP_STORAGE_ROOT = '/home/user/media'
+SFTP_STORAGE_PARAMS = {'username': 'user'}

@@ -274,37 +274,27 @@
                 </div>
                 <div class="row" style="background: rgba(255, 250, 0, 0.2); margin-right: -20px; margin-left: -20px;">
                     <div class="col m12 s12 l12" style="padding: 10px 28px;">
-                    <form method="post" action="{% url 'my_team' %}">
-                        {% csrf_token %}
-                        <p>
-{#                            {% blocktrans %}#}
-{#                                TODO#}
-{#                            {% endblocktrans %}#}
-                        </p>
-{#                        {{ will_come_form.as_p }}#}
-                        <label>{% trans 'Will you participate in Tehran site competition?' %}</label>
-                        {% if LANGUAGE_BIDI %}
-                        <p style="text-align: right;">
-                            <input id="id_will_come_0" class="with-gap" name="will_come" type="radio" value="0"/>
-                            <label for="id_will_come_0">{% trans 'yes' %}</label>
-                            <input id="id_will_come_1" class="with-gap" name="will_come" type="radio" value="1"/>
-                            <label for="id_will_come_1">{% trans 'no' %}</label>
-                            <input id="id_will_come_2" class="with-gap" name="will_come" type="radio" value="2"/>
-                            <label for="id_will_come_2">{% trans 'not decided yet' %}</label>
-                        </p>
-                        {% else %}
+                        <form method="post" action="{% url 'my_team' %}">
+                            {% csrf_token %}
+                            <label>{% trans 'Will you participate in Tehran site competition?' %}</label>
+                            <p {% if LANGUAGE_BIDI %}style="text-align: right;"{% endif %}>
+                                <input id="id_will_come_0"
+                                       {% if will_come_form.will_come.value == 0 %}checked {% endif %}class="with-gap"
+                                       name="will_come" type="radio" value="0"/>
+                                <label for="id_will_come_0">{% trans 'yes' %}</label>
+                                <input id="id_will_come_1"
+                                       {% if will_come_form.will_come.value == 1 %}checked {% endif %}class="with-gap"
+                                       name="will_come" type="radio" value="1"/>
+                                <label for="id_will_come_1">{% trans 'no' %}</label>
+                                <input id="id_will_come_2"
+                                       {% if will_come_form.will_come.value == 2 %}checked {% endif %}class="with-gap"
+                                       name="will_come" type="radio" value="2"/>
+                                <label for="id_will_come_2">{% trans 'not decided yet' %}</label>
+                            </p>
 
-                        <p>
-                            <input id="id_will_come_0" class="with-gap" name="will_come" type="radio" value="0"/>
-                            <label for="id_will_come_0">{% trans 'yes' %}</label>
-                            <input id="id_will_come_1" class="with-gap" name="will_come" type="radio" value="1"/>
-                            <label for="id_will_come_1">{% trans 'no' %}</label>
-                            <input id="id_will_come_2" class="with-gap" name="will_come" type="radio" value="2"/>
-                            <label for="id_will_come_2">{% trans 'not decided yet' %}</label>
-                        </p>
-                        {% endif %}
-                        <button type="submit" class="btn waves-effect waves-blue">{% trans 'submit opinion' %}</button>
-                    </form>
+                            <button type="submit" class="btn waves-effect waves-blue">
+                                {% trans 'submit opinion' %}</button>
+                        </form>
                     </div>
                 </div>
                 <div class="px-20 vertical spacer"></div>

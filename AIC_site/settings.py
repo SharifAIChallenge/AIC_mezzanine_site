@@ -124,7 +124,6 @@ DEBUG = False
 # Whether a user's session cookie expires when the Web browser is closed.
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 
-
 AUTH_USER_MODEL = 'base.Member'
 
 # If you set this to False, Django will make some optimizations so as not
@@ -244,7 +243,6 @@ INSTALLED_APPS = (
     "django_countries",
     "django_gravatar",
 
-
     'ckeditor',
 
     'raven.contrib.django.raven_compat',
@@ -301,7 +299,6 @@ MIDDLEWARE_CLASSES = (
 PACKAGE_NAME_FILEBROWSER = "filebrowser_safe"
 PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
 
-
 FILEBROWSER_EXTENSIONS = {
     'Folder': [''],
     'Image': ['.jpg', '.jpeg', '.gif', '.png', '.tif', '.tiff', '.svg', '.mp4'],
@@ -312,7 +309,6 @@ FILEBROWSER_EXTENSIONS = {
     'Achieve': ['.zip', '.tar', '.tar.gz'],
     'Custom': ['.map', ]
 }
-
 
 #########################
 # OPTIONAL APPLICATIONS #
@@ -329,54 +325,6 @@ OPTIONAL_APPS = (
 
 RAVEN_CONFIG = {
     'dsn': 'http://f6e84572aef74086a69ff611fe8eacba:bc2fcec591574775a7ca16e492a990fd@aichallenge.sharif.edu:4444/2'
-}
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'django.utils.log.NullHandler',
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-        },
-        'mail_admin': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'include_html': True,
-        },
-        'sentry': {
-            'level': 'ERROR',
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-        },
-    },
-    'loggers': {
-        '': {
-            'handlers': ['console', 'sentry'],
-            'level': 'WARNING',
-        },
-        'AIC_site': {
-            'handlers': ['console', 'sentry'],
-            'level': 'DEBUG',
-        },
-        'sync': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
-        'django.request': {
-            'handlers': ['console'],
-            # 'filters': ['require_debug_false'], # means when debug set to false do logging
-            'level': 'WARNING',
-        },
-        # For performance reasons, SQL logging is only enabled when settings.DEBUG is set to True
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'WARNING',
-        },
-    }
 }
 
 LOGIN_URL = "/login/"
@@ -401,7 +349,6 @@ CELERY_EMAIL_TASK_CONFIG = {
     'queue': 'mail_queue',
 }
 CELERY_EMAIL_CHUNK_SIZE = 1
-
 
 ##################
 # LOCAL SETTINGS #
@@ -434,3 +381,51 @@ except ImportError:
     pass
 else:
     set_dynamic_settings(globals())
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'django.utils.log.NullHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+        'mail_admin': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+        },
+        'sentry': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.NullHandler' if DEBUG else 'raven.contrib.django.raven_compat.handlers.SentryHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console', 'sentry'],
+            'level': 'WARNING',
+        },
+        'AIC_site': {
+            'handlers': ['console', 'sentry'],
+            'level': 'DEBUG',
+        },
+        'sync': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'django.request': {
+            'handlers': ['console'],
+            # 'filters': ['require_debug_false'], # means when debug set to false do logging
+            'level': 'WARNING',
+        },
+        # For performance reasons, SQL logging is only enabled when settings.DEBUG is set to True
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'WARNING',
+        },
+    }
+}

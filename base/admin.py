@@ -62,7 +62,7 @@ admin.site.register(Member, MemberAdmin)
 
 class MembersInline(admin.StackedInline):
     model = Member
-    fields = ('username', 'first_name', 'last_name', 'email')
+    fields = ('username', 'first_name', 'last_name', 'email', 'country')
     readonly_fields = fields
     extra = 0
 
@@ -86,6 +86,7 @@ class TeamResource(resources.ModelResource):
             'timestamp',
             'head__email',
             'final',
+            'will_come',
         )
         export_order = (
             'name',
@@ -95,6 +96,7 @@ class TeamResource(resources.ModelResource):
             'head',
             'member1',
             'member2',
+            'will_come',
         )
 
     def dehydrate_head(self, team):
@@ -116,13 +118,18 @@ class TeamResource(resources.ModelResource):
 class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
     search_fields = ('name',)
-    list_filter = ('final', 'show')
-    list_display = ('name', 'competition', 'head', 'show', 'final')
+    list_filter = ('final', 'show', 'will_come', 'head__country')
+    list_display = ('name', 'competition', 'head', 'countries', 'show', 'final', 'will_come')
     fields = (
         ('name', 'head', 'show'),
         ('competition', 'final'),
+        ('will_come',),
     )
     inlines = [MembersInline]
+
+    def countries(self, obj):
+        members = obj.member_set.all()
+        return ",".join(list(set([str(member.country.name) for member in members])))
 
 
 admin.site.register(Team, TeamAdmin)
@@ -131,4 +138,3 @@ admin.site.register(Team, TeamAdmin)
 @admin.register(GameRequest)
 class GameRequestAdmin(admin.ModelAdmin):
     list_display = ('requester', 'requestee', 'accepted', 'accept_time')
-

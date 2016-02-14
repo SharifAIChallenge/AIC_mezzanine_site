@@ -70,7 +70,6 @@ class Game(models.Model):
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'))
     title = models.CharField(verbose_name=_('title'), max_length=200)
     players = models.ManyToManyField('base.Submit', verbose_name=_('players'), through='game.GameTeamSubmit')
-    config = models.FileField(verbose_name=_('config'))
 
     pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'), blank=True)
 

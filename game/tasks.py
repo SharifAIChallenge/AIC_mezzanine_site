@@ -1,12 +1,9 @@
 import os
-import random
-import shutil
-import zipfile
-from string import ascii_lowercase as lowers
 
 from celery import shared_task
 
 from game.models import Game
+from game.utils import extract_zip, make_dir, generate_random_token
 
 
 @shared_task(bind=True, queue='game_queue')
@@ -65,20 +62,3 @@ def run_game_unsafe(game_id):
     # extract compile result
     for client in game_clients:
         extract_zip(client['code'], client['root'])
-
-
-def generate_random_token(length=32):
-    return ''.join([lowers[random.randrange(0, len(lowers))] for i in range(length)])
-
-
-def make_dir(path):
-    if os.path.exists(path):
-        shutil.rmtree(path)
-    os.makedirs(path)
-
-
-def extract_zip(file_field, dst):
-    make_dir(dst)
-    with file_field.open('r') as fs:
-        zf = zipfile.ZipFile(fs)
-        zf.extractall(dst)

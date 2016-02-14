@@ -4,7 +4,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from docker import Client
-
+from game.utils import extract_zip
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -36,8 +36,7 @@ class Competition(models.Model):
 
 class ServerConfiguration(models.Model):
     tag = models.CharField(verbose_name=_('tag'), max_length=50)
-    compiled_code = models.FileField(verbose_name=_('compiled code'),
-                                     upload_to='server/compiled_code', storage=syncing_storage)
+    compiled_code = models.FileField(verbose_name=_('compiled code'), upload_to='server/compiled_code', storage=syncing_storage)
     execute_container = models.ForeignKey('game.DockerContainer', verbose_name=_('execute container'), related_name='+')
 
     def __unicode__(self):
@@ -56,7 +55,7 @@ class ProgrammingLanguage(models.Model):
 class DockerContainer(models.Model):
     tag = models.CharField(verbose_name=_('tag'), max_length=50)
     description = models.TextField(verbose_name=_('description'))
-    dockerfile = models.FileField(verbose_name=_('dockerfile'), upload_to='docker/dockerfiles', storage=syncing_storage)
+    dockerfile_src = models.FileField(verbose_name=_('dockerfile source'), upload_to='docker/dockerfiles', storage=syncing_storage)
     version = models.PositiveSmallIntegerField(verbose_name=_('version'), default=1)
     cores = models.CommaSeparatedIntegerField(verbose_name=_('cores'), default=[1024], max_length=512)
     memory = models.PositiveIntegerField(verbose_name=_('memory'), default=100*1024*1024)
@@ -68,6 +67,7 @@ class DockerContainer(models.Model):
 
     def get_image_id(self):
         image_name = 'container-%d:v%d' % (self.id, self.version)
+        path = '/dockers/build/container-%d-v%d' % (self.id, self.version)
 
         # create a client to communicate with docker
         client = Client(base_url='unix://var/run/docker.sock')
@@ -78,9 +78,9 @@ class DockerContainer(models.Model):
             return images[0]['Id']
 
         # build the docker file
-        with self.dockerfile.open('rb') as fs:
-            self.build_log = client.build(fileobj=fs, rm=True, tag=image_name)
-            self.save()
+        extract_zip(self.dockerfile_src, path)
+        self.build_log = client.build(path=path, rm=True, tag=image_name)
+        self.save()
 
         images = client.images(name=image_name)
         if images:

@@ -82,11 +82,6 @@ class Game(models.Model):
     def __unicode__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        if not self.config:
-            self.config = ''  # TODO: where are they?
-        super(Game, self).save(*args, **kwargs)
-
     def get_log_url(self):
         # TODO: write this
         return ''

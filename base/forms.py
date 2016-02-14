@@ -1,20 +1,23 @@
 # -*- coding: utf-8 -*-
 from django import forms
+
 from django.utils.translation import ugettext_lazy as _
+
 from django_countries.widgets import CountrySelectWidget
 from mezzanine.accounts.forms import ProfileForm as mezzanine_profile_form
 from mezzanine.utils.email import send_mail_template
-
 from base.models import Submit, Team, TeamInvitation, Member
 
 
 class ProfileForm(mezzanine_profile_form):
-    terms = forms.BooleanField(required=True, label=_("Accept Terms"), help_text=_("terms_of_service_text"))
+    terms = forms.BooleanField(required=True, label=_("Accept Terms"),
+                               help_text=_("terms_of_service_text"))
 
     class Meta:
         model = Member
         fields = (
-            "first_name", "last_name", "phone_number", "country", "education_place", "email", "username"
+            "first_name", "last_name", "phone_number", "country", "education_place", "email",
+            "username"
         )
         widgets = {'country': CountrySelectWidget()}
 
@@ -26,9 +29,15 @@ class ProfileForm(mezzanine_profile_form):
 
 
 class SubmitForm(forms.ModelForm):
-    class Meta:
-        model = Submit
-        fields = ('pl', 'code',)
+    def __init__(self, *args, **kwargs):
+        super(SubmitForm, self).__init__(*args, **kwargs)
+        if self.instance:
+            self.fields['lang'].queryset = self.instance.team.competition.supported_langs.all()
+
+
+class Meta:
+    model = Submit
+    fields = ('lang', 'code',)
 
 
 class TeamForm(forms.ModelForm):
@@ -65,8 +74,8 @@ class InvitationForm(forms.Form):
         invitation, is_new = TeamInvitation.objects.get_or_create(member=self.member, team=team)
         send_mail_template(_('AIChallenge team invitation'), 'mail/invitation_mail', '',
                            self.member.email, context={'team': team.name,
-                                                       'abs_link': invitation.accept_link,
-                                                       'current_host': host})
+                'abs_link': invitation.accept_link,
+                'current_host': host})
 
 
 class WillComeForm(forms.ModelForm):

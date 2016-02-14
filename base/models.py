@@ -79,7 +79,6 @@ class Submit(models.Model):
     compile_log_file = models.FileField(verbose_name=_('log file'), null=True, blank=True)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
-    # todo: filter to Competition's supported languages
     lang = models.ForeignKey('base.ProgrammingLanguage', verbose_name=_('programming language'), null=True)
 
     played = models.IntegerField(verbose_name=_('played'), default=0)

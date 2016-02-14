@@ -70,6 +70,14 @@ class InvitationForm(forms.Form):
 
 
 class WillComeForm(forms.ModelForm):
+    #
+    # def __init__(self, *args, **kwargs):
+    #     super(WillComeForm, self).__init__(*args, **kwargs)
+    #     self.fields['will_come'].label = _('Will you participate in Tehran site competition?')
+    #     self.fields['will_come'].widget.attrs = {
+    #         'class': 'with-gap'
+    #     }
+
     class Meta:
         model = Team
         fields = ('will_come',)

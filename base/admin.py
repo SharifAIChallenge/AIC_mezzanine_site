@@ -86,6 +86,7 @@ class TeamResource(resources.ModelResource):
             'timestamp',
             'head__email',
             'final',
+            'will_come',
         )
         export_order = (
             'name',
@@ -95,6 +96,7 @@ class TeamResource(resources.ModelResource):
             'head',
             'member1',
             'member2',
+            'will_come',
         )
 
     def dehydrate_head(self, team):
@@ -116,11 +118,12 @@ class TeamResource(resources.ModelResource):
 class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
     search_fields = ('name',)
-    list_filter = ('final', 'show')
-    list_display = ('name', 'competition', 'head', 'show', 'final')
+    list_filter = ('final', 'show', 'will_come')
+    list_display = ('name', 'competition', 'head', 'show', 'final', 'will_come')
     fields = (
         ('name', 'head', 'show'),
         ('competition', 'final'),
+        ('will_come',),
     )
     inlines = [MembersInline]
 
@@ -131,4 +134,3 @@ admin.site.register(Team, TeamAdmin)
 @admin.register(GameRequest)
 class GameRequestAdmin(admin.ModelAdmin):
     list_display = ('requester', 'requestee', 'accepted', 'accept_time')
-

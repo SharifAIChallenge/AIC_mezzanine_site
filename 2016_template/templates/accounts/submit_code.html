@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n mezzanine_tags other_ssc_tags %}
+{% load i18n mezzanine_tags other_ssc_tags jdate_tags %}
 
 {% block meta_title %}{{ title }}{% endblock %}
 {% block title %}{{ title }}{% endblock %}
@@ -35,7 +35,7 @@
                 <form class="mezzanine-form" method="post"{% if form.is_multipart %}
                       enctype="multipart/form-data"{% endif %}>
                     <fieldset>
-                        <legend>{{ title }}</legend>
+                        <h4>{{ title }}</h4>
                         {% fields_for form %}
                         {% block before_account_form_actions %}{% endblock %}
                         <div class="form-actions">
@@ -65,7 +65,16 @@
                             <td>{{ submission.get_status_display }}</td>
                             <td>{{ submission.submitter.get_full_name }}</td>
                             <td>{{ submission.get_pl_display }}</td>
-                            <td>{{ submission.timestamp }}</td>
+                            <td>
+                            {% if LANGUAGE_BIDI %}
+                                {{ submission.timestamp|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits }}
+                                ساعت
+                                {{ submission.timestamp|date:'G:i'|farsi_digits }}
+                            {% else %}
+                                {{ submission.timestamp }}
+                            {% endif %}
+                            </td>
+
                         </tr>
                         {% endfor %}
                     </table>

@@ -15,6 +15,13 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from game.models import Game, GameTeamSubmit
+from AIC_site.storage import SyncingStorage
+
+
+syncing_storage = SyncingStorage(
+    # 'storages.compat.FileSystemStorage',
+    'storages.backends.hashpath.HashPathStorage',
+    "storages.backends.sftpstorage.SFTPStorage")
 
 
 class Member(AbstractUser):
@@ -51,6 +58,13 @@ class Team(models.Model):
         return self.member_set.exclude(pk=self.head.pk).distinct()
 
 
+def team_code_directory_path(instance, filename):
+    return 'submits/code/{0}/{1}'.format(instance.team.id, filename)
+
+def team_compiled_code_directory_path(instance, filename):
+    return 'submits/compile/{0}/{1}'.format(instance.team.id, filename)
+
+
 class Submit(models.Model):
     STATUSES = (
         (0, _('waiting')),
@@ -60,12 +74,13 @@ class Submit(models.Model):
     )
 
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
-    code = models.FileField(verbose_name=_('code'), upload_to='submits/temp')
+    code = models.FileField(verbose_name=_('code'), upload_to=team_code_directory_path, storage=syncing_storage)
     team = models.ForeignKey(Team, verbose_name=_('team'))
     submitter = models.ForeignKey(Member, default=None, null=True, blank=True)
 
-    compiled_code = models.FileField(verbose_name=_('compiled code'), upload_to='submits/compiled', null=True, blank=True)
-    compile_log_file = models.FileField(verbose_name=_('log file'), null=True, blank=True)
+    compiled_code = models.FileField(verbose_name=_('compiled code'), upload_to=team_compiled_code_directory_path,
+                                     null=True, blank=True, storage=syncing_storage)
+    compile_log_file = models.TextField(verbose_name=_('log file'), null=True, blank=True)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
     lang = models.ForeignKey('game.ProgrammingLanguage', verbose_name=_('programming language'), null=True)
@@ -79,21 +94,6 @@ class Submit(models.Model):
     class Meta:
         verbose_name = _('submit')
         verbose_name_plural = _('submits')
-
-    def save(self, *args, **kwargs):
-        super(Submit, self).save(*args, **kwargs)
-        code = self.code
-        if code:
-            oldfile = self.code.name
-            newfile = 'submits/%d/%d' % (self.team_id, self.id)
-
-            self.code.storage.delete(newfile)
-            self.code.storage.save(newfile, code)
-            self.code.name = newfile
-            self.code.close()
-            self.code.storage.delete(oldfile)
-
-        super(Submit, self).save(*args, **kwargs)
 
 
 class TeamInvitation(models.Model):

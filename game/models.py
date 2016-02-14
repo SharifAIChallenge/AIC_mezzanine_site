@@ -2,7 +2,15 @@
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from AIC_site.storage import SyncingStorage
 from docker import Client
+
+
+syncing_storage = SyncingStorage(
+    # 'storages.compat.FileSystemStorage',
+    'storages.backends.hashpath.HashPathStorage',
+    "storages.backends.sftpstorage.SFTPStorage")
+
 
 class Competition(models.Model):
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
@@ -16,7 +24,8 @@ class Competition(models.Model):
 
     players_per_game = models.PositiveIntegerField(verbose_name=_("number of players per game"), default=2, blank=True)
     supported_langs = models.ManyToManyField('game.ProgrammingLanguage', verbose_name=_("supported languages"), blank=True)
-    composer = models.FileField(verbose_name=_("docker composer"), upload_to='docker/composers', null=True, blank=True)
+    composer = models.FileField(verbose_name=_("docker composer"), upload_to='docker/composers',
+                                null=True, blank=True, storage=syncing_storage)
     server = models.ForeignKey('game.ServerConfiguration', verbose_name=_("server container"), null=True, blank=True)
     additional_containers = models.ManyToManyField('game.DockerContainer', verbose_name=_("additional containers"), related_name='+', blank=True)
 
@@ -30,7 +39,8 @@ class Competition(models.Model):
 
 class ServerConfiguration(models.Model):
     tag = models.CharField(verbose_name=_('tag'), max_length=50)
-    compiled_code = models.FileField(verbose_name=_('compiled code'), upload_to='server/compiled_code')
+    compiled_code = models.FileField(verbose_name=_('compiled code'),
+                                     upload_to='server/compiled_code', storage=syncing_storage)
     execute_container = models.ForeignKey('game.DockerContainer', verbose_name=_('execute container'), related_name='+')
 
     def __unicode__(self):
@@ -49,9 +59,9 @@ class ProgrammingLanguage(models.Model):
 class DockerContainer(models.Model):
     tag = models.CharField(verbose_name=_('tag'), max_length=50)
     description = models.TextField(verbose_name=_('description'))
-    dockerfile = models.FileField(verbose_name=_('dockerfile'), upload_to='docker/dockerfiles')
+    dockerfile = models.FileField(verbose_name=_('dockerfile'), upload_to='docker/dockerfiles', storage=syncing_storage)
     version = models.PositiveSmallIntegerField(verbose_name=_('version'), default=1)
-    cores = models.CommaSeparatedIntegerField(verbose_name=_('cores'), default=[1024])
+    cores = models.CommaSeparatedIntegerField(verbose_name=_('cores'), default=[1024], max_length=512)
     memory = models.PositiveIntegerField(verbose_name=_('memory'), default=100*1024*1024)
     swap = models.PositiveIntegerField(verbose_name=_('swap'), default=0)
     build_log = models.TextField(verbose_name=_('build log'), blank=True)

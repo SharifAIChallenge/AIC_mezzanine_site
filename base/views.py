@@ -175,6 +175,8 @@ def teams(request):
         wait_time = GameRequest.check_last_time(request.user.team)
         if wait_time:
             show_friendly_button = False
+        if not Submit.objects.filter(team=request.user.team).exists():
+            show_friendly_button = False
 
     return render(request, 'custom/teams_list.html', {
         'teams': teams,

@@ -16,4 +16,4 @@ django-storages==1.4
 paramiko==1.16.0
 django-queued-storage==0.8.0
 python-memcached==1.57
-
+docker-py==1.7.0

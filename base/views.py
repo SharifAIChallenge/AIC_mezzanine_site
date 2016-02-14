@@ -17,6 +17,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 from game.models import Competition, GameTeamSubmit
 from mezzanine.utils.email import send_mail_template
+from .tasks import compile_code
 
 
 def registration_period_ended(request):
@@ -111,6 +112,7 @@ def invite_member(request):
 @login_required
 @team_required
 def submit(request):
+    competition = request.team.competition
     if not request.team.final:
         messages.error(request, _('your team must be final'))
         return redirect('my_team')
@@ -118,15 +120,16 @@ def submit(request):
         messages.error(request, _("your team does not have enough members"))
         return redirect('invite_member')
     if request.method == 'POST':
-        form = SubmitForm(data=request.POST, files=request.FILES)
+        form = SubmitForm(competition, data=request.POST, files=request.FILES)
         if form.is_valid():
             new_submit = form.save(commit=False)
             new_submit.team = request.team
             new_submit.submitter = request.user
             new_submit.save()
+            compile_code.delay(new_submit.id)
             return redirect('my_team')
     else:
-        form = SubmitForm()
+        form = SubmitForm(competition)
     return render(request, 'accounts/submit_code.html', {
         'form': form,
         'title': _('submit new code'),

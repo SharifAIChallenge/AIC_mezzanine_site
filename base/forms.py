@@ -29,15 +29,14 @@ class ProfileForm(mezzanine_profile_form):
 
 
 class SubmitForm(forms.ModelForm):
-    def __init__(self, *args, **kwargs):
+    class Meta:
+        model = Submit
+        fields = ('lang', 'code',)
+
+    def __init__(self, competition, *args, **kwargs):
         super(SubmitForm, self).__init__(*args, **kwargs)
         if self.instance:
-            self.fields['lang'].queryset = self.instance.team.competition.supported_langs.all()
-
-
-class Meta:
-    model = Submit
-    fields = ('lang', 'code',)
+            self.fields['lang'].queryset = competition.supported_langs.all()
 
 
 class TeamForm(forms.ModelForm):

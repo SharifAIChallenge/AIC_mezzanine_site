@@ -51,7 +51,8 @@ class DockerContainer(models.Model):
     description = models.TextField(verbose_name=_('description'))
     dockerfile = models.FileField(verbose_name=_('dockerfile'), upload_to='docker/dockerfiles')
     version = models.PositiveSmallIntegerField(verbose_name=_('version'), default=1)
-    build_log = models.FileField(verbose_name=_('build log'), upload_to='docker/logs', null=True, blank=True)
+    cores = models.PositiveIntegerField(verbose_name='cores', default=1024)
+    build_log = models.TextField(verbose_name=_('build log'), blank=True)
 
     def __unicode__(self):
         return '%s:%d' % (self.tag, self.version)

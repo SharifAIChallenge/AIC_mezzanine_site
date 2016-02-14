@@ -25,12 +25,20 @@ class Member(AbstractUser):
 
 
 class Team(models.Model):
+    WILL_COME_CHOICES = (
+        (0, _('yes')),
+        (1, _('no')),
+        (2, _('not decided yet')),
+    )
+
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=True)
     name = models.CharField(verbose_name=_('name'), max_length=200)
     head = models.ForeignKey('base.Member', verbose_name=_("team head"), related_name='+')
     show = models.BooleanField(default=True, verbose_name=_("show team in public list"))
     final = models.BooleanField(default=False, verbose_name=_("team is final"))
+
+    will_come = models.PositiveSmallIntegerField(verbose_name=_("will come to site"), choices=WILL_COME_CHOICES, default=2)
 
     def __unicode__(self):
         return 'Team%d(%s)' % (self.id, self.name)
@@ -79,7 +87,6 @@ class Submit(models.Model):
     compile_log_file = models.FileField(verbose_name=_('log file'), null=True, blank=True)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
-    # todo: filter to Competition's supported languages
     lang = models.ForeignKey('base.ProgrammingLanguage', verbose_name=_('programming language'), null=True)
 
     played = models.IntegerField(verbose_name=_('played'), default=0)

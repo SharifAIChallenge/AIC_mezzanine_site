@@ -89,8 +89,8 @@ class Game(models.Model):
     def get_participants(self):
         return [submit.team for submit in self.players]
 
-    def run(self):
-        run_game.delay(self.id)
+    # def run(self):
+    #     run_game.delay(self.id)
 
 
 class GameTeamSubmit(models.Model):

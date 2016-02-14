@@ -2,7 +2,6 @@
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from game.tasks import run_game
 
 
 class Competition(models.Model):
@@ -17,8 +16,8 @@ class Competition(models.Model):
 
     players_per_game = models.PositiveIntegerField(verbose_name=_("number of players per game"), default=2, blank=True)
     supported_langs = models.ManyToManyField('game.ProgrammingLanguage', verbose_name=_("supported languages"), blank=True)
-    composer = models.FileField(verbose_name=_("docker composer"), null=True, blank=True)
-    server = models.ForeignKey('game.DockerContainer', verbose_name=_("server container"), null=True, blank=True)
+    composer = models.FileField(verbose_name=_("docker composer"), upload_to='docker/composers', null=True, blank=True)
+    server = models.ForeignKey('game.ServerConfiguration', verbose_name=_("server container"), null=True, blank=True)
     additional_containers = models.ManyToManyField('game.DockerContainer', verbose_name=_("additional containers"), related_name='+', blank=True)
 
     def __unicode__(self):
@@ -31,7 +30,7 @@ class Competition(models.Model):
 
 class ServerConfiguration(models.Model):
     tag = models.CharField(verbose_name=_('tag'), max_length=50)
-    compiled_code = models.FileField(verbose_name=_('compiled code'))
+    compiled_code = models.FileField(verbose_name=_('compiled code'), upload_to='server/compiled_code')
     execute_container = models.ForeignKey('game.DockerContainer', verbose_name=_('execute container'), related_name='+')
 
     def __unicode__(self):
@@ -50,9 +49,9 @@ class ProgrammingLanguage(models.Model):
 class DockerContainer(models.Model):
     tag = models.CharField(verbose_name=_('tag'), max_length=50)
     description = models.TextField(verbose_name=_('description'))
-    dockerfile = models.FileField(verbose_name=_('dockerfile'), upload_to='dockerfiles/')
+    dockerfile = models.FileField(verbose_name=_('dockerfile'), upload_to='docker/dockerfiles')
     version = models.PositiveSmallIntegerField(verbose_name=_('version'), default=1)
-    build_log = models.FileField(verbose_name=_('build log'), null=True, blank=True)
+    build_log = models.FileField(verbose_name=_('build log'), upload_to='docker/logs', null=True, blank=True)
 
     def __unicode__(self):
         return '%s:%d' % (self.tag, self.version)
@@ -82,11 +81,6 @@ class Game(models.Model):
     def __unicode__(self):
         return self.title
 
-    def save(self, *args, **kwargs):
-        if not self.config:
-            self.config = ''  # TODO: where are they?
-        super(Game, self).save(*args, **kwargs)
-
     def get_log_url(self):
         # TODO: write this
         return ''
@@ -94,8 +88,8 @@ class Game(models.Model):
     def get_participants(self):
         return [submit.team for submit in self.players]
 
-    def run(self):
-        run_game.delay(self.id)
+    # def run(self):
+    #     run_game.delay(self.id)
 
 
 class GameTeamSubmit(models.Model):

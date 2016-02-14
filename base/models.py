@@ -15,6 +15,13 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from game.models import Game, GameTeamSubmit
+from AIC_site.storage import SyncingStorage
+
+
+syncing_storage = SyncingStorage(
+    # 'storages.compat.FileSystemStorage',
+    'storages.backends.hashpath.HashPathStorage',
+    "storages.backends.sftpstorage.SFTPStorage")
 
 
 class Member(AbstractUser):
@@ -60,12 +67,13 @@ class Submit(models.Model):
     )
 
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
-    code = models.FileField(verbose_name=_('code'), upload_to='submits/temp')
+    code = models.FileField(verbose_name=_('code'), upload_to='submits/temp', storage=syncing_storage)
     team = models.ForeignKey(Team, verbose_name=_('team'))
     submitter = models.ForeignKey(Member, default=None, null=True, blank=True)
 
-    compiled_code = models.FileField(verbose_name=_('compiled code'), upload_to='submits/compiled', null=True, blank=True)
-    compile_log_file = models.FileField(verbose_name=_('log file'), null=True, blank=True)
+    compiled_code = models.FileField(verbose_name=_('compiled code'), upload_to='submits/compiled',
+                                     null=True, blank=True, storage=syncing_storage)
+    compile_log_file = models.TextField(verbose_name=_('log file'), null=True, blank=True)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
     lang = models.ForeignKey('game.ProgrammingLanguage', verbose_name=_('programming language'), null=True)

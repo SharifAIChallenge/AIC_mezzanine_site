@@ -51,7 +51,9 @@ class DockerContainer(models.Model):
     description = models.TextField(verbose_name=_('description'))
     dockerfile = models.FileField(verbose_name=_('dockerfile'), upload_to='docker/dockerfiles')
     version = models.PositiveSmallIntegerField(verbose_name=_('version'), default=1)
-    cores = models.PositiveIntegerField(verbose_name='cores', default=1024)
+    cores = models.CommaSeparatedIntegerField(verbose_name=_('cores'), default=[1024])
+    memory = models.PositiveIntegerField(verbose_name=_('memory'), default=100*1024*1024)
+    swap = models.PositiveIntegerField(verbose_name=_('swap'), default=0)
     build_log = models.TextField(verbose_name=_('build log'), blank=True)
 
     def __unicode__(self):

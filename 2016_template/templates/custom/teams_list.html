@@ -35,6 +35,9 @@
                         </div>
                     {% endif %}
                 {% endnevercache %}
+                {% if wait_time %}
+                    {# Show you must wait wait_time seconds #}
+                {% endif %}
                 <table class="teams-list">
                     <tr>
                         <th>#</th>

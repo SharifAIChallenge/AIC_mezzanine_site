@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('tag', models.CharField(max_length=50, verbose_name='tag')),
                 ('description', models.TextField(verbose_name='description')),
-                ('dockerfile', models.FileField(upload_to='docker/dockerfiles', verbose_name='dockerfile')),
+                ('dockerfile', models.FileField(upload_to=b'docker/dockerfiles', verbose_name='dockerfile')),
                 ('version', models.PositiveSmallIntegerField(default=1, verbose_name='version')),
                 ('build_log', models.FileField(upload_to='docker/logs', null=True, verbose_name='build log', blank=True)),
             ],

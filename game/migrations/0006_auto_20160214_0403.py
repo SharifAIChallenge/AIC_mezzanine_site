@@ -27,8 +27,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('name', models.CharField(max_length=200, verbose_name=b'title')),
-                ('compile_container', models.ForeignKey(related_name='+', verbose_name='compile container', to='game.DockerContainer')),
-                ('execute_container', models.ForeignKey(related_name='+', verbose_name='execute container', to='game.DockerContainer')),
+                ('compile_container', models.ForeignKey(related_name='+', verbose_name='compile container', to='game.DockerContainer', null=True, blank=True)),
+                ('execute_container', models.ForeignKey(related_name='+', verbose_name='execute container', to='game.DockerContainer', null=True, blank=True)),
             ],
         ),
         migrations.CreateModel(

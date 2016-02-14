@@ -36,8 +36,8 @@ class ServerConfiguration(models.Model):
 
 class ProgrammingLanguage(models.Model):
     name = models.CharField(verbose_name='title', max_length=200)
-    compile_container = models.ForeignKey('game.DockerContainer', verbose_name=_('compile container'), related_name='+')
-    execute_container = models.ForeignKey('game.DockerContainer', verbose_name=_('execute container'), related_name='+')
+    compile_container = models.ForeignKey('game.DockerContainer', verbose_name=_('compile container'), related_name='+', null=True, blank=True)
+    execute_container = models.ForeignKey('game.DockerContainer', verbose_name=_('execute container'), related_name='+', null=True, blank=True)
 
 
 class DockerContainer(models.Model):

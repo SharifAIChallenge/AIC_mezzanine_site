@@ -15,9 +15,4 @@ class Migration(migrations.Migration):
             model_name='submit',
             name='pl',
         ),
-        migrations.AlterField(
-            model_name='submit',
-            name='compiled_code',
-            field=models.FileField(upload_to=b'submtis/compiled', null=True, verbose_name='compiled code', blank=True),
-        ),
     ]

@@ -64,7 +64,7 @@ class Submit(models.Model):
     team = models.ForeignKey(Team, verbose_name=_('team'))
     submitter = models.ForeignKey(Member, default=None, null=True, blank=True)
 
-    compiled_code = models.FileField(verbose_name=_('compiled code'), upload_to='submtis/compiled', null=True, blank=True)
+    compiled_code = models.FileField(verbose_name=_('compiled code'), upload_to='submits/compiled', null=True, blank=True)
     compile_log_file = models.FileField(verbose_name=_('log file'), null=True, blank=True)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 

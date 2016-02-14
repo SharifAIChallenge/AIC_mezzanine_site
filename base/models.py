@@ -51,25 +51,6 @@ class Team(models.Model):
         return self.member_set.exclude(pk=self.head.pk).distinct()
 
 
-class ProgrammingLanguage(models.Model):
-    name = models.CharField(verbose_name='title', max_length=200)
-    compile_container = models.ForeignKey('base.DockerContainer', verbose_name=_('compile container'), related_name='+')
-    execute_container = models.ForeignKey('base.DockerContainer', verbose_name=_('execute container'), related_name='+')
-
-
-class ServerConfiguration(models.Model):
-    compiled_code = models.FileField(verbose_name=_('compiled code'))
-    execute_container = models.ForeignKey('base.DockerContainer', verbose_name=_('execute container'), related_name='+')
-
-
-class DockerContainer(models.Model):
-    tag = models.CharField(verbose_name=_('tag'), max_length=50)
-    description = models.TextField(verbose_name=_('description'))
-    dockerfile = models.FileField(verbose_name=_('compile dockerfile'), upload_to='dockerfiles/')
-    version = models.PositiveSmallIntegerField(verbose_name=_('version'), default=1)
-    build_log = models.FileField(verbose_name=_('build log'), null=True, blank=True)
-
-
 class Submit(models.Model):
     STATUSES = (
         (0, _('waiting')),
@@ -87,7 +68,7 @@ class Submit(models.Model):
     compile_log_file = models.FileField(verbose_name=_('log file'), null=True, blank=True)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
-    lang = models.ForeignKey('base.ProgrammingLanguage', verbose_name=_('programming language'), null=True)
+    lang = models.ForeignKey('game.ProgrammingLanguage', verbose_name=_('programming language'), null=True)
 
     played = models.IntegerField(verbose_name=_('played'), default=0)
     won = models.IntegerField(verbose_name=_('won'), default=0)

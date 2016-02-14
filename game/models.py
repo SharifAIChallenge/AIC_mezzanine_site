@@ -2,14 +2,11 @@
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from AIC_site.storage import SyncingStorage
+from django.conf import settings
 from docker import Client
 
 
-syncing_storage = SyncingStorage(
-    # 'storages.compat.FileSystemStorage',
-    'storages.backends.hashpath.HashPathStorage',
-    "storages.backends.sftpstorage.SFTPStorage")
+syncing_storage = settings.BASE_AND_GAME_STORAGE
 
 
 class Competition(models.Model):
@@ -68,28 +65,6 @@ class DockerContainer(models.Model):
 
     def __unicode__(self):
         return '%s:%d' % (self.tag, self.version)
-
-    def get_image_id(self):
-        image_name = 'container-%d:v%d' % (self.id, self.version)
-
-        # create a client to communicate with docker
-        client = Client(base_url='unix://var/run/docker.sock')
-
-        # check if already built
-        images = client.images(name=image_name)
-        if images:
-            return images[0]['Id']
-
-        # build the docker file
-        with self.dockerfile.open('rb') as fs:
-            self.build_log = client.build(fileobj=fs, rm=True, tag=image_name)
-            self.save()
-
-        images = client.images(name=image_name)
-        if images:
-            return images[0]['Id']
-        else:
-            raise LookupError('Docker image not found: "' + self.tag + '"')
 
 
 class Game(models.Model):

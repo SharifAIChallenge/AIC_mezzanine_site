@@ -226,6 +226,8 @@ INSTALLED_APPS = (
     "django.contrib.staticfiles",
     "import_export",
     "2016_template",
+    'storages',
+    'queued_storage',
     "mezzanine.boot",
     "mezzanine.conf",
     "mezzanine.core",

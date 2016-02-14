@@ -16,7 +16,7 @@ def set_programming_languages(apps, schema_editor):
 
     Submit = apps.get_model('base', 'Submit')
     for submit in Submit.objects.all():
-        print(type(submit.pl) + ": " + submit.pl)
+        print(str(type(submit.pl)) + ": " + submit.pl)
         submit.lang = langs[submit.pl]
         submit.save()
 

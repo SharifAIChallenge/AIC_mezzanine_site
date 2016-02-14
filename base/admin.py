@@ -118,7 +118,7 @@ class TeamResource(resources.ModelResource):
 class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
     search_fields = ('name',)
-    list_filter = ('final', 'show', 'will_come')
+    list_filter = ('final', 'show', 'will_come', 'head__country')
     list_display = ('name', 'competition', 'head', 'show', 'final', 'will_come')
     fields = (
         ('name', 'head', 'show'),

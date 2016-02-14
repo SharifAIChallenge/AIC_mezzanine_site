@@ -4,7 +4,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from docker import Client
-from game.utils import extract_zip
+from game.utils import extract_zip, make_dir
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -74,12 +74,17 @@ class DockerContainer(models.Model):
 
         # check if already built
         images = client.images(name=image_name)
+        # TODO fix me
         if images:
             return images[0]['Id']
 
         # build the docker file
+        print(self.dockerfile_src)
+
         extract_zip(self.dockerfile_src, path)
-        self.build_log = client.build(path=path, rm=True, tag=image_name)
+
+        log = list(client.build(path=path, rm=True, tag=image_name))
+        self.build_log = "".join(log)
         self.save()
 
         images = client.images(name=image_name)

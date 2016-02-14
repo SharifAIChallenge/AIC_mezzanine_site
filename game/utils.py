@@ -18,6 +18,6 @@ def make_dir(path):
 
 def extract_zip(file_field, dst):
     make_dir(dst)
-    with file_field.open('r') as fs:
-        zf = zipfile.ZipFile(fs)
-        zf.extractall(dst)
+    file_field.open('r')
+    zf = zipfile.ZipFile(file_field)
+    zf.extractall(dst)

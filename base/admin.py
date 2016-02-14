@@ -119,13 +119,16 @@ class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
     search_fields = ('name',)
     list_filter = ('final', 'show', 'will_come', 'head__country')
-    list_display = ('name', 'competition', 'head', 'show', 'final', 'will_come')
+    list_display = ('name', 'competition', 'head', 'team_head_country', 'show', 'final', 'will_come')
     fields = (
         ('name', 'head', 'show'),
         ('competition', 'final'),
         ('will_come',),
     )
     inlines = [MembersInline]
+
+    def team_head_country(self, obj):
+        return obj.head.country
 
 
 admin.site.register(Team, TeamAdmin)

@@ -30,14 +30,21 @@ class Competition(models.Model):
 
 
 class ServerConfiguration(models.Model):
+    tag = models.CharField(verbose_name=_('tag'), max_length=50)
     compiled_code = models.FileField(verbose_name=_('compiled code'))
     execute_container = models.ForeignKey('game.DockerContainer', verbose_name=_('execute container'), related_name='+')
 
+    def __unicode__(self):
+        return self.tag
+
 
 class ProgrammingLanguage(models.Model):
-    name = models.CharField(verbose_name='title', max_length=200)
+    name = models.CharField(verbose_name=_('title'), max_length=200)
     compile_container = models.ForeignKey('game.DockerContainer', verbose_name=_('compile container'), related_name='+', null=True, blank=True)
     execute_container = models.ForeignKey('game.DockerContainer', verbose_name=_('execute container'), related_name='+', null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
 
 
 class DockerContainer(models.Model):
@@ -46,6 +53,9 @@ class DockerContainer(models.Model):
     dockerfile = models.FileField(verbose_name=_('dockerfile'), upload_to='dockerfiles/')
     version = models.PositiveSmallIntegerField(verbose_name=_('version'), default=1)
     build_log = models.FileField(verbose_name=_('build log'), null=True, blank=True)
+
+    def __unicode__(self):
+        return '%s:%d' % (self.tag, self.version)
 
 
 class Game(models.Model):

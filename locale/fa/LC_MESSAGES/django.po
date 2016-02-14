@@ -270,7 +270,7 @@ msgstr "تیم"
 
 #: 2016_template/templates/custom/my_games.html:101
 msgid "reject"
-msgstr ""
+msgstr "رد کردن"
 
 #: 2016_template/templates/custom/my_games.html:131
 msgid "watch game"
@@ -282,7 +282,7 @@ msgstr "در انتظار اجرا"
 
 #: 2016_template/templates/custom/my_games.html:136
 msgid "rejected"
-msgstr ""
+msgstr "رد شده"
 
 #: 2016_template/templates/custom/my_games.html:139
 msgid "waiting for accept"
@@ -803,7 +803,7 @@ msgstr "با موفقیت به تیم %s ملحق شدید"
 
 #: base/views.py:264
 msgid "No such game request found"
-msgstr ""
+msgstr "درخواست بازی مورد نظر یافت نشد."
 
 #: base/views.py:270
 #, fuzzy
@@ -818,7 +818,7 @@ msgstr "این تیم تا %d دقیقه دیگر نمی‌تواند بازی �
 
 #: base/views.py:284
 msgid "Done"
-msgstr ""
+msgstr "تمام شده"
 
 #: base/views.py:306
 #, python-format
@@ -943,7 +943,7 @@ msgstr "زمان اتمام ثبت‌نام"
 
 #: game/models.py:18
 msgid "number of players per game"
-msgstr ""
+msgstr "تعداد بازیکن‌ها در هر بازی"
 
 #: game/models.py:19
 #, fuzzy
@@ -953,15 +953,15 @@ msgstr "زبان برنامه نویسی"
 
 #: game/models.py:20
 msgid "docker composer"
-msgstr ""
+msgstr "داکر ساز"
 
 #: game/models.py:21
 msgid "server container"
-msgstr ""
+msgstr "ظرف سرور"
 
 #: game/models.py:22
 msgid "additional containers"
-msgstr ""
+msgstr "ظرف‌های اضافه"
 
 #: game/models.py:29
 msgid "competitions"
@@ -969,11 +969,11 @@ msgstr "مسابقات"
 
 #: game/models.py:33 game/models.py:51
 msgid "tag"
-msgstr ""
+msgstr "برچسب"
 
 #: game/models.py:35 game/models.py:44
 msgid "execute container"
-msgstr ""
+msgstr "ظرف اجرا"
 
 #: game/models.py:43
 #, fuzzy
@@ -989,7 +989,7 @@ msgstr "توضیحات پرداخت"
 
 #: game/models.py:53
 msgid "dockerfile"
-msgstr ""
+msgstr "داکر فایل"
 
 #: game/models.py:54
 #, fuzzy
@@ -999,7 +999,7 @@ msgstr "فارسی"
 
 #: game/models.py:55
 msgid "build log"
-msgstr ""
+msgstr "گزارش ساخت"
 
 #: game/models.py:63
 msgid "manual"

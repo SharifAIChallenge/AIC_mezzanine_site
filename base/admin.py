@@ -62,7 +62,7 @@ admin.site.register(Member, MemberAdmin)
 
 class MembersInline(admin.StackedInline):
     model = Member
-    fields = ('username', 'first_name', 'last_name', 'email')
+    fields = ('username', 'first_name', 'last_name', 'email', 'country')
     readonly_fields = fields
     extra = 0
 
@@ -119,7 +119,7 @@ class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
     search_fields = ('name',)
     list_filter = ('final', 'show', 'will_come', 'head__country')
-    list_display = ('name', 'competition', 'head', 'team_head_country', 'show', 'final', 'will_come')
+    list_display = ('name', 'competition', 'head', 'countries', 'show', 'final', 'will_come')
     fields = (
         ('name', 'head', 'show'),
         ('competition', 'final'),
@@ -127,8 +127,9 @@ class TeamAdmin(ImportExportModelAdmin):
     )
     inlines = [MembersInline]
 
-    def team_head_country(self, obj):
-        return obj.head.country
+    def countries(self, obj):
+        members = obj.member_set.all()
+        return ",".join(list(set([str(member.country.name) for member in members])))
 
 
 admin.site.register(Team, TeamAdmin)

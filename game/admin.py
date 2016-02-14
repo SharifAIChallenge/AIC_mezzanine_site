@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from game.models import Game, Competition, GameTeamSubmit
+from game.models import Game, Competition, GameTeamSubmit, ProgrammingLanguage, DockerContainer
 from mezzanine.core import admin as mezzanineAdmin
 
 admin.site.register(Competition)
+admin.site.register(DockerContainer)
+admin.site.register(ProgrammingLanguage)
 
 
 class SubmitInline(mezzanineAdmin.StackedDynamicInlineAdmin):

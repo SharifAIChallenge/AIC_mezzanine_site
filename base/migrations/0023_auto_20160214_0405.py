@@ -9,9 +9,9 @@ def set_programming_languages(apps, schema_editor):
     # create currently existing languages
     ProgrammingLanguage = apps.get_model('game', 'ProgrammingLanguage')
     langs = {
-        'jav': ProgrammingLanguage.objects.get_or_create(name='Java 8'),
-        'cpp': ProgrammingLanguage.objects.get_or_create(name='C++ 11'),
-        'py3': ProgrammingLanguage.objects.get_or_create(name='Python 3'),
+        'jav': ProgrammingLanguage.objects.get_or_create(name='Java 8')[0],
+        'cpp': ProgrammingLanguage.objects.get_or_create(name='C++ 11')[0],
+        'py3': ProgrammingLanguage.objects.get_or_create(name='Python 3')[0],
     }
 
     Submit = apps.get_model('base', 'Submit')

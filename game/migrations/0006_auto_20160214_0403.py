@@ -26,7 +26,6 @@ class Migration(migrations.Migration):
             name='ProgrammingLanguage',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('tag', models.CharField(max_length=50, verbose_name='tag')),
                 ('name', models.CharField(max_length=200, verbose_name=b'title')),
                 ('compile_container', models.ForeignKey(related_name='+', verbose_name='compile container', to='game.DockerContainer', null=True, blank=True)),
                 ('execute_container', models.ForeignKey(related_name='+', verbose_name='execute container', to='game.DockerContainer', null=True, blank=True)),
@@ -36,6 +35,7 @@ class Migration(migrations.Migration):
             name='ServerConfiguration',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('tag', models.CharField(max_length=50, verbose_name='tag')),
                 ('compiled_code', models.FileField(upload_to=b'', verbose_name='compiled code')),
                 ('execute_container', models.ForeignKey(related_name='+', verbose_name='execute container', to='game.DockerContainer')),
             ],

@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='submit',
             name='compiled_code',
-            field=models.FileField(upload_to=b'submit/compiled', null=True, verbose_name='compiled code', blank=True),
+            field=models.FileField(upload_to=b'submits/compiled', null=True, verbose_name='compiled code', blank=True),
         ),
         migrations.AddField(
             model_name='submit',

@@ -40,3 +40,16 @@ DEFAULT_FROM_EMAIL = 'YOUR NAME <someone@somehost>'
 SFTP_STORAGE_HOST = 'localhost'
 SFTP_STORAGE_ROOT = '/home/user/media'
 SFTP_STORAGE_PARAMS = {'username': 'user'}
+
+
+### STORAGE SETTINGS ###
+
+from AIC_site.storage import SyncingStorage
+
+BASE_AND_GAME_STORAGE = SyncingStorage(
+    # 'storages.compat.FileSystemStorage',
+    'storages.backends.hashpath.HashPathStorage',
+    "storages.backends.sftpstorage.SFTPStorage")
+
+
+

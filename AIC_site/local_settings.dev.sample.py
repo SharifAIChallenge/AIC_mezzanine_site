@@ -36,3 +36,12 @@ EMAIL_USE_TLS = True
 SFTP_STORAGE_HOST = 'localhost'
 SFTP_STORAGE_ROOT = '/home/user/media'
 SFTP_STORAGE_PARAMS = {'username': 'user'}
+
+
+### STORAGE SETTINGS ###
+
+from django.core.files.storage import FileSystemStorage
+
+BASE_AND_GAME_STORAGE = FileSystemStorage()
+
+

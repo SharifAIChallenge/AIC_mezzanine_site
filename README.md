@@ -40,6 +40,16 @@ some important settings are extracted to a python file named `local_settings.py`
 Two samples named `local_settings.deploy.sample.py` and `local_settings.dev.sample.py` are available in that directory.
 
 
+Note that you may also set `BASE_AND_GAME_STORAGE` (default is `FileSystemStorage`). E.g in deployment servers you must set:
+
+```sh
+BASE_AND_GAME_STORAGE = SyncingStorage(
+    'storages.backends.hashpath.HashPathStorage',
+    "storages.backends.sftpstorage.SFTPStorage")
+```
+
+
+
 * Run celery **mail workers**: 
 
 ```sh

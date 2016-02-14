@@ -15,13 +15,10 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from game.models import Game, GameTeamSubmit
-from AIC_site.storage import SyncingStorage
+from django.conf import settings
 
 
-syncing_storage = SyncingStorage(
-    # 'storages.compat.FileSystemStorage',
-    'storages.backends.hashpath.HashPathStorage',
-    "storages.backends.sftpstorage.SFTPStorage")
+syncing_storage = settings.BASE_AND_GAME_STORAGE
 
 
 class Member(AbstractUser):

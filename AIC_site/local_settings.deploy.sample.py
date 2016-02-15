@@ -41,6 +41,10 @@ SFTP_STORAGE_HOST = 'localhost'
 SFTP_STORAGE_ROOT = '/home/user/media'
 SFTP_STORAGE_PARAMS = {'username': 'user'}
 
+CELERY_ROUTES = {'queued_storage.tasks.Transfer': {'queue': 'filestorage_queue_main'},
+                 'queued_storage.tasks.TransferAndDelete': {'queue': 'filestorage_queue_main'},
+                 }
+
 
 ### STORAGE SETTINGS ###
 
@@ -50,6 +54,5 @@ BASE_AND_GAME_STORAGE = SyncingStorage(
     # 'storages.compat.FileSystemStorage',
     'storages.backends.hashpath.HashPathStorage',
     "storages.backends.sftpstorage.SFTPStorage")
-
 
 

@@ -197,6 +197,10 @@ MEDIA_URL = "/media/"
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = os.path.join(PROJECT_ROOT, *MEDIA_URL.strip("/").split("/"))
 
+# Absolute filesystem path to the directory that will hold dockerfiles
+# Example: "/home/media/media.lawrence.com/dockerfiles/"
+DOCKER_ROOT = os.path.join(PROJECT_ROOT, 'dockers')
+
 # Package/module name to import the root urlpatterns from for the project.
 ROOT_URLCONF = "%s.urls" % PROJECT_APP
 
@@ -341,8 +345,8 @@ COUNTRIES_OVERRIDE = {
 }
 
 # celery
-BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+BROKER_URL = 'redis://localhost:6379/1'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 CELERY_EMAIL_TASK_CONFIG = {
     'max_retries': 30,

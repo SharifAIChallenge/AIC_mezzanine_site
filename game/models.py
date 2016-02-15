@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+import os
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from docker import Client
+from AIC_site.settings import DOCKER_ROOT
 from game.utils import extract_zip
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
@@ -22,7 +24,7 @@ class Competition(models.Model):
     supported_langs = models.ManyToManyField('game.ProgrammingLanguage', verbose_name=_("supported languages"), blank=True)
     composer = models.FileField(verbose_name=_("docker composer"), upload_to='docker/composers',
                                 null=True, blank=True, storage=syncing_storage)
-    server = models.ForeignKey('game.ServerConfiguration', verbose_name=_("server container"), null=True, blank=True)
+    server = models.ForeignKey('game.DockerContainer', verbose_name=_("server container"), null=True, blank=True)
     additional_containers = models.ManyToManyField('game.DockerContainer', verbose_name=_("additional containers"), related_name='+', blank=True)
 
     def __unicode__(self):
@@ -31,15 +33,6 @@ class Competition(models.Model):
     class Meta:
         verbose_name = _('competition')
         verbose_name_plural = _('competitions')
-
-
-class ServerConfiguration(models.Model):
-    tag = models.CharField(verbose_name=_('tag'), max_length=50)
-    compiled_code = models.FileField(verbose_name=_('compiled code'), upload_to='server/compiled_code', storage=syncing_storage)
-    execute_container = models.ForeignKey('game.DockerContainer', verbose_name=_('execute container'), related_name='+')
-
-    def __unicode__(self):
-        return self.tag
 
 
 class ProgrammingLanguage(models.Model):
@@ -66,7 +59,7 @@ class DockerContainer(models.Model):
 
     def get_image_id(self):
         image_name = 'container-%d:v%d' % (self.id, self.version)
-        path = '/dockers/build/container-%d-v%d' % (self.id, self.version)
+        path = os.path.join(DOCKER_ROOT, 'build', image_name)
 
         # create a client to communicate with docker
         client = Client(base_url='unix://var/run/docker.sock')

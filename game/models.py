@@ -40,7 +40,7 @@ class ProgrammingLanguage(models.Model):
 
 
 class DockerContainer(models.Model):
-    tag = models.CharField(verbose_name=_('tag'), max_length=50)
+    tag = models.CharField(verbose_name=_('tag'), max_length=50, unique=True)
     description = models.TextField(verbose_name=_('description'), blank=True)
     dockerfile_src = models.FileField(verbose_name=_('dockerfile source'), upload_to='docker/dockerfiles', storage=syncing_storage, null=True, blank=True)
     version = models.PositiveSmallIntegerField(verbose_name=_('version'), default=1)

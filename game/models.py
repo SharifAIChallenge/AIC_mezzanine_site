@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
-import os
 from django.contrib.sites.models import Site
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
-from docker import Client
-from AIC_site.settings import DOCKER_ROOT
-from game.utils import extract_zip
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -22,9 +18,8 @@ class Competition(models.Model):
 
     players_per_game = models.PositiveIntegerField(verbose_name=_("number of players per game"), default=2, blank=True)
     supported_langs = models.ManyToManyField('game.ProgrammingLanguage', verbose_name=_("supported languages"), blank=True)
-    composer = models.FileField(verbose_name=_("docker composer"), upload_to='docker/composers',
-                                null=True, blank=True, storage=syncing_storage)
-    server = models.ForeignKey('game.DockerContainer', verbose_name=_("server container"), null=True, blank=True)
+    server = models.ForeignKey('game.DockerContainer', verbose_name=_("server container"), null=True, blank=True, related_name='+')
+    logger = models.ForeignKey('game.DockerContainer', verbose_name=_("game logger"), null=True, blank=True, related_name='+')
     additional_containers = models.ManyToManyField('game.DockerContainer', verbose_name=_("additional containers"), related_name='+', blank=True)
 
     def __unicode__(self):
@@ -46,40 +41,16 @@ class ProgrammingLanguage(models.Model):
 
 class DockerContainer(models.Model):
     tag = models.CharField(verbose_name=_('tag'), max_length=50)
-    description = models.TextField(verbose_name=_('description'))
+    description = models.TextField(verbose_name=_('description'), blank=True)
     dockerfile_src = models.FileField(verbose_name=_('dockerfile source'), upload_to='docker/dockerfiles', storage=syncing_storage, null=True, blank=True)
     version = models.PositiveSmallIntegerField(verbose_name=_('version'), default=1)
-    cores = models.CommaSeparatedIntegerField(verbose_name=_('cores'), default=[1024], max_length=512)
+    cores = models.CommaSeparatedIntegerField(verbose_name=_('cores'), default=1024, max_length=512)
     memory = models.PositiveIntegerField(verbose_name=_('memory'), default=100*1024*1024)
     swap = models.PositiveIntegerField(verbose_name=_('swap'), default=0)
     build_log = models.TextField(verbose_name=_('build log'), blank=True)
 
     def __unicode__(self):
         return '%s:%d' % (self.tag, self.version)
-
-    def get_image_id(self):
-        image_name = 'container-%d:v%d' % (self.id, self.version)
-        path = os.path.join(DOCKER_ROOT, 'build', image_name)
-
-        # create a client to communicate with docker
-        client = Client(base_url='unix://var/run/docker.sock')
-
-        # check if already built
-        images = client.images(name=image_name)
-        if images:
-            return images[0]['Id']
-
-        # build the docker file
-        extract_zip(self.dockerfile_src, path)
-        log = list(client.build(path=path, rm=True, tag=image_name))
-        self.build_log = "".join(log)
-        self.save()
-
-        images = client.images(name=image_name)
-        if images:
-            return images[0]['Id']
-        else:
-            raise LookupError('Docker image not found: "' + self.tag + '"')
 
 
 class Game(models.Model):
@@ -94,6 +65,7 @@ class Game(models.Model):
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'))
     title = models.CharField(verbose_name=_('title'), max_length=200)
     players = models.ManyToManyField('base.Submit', verbose_name=_('players'), through='game.GameTeamSubmit')
+    log_file = models.FileField(verbose_name=_('game log file'), upload_to='games/logs/', null=True, blank=True, storage=syncing_storage)
 
     pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'), blank=True)
 
@@ -118,7 +90,7 @@ class GameTeamSubmit(models.Model):
     submit = models.ForeignKey('base.Submit', verbose_name=_('team submit'))
     game = models.ForeignKey('game.Game', verbose_name=_('game'))
 
-    score = models.IntegerField(verbose_name=_('score'), default=0)
+    score = models.DecimalField(verbose_name=_('score'), default=0, max_digits=25, decimal_places=10)
 
     class Meta:
         ordering = ('score',)

@@ -48,11 +48,8 @@ CELERY_ROUTES = {'queued_storage.tasks.Transfer': {'queue': 'filestorage_queue_m
 
 ### STORAGE SETTINGS ###
 
-from AIC_site.storage import SyncingStorage
+from AIC_site.storage import SyncingHashStorage
 
-BASE_AND_GAME_STORAGE = SyncingStorage(
-    # 'storages.compat.FileSystemStorage',
-    'storages.backends.hashpath.HashPathStorage',
-    "storages.backends.sftpstorage.SFTPStorage")
+BASE_AND_GAME_STORAGE = SyncingHashStorage("storages.backends.sftpstorage.SFTPStorage")
 
 

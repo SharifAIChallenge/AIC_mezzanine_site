@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.core.files import File
-from base.models import Submit
+from base.models import Submit, team_code_directory_path
 from django.conf import settings
 
 
@@ -22,7 +22,8 @@ class Command(BaseCommand):
             try:
                 #print(submission.code)
                 current_file = settings.OLD_BASE_AND_GAME_STORAGE.open(submission.code)
-                submission.code = settings.BASE_AND_GAME_STORAGE.save(submission.code.name, current_file)
+                submission.code = settings.BASE_AND_GAME_STORAGE.save(
+                    team_code_directory_path(submission, 'fake_name'), current_file)
                 submission.save()
             except IOError:
                 pass

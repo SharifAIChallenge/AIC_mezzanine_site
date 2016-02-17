@@ -56,10 +56,10 @@ class Team(models.Model):
 
 
 def team_code_directory_path(instance, filename):
-    return 'submits/code/{0}/{1}'.format(instance.team.id, filename)
+    return 'submit/code/{0}/{1}'.format(instance.team.id, filename)
 
 def team_compiled_code_directory_path(instance, filename):
-    return 'submits/compile/{0}/{1}'.format(instance.team.id, filename)
+    return 'submit/compile/{0}/{1}'.format(instance.team.id, filename)
 
 
 class Submit(models.Model):

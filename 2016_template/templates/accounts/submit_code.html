@@ -63,7 +63,7 @@
                         <tr>
                             <td>{{ forloop.counter }}</td>
                             <td>{{ submission.get_status_display }}
-                            {% if submission.status == 3 or submission.status == 2 %}
+                            {% if submission.status == 3 %}
                                 <br />
                                 <a href="#" class="compile-log" data-submissionid="{{ submission.pk }}" >Compile log</a>
                             {% endif %}

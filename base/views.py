@@ -127,7 +127,7 @@ def submit(request):
             new_submit.submitter = request.user
             new_submit.save()
             compile_code.delay(new_submit.id)
-            return redirect('my_team')
+            return redirect('submit_code')
     else:
         form = SubmitForm(competition)
     return render(request, 'accounts/submit_code.html', {

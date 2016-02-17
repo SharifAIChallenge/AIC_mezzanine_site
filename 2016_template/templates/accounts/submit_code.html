@@ -64,7 +64,7 @@
                             <td>{{ forloop.counter }}</td>
                             <td>{{ submission.get_status_display }}</td>
                             <td>{{ submission.submitter.get_full_name }}</td>
-                            <td>{{ submission.get_pl_display }}</td>
+                            <td>{{ submission.lang.name }}</td>
                             <td>
                             {% if LANGUAGE_BIDI %}
                                 {{ submission.timestamp|get_jdate|jdateformat:"{d} {M} {y}"|farsi_digits }}

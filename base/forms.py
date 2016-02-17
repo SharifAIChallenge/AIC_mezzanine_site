@@ -35,8 +35,7 @@ class SubmitForm(forms.ModelForm):
 
     def __init__(self, competition, *args, **kwargs):
         super(SubmitForm, self).__init__(*args, **kwargs)
-        if self.instance:
-            self.fields['lang'].queryset = competition.supported_langs.all()
+        self.fields['lang'].queryset = competition.supported_langs.all()
 
 
 class TeamForm(forms.ModelForm):

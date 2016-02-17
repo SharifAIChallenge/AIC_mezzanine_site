@@ -20,7 +20,7 @@
                     var is_accept = $self.hasClass('accept');
 
                     $self.addClass('disabled');
-                    $self.sibling('.game-request').addClass('disabled');
+                    $self.siblings('.game-request').addClass('disabled');
                     $.ajax({
                         url: handle_request_url,
                         method: 'post',

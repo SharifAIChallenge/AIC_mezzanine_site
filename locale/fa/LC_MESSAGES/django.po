@@ -2626,3 +2626,6 @@ msgstr "به مرحله حضوری می‌آید"
 
 msgid "Will you participate in Tehran site competition?"
 msgstr "آیا در صورت پذیرفته شدن در مرحله‌ی حضوری شرکت خواهید کرد؟"
+
+msgid "Failed getting compilation log"
+msgstr "در دریافت لاگ کامپایل مشکلی پیش آمد"

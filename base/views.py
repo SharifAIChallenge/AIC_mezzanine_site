@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.utils.translation import get_language_from_request
 from django.utils.translation import ugettext_lazy as _
@@ -314,6 +314,19 @@ def game_request(request):
 
     messages.info(request, _('Challenged the team successfully'))
     return redirect('my_games')
+
+
+@login_required
+@team_required
+def compile_log(request):
+    if 'submission_id' not in request.GET:
+        return HttpResponseBadRequest()
+
+    submit_object = get_object_or_404(Submit, pk=request.GET.get('submission_id'))
+    if submit_object.team != request.team:
+        raise PermissionDenied()
+
+    return HttpResponse(submit_object.compile_log_file)
 
 
 @login_required

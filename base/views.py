@@ -183,8 +183,8 @@ def teams(request):
 
     return render(request, 'custom/teams_list.html', {
         'teams': teams,
-        # 'show_friendly_button': show_friendly_button,
-        'show_friendly_button': False,
+        'show_friendly_button': show_friendly_button,
+        # 'show_friendly_button': False,
         'wait_time': wait_time,  # TODO: mjafar, you can show this in template(even a countdown!)
     })
 

@@ -96,9 +96,7 @@
                 Loading...
             </p>
 
-            <p>
             <pre id="compile_log_holder"></pre>
-            </p>
         </div>
         <div class="modal-footer">
             <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat ">{% trans 'Close' %}</a>
@@ -152,4 +150,12 @@
             });
         });
     </script>
+    <style>
+    #compile_log_holder {
+        font-family: Consolas, Inconsolota, 'Courier New', monospace;
+        direction: ltr !important;
+        text-align: left !important;
+        display: block;
+    }
+    </style>
 {% endblock %}

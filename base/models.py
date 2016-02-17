@@ -207,6 +207,7 @@ class GameRequest(models.Model):
         self.accepted = accepted
         self.accept_time = timezone.now()
         if accepted:
+            print('accepted')
             self.game = Game.objects.create(
                 competition=self.requestee.competition,
                 title=_('friendly game'),

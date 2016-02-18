@@ -17,6 +17,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 from game.models import Competition, GameTeamSubmit
 from mezzanine.utils.email import send_mail_template
+from sendfile import sendfile
 from .tasks import compile_code
 
 
@@ -489,3 +490,12 @@ def request_join(request, team_id):
             else:
                 messages.warning(request, _('you have requested to join this team before'))
     return redirect('teams_list')
+
+
+@login_required
+@team_required
+def get_submission(request, submit_id):
+    submit = Submit.objects.get(pk=submit_id)
+    if request.team.id != submit.team.id:
+        raise Http404()
+    return sendfile(request, submit.code.url)

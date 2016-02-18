@@ -62,7 +62,9 @@ $(document).ready(function(e){
     	offset: 100    
    	});
    	$('#remaining').countdown({
-		date: '03/02/2016 23:59:59',
+        // date = 12 bahman 94 9:00 AM
+        // TODO: get time from server
+		date: '03/02/2016 21:29:59',
 		offset: -8,
 		day: 'روز',
 		days: 'روز'

@@ -509,4 +509,6 @@ def play_log(request):
     log = request.GET.get('log', '')
     if os.path.basename(game.log_file.name) != log:
         raise Http404()
+    game.log_file.open()
+    game.log_file.close()
     return render(request, 'log-player/log-player.html', context={'game': game})

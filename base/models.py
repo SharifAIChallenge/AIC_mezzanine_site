@@ -16,7 +16,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from game.models import Game, GameTeamSubmit
 from django.conf import settings
-
+from game.tasks import run_game
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -200,9 +200,10 @@ class GameRequest(models.Model):
             return int((now - last_time).total_seconds() / 60)
 
     def accept(self, accepted):
-        wait = GameRequest.check_last_time(self.requester)
-        if wait:
-            return wait
+        # self.accepted = False
+        # wait = GameRequest.check_last_time(self.requester)
+        # if wait:
+        #     return wait
 
         self.accepted = accepted
         self.accept_time = timezone.now()
@@ -216,5 +217,5 @@ class GameRequest(models.Model):
             # TODO: better for teams to have final submit
             GameTeamSubmit.objects.create(game=self.game, submit=self.requestee.submit_set.last())
             GameTeamSubmit.objects.create(game=self.game, submit=self.requester.submit_set.last())
-            self.game.run()
+            run_game.delay(self.game.id)
         self.save()

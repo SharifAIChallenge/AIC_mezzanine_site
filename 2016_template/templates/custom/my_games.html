@@ -157,7 +157,7 @@
                                         {% trans 'team' %}
                                     </th>
                                     <th>
-                                        {% trans 'result' %}
+                                        {% trans 'status' %}
                                     </th>
                                 </tr>
 
@@ -170,7 +170,12 @@
                                                 {% if not forloop.last %}, {% endif %}
                                             {% endfor %}
                                         </td>
-                                        <td><a href="{{ submission.game.get_log_url }}">{{ submission.score }}</a></td>
+                                        <td>
+                                            {{ submission.game.get_status_display }}
+                                            {% if submission.game.status == 3 %}
+                                                (<a href="{{ submission.game.get_log_url }}">{{ submission.score|floatformat:2 }}</a>)
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                 {% endfor %}
 

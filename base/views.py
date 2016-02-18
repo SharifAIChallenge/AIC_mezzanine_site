@@ -241,7 +241,7 @@ def my_games(request):
         messages.error(request, _('your team must be final'))
         return redirect('my_team')
 
-    participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game')
+    participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game').order_by('game__timestamp').reverse()
     sent_requests = GameRequest.objects.filter(requester=request.team)
     received_requests = GameRequest.objects.filter(requestee=request.team)
 

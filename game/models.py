@@ -27,6 +27,9 @@ class Competition(models.Model):
     server = models.ForeignKey('game.DockerContainer', verbose_name=_("server container"), null=True, blank=True)
     additional_containers = models.ManyToManyField('game.DockerContainer', verbose_name=_("additional containers"), related_name='+', blank=True)
 
+    compile_time_limit = models.PositiveIntegerField(verbose_name=_('compile time limit (s)'), default=60, blank=True)
+    execution_time_limit = models.PositiveIntegerField(verbose_name=_('execution time limit (s)'), default=10*60, blank=True)
+
     def __unicode__(self):
         return self.title
 

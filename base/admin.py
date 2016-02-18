@@ -82,6 +82,7 @@ class TeamResource(resources.ModelResource):
     class Meta:
         model = Team
         fields = (
+            'id',
             'name',
             'timestamp',
             'head__email',
@@ -89,6 +90,7 @@ class TeamResource(resources.ModelResource):
             'will_come',
         )
         export_order = (
+            'id',
             'name',
             'timestamp',
             'head__email',

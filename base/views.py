@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import os
 from functools import wraps
 from urlparse import urlparse
 
@@ -15,7 +16,7 @@ from django.utils import timezone
 from django.utils.translation import get_language_from_request
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
-from game.models import Competition, GameTeamSubmit
+from game.models import Competition, GameTeamSubmit, Game
 from mezzanine.utils.email import send_mail_template
 from sendfile import sendfile
 from .tasks import compile_code
@@ -499,3 +500,13 @@ def get_submission(request, submit_id):
     if request.team.id != submit.team.id:
         raise Http404()
     return sendfile(request, submit.code.url)
+
+
+@login_required
+@team_required
+def play_log(request):
+    game = get_object_or_404(Game, id=request.GET.get('game', None))
+    log = request.GET.get('log', '')
+    if os.path.basename(game.log_file.name) != log:
+        raise Http404()
+    return render(request, 'log-player/log-player.html', context={'game': game})

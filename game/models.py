@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
@@ -94,8 +95,7 @@ class Game(models.Model):
         return self.title
 
     def get_log_url(self):
-        # TODO: write this
-        return ''
+        return reverse('play_log') + '?game=%d&log=%s' % (self.id, os.path.basename(self.log_file.name))
 
     def get_participants(self):
         return [submit.team for submit in self.players.all()]

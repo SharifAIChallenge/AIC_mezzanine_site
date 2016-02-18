@@ -194,13 +194,15 @@ class GameRequest(models.Model):
 
     @classmethod
     def check_last_time(cls, team):
-        last_time = cls.objects.filter(requester=team, accepted=True).aggregate(Max('accept_time'))['accept_time__max']
-        if last_time:
-            now = timezone.now()
-            return int((now - last_time).total_seconds() / 60)
+        # todo: uncomment for deploy
+        # last_time = cls.objects.filter(requester=team, accepted=True).aggregate(Max('accept_time'))['accept_time__max']
+        # if last_time:
+        #     now = timezone.now()
+        #     return int((now - last_time).total_seconds() / 60)
+        return 1
 
     def accept(self, accepted):
-        # self.accepted = False
+        # todo: uncomment for deploy
         # wait = GameRequest.check_last_time(self.requester)
         # if wait:
         #     return wait

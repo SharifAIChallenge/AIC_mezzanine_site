@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-19 00:04+0330\n"
+"POT-Creation-Date: 2016-02-19 01:50+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,8 +36,8 @@ msgid ""
 "order to activate your account."
 msgstr ""
 
-#: 2016_template/templates/accounts/account_signup.html:15 base/views.py:104
-#: base/views.py:428 base/views.py:486
+#: 2016_template/templates/accounts/account_signup.html:15 base/views.py:105
+#: base/views.py:429 base/views.py:487
 msgid "please check spams too"
 msgstr "لطفا پوشه‌ی spam را نیز چک کنید."
 
@@ -80,7 +80,7 @@ msgstr "ارسال‌های قبلی"
 #: 2016_template/templates/accounts/submit_code.html:57
 #: 2016_template/templates/custom/my_games.html:80
 #: 2016_template/templates/custom/my_games.html:160 base/models.py:81
-#: game/models.py:83
+#: game/models.py:84
 msgid "status"
 msgstr "وضعیت"
 
@@ -94,7 +94,7 @@ msgstr "زبان برنامه نویسی"
 
 #: 2016_template/templates/accounts/submit_code.html:60
 #: 2016_template/templates/custom/my_games.html:77 base/models.py:38
-#: base/models.py:73 game/models.py:14 game/models.py:78
+#: base/models.py:73 game/models.py:15 game/models.py:79
 msgid "timestamp"
 msgstr "زمان"
 
@@ -387,7 +387,7 @@ msgstr "هنوز تصمیم نگرفته‌ام"
 msgid "submit opinion"
 msgstr "ثبت نظر"
 
-#: 2016_template/templates/custom/my_team.html:311 base/views.py:110
+#: 2016_template/templates/custom/my_team.html:311 base/views.py:111
 msgid "invite member to team"
 msgstr "دعوت کاربر به تیم"
 
@@ -399,7 +399,7 @@ msgstr "ترک تیم"
 msgid "game docs"
 msgstr "مستندات مسابقه"
 
-#: 2016_template/templates/custom/my_team.html:334 base/views.py:136
+#: 2016_template/templates/custom/my_team.html:334 base/views.py:137
 msgid "submit new code"
 msgstr "ارسال کد"
 
@@ -431,7 +431,7 @@ msgstr ""
 msgid "member"
 msgstr "عضو"
 
-#: 2016_template/templates/custom/teams_list.html:49 base/models.py:214
+#: 2016_template/templates/custom/teams_list.html:49 base/models.py:216
 msgid "friendly game"
 msgstr "بازی دوستانه"
 
@@ -621,7 +621,7 @@ msgstr ""
 msgid "user not found"
 msgstr "کاربر یافت نشد"
 
-#: base/forms.py:73 base/views.py:422
+#: base/forms.py:73 base/views.py:423
 msgid "AIChallenge team invitation"
 msgstr "دعوت عضویت تیم در AIChallenge"
 
@@ -641,7 +641,7 @@ msgstr "کشور"
 msgid "choose your country"
 msgstr "کشور خود را انتخاب کنید"
 
-#: base/models.py:39 game/models.py:36 game/models.py:79
+#: base/models.py:39 game/models.py:37 game/models.py:80
 msgid "competition"
 msgstr "مسابقه"
 
@@ -661,7 +661,7 @@ msgstr "به مرحله حضوری می‌آید"
 msgid "teams"
 msgstr "تیم‌ها"
 
-#: base/models.py:67 game/models.py:72
+#: base/models.py:67 game/models.py:73
 msgid "waiting"
 msgstr "در انتظار"
 
@@ -751,17 +751,17 @@ msgstr "وضعیت"
 msgid "accept time"
 msgstr "زمان قبول"
 
-#: base/page_processors.py:12 base/page_processors.py:22 base/views.py:118
-#: base/views.py:241 base/views.py:263 base/views.py:300
+#: base/page_processors.py:12 base/page_processors.py:22 base/views.py:119
+#: base/views.py:242 base/views.py:264 base/views.py:301
 msgid "your team must be final"
 msgstr "تیم شما باید بسته‌شده باشد"
 
-#: base/views.py:35 base/views.py:64 base/views.py:144 base/views.py:338
-#: base/views.py:382 base/views.py:411 base/views.py:438 base/views.py:468
+#: base/views.py:36 base/views.py:65 base/views.py:145 base/views.py:339
+#: base/views.py:383 base/views.py:412 base/views.py:439 base/views.py:469
 msgid "registration period has ended"
 msgstr "زمان ثبت‌نام به اتمام رسیده است"
 
-#: base/views.py:42
+#: base/views.py:43
 msgid ""
 "you are not in a team, create one below or request your team leader to "
 "invite you"
@@ -769,104 +769,104 @@ msgstr ""
 "شما در هیچ تیمی نیستید، هم اکنون یک تیم بسازید یا از سرگروه بخواهید شما را "
 "دعوت کند."
 
-#: base/views.py:76
+#: base/views.py:77
 msgid "register new team"
 msgstr "ثبت تیم جدید"
 
-#: base/views.py:90
+#: base/views.py:91
 msgid "only head can invite"
 msgstr "فقط سرگروه می‌تواند عضو جدید دعوت کند"
 
-#: base/views.py:97
+#: base/views.py:98
 msgid "already part of the team"
 msgstr "عضو تیم است."
 
-#: base/views.py:99 base/views.py:455
+#: base/views.py:100 base/views.py:456
 msgid "already part of another team"
 msgstr "عضو تیم دیگری است."
 
-#: base/views.py:101
+#: base/views.py:102
 msgid "you have invited this user before!"
 msgstr "شما قبلا این کاربر را دعوت کرده‌اید."
 
-#: base/views.py:106
+#: base/views.py:107
 #, python-format
 msgid "successfully invited user %(name)s"
 msgstr "کاربر %(name)s با موفقیت دعوت شد"
 
-#: base/views.py:121 base/views.py:394
+#: base/views.py:122 base/views.py:395
 msgid "your team does not have enough members"
 msgstr "تیم شما تعداد اعضای کافی ندارد"
 
-#: base/views.py:153 base/views.py:475
+#: base/views.py:154 base/views.py:476
 msgid "you already have a team"
 msgstr "شما در حال حاضر عضو این تیم هستید"
 
-#: base/views.py:156 base/views.py:458 base/views.py:477
+#: base/views.py:157 base/views.py:459 base/views.py:478
 msgid "the team has reached max members"
 msgstr "تیم شما به حداکثر تعداد رسیده است"
 
-#: base/views.py:159 base/views.py:202 base/views.py:347 base/views.py:358
-#: base/views.py:479
+#: base/views.py:160 base/views.py:203 base/views.py:348 base/views.py:359
+#: base/views.py:480
 #, fuzzy
 #| msgid "team is final"
 msgid "The team is final."
 msgstr "تیم نهایی شده"
 
-#: base/views.py:162
+#: base/views.py:163
 #, python-format
 msgid "successfully joined team %s"
 msgstr "با موفقیت به تیم %s ملحق شدید"
 
-#: base/views.py:271
+#: base/views.py:272
 msgid "No such game request found"
 msgstr "بازی پیدا نشد"
 
-#: base/views.py:277
+#: base/views.py:278
 #, fuzzy
 #| msgid "Game requests"
 msgid "Bad request"
 msgstr "درخواست‌های بازی"
 
-#: base/views.py:286
+#: base/views.py:287
 #, python-format
 msgid "this team can not play for %d minutes"
 msgstr "این تیم تا %d دقیقه دیگر نمی‌تواند بازی کند"
 
-#: base/views.py:291
+#: base/views.py:292
 msgid "Done"
 msgstr "انجام شد"
 
-#: base/views.py:313
+#: base/views.py:314
 #, python-format
 msgid "you must wait %d minutes before another request"
 msgstr "شما باید %d دقیقه تا درخواست بعدی صبر کنید"
 
-#: base/views.py:316
+#: base/views.py:317
 msgid "Challenged the team successfully"
 msgstr "تیم مورد نظر به بازی دوستانه دعوت شد"
 
-#: base/views.py:402
+#: base/views.py:403
 msgid "team is now finalized"
 msgstr "تبریک! تیم شما نهایی شد."
 
-#: base/views.py:429
+#: base/views.py:430
 msgid "invitation resend successful"
 msgstr "با موفقیت بازارسال شد"
 
-#: base/views.py:483
+#: base/views.py:484
 msgid "AIChallenge team join request"
 msgstr "درخواست عضویت تیم در AIChallenge"
 
-#: base/views.py:485
+#: base/views.py:486
 msgid "join request has been sent"
 msgstr "درخواست عضویت ارسال شد"
 
-#: base/views.py:489
+#: base/views.py:490
 msgid "your request to join this team has been declined"
 msgstr "درخواست شما توسط سرگروه این تیم رد شده است"
 
-#: base/views.py:491
+#: base/views.py:492
 msgid "you have requested to join this team before"
 msgstr "شما قبلا درخواست عضویت در این تیم را داده‌اید"
 
@@ -930,165 +930,165 @@ msgstr "سوالات پرسیده شده"
 msgid "A new question is waiting for you!"
 msgstr "یک سوال در انتظار شما نشسته است!"
 
-#: game/apps.py:8 game/models.py:90 game/models.py:106
+#: game/apps.py:8 game/models.py:91 game/models.py:106
 msgid "game"
 msgstr "بازی"
 
-#: game/models.py:15 game/models.py:41 game/models.py:80
+#: game/models.py:16 game/models.py:42 game/models.py:81
 msgid "title"
 msgstr "عنوان"
 
-#: game/models.py:16
+#: game/models.py:17
 msgid "site"
 msgstr "سایت"
 
-#: game/models.py:17
+#: game/models.py:18
 msgid "max team members count"
 msgstr "حداکثر تعداد اعضای تیم ها"
 
-#: game/models.py:18
+#: game/models.py:19
 msgid "min team members count"
 msgstr "حداقل تعداد اعضای تیم ها"
 
-#: game/models.py:20
+#: game/models.py:21
 msgid "registration start date"
 msgstr "زمان شروع ثبت‌نام"
 
-#: game/models.py:21
+#: game/models.py:22
 msgid "registration finish date"
 msgstr "زمان اتمام ثبت‌نام"
 
-#: game/models.py:23
+#: game/models.py:24
 msgid "number of players per game"
 msgstr "تعداد بازیکن‌های هر بازی"
 
-#: game/models.py:24
+#: game/models.py:25
 #, fuzzy
 #| msgid "programming language"
 msgid "supported languages"
 msgstr "زبان برنامه نویسی"
 
-#: game/models.py:25
+#: game/models.py:26
 msgid "server container"
 msgstr "محفظه‌ی سرور"
 
-#: game/models.py:26
+#: game/models.py:27
 #, fuzzy
 #| msgid "game docs"
 msgid "game logger"
 msgstr "مستندات مسابقه"
 
-#: game/models.py:27
+#: game/models.py:28
 msgid "additional containers"
 msgstr "محفظه‌های بیش‌تر"
 
-#: game/models.py:29
+#: game/models.py:30
 msgid "compile time limit (s)"
 msgstr "محدودیت زمان اجرا"
 
-#: game/models.py:30
+#: game/models.py:31
 msgid "execution time limit (s)"
 msgstr "محدودیت زمان اجرا"
 
-#: game/models.py:37
+#: game/models.py:38
 msgid "competitions"
 msgstr "مسابقات"
 
-#: game/models.py:42
+#: game/models.py:43
 #, fuzzy
 #| msgid "compiling"
 msgid "compile container"
 msgstr "محفظه‌ی کامپایل"
 
-#: game/models.py:43
+#: game/models.py:44
 msgid "execute container"
 msgstr "محفظه‌ی اجرا"
 
-#: game/models.py:50
+#: game/models.py:51
 msgid "tag"
 msgstr "تگ"
 
-#: game/models.py:51
+#: game/models.py:52
 #, fuzzy
 #| msgid "Payment Description"
 msgid "description"
 msgstr "توضیحات پرداخت"
 
-#: game/models.py:52
+#: game/models.py:53
 msgid "dockerfile source"
 msgstr "سورس داکرفایل"
 
-#: game/models.py:53
+#: game/models.py:54
 #, fuzzy
 #| msgid "Persian"
 msgid "version"
 msgstr "فارسی"
 
-#: game/models.py:54
+#: game/models.py:55
 #, fuzzy
 #| msgid "score"
 msgid "cores"
 msgstr "امتیاز"
 
-#: game/models.py:55
+#: game/models.py:56
 msgid "memory"
 msgstr "حافظه"
 
-#: game/models.py:56
+#: game/models.py:57
 msgid "swap"
 msgstr "سوآپ"
 
-#: game/models.py:57
+#: game/models.py:58
 msgid "build log"
 msgstr "جزئیات بیلد"
 
-#: game/models.py:65
+#: game/models.py:66
 msgid "manual"
 msgstr "دستی"
 
-#: game/models.py:66
+#: game/models.py:67
 msgid "friendly"
 msgstr "دوستانه"
 
-#: game/models.py:67
+#: game/models.py:68
 msgid "qualifications"
 msgstr "مقدماتی"
 
-#: game/models.py:68
+#: game/models.py:69
 msgid "finals"
 msgstr "نهایی"
 
-#: game/models.py:73
+#: game/models.py:74
 msgid "queued"
 msgstr "در صف"
 
-#: game/models.py:74
+#: game/models.py:75
 msgid "running"
 msgstr "در حال اجرا"
 
-#: game/models.py:75
+#: game/models.py:76
 msgid "finished"
 msgstr "به اتمام رسیده"
 
-#: game/models.py:81
+#: game/models.py:82
 msgid "players"
 msgstr "بازیکنان"
 
-#: game/models.py:82
+#: game/models.py:83
 #, fuzzy
 #| msgid "log file"
 msgid "game log file"
 msgstr "فایل log"
 
-#: game/models.py:85
+#: game/models.py:86
 msgid "pre games"
 msgstr "بازی‌های مقدماتی"
 
-#: game/models.py:87
+#: game/models.py:88
 msgid "game type"
 msgstr "نوع بازی"
 
-#: game/models.py:91
+#: game/models.py:92
 msgid "games"
 msgstr "بازی‌ها"
 

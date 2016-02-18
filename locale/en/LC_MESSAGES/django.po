@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-19 00:04+0330\n"
+"POT-Creation-Date: 2016-02-19 01:50+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,8 +35,8 @@ msgid ""
 "order to activate your account."
 msgstr ""
 
-#: 2016_template/templates/accounts/account_signup.html:15 base/views.py:104
-#: base/views.py:428 base/views.py:486
+#: 2016_template/templates/accounts/account_signup.html:15 base/views.py:105
+#: base/views.py:429 base/views.py:487
 msgid "please check spams too"
 msgstr "Please check your spam directory too."
 
@@ -72,7 +72,7 @@ msgstr "Previous Submissions"
 #: 2016_template/templates/accounts/submit_code.html:57
 #: 2016_template/templates/custom/my_games.html:80
 #: 2016_template/templates/custom/my_games.html:160 base/models.py:81
-#: game/models.py:83
+#: game/models.py:84
 msgid "status"
 msgstr "Status"
 
@@ -86,7 +86,7 @@ msgstr "Programming Language"
 
 #: 2016_template/templates/accounts/submit_code.html:60
 #: 2016_template/templates/custom/my_games.html:77 base/models.py:38
-#: base/models.py:73 game/models.py:14 game/models.py:78
+#: base/models.py:73 game/models.py:15 game/models.py:79
 msgid "timestamp"
 msgstr "Timestamp"
 
@@ -379,7 +379,7 @@ msgstr "Not decided yet"
 msgid "submit opinion"
 msgstr "Submit opinion"
 
-#: 2016_template/templates/custom/my_team.html:311 base/views.py:110
+#: 2016_template/templates/custom/my_team.html:311 base/views.py:111
 msgid "invite member to team"
 msgstr "Invite member to team"
 
@@ -391,7 +391,7 @@ msgstr "Leave the team"
 msgid "game docs"
 msgstr "Game docs"
 
-#: 2016_template/templates/custom/my_team.html:334 base/views.py:136
+#: 2016_template/templates/custom/my_team.html:334 base/views.py:137
 msgid "submit new code"
 msgstr "Submit new code"
 
@@ -421,7 +421,7 @@ msgstr ""
 msgid "member"
 msgstr "Member"
 
-#: 2016_template/templates/custom/teams_list.html:49 base/models.py:214
+#: 2016_template/templates/custom/teams_list.html:49 base/models.py:216
 msgid "friendly game"
 msgstr "Friendly Game"
 
@@ -598,7 +598,7 @@ msgstr ""
 msgid "user not found"
 msgstr ""
 
-#: base/forms.py:73 base/views.py:422
+#: base/forms.py:73 base/views.py:423
 msgid "AIChallenge team invitation"
 msgstr ""
 
@@ -618,7 +618,7 @@ msgstr ""
 msgid "choose your country"
 msgstr ""
 
-#: base/models.py:39 game/models.py:36 game/models.py:79
+#: base/models.py:39 game/models.py:37 game/models.py:80
 msgid "competition"
 msgstr ""
 
@@ -636,55 +636,55 @@ msgstr ""
 
 #: base/models.py:52
 msgid "teams"
-msgstr ""
+msgstr "Teams"
 
-#: base/models.py:67 game/models.py:72
+#: base/models.py:67 game/models.py:73
 msgid "waiting"
-msgstr ""
+msgstr "Waiting"
 
 #: base/models.py:68
 msgid "compiling"
-msgstr ""
+msgstr "Compiling"
 
 #: base/models.py:69
 msgid "compiled"
-msgstr ""
+msgstr "Compiled"
 
 #: base/models.py:70
 msgid "failed"
-msgstr ""
+msgstr "Failed"
 
 #: base/models.py:74
 msgid "code"
-msgstr ""
+msgstr "Code"
 
 #: base/models.py:78
 msgid "compiled code"
-msgstr ""
+msgstr "Compiled code"
 
 #: base/models.py:80
 msgid "log file"
-msgstr ""
+msgstr "Log file"
 
 #: base/models.py:85
 msgid "played"
-msgstr ""
+msgstr "Played"
 
 #: base/models.py:86
 msgid "won"
-msgstr ""
+msgstr "Won"
 
 #: base/models.py:92
 msgid "submit"
-msgstr ""
+msgstr "Submit"
 
 #: base/models.py:93
 msgid "submits"
-msgstr ""
+msgstr "Submits"
 
 #: base/models.py:97 base/models.py:128
 msgid "accepted"
-msgstr ""
+msgstr "Accepted"
 
 #: base/models.py:100
 msgid "slug"
@@ -722,116 +722,116 @@ msgstr ""
 msgid "accept time"
 msgstr ""
 
-#: base/page_processors.py:12 base/page_processors.py:22 base/views.py:118
-#: base/views.py:241 base/views.py:263 base/views.py:300
+#: base/page_processors.py:12 base/page_processors.py:22 base/views.py:119
+#: base/views.py:242 base/views.py:264 base/views.py:301
 msgid "your team must be final"
 msgstr ""
 
-#: base/views.py:35 base/views.py:64 base/views.py:144 base/views.py:338
-#: base/views.py:382 base/views.py:411 base/views.py:438 base/views.py:468
+#: base/views.py:36 base/views.py:65 base/views.py:145 base/views.py:339
+#: base/views.py:383 base/views.py:412 base/views.py:439 base/views.py:469
 msgid "registration period has ended"
 msgstr ""
 
-#: base/views.py:42
+#: base/views.py:43
 msgid ""
 "you are not in a team, create one below or request your team leader to "
 "invite you"
 msgstr ""
 
-#: base/views.py:76
+#: base/views.py:77
 msgid "register new team"
 msgstr ""
 
-#: base/views.py:90
+#: base/views.py:91
 msgid "only head can invite"
 msgstr ""
 
-#: base/views.py:97
+#: base/views.py:98
 msgid "already part of the team"
 msgstr ""
 
-#: base/views.py:99 base/views.py:455
+#: base/views.py:100 base/views.py:456
 msgid "already part of another team"
 msgstr ""
 
-#: base/views.py:101
+#: base/views.py:102
 msgid "you have invited this user before!"
 msgstr ""
 
-#: base/views.py:106
+#: base/views.py:107
 #, python-format
 msgid "successfully invited user %(name)s"
 msgstr ""
 
-#: base/views.py:121 base/views.py:394
+#: base/views.py:122 base/views.py:395
 msgid "your team does not have enough members"
 msgstr ""
 
-#: base/views.py:153 base/views.py:475
+#: base/views.py:154 base/views.py:476
 msgid "you already have a team"
 msgstr ""
 
-#: base/views.py:156 base/views.py:458 base/views.py:477
+#: base/views.py:157 base/views.py:459 base/views.py:478
 msgid "the team has reached max members"
 msgstr ""
 
-#: base/views.py:159 base/views.py:202 base/views.py:347 base/views.py:358
-#: base/views.py:479
+#: base/views.py:160 base/views.py:203 base/views.py:348 base/views.py:359
+#: base/views.py:480
 msgid "The team is final."
 msgstr ""
 
-#: base/views.py:162
+#: base/views.py:163
 #, python-format
 msgid "successfully joined team %s"
 msgstr ""
 
-#: base/views.py:271
+#: base/views.py:272
 msgid "No such game request found"
 msgstr ""
 
-#: base/views.py:277
+#: base/views.py:278
 msgid "Bad request"
 msgstr ""
 
-#: base/views.py:286
+#: base/views.py:287
 #, python-format
 msgid "this team can not play for %d minutes"
 msgstr ""
 
-#: base/views.py:291
+#: base/views.py:292
 msgid "Done"
 msgstr ""
 
-#: base/views.py:313
+#: base/views.py:314
 #, python-format
 msgid "you must wait %d minutes before another request"
 msgstr ""
 
-#: base/views.py:316
+#: base/views.py:317
 msgid "Challenged the team successfully"
 msgstr ""
 
-#: base/views.py:402
+#: base/views.py:403
 msgid "team is now finalized"
 msgstr ""
 
-#: base/views.py:429
+#: base/views.py:430
 msgid "invitation resend successful"
 msgstr ""
 
-#: base/views.py:483
+#: base/views.py:484
 msgid "AIChallenge team join request"
 msgstr ""
 
-#: base/views.py:485
+#: base/views.py:486
 msgid "join request has been sent"
 msgstr ""
 
-#: base/views.py:489
+#: base/views.py:490
 msgid "your request to join this team has been declined"
 msgstr ""
 
-#: base/views.py:491
+#: base/views.py:492
 msgid "you have requested to join this team before"
 msgstr ""
 
@@ -895,157 +895,157 @@ msgstr ""
 msgid "A new question is waiting for you!"
 msgstr ""
 
-#: game/apps.py:8 game/models.py:90 game/models.py:106
+#: game/apps.py:8 game/models.py:91 game/models.py:106
 msgid "game"
 msgstr ""
 
-#: game/models.py:15 game/models.py:41 game/models.py:80
+#: game/models.py:16 game/models.py:42 game/models.py:81
 msgid "title"
 msgstr ""
 
-#: game/models.py:16
+#: game/models.py:17
 msgid "site"
 msgstr ""
 
-#: game/models.py:17
+#: game/models.py:18
 msgid "max team members count"
 msgstr ""
 
-#: game/models.py:18
+#: game/models.py:19
 msgid "min team members count"
 msgstr ""
 
-#: game/models.py:20
+#: game/models.py:21
 msgid "registration start date"
 msgstr ""
 
-#: game/models.py:21
+#: game/models.py:22
 msgid "registration finish date"
 msgstr ""
 
-#: game/models.py:23
+#: game/models.py:24
 msgid "number of players per game"
 msgstr ""
 
-#: game/models.py:24
+#: game/models.py:25
 msgid "supported languages"
 msgstr ""
 
-#: game/models.py:25
+#: game/models.py:26
 msgid "server container"
 msgstr ""
 
-#: game/models.py:26
+#: game/models.py:27
 msgid "game logger"
 msgstr ""
 
-#: game/models.py:27
+#: game/models.py:28
 msgid "additional containers"
 msgstr ""
 
-#: game/models.py:29
+#: game/models.py:30
 msgid "compile time limit (s)"
 msgstr ""
 
-#: game/models.py:30
+#: game/models.py:31
 msgid "execution time limit (s)"
 msgstr ""
 
-#: game/models.py:37
+#: game/models.py:38
 msgid "competitions"
 msgstr ""
 
-#: game/models.py:42
+#: game/models.py:43
 msgid "compile container"
 msgstr ""
 
-#: game/models.py:43
+#: game/models.py:44
 msgid "execute container"
 msgstr ""
 
-#: game/models.py:50
+#: game/models.py:51
 msgid "tag"
 msgstr ""
 
-#: game/models.py:51
+#: game/models.py:52
 msgid "description"
 msgstr ""
 
-#: game/models.py:52
+#: game/models.py:53
 msgid "dockerfile source"
 msgstr ""
 
-#: game/models.py:53
+#: game/models.py:54
 msgid "version"
 msgstr ""
 
-#: game/models.py:54
+#: game/models.py:55
 msgid "cores"
 msgstr ""
 
-#: game/models.py:55
+#: game/models.py:56
 msgid "memory"
 msgstr ""
 
-#: game/models.py:56
+#: game/models.py:57
 msgid "swap"
 msgstr ""
 
-#: game/models.py:57
+#: game/models.py:58
 msgid "build log"
 msgstr ""
 
-#: game/models.py:65
+#: game/models.py:66
 msgid "manual"
 msgstr ""
 
-#: game/models.py:66
-msgid "friendly"
-msgstr ""
-
 #: game/models.py:67
-msgid "qualifications"
-msgstr ""
+msgid "friendly"
+msgstr "Friendly"
 
 #: game/models.py:68
-msgid "finals"
-msgstr ""
+msgid "qualifications"
+msgstr "Qualifications"
 
-#: game/models.py:73
-msgid "queued"
-msgstr ""
+#: game/models.py:69
+msgid "finals"
+msgstr "Finals"
 
 #: game/models.py:74
-msgid "running"
-msgstr ""
+msgid "queued"
+msgstr "Queued"
 
 #: game/models.py:75
-msgid "finished"
-msgstr ""
+msgid "running"
+msgstr "Running"
 
-#: game/models.py:81
-msgid "players"
-msgstr ""
+#: game/models.py:76
+msgid "finished"
+msgstr "Finished"
 
 #: game/models.py:82
+msgid "players"
+msgstr "Players"
+
+#: game/models.py:83
 msgid "game log file"
-msgstr ""
+msgstr "Log File"
 
-#: game/models.py:85
+#: game/models.py:86
 msgid "pre games"
-msgstr ""
+msgstr "Pre games"
 
-#: game/models.py:87
+#: game/models.py:88
 msgid "game type"
-msgstr ""
+msgstr "Game Type"
 
-#: game/models.py:91
+#: game/models.py:92
 msgid "games"
-msgstr ""
+msgstr "Games"
 
 #: game/models.py:105
 msgid "team submit"
-msgstr ""
+msgstr "Team Submit"
 
 #, fuzzy
 #~| msgid "team members"

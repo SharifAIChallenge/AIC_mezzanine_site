@@ -35,5 +35,6 @@ class Command(BaseCommand):
             submission_list = submission_list.filter(id__gte=options["min_ID"][0])
 
         for submission in submission_list:
+            print("Scheduling recompile of submission " + str(submission.id))
             compile_code.delay(submission.id)
 

@@ -30,6 +30,7 @@ class MemberResource(resources.ModelResource):
     class Meta:
         model = Member
         fields = (
+            'id',
             'username',
             'first_name',
             'last_name',
@@ -40,6 +41,7 @@ class MemberResource(resources.ModelResource):
             'team__name',
         )
         export_order = (
+            'id',
             'username',
             'first_name',
             'last_name',
@@ -97,6 +99,7 @@ class TeamResource(resources.ModelResource):
     class Meta:
         model = Team
         fields = (
+            'id',
             'name',
             'timestamp',
             'head__email',
@@ -104,6 +107,7 @@ class TeamResource(resources.ModelResource):
             'will_come',
         )
         export_order = (
+            'id',
             'name',
             'timestamp',
             'head__email',

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
 from mezzanine.pages.page_processors import processor_for
-from mezzanine.utils.email import send_mail_template
+from mezzanine.utils.email import split_addresses, send_mail_template
 from .forms import AskedQuestionForm
 
 from .models import QAPage, AskedQuestion
@@ -16,8 +16,11 @@ def question_and_answer_page_processor(request, page):
         question = question_form.save(page.qapage, request.user)
 
         fields = [('questioner', question.questioner), ('question', question.question)]
-        send_mail_template(page.title, 'email/form_response', None, page.qapage.responder_mail,
-                           context={'message': _('A new question is waiting for you!'), 'fields': fields})
+
+        responder_mail = split_addresses(page.qapage.responder_mail)
+        if responder_mail:
+            send_mail_template(page.title, 'email/form_response', None, responder_mail,
+                               context={'message': _('A new question is waiting for you!'), 'fields': fields})
 
         return redirect(url)
 

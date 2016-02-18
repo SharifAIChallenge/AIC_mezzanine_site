@@ -14,7 +14,7 @@ class ContainerPage(Page):
 
 
 class QAPage(Page, RichText):
-    responder_mail = models.EmailField(max_length=2014, null=True, blank=True, verbose_name=_("Responder Mail"))
+    responder_mail = models.CharField(max_length=2014, null=True, blank=True, verbose_name=_("Responder Mail"))
 
     class Meta:
         verbose_name = _("QA Page")

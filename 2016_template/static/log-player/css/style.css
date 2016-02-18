@@ -147,7 +147,7 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 #logo{
-    background-image: url('../logo.png');
+    background-image: url('/static/log-player/images/logo.png');
     background-size: cover;
     width: 25vh;
     height: 10vh;

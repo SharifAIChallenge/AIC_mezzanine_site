@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-18 23:42+0330\n"
+"POT-Creation-Date: 2016-02-19 00:04+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -290,7 +290,7 @@ msgstr "تیم"
 
 #: 2016_template/templates/custom/my_games.html:101
 msgid "reject"
-msgstr ""
+msgstr "انصراف"
 
 #: 2016_template/templates/custom/my_games.html:131
 msgid "watch game"
@@ -313,6 +313,10 @@ msgstr "در انتظار تأیید"
 #| msgid "game type"
 msgid "type"
 msgstr "نوع بازی"
+
+#: 2016_template/templates/custom/my_games.html:177 game/models.py:108
+msgid "score"
+msgstr "امتیاز"
 
 #: 2016_template/templates/custom/my_team.html:64
 msgid "User removed from team"
@@ -1091,10 +1095,6 @@ msgstr "بازی‌ها"
 #: game/models.py:105
 msgid "team submit"
 msgstr "ارسالی تیم"
-
-#: game/models.py:108
-msgid "score"
-msgstr "امتیاز"
 
 #~ msgid "request join"
 #~ msgstr "درخواست عضویت"

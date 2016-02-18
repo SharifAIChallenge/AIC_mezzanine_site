@@ -15,6 +15,7 @@ class MemberResource(resources.ModelResource):
     class Meta:
         model = Member
         fields = (
+            'id',
             'username',
             'first_name',
             'last_name',
@@ -25,6 +26,7 @@ class MemberResource(resources.ModelResource):
             'team__name',
         )
         export_order = (
+            'id',
             'username',
             'first_name',
             'last_name',

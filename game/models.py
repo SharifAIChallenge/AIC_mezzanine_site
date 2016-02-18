@@ -39,6 +39,25 @@ class Competition(models.Model):
         verbose_name_plural = _('competitions')
 
 
+def game_config_directory_path(instance, filename):
+    return 'game/config/{0}/{1}'.format(instance.competition.id, filename)
+
+
+class GameConfiguration(models.Model):
+    competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=False, blank=False)
+    config = models.FileField(verbose_name=_('configuration file'), upload_to=game_config_directory_path,
+                                      storage=syncing_storage, null=True, blank=True)
+    description = models.CharField(verbose_name=_('description'), max_length=200, null=False, blank=False)
+    is_public = models.BooleanField(verbose_name=_('public'), default=False)
+
+    def __unicode__(self):
+        return self.description
+
+    class Meta:
+        verbose_name = _('Game Configuration')
+        verbose_name_plural = _('Game Configurations')
+
+
 class ProgrammingLanguage(models.Model):
     name = models.CharField(verbose_name=_('title'), max_length=200)
     compile_container = models.ForeignKey('game.DockerContainer', verbose_name=_('compile container'), related_name='+',
@@ -83,7 +102,6 @@ class Game(models.Model):
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=GAME_STATUSES, default=0)
 
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
-    competition = models.ForeignKey('game.Competition', verbose_name=_('competition'))
     title = models.CharField(verbose_name=_('title'), max_length=200)
     players = models.ManyToManyField('base.Submit', verbose_name=_('players'), through='game.GameTeamSubmit')
     log_file = models.FileField(verbose_name=_('game log file'), upload_to='games/logs/', null=True, blank=True,
@@ -92,6 +110,7 @@ class Game(models.Model):
     pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'), blank=True)
 
     game_type = models.PositiveSmallIntegerField(verbose_name=_('game type'), choices=GAME_TYPES, default=0)
+    game_config = models.ForeignKey('game.GameConfiguration', verbose_name=_('game configuration'))
 
     class Meta:
         verbose_name = _('game')

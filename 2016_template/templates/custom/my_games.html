@@ -35,7 +35,7 @@
                                 location.reload(true);
                             });
                         } else {
-                            Materialize.toast(response['message'], 3000, 'rounded');
+                            Materialize.toast(response['messaee'], 3000, 'rounded');
                         }
                     });
 
@@ -164,7 +164,12 @@
                                 {% for submission in participations %}
                                     <tr>
                                         <td>{{ submission.game.get_game_type_display }}</td>
-                                        <td>{{ submission.game.get_participants }}</td>
+                                        <td>
+                                            {% for team in submission.game.get_participants %}
+                                                {{ team.name }}
+                                                {% if not forloop.last %}, {% endif %}
+                                            {% endfor %}
+                                        </td>
                                         <td><a href="{{ submission.game.get_log_url }}">{{ submission.score }}</a></td>
                                     </tr>
                                 {% endfor %}

@@ -68,11 +68,19 @@ class Game(models.Model):
         (3, _('finals')),
     )
 
+    STATUSES = (
+        (0, _('waiting')),
+        (1, _('queued')),
+        (2, _('running')),
+        (3, _('finished')),
+    )
+
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'))
     title = models.CharField(verbose_name=_('title'), max_length=200)
     players = models.ManyToManyField('base.Submit', verbose_name=_('players'), through='game.GameTeamSubmit')
     log_file = models.FileField(verbose_name=_('game log file'), upload_to='games/logs/', null=True, blank=True, storage=syncing_storage)
+    status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
     pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'), blank=True)
 
@@ -90,7 +98,7 @@ class Game(models.Model):
         return ''
 
     def get_participants(self):
-        return [submit.team for submit in self.players]
+        return [submit.team for submit in self.players.all()]
 
 
 class GameTeamSubmit(models.Model):

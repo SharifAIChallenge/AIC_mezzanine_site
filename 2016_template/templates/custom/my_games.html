@@ -171,9 +171,13 @@
                                             {% endfor %}
                                         </td>
                                         <td>
-                                            {{ submission.game.get_status_display }}
                                             {% if submission.game.status == 3 %}
-                                                (<a href="{{ submission.game.get_log_url }}">{{ submission.score|floatformat:2 }}</a>)
+                                                <a href="{{ submission.game.get_log_url }}">
+                                                    {{ submission.game.get_status_display }}
+                                                    (score: {{ submission.score|floatformat:2 }})
+                                                </a>
+                                            {% else %}
+                                                {{ submission.game.get_status_display }}
                                             {% endif %}
                                         </td>
                                     </tr>

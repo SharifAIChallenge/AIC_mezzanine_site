@@ -218,4 +218,6 @@ class GameRequest(models.Model):
             GameTeamSubmit.objects.create(game=self.game, submit=self.requestee.submit_set.last())
             GameTeamSubmit.objects.create(game=self.game, submit=self.requester.submit_set.last())
             run_game.delay(self.game.id)
+            self.game.status = 1
+            self.game.save()
         self.save()

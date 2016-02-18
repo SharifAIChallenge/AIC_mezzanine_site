@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from game.models import Game, Competition, GameTeamSubmit, ProgrammingLanguage, DockerContainer
+from game.models import Game, Competition, GameTeamSubmit, ProgrammingLanguage, DockerContainer, GameConfiguration
 from mezzanine.core import admin as mezzanineAdmin
 
 admin.site.register(Competition)
@@ -16,11 +16,11 @@ class SubmitInline(mezzanineAdmin.StackedDynamicInlineAdmin):
 class GameAdmin(admin.ModelAdmin):
     inlines = (SubmitInline,)
 
-    fieldsets = ((None, {"fields": ("title", "competition", "pre_games")}),)
-    list_display = ("title", "competition")
-    list_display_links = ("title", "competition")
+    fieldsets = ((None, {"fields": ("title", "pre_games")}),)
+    list_display = ("title",)
+    list_display_links = ("title",)
     list_editable = ()
-    list_filter = ("title", "competition")
+    list_filter = ("title",)
     search_fields = ("title",)
 
 
@@ -32,3 +32,14 @@ class GameAdmin(admin.ModelAdmin):
 class GameTeamSubmitAdmin(admin.ModelAdmin):
     list_display = ('submit', 'game', 'score')
     # inlines = [GameInline]
+
+
+@admin.register(GameConfiguration)
+class GameConfigurationAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
+    fieldsets = ((None, {"fields": ("competition", "config", "description", "is_public")}),)
+    list_display = ("competition", "config", "description", "is_public")
+    list_display_links = ("competition", "config", "description")
+    list_editable = ("is_public", )
+    list_filter = ("competition", "config", "description", "is_public")
+    search_fields = ("description",)
+

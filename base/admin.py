@@ -4,9 +4,24 @@ from django.contrib import admin
 from import_export import resources, fields
 from import_export.admin import ImportExportModelAdmin
 
-admin_models = [Submit, TeamInvitation, JoinRequest, Email, Message]
+admin_models = [TeamInvitation, JoinRequest, Email, Message]
 
 list(map(admin.site.register, admin_models))
+
+
+class SubmitAdmin(admin.ModelAdmin):
+    fieldsets = ((None, {"fields": ("status", "code", "compile_log_file", "team")}),)
+    list_display = ("get_team_name", "code", "status", "compile_log_file")
+    list_display_links = ()
+    list_editable = ()
+    list_filter = ()
+    search_fields = ()
+
+    def get_team_name(self, submit):
+        return submit.team.name
+
+
+admin.site.register(Submit, SubmitAdmin)
 
 
 class MemberResource(resources.ModelResource):

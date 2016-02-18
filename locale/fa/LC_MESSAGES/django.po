@@ -309,8 +309,6 @@ msgid "waiting for accept"
 msgstr "در انتظار تأیید"
 
 #: 2016_template/templates/custom/my_games.html:154
-#, fuzzy
-#| msgid "game type"
 msgid "type"
 msgstr "نوع بازی"
 

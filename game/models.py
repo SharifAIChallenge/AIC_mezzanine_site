@@ -39,7 +39,7 @@ class Competition(models.Model):
 
 
 def game_config_directory_path(instance, filename):
-    return 'games/config/{0}/{1}'.format(instance.team.competition.id, filename)
+    return 'games/config/{0}/{1}'.format(instance.competition.id, filename)
 
 
 class GameConfiguration(models.Model):

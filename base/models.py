@@ -212,7 +212,6 @@ class GameRequest(models.Model):
         if accepted:
             print('accepted')
             self.game = Game.objects.create(
-                competition=self.requestee.competition,
                 title=_('friendly game'),
                 game_type=1,
             )

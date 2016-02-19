@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 import base64
+import datetime
 import uuid
 
 import re
-
 from ckeditor.fields import RichTextField
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
@@ -15,8 +16,6 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from game.models import Game, GameTeamSubmit
-from django.conf import settings
-from game.tasks import run_game
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -42,7 +41,8 @@ class Team(models.Model):
     show = models.BooleanField(default=True, verbose_name=_("show team in public list"))
     final = models.BooleanField(default=False, verbose_name=_("team is final"))
 
-    will_come = models.PositiveSmallIntegerField(verbose_name=_("will come to site"), choices=WILL_COME_CHOICES, default=2)
+    will_come = models.PositiveSmallIntegerField(verbose_name=_("will come to site"), choices=WILL_COME_CHOICES,
+                                                 default=2)
 
     def __unicode__(self):
         return 'Team%d(%s)' % (self.id, self.name)
@@ -57,6 +57,7 @@ class Team(models.Model):
 
 def team_code_directory_path(instance, filename):
     return 'submit/code/{0}/{1}'.format(instance.team.id, filename)
+
 
 def team_compiled_code_directory_path(instance, filename):
     return 'submit/compile/{0}/{1}'.format(instance.team.id, filename)
@@ -194,31 +195,21 @@ class GameRequest(models.Model):
 
     @classmethod
     def check_last_time(cls, team):
-        # todo: uncomment for deploy
-        # last_time = cls.objects.filter(requester=team, accepted=True).aggregate(Max('accept_time'))['accept_time__max']
-        # if last_time:
-        #     now = timezone.now()
-        #     return int((now - last_time).total_seconds() / 60)
-        return 0
+        last_time = cls.objects.filter(requester=team, accepted=True).aggregate(Max('accept_time'))['accept_time__max']
+        if last_time:
+            now = timezone.now()
+            one_hour_before = now - datetime.timedelta(hours=1)
+            if one_hour_before - last_time > 0:
+                return int((one_hour_before - last_time).total_seconds() / 60)
+        return False
 
     def accept(self, accepted):
-        # todo: uncomment for deploy
-        # wait = GameRequest.check_last_time(self.requester)
-        # if wait:
-        #     return wait
+        wait = GameRequest.check_last_time(self.requester)
+        if wait:
+            return wait
 
         self.accepted = accepted
         self.accept_time = timezone.now()
         if accepted:
-            print('accepted')
-            self.game = Game.objects.create(
-                title=_('friendly game'),
-                game_type=1,
-            )
-            # TODO: better for teams to have final submit
-            GameTeamSubmit.objects.create(game=self.game, submit=self.requestee.submit_set.last())
-            GameTeamSubmit.objects.create(game=self.game, submit=self.requester.submit_set.last())
-            run_game.delay(self.game.id)
-            self.game.status = 1
-            self.game.save()
+            Game.create([self.requestee, self.requester])
         self.save()

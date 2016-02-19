@@ -29,6 +29,7 @@ urlpatterns += patterns(
         '',
         url("^$", 'AIC_site.views.index', name="home"),
         url("^team/", include('base.urls')),
+        url("^game/", include('game.urls')),
         ("^", include("mezzanine.urls")),
 )
 

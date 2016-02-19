@@ -4,7 +4,6 @@ import datetime
 import uuid
 
 import re
-
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
@@ -17,8 +16,6 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from game.models import Game, GameTeamSubmit
-from django.conf import settings
-
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -202,7 +199,7 @@ class GameRequest(models.Model):
         if last_time:
             now = timezone.now()
             one_hour_before = now - datetime.timedelta(hours=1)
-            seconds = (one_hour_before - last_time).total_seconds()
+            seconds = (last_time - one_hour_before).total_seconds()
             if seconds > 0:
                 return int(seconds / 60)
         return False

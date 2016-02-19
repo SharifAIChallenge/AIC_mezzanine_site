@@ -199,7 +199,7 @@ class GameRequest(models.Model):
         # if last_time:
         #     now = timezone.now()
         #     return int((now - last_time).total_seconds() / 60)
-        return 1
+        return 0
 
     def accept(self, accepted):
         # todo: uncomment for deploy

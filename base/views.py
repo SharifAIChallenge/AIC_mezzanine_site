@@ -243,8 +243,8 @@ def my_games(request):
 
     participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game').order_by(
         'game__timestamp').reverse()
-    sent_requests = GameRequest.objects.filter(requester=request.team).exclude(accepted__isnull=True)
-    received_requests = GameRequest.objects.filter(requestee=request.team).exclude(accepted__isnull=True)
+    sent_requests = GameRequest.objects.filter(requester=request.team, accepted__isnull=True)
+    received_requests = GameRequest.objects.filter(requestee=request.team, accepted__isnull=True)
 
     return render(request, 'custom/my_games.html', context={
         'team': request.user.team,

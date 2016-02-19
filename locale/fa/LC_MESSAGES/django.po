@@ -302,7 +302,7 @@ msgstr "در انتظار اجرا"
 
 #: 2016_template/templates/custom/my_games.html:136
 msgid "rejected"
-msgstr ""
+msgstr "رد شده"
 
 #: 2016_template/templates/custom/my_games.html:139
 msgid "waiting for accept"

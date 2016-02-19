@@ -104,7 +104,7 @@ class Game(models.Model):
     pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'), blank=True)
 
     game_type = models.PositiveSmallIntegerField(verbose_name=_('game type'), choices=GAME_TYPES, default=0)
-    game_config = models.ForeignKey('game.GameConfiguration', verbose_name=_('game configuration'))
+    game_config = models.ForeignKey('game.GameConfiguration', verbose_name=_('game configuration'), null=True)
 
     class Meta:
         verbose_name = _('game')

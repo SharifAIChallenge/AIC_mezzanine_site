@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='game',
             name='game_config',
-            field=models.ForeignKey(default=1, verbose_name='game configuration', to='game.GameConfiguration'),
+            field=models.ForeignKey(default=1, verbose_name='game configuration', to='game.GameConfiguration', null=True),
             preserve_default=False,
         ),
     ]

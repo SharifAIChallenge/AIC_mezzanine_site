@@ -14,7 +14,7 @@ class SubmitAdmin(admin.ModelAdmin):
     list_display = ("get_team_name", "lang", "code", "status", "compile_log_file", "compiled_code")
     list_display_links = ()
     list_editable = ()
-    list_filter = ()
+    list_filter = ("status",)
     search_fields = ()
 
     def get_team_name(self, submit):

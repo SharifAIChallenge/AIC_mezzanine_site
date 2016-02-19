@@ -100,6 +100,7 @@ class Game(models.Model):
         (1, _('queued')),
         (2, _('running')),
         (3, _('finished')),
+        (4, _('failed')),
     )
 
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)

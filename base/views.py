@@ -138,7 +138,7 @@ def submit(request):
     return render(request, 'accounts/submit_code.html', {
         'form': form,
         'title': _('submit new code'),
-        'submissions': Submit.objects.filter(team=request.team).order_by('-timestamp').all()
+        'submissions': Submit.objects.filter(team=request.team).order_by('-id')
     })
 
 

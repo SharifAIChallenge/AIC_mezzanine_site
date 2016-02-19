@@ -108,6 +108,7 @@ class Game(models.Model):
     players = models.ManyToManyField('base.Submit', verbose_name=_('players'), through='game.GameTeamSubmit')
     log_file = models.FileField(verbose_name=_('game log file'), upload_to='games/logs/', null=True, blank=True,
                                 storage=syncing_storage)
+    error_log = models.TextField(verbose_name=_('error log'), null=True, blank=True)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
     pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'), blank=True)

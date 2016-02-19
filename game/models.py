@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
@@ -42,7 +43,7 @@ class Competition(models.Model):
 
 
 def game_config_directory_path(instance, filename):
-    return 'game/config/{0}/{1}'.format(instance.competition.id, filename)
+    return 'games/config/{0}/{1}'.format(instance.team.competition.id, filename)
 
 
 class GameConfiguration(models.Model):
@@ -128,7 +129,6 @@ class Game(models.Model):
         if not title:
             title = _('friendly game')
         game = Game.objects.create(
-            competition=participants[0].competition,
             title=title,
             game_type=game_type,
         )

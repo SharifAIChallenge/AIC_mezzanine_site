@@ -504,7 +504,7 @@ def get_submission(request, submit_id):
     submit.code.close()
 
     response = HttpResponse()
-    response["Content-Disposition"] = "attachment; filename={0}.{1}".format(submit.team.id, 'zip')
+    response["Content-Disposition"] = "attachment; filename={0}.{1}".format(submit.id, 'zip')
     response['X-Accel-Redirect'] = submit.code.url
 
     return response

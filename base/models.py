@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import base64
 import datetime
-import re
 import uuid
+
+import re
 
 from ckeditor.fields import RichTextField
 from django.conf import settings
@@ -16,6 +17,8 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from game.models import Game, GameTeamSubmit
+from django.conf import settings
+
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 

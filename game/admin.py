@@ -15,12 +15,13 @@ class SubmitInline(mezzanineAdmin.StackedDynamicInlineAdmin):
 class GameAdmin(admin.ModelAdmin):
     inlines = (SubmitInline,)
 
-    fieldsets = ((None, {"fields": ("title", "pre_games")}),)
-    list_display = ("title",)
-    list_display_links = ("title",)
+    fieldsets = ((None, {"fields": ("title", "pre_games", "log_file", "error_log", "status",
+                                    "game_type", "game_config")}),)
+    list_display = ("title", "status", "game_type", "game_config")
+    list_display_links = ("title", "status", "game_type", "game_config")
     list_editable = ()
-    list_filter = ("title",)
-    search_fields = ("title",)
+    list_filter = ("status", "game_type", "game_config")
+    search_fields = ("title", )
 
 admin.site.register(Game, GameAdmin)
 

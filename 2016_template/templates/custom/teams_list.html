@@ -4,6 +4,7 @@
 {% block meta_title %}{% trans 'Teams' %}{% endblock %}
 {% block title %}{% trans 'Teams' %}{% endblock %}
 {% block extra_head %}
+    {{ block.super }}
     <style>
         .aligned {
         {% if LANGUAGE_BIDI %}
@@ -50,7 +51,7 @@
                         {% endif %}
                     </tr>
                     {% for team in teams %}
-                        <tr{% if not team.final %} class="non-final"{% endif %}>
+                        <tr {% if not team.final %}class="non-final"{% endif %}>
                             <td>{{ forloop.counter }}</td>
                             <td>{{ team.name }}</td>
                             <td class="aligned">
@@ -94,11 +95,9 @@
                             {% endif %}</td>
                         {% if show_friendly_button and team.final and team != request.user.team %}
                             <td>
-                                <form method="post" action="{% url 'game_request' %}">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="team_id" value="{{ team.pk }}" />
-                                    <button type="submit" class="btn btn-primary">{% trans 'Challenge' %}</button>
-                                </form>
+                                <button type="submit" class="btn btn-primary" onclick="challenge({{ team.id }});">
+                                    {% trans 'Challenge' %}
+                                </button>
                             </td>
                         {% endif %}
                         </tr>
@@ -107,4 +106,57 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+
+{% block extra_body %}
+    {{ block.super }}
+    <div id="config_select_modal" class="modal">
+        <div class="modal-content">
+            <h4 style="direction: ltr !important; text-align: left">{% trans 'Configuration' %}</h4>
+            <p>
+                <form method="post" id="game-request-form" action="{% url 'game_request' %}">
+                    {% csrf_token %}
+                    <input type="hidden" id="team_id" name="team_id" value="to_be_team_id" />
+                    <select name="config_id" class="center-align">
+                        {% for config in public_configurations %}
+                            <option class="center-align" value="{{ config.id }}">{{ config.description }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </p>
+
+            <pre id="compile_log_holder"></pre>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="game-request-modal-submit modal-action modal-close waves-effect waves-green btn-flat ">{% trans 'Challenge' %}</a>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block extra_js %}
+    {{ block.super }}
+    {% if show_friendly_button %}
+        <script type="text/javascript">
+            $('select').material_select();
+            $(function () {
+                $('select').material_select();
+                $('.mezzanine-form .select-dropdown').css("text-align", "center");
+                $('.mezzanine-form .select-wrapper li').css("text-align", "center");
+                $('span.caret').html('');
+            });
+
+            function challenge(team_id) {
+                $("#team_id").val(team_id);
+                $('#config_select_modal').openModal({
+                    dismissible: false,
+                    // ready: function() { alert('Ready'); },
+                    complete: function() {
+                        $("#game-request-form").submit();
+                    }
+                });
+            }
+        </script>
+    {% endif %}
 {% endblock %}

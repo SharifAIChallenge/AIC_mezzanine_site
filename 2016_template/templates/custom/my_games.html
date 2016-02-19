@@ -74,6 +74,9 @@
                                         {% trans 'team' %}
                                     </th>
                                     <th>
+                                        {% trans 'config' %}
+                                    </th>
+                                    <th>
                                         {% trans 'timestamp' %}
                                     </th>
                                     <th>
@@ -84,6 +87,9 @@
                                     <tr>
                                         <td>
                                             {{ request.requester.name }}
+                                        </td>
+                                        <td>
+                                            {{ request.game_config }}
                                         </td>
                                         <td>
                                             {% if LANGUAGE_BIDI %}
@@ -157,6 +163,9 @@
                                         {% trans 'team' %}
                                     </th>
                                     <th>
+                                        {% trans 'config' %}
+                                    </th>
+                                    <th>
                                         {% trans 'status' %}
                                     </th>
                                 </tr>
@@ -169,6 +178,9 @@
                                                 {{ team.name }}
                                                 {% if not forloop.last %}, {% endif %}
                                             {% endfor %}
+                                        </td>
+                                        <td>
+                                            {{ submission.game.game_config }}
                                         </td>
                                         <td>
                                             {% if submission.game.status == 3 %}

@@ -38,5 +38,5 @@ class TeamScoresForm(forms.Form):
         for game in Game.objects.filter(game_type=game_type):
             for submit in game.gameteamsubmit_set.all():
                 csv_text += "%d,%f," % (submit.submit.team_id, submit.score)
-            csv_text = csv_text[:-1] + '\n\r'
+            csv_text = csv_text[:-1] + '\n'
         return csv_text

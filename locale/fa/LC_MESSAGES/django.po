@@ -2629,3 +2629,6 @@ msgstr "آیا در صورت پذیرفته شدن در مرحله‌ی حضور
 
 msgid "Failed getting compilation log"
 msgstr "در دریافت لاگ کامپایل مشکلی پیش آمد"
+
+msgid "submit period has ended"
+msgstr "زمان ثبت کدها به پایان رسیده‌است"

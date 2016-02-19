@@ -116,7 +116,7 @@ class TeamResource(resources.ModelResource):
             'member1',
             'member2',
             'will_come',
-            'has_successful_submit',
+            'submitted',
         )
 
     def dehydrate_head(self, team):
@@ -134,7 +134,7 @@ class TeamResource(resources.ModelResource):
             return members[1].get_full_name()
         return None
 
-    def dehydrate_has_successful_submit(self, team):
+    def dehydrate_submitted(self, team):
         return team.submit_set.filter(status=2).exists()
 
 
@@ -160,5 +160,6 @@ admin.site.register(Team, TeamAdmin)
 
 class GameRequestAdmin(admin.ModelAdmin):
     list_display = ('requester', 'requestee', 'accepted', 'accept_time')
+
 
 admin.site.register(GameRequest, GameRequestAdmin)

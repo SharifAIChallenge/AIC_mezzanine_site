@@ -10,11 +10,11 @@ list(map(admin.site.register, admin_models))
 
 
 class SubmitAdmin(admin.ModelAdmin):
-    fieldsets = ((None, {"fields": ("status", "code", "compile_log_file", "team")}),)
-    list_display = ("get_team_name", "code", "status", "compile_log_file")
+    fieldsets = ((None, {"fields": ("status", "code", "compile_log_file", "compiled_code", "team")}),)
+    list_display = ("get_team_name", "lang", "code", "status", "compile_log_file", "compiled_code")
     list_display_links = ()
     list_editable = ()
-    list_filter = ()
+    list_filter = ("status",)
     search_fields = ()
 
     def get_team_name(self, submit):
@@ -95,6 +95,7 @@ class TeamResource(resources.ModelResource):
     member1 = fields.Field()
     member2 = fields.Field()
     head = fields.Field()
+    has_successful_submit = fields.Field()
 
     class Meta:
         model = Team
@@ -160,5 +161,6 @@ admin.site.register(Team, TeamAdmin)
 
 class GameRequestAdmin(admin.ModelAdmin):
     list_display = ('requester', 'requestee', 'accepted', 'accept_time')
+
 
 admin.site.register(GameRequest, GameRequestAdmin)

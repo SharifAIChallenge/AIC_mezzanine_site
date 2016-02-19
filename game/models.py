@@ -93,6 +93,7 @@ class Game(models.Model):
         (1, _('friendly')),
         (2, _('qualifications')),
         (3, _('finals')),
+        (4, _('seeding')),
     )
 
     STATUSES = (
@@ -100,6 +101,7 @@ class Game(models.Model):
         (1, _('queued')),
         (2, _('running')),
         (3, _('finished')),
+        (4, _('failed')),
     )
 
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
@@ -107,6 +109,7 @@ class Game(models.Model):
     players = models.ManyToManyField('base.Submit', verbose_name=_('players'), through='game.GameTeamSubmit')
     log_file = models.FileField(verbose_name=_('game log file'), upload_to='games/logs/', null=True, blank=True,
                                 storage=syncing_storage)
+    error_log = models.TextField(verbose_name=_('error log'), null=True, blank=True)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
     pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'), blank=True)
@@ -125,12 +128,15 @@ class Game(models.Model):
         return reverse('play_log') + '?game=%d&log=%s' % (self.id, os.path.basename(self.log_file.name))
 
     @classmethod
-    def create(cls, participants, game_type=1, title=None):
+    def create(cls, participants, game_type=1, game_conf=None, title=None):
         if not title:
             title = _('friendly game')
+        if not game_conf:
+            game_conf = GameConfiguration.objects.first()
         game = Game.objects.create(
             title=title,
             game_type=game_type,
+            game_config=game_conf,
         )
         for participant in participants:
             GameTeamSubmit.objects.create(game=game, submit=participant.submit_set.last())

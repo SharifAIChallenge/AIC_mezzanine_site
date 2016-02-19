@@ -331,54 +331,6 @@ RAVEN_CONFIG = {
     'dsn': 'http://f6e84572aef74086a69ff611fe8eacba:bc2fcec591574775a7ca16e492a990fd@aichallenge.sharif.edu:4444/2'
 }
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'null': {
-            'level': 'DEBUG',
-            'class': 'django.utils.log.NullHandler',
-        },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-        },
-        'mail_admin': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'include_html': True,
-        },
-        'sentry': {
-            'level': 'ERROR',
-            'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
-        },
-    },
-    'loggers': {
-        '': {
-            'handlers': ['console', 'sentry'],
-            'level': 'WARNING',
-        },
-        'AIC_site': {
-            'handlers': ['console', 'sentry'],
-            'level': 'DEBUG',
-        },
-        'sync': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-        },
-        'django.request': {
-            'handlers': ['console'],
-            # 'filters': ['require_debug_false'], # means when debug set to false do logging
-            'level': 'WARNING',
-        },
-        # For performance reasons, SQL logging is only enabled when settings.DEBUG is set to True
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'WARNING',
-        },
-    }
-}
-
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/team/my"
 LOGOUT_URL = "/logout/"

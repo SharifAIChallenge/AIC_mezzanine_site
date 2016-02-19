@@ -202,8 +202,9 @@ class GameRequest(models.Model):
         if last_time:
             now = timezone.now()
             one_hour_before = now - datetime.timedelta(hours=1)
-            if one_hour_before - last_time > 0:
-                return int((one_hour_before - last_time).total_seconds() / 60)
+            seconds = (last_time - one_hour_before).total_seconds()
+            if seconds > 0:
+                return int(seconds / 60)
         return False
 
     def accept(self, accepted):

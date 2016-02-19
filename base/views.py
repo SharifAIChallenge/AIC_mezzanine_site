@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import json
-import os
 from functools import wraps
 from urlparse import urlparse
 
+import os
 from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm, WillComeForm
 from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit
 from django.contrib import messages
@@ -18,7 +18,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 from game.models import Competition, GameTeamSubmit, Game
 from mezzanine.utils.email import send_mail_template
-from sendfile import sendfile
 from .tasks import compile_code
 
 
@@ -242,9 +241,10 @@ def my_games(request):
         messages.error(request, _('your team must be final'))
         return redirect('my_team')
 
-    participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game').order_by('game__timestamp').reverse()
-    sent_requests = GameRequest.objects.filter(requester=request.team)
-    received_requests = GameRequest.objects.filter(requestee=request.team)
+    participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game').order_by(
+        'game__timestamp').reverse()
+    sent_requests = GameRequest.objects.filter(requester=request.team, accepted__isnull=True)
+    received_requests = GameRequest.objects.filter(requestee=request.team, accepted__isnull=True)
 
     return render(request, 'custom/my_games.html', context={
         'team': request.user.team,
@@ -504,7 +504,7 @@ def get_submission(request, submit_id):
     submit.code.close()
 
     response = HttpResponse()
-    response["Content-Disposition"] = "attachment; filename={0}.{1}".format(submit.team.id, 'zip')
+    response["Content-Disposition"] = "attachment; filename={0}.{1}".format(submit.id, 'zip')
     response['X-Accel-Redirect'] = submit.code.url
 
     return response

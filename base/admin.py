@@ -95,6 +95,7 @@ class TeamResource(resources.ModelResource):
     member1 = fields.Field()
     member2 = fields.Field()
     head = fields.Field()
+    has_successful_submit = fields.Field()
 
     class Meta:
         model = Team
@@ -116,7 +117,7 @@ class TeamResource(resources.ModelResource):
             'member1',
             'member2',
             'will_come',
-            'submitted',
+            'has_successful_submit',
         )
 
     def dehydrate_head(self, team):
@@ -134,7 +135,7 @@ class TeamResource(resources.ModelResource):
             return members[1].get_full_name()
         return None
 
-    def dehydrate_submitted(self, team):
+    def dehydrate_has_successful_submit(self, team):
         return team.submit_set.filter(status=2).exists()
 
 

@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.utils.translation import get_language_from_request
@@ -498,8 +498,16 @@ def request_join(request, team_id):
 def get_submission(request, submit_id):
     submit = Submit.objects.get(pk=submit_id)
     if request.team.id != submit.team.id:
-        raise Http404()
-    return sendfile(request, submit.code.url)
+        return HttpResponseForbidden()
+
+    submit.code.open()
+    submit.code.close()
+
+    response = HttpResponse()
+    response["Content-Disposition"] = "attachment; filename={0}.{1}".format(submit.team.id, 'zip')
+    response['X-Accel-Redirect'] = submit.code.url
+
+    return response
 
 
 @login_required

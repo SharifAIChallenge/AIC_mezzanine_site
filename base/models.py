@@ -41,6 +41,9 @@ class Team(models.Model):
     show = models.BooleanField(default=True, verbose_name=_("show team in public list"))
     final = models.BooleanField(default=False, verbose_name=_("team is final"))
 
+    final_submission = models.ForeignKey('base.Submit', verbose_name=_('final submission'),
+                                         related_name="team_final_submission", null=True)
+
     will_come = models.PositiveSmallIntegerField(verbose_name=_("will come to site"), choices=WILL_COME_CHOICES,
                                                  default=2)
 

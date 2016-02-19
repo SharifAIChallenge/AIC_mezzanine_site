@@ -520,3 +520,15 @@ def play_log(request):
     game.log_file.open()
     game.log_file.close()
     return render(request, 'log-player/log-player.html', context={'game': game})
+
+@login_required
+@team_required
+def final_submission(request):
+    if 'submission_id' not in request.GET:
+        return HttpResponseBadRequest()
+    submit_object = get_object_or_404(Submit, pk=request.GET.get('submission_id'))
+    if submit_object.team != request.team or submit_object.status != 2:
+        raise PermissionDenied()
+    submit_object.team.final_submission = submit_object
+    submit_object.team.save()
+    return HttpResponse("Final submit changed")

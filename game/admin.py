@@ -29,18 +29,20 @@ admin.site.register(Game, GameAdmin)
 #     model = Game
 
 
-@admin.register(GameTeamSubmit)
 class GameTeamSubmitAdmin(admin.ModelAdmin):
     list_display = ('submit', 'game', 'score')
-    # inlines = [GameInline]
+
+
+admin.site.register(GameTeamSubmit, GameTeamSubmitAdmin)
 
 
 class GameConfigurationAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
     fieldsets = ((None, {"fields": ("competition", "config", "description", "is_public")}),)
     list_display = ("competition", "config", "description", "is_public")
     list_display_links = ("competition", "config", "description")
-    list_editable = ("is_public", )
+    list_editable = ("is_public",)
     list_filter = ("competition", "config", "description", "is_public")
     search_fields = ("description",)
+
 
 admin.site.register(GameConfiguration, GameConfigurationAdmin)

@@ -158,6 +158,7 @@ class TeamAdmin(ImportExportModelAdmin):
 admin.site.register(Team, TeamAdmin)
 
 
-@admin.register(GameRequest)
 class GameRequestAdmin(admin.ModelAdmin):
     list_display = ('requester', 'requestee', 'accepted', 'accept_time')
+
+admin.site.register(GameRequest, GameRequestAdmin)

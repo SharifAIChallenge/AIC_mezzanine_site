@@ -116,7 +116,7 @@ class TeamResource(resources.ModelResource):
             'member1',
             'member2',
             'will_come',
-            'submit_count',
+            'has_successful_submit',
         )
 
     def dehydrate_head(self, team):
@@ -134,8 +134,8 @@ class TeamResource(resources.ModelResource):
             return members[1].get_full_name()
         return None
 
-    def dehydrate_submit_count(self, team):
-        return team.submit_set.count()
+    def dehydrate_has_successful_submit(self, team):
+        return team.submit_set.filter(status=2).exists()
 
 
 class TeamAdmin(ImportExportModelAdmin):

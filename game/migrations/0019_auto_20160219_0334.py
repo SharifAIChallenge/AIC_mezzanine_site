@@ -9,7 +9,7 @@ import game.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('game', '0018_game_status'),
+        ('game', '0018_auto_20160219_0211'),
     ]
 
     operations = [

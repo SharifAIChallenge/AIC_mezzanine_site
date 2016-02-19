@@ -16,8 +16,6 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from game.models import Game, GameTeamSubmit
-from django.conf import settings
-from game.tasks import run_game
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 

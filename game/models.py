@@ -4,6 +4,7 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from game.tasks import run_game
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -47,7 +48,7 @@ def game_config_directory_path(instance, filename):
 class GameConfiguration(models.Model):
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=False, blank=False)
     config = models.FileField(verbose_name=_('configuration file'), upload_to=game_config_directory_path,
-                                      storage=syncing_storage, null=True, blank=True)
+                              storage=syncing_storage, null=True, blank=True)
     description = models.CharField(verbose_name=_('description'), max_length=200, null=False, blank=False)
     is_public = models.BooleanField(verbose_name=_('public'), default=False)
 
@@ -103,7 +104,8 @@ class Game(models.Model):
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     title = models.CharField(verbose_name=_('title'), max_length=200)
     players = models.ManyToManyField('base.Submit', verbose_name=_('players'), through='game.GameTeamSubmit')
-    log_file = models.FileField(verbose_name=_('game log file'), upload_to='games/logs/', null=True, blank=True, storage=syncing_storage)
+    log_file = models.FileField(verbose_name=_('game log file'), upload_to='games/logs/', null=True, blank=True,
+                                storage=syncing_storage)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
     pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'), blank=True)
@@ -120,6 +122,7 @@ class Game(models.Model):
 
     def get_log_url(self):
         return reverse('play_log') + '?game=%d&log=%s' % (self.id, os.path.basename(self.log_file.name))
+
     @classmethod
     def create(cls, participants, game_type=1, title=None):
         if not title:
@@ -131,7 +134,7 @@ class Game(models.Model):
         )
         for participant in participants:
             GameTeamSubmit.objects.create(game=game, submit=participant.submit_set.last())
-        game.run()  # TODO
+        run_game.delay(game.id)
 
     def get_participants(self):
         return [submit.team for submit in self.players.all()]

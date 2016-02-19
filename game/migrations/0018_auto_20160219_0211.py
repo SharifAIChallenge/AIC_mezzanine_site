@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='game',
             name='status',
-            field=models.PositiveSmallIntegerField(default=0, verbose_name='status', choices=[(0, 'waiting'), (1, 'playing'), (2, 'done'), (3, 'failed')]),
+            field=models.PositiveSmallIntegerField(default=0, verbose_name='status', choices=[(0, 'waiting'), (1, 'queued'), (2, 'running'), (3, 'finished')]),
         ),
         migrations.AlterField(
             model_name='dockercontainer',

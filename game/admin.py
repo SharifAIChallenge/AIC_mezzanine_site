@@ -12,7 +12,6 @@ class SubmitInline(mezzanineAdmin.StackedDynamicInlineAdmin):
     model = GameTeamSubmit
 
 
-@admin.register(Game)
 class GameAdmin(admin.ModelAdmin):
     inlines = (SubmitInline,)
 
@@ -22,6 +21,8 @@ class GameAdmin(admin.ModelAdmin):
     list_editable = ()
     list_filter = ("title",)
     search_fields = ("title",)
+
+admin.site.register(Game, GameAdmin)
 
 
 # class GameInline(admin.StackedInline):
@@ -34,7 +35,6 @@ class GameTeamSubmitAdmin(admin.ModelAdmin):
     # inlines = [GameInline]
 
 
-@admin.register(GameConfiguration)
 class GameConfigurationAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
     fieldsets = ((None, {"fields": ("competition", "config", "description", "is_public")}),)
     list_display = ("competition", "config", "description", "is_public")
@@ -43,3 +43,4 @@ class GameConfigurationAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
     list_filter = ("competition", "config", "description", "is_public")
     search_fields = ("description",)
 
+admin.site.register(GameConfiguration, GameConfigurationAdmin)

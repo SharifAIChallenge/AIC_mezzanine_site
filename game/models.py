@@ -139,7 +139,7 @@ class Game(models.Model):
             game_config=game_conf,
         )
         for participant in participants:
-            GameTeamSubmit.objects.create(game=game, submit=participant.submit_set.last())
+            GameTeamSubmit.objects.create(game=game, submit=participant.final_submit)
         run_game.delay(game.id)
 
     def get_participants(self):

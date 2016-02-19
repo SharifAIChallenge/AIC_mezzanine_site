@@ -20,5 +20,6 @@ urlpatterns = patterns(
     url("^gamerequest/handle", 'handle_game_request', name='handle_game_request'),
     url("^gamerequest", 'game_request', name='game_request'),
     url("^compile_log", 'compile_log', name='compile_log'),
+    url("^final_submission", 'final_submission', name='set_final_submission'),
     url("^play/$", 'play_log', name='play_log'),
 )

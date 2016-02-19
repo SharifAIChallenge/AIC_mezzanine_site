@@ -116,6 +116,14 @@ msgstr ""
 msgid "Failed getting compilation log"
 msgstr "در دریافت لاگ کامپایل مشکلی پیش آمد"
 
+#: 2016_template/templates/accounts/submit_code.html:178
+msgid "Final submission changed"
+msgstr "ارسال نهایی تغییر کرد"
+
+#: 2016_template/templates/accounts/submit_code.html:180
+msgid "Failed changing final submission"
+msgstr "خطایی در تغییر ارسال نهایی رخ داد"
+
 #: 2016_template/templates/base.html:82 2016_template/templates/index.html:67
 msgid "Change"
 msgstr "تغییر"

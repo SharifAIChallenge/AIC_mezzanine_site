@@ -16,7 +16,7 @@ from django.utils import timezone
 from django.utils.translation import get_language_from_request
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
-from game.models import Competition, GameTeamSubmit, Game
+from game.models import Competition, GameTeamSubmit, Game, GameConfiguration
 from mezzanine.utils.email import send_mail_template
 from .tasks import compile_code
 
@@ -182,11 +182,14 @@ def teams(request):
         if not Submit.objects.filter(team=request.user.team).exists():
             show_friendly_button = False
 
+    public_configs = GameConfiguration.objects.filter(is_public=True).order_by('id')
+
     return render(request, 'custom/teams_list.html', {
         'teams': teams,
         'show_friendly_button': show_friendly_button,
         # 'show_friendly_button': False,
         'wait_time': wait_time,  # TODO: mjafar, you can show this in template(even a countdown!)
+        'public_configurations': public_configs,
     })
 
 
@@ -309,7 +312,12 @@ def game_request(request):
     except Team.DoesNotExist:
         raise Http404()
 
-    wait = GameRequest.create(requester=request.team, requestee=team)
+    game_config_id = request.POST.get('config_id')
+    game_config = GameConfiguration.objects.get(id=game_config_id)
+    if not game_config.is_public:
+        return HttpResponseForbidden()
+
+    wait = GameRequest.create(requester=request.team, requestee=team, game_config=game_config)
     if wait:
         messages.error(request, _('you must wait %d minutes before another request') % wait)
         return HttpResponseRedirect(reverse('teams_list') + '?final=1')
@@ -520,3 +528,15 @@ def play_log(request):
     game.log_file.open()
     game.log_file.close()
     return render(request, 'log-player/log-player.html', context={'game': game})
+
+@login_required
+@team_required
+def final_submission(request):
+    if 'submission_id' not in request.GET:
+        return HttpResponseBadRequest()
+    submit_object = get_object_or_404(Submit, pk=request.GET.get('submission_id'))
+    if submit_object.team != request.team or submit_object.status != 2:
+        raise PermissionDenied()
+    submit_object.team.final_submission = submit_object
+    submit_object.team.save()
+    return HttpResponse("Final submit changed")

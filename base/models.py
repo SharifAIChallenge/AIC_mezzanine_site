@@ -4,8 +4,8 @@ import datetime
 import uuid
 
 import re
+
 from ckeditor.fields import RichTextField
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
@@ -16,6 +16,8 @@ from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from game.models import Game, GameTeamSubmit
+from django.conf import settings
+
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -40,6 +42,9 @@ class Team(models.Model):
     head = models.ForeignKey('base.Member', verbose_name=_("team head"), related_name='+')
     show = models.BooleanField(default=True, verbose_name=_("show team in public list"))
     final = models.BooleanField(default=False, verbose_name=_("team is final"))
+
+    final_submission = models.ForeignKey('base.Submit', verbose_name=_('final submission'),
+                                         related_name="team_final_submission", null=True)
 
     will_come = models.PositiveSmallIntegerField(verbose_name=_("will come to site"), choices=WILL_COME_CHOICES,
                                                  default=2)
@@ -179,6 +184,7 @@ class GameRequest(models.Model):
     made_time = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     accepted = models.NullBooleanField(_('state'))
     accept_time = models.DateTimeField(_('accept time'), null=True, blank=True)
+    game_config = models.ForeignKey('game.GameConfiguration', verbose_name=_('game configuration'), null=False)
 
     game = models.ForeignKey('game.Game', null=True)
 
@@ -186,12 +192,12 @@ class GameRequest(models.Model):
         return self.accept_time is not None
 
     @classmethod
-    def create(cls, requester, requestee):
+    def create(cls, requester, requestee, game_config):
         wait = cls.check_last_time(requester)
         if wait:
             return wait
 
-        cls.objects.create(requester=requester, requestee=requestee)
+        cls.objects.create(requester=requester, requestee=requestee, game_config=game_config)
 
     @classmethod
     def check_last_time(cls, team):
@@ -213,5 +219,5 @@ class GameRequest(models.Model):
         self.accepted = accepted
         self.accept_time = timezone.now()
         if accepted:
-            Game.create([self.requestee, self.requester])
+            Game.create([self.requestee, self.requester], game_conf=self.game_config)
         self.save()

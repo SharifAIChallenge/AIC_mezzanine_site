@@ -195,13 +195,14 @@ class GameRequest(models.Model):
 
     @classmethod
     def check_last_time(cls, team):
-        last_time = cls.objects.filter(requester=team, accepted=True).aggregate(Max('accept_time'))['accept_time__max']
-        if last_time:
-            now = timezone.now()
-            one_hour_before = now - datetime.timedelta(hours=1)
-            seconds = (last_time - one_hour_before).total_seconds()
-            if seconds > 0:
-                return int(seconds / 60)
+        # last_time = cls.objects.filter(requester=team, accepted=True).aggregate(Max('accept_time'))['accept_time__max']
+        # if last_time:
+        #     now = timezone.now()
+        #     one_hour_before = now - datetime.timedelta(hours=1)
+        #     seconds = (last_time - one_hour_before).total_seconds()
+        #     if seconds > 0:
+        #         return int(seconds / 60)
+        # return False
         return False
 
     def accept(self, accepted):

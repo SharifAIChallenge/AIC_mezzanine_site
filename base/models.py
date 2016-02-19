@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import base64
 import datetime
+import re
 import uuid
 
-import re
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
@@ -199,8 +199,9 @@ class GameRequest(models.Model):
         if last_time:
             now = timezone.now()
             one_hour_before = now - datetime.timedelta(hours=1)
-            if one_hour_before - last_time > 0:
-                return int((one_hour_before - last_time).total_seconds() / 60)
+            seconds = (one_hour_before - last_time).total_seconds()
+            if seconds > 0:
+                return int(seconds / 60)
         return False
 
     def accept(self, accepted):

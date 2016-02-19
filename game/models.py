@@ -131,6 +131,7 @@ class Game(models.Model):
         game = Game.objects.create(
             title=title,
             game_type=game_type,
+            game_config=GameConfiguration.objects.order_by('id').reverse()[0], # todo: remove this
         )
         for participant in participants:
             GameTeamSubmit.objects.create(game=game, submit=participant.submit_set.last())

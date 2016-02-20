@@ -246,7 +246,10 @@ def my_team(request):
 def my_games(request):
     if not request.team.final:
         messages.error(request, _('your team must be final'))
-    return redirect('my_team')
+        return redirect('my_team')
+
+    if not request.user.is_superuser:
+        return redirect('my_team')
 
     participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game').order_by(
         'game__timestamp').reverse()

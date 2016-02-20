@@ -10,12 +10,6 @@ class ScheduleForm(forms.Form):
     name = forms.CharField(label=_('name'))
     file = forms.FileField(label=_('file'), help_text=_('csv'))
 
-    def clean_type(self):
-        game_type = self.cleaned_data['type']
-        if game_type != 1 and Game.objects.exclude(game_type=1).exclude(status__gt=2).exists():
-            raise forms.ValidationError(_('there are unfinished games'))
-        return game_type
-
     def save(self):
         game_type = self.cleaned_data['type']
         csv_file = self.cleaned_data['file']
@@ -31,7 +25,7 @@ class TeamScoresForm(forms.Form):
 
     def clean_type(self):
         game_type = self.cleaned_data['type']
-        if game_type != 1 and Game.objects.exclude(game_type=1).exclude(status__gt=2).exists():
+        if game_type != 1 and Game.objects.filter(game_type=game_type).exclude(status__gt=2).exists():
             raise forms.ValidationError(_('there are unfinished games'))
         return game_type
 

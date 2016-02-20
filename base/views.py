@@ -539,7 +539,7 @@ def final_submission(request):
     if 'submission_id' not in request.GET:
         return HttpResponseBadRequest()
     submit_object = get_object_or_404(Submit, pk=request.GET.get('submission_id'))
-    if submit_object.team != request.team or submit_object.status != 2:
+    if submit_object.team != request.team or submit_object.status != 3:
         raise PermissionDenied()
     submit_object.team.final_submission = submit_object
     submit_object.team.save()

@@ -75,9 +75,10 @@ def team_compiled_code_directory_path(instance, filename):
 class Submit(models.Model):
     STATUSES = (
         (0, _('waiting')),
-        (1, _('compiling')),
-        (2, _('compiled')),
-        (3, _('failed')),
+        (1, _('queued')),
+        (2, _('compiling')),
+        (3, _('compiled')),
+        (4, _('failed')),
     )
 
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)

@@ -65,7 +65,7 @@
                         <tr valign="middle">
                             <td>{{ forloop.counter }}</td>
                             <td>
-                                {% if submission.status == 2 %}
+                                {% if submission.status == 3 %}
                                 <input type="radio" id="submit-radio-{{ submission.id }}" name="final-submit" class="set-final" value="{{ submission.id }}"
                                         {% if submission.id == submission.team.final_submission.id %}checked{% endif %} tab-index="0"/>
                                 <label for="submit-radio-{{ submission.id }}"></label>

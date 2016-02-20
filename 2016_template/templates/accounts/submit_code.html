@@ -177,7 +177,7 @@
                 }).done(function (response) {
                     Materialize.toast('{% trans 'Final submission changed' %}', 3000, 'green');
                 }).fail(function () {
-                    Materialize.toast('{% trans 'Failed changing final submission'%}', 3000, 'yellow');
+                    Materialize.toast('{% trans 'submit period has ended'%}', 3000, 'yellow');
                 });
             });
         });

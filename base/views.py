@@ -122,8 +122,8 @@ def submit(request):
         return redirect('invite_member')
     if request.method == 'POST':
 
-        # messages.error(request, _('submit period has ended'))  # TODO: make it a field in competition
-        # return redirect('submit_code')
+        messages.error(request, _('submit period has ended'))  # TODO: make it a field in competition
+        return redirect('submit_code')
 
         form = SubmitForm(competition, data=request.POST, files=request.FILES)
         if form.is_valid():
@@ -540,6 +540,7 @@ def play_log(request):
 @login_required
 @team_required
 def final_submission(request):
+    raise PermissionDenied()
     if 'submission_id' not in request.GET:
         return HttpResponseBadRequest()
     submit_object = get_object_or_404(Submit, pk=request.GET.get('submission_id'))

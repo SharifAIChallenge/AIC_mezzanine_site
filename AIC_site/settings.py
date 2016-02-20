@@ -352,7 +352,6 @@ CELERY_EMAIL_TASK_CONFIG = {
     'max_retries': 30,
     'queue': 'mail_queue',
 }
-CELERY_EMAIL_CHUNK_SIZE = 1
 
 ##################
 # LOCAL SETTINGS #

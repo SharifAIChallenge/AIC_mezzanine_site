@@ -98,19 +98,13 @@ msgstr "زبان برنامه نویسی"
 msgid "timestamp"
 msgstr "زمان"
 
-#: 2016_template/templates/accounts/submit_code.html:61
-msgid "download"
-msgstr ""
-
 #: 2016_template/templates/accounts/submit_code.html:97
-#, fuzzy
-#| msgid "compiled"
 msgid "Compile log"
-msgstr "کامپایل شده"
+msgstr "نتیجه کامپایل"
 
 #: 2016_template/templates/accounts/submit_code.html:106
 msgid "Close"
-msgstr ""
+msgstr "بستن"
 
 #: 2016_template/templates/accounts/submit_code.html:154
 msgid "Failed getting compilation log"
@@ -1639,3 +1633,9 @@ msgstr "تنظیمات"
 
 msgid "seeding"
 msgstr "گروه‌بندی"
+
+msgid "final submission"
+msgstr "سابمیت نهایی"
+
+msgid "download"
+msgstr "دانلود"

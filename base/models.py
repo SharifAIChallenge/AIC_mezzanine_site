@@ -59,7 +59,7 @@ class Team(models.Model):
     @property
     def final_submit(self):
         if not self.final_submission:
-            self.final_submission = self.submit_set.last()
+            self.final_submission = self.submit_set.filter(status=2).last()
             self.save()
         return self.final_submission
 

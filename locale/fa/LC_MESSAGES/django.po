@@ -1102,11 +1102,8 @@ msgstr "بازی‌ها"
 msgid "team submit"
 msgstr "ارسالی تیم"
 
-#~ msgid "request join"
-#~ msgstr "درخواست عضویت"
-
-#~ msgid "config"
-#~ msgstr "تنظیمات"
+msgid "request join"
+msgstr "درخواست عضویت"
 
 #, fuzzy
 #~| msgid "invitation"
@@ -1570,71 +1567,77 @@ msgstr "ارسالی تیم"
 #~ "تراکنش پرداختی با مشکل مواجه شده‌است. لطفا چنانچه پرداخت شما موفق بوده‌است، "
 #~ "ما را مطلع کنید."
 
-#~ msgid "Blog"
-#~ msgstr "وبلاگ"
+msgid "Blog"
+msgstr "وبلاگ"
 
-#~ msgid "Click here"
-#~ msgstr "اینجا کلیک‌کنید"
+msgid "Click here"
+msgstr "اینجا کلیک‌کنید"
 
-#~ msgid "Full Name"
-#~ msgstr "نام و نام خانوادگی"
+msgid "Full Name"
+msgstr "نام و نام خانوادگی"
 
-#~ msgid "related_posts"
-#~ msgstr "نوشتار‌های مرتبط"
+msgid "related_posts"
+msgstr "نوشتار‌های مرتبط"
 
-#~ msgid "%(sometime)s ago"
-#~ msgstr "%(sometime)s پیش"
+msgid "%(sometime)s ago"
+msgstr "%(sometime)s پیش"
 
-#~ msgid "Brunei"
-#~ msgstr "برونئی"
+msgid "Brunei"
+msgstr "برونئی"
 
-#~ msgid "Bolivia"
-#~ msgstr "بولیوی"
+msgid "Bolivia"
+msgstr "بولیوی"
 
-#~ msgid "Iran"
-#~ msgstr "ایران"
+msgid "Iran"
+msgstr "ایران"
 
-#~ msgid "North Korea"
-#~ msgstr "کره شمالی"
+msgid "North Korea"
+msgstr "کره شمالی"
 
-#~ msgid "South Korea"
-#~ msgstr "کره جنوبی"
+msgid "South Korea"
+msgstr "کره جنوبی"
 
-#~ msgid "Laos"
-#~ msgstr "لائوس"
+msgid "Laos"
+msgstr "لائوس"
 
-#~ msgid "Macedonia"
-#~ msgstr "مقدونیه"
+msgid "Macedonia"
+msgstr "مقدونیه"
 
-#~ msgid "Russia"
-#~ msgstr "روسیه"
+msgid "Russia"
+msgstr "روسیه"
 
-#~ msgid "Syria"
-#~ msgstr "سوریه"
+msgid "Syria"
+msgstr "سوریه"
 
-#~ msgid "Taiwan"
-#~ msgstr "تایوان"
+msgid "Taiwan"
+msgstr "تایوان"
 
-#~ msgid "Tanzania"
-#~ msgstr "تانزانیا"
+msgid "Tanzania"
+msgstr "تانزانیا"
 
-#~ msgid "Venezuela"
-#~ msgstr "ونزوئلا"
+msgid "Venezuela"
+msgstr "ونزوئلا"
 
-#~ msgid "Vietnam"
-#~ msgstr "ویتنام"
+msgid "Vietnam"
+msgstr "ویتنام"
 
-#~ msgid "United States of America"
-#~ msgstr "ایالات متحده آمریکا"
+msgid "United States of America"
+msgstr "ایالات متحده آمریکا"
 
-#~ msgid "just upload zip files"
-#~ msgstr "فقط فایل zip آپلود کنید"
+msgid "just upload zip files"
+msgstr "فقط فایل zip آپلود کنید"
 
-#~ msgid "requested by"
-#~ msgstr "درخواست کننده"
+msgid "requested by"
+msgstr "درخواست کننده"
 
-#~ msgid "result"
-#~ msgstr "نتیجه"
+msgid "result"
+msgstr "نتیجه"
 
-#~ msgid "c++"
-#~ msgstr "‎C++‎"
+msgid "c++"
+msgstr "‎C++‎"
+
+msgid "config"
+msgstr "نقشه"
+
+msgid "seeding"
+msgstr "گروه‌بندی"

@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
+import os
 from django.conf import settings
 from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from game.tasks import run_game
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -40,13 +43,13 @@ class Competition(models.Model):
 
 
 def game_config_directory_path(instance, filename):
-    return 'game/config/{0}/{1}'.format(instance.competition.id, filename)
+    return 'games/config/{0}/{1}'.format(instance.competition.id, filename)
 
 
 class GameConfiguration(models.Model):
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=False, blank=False)
     config = models.FileField(verbose_name=_('configuration file'), upload_to=game_config_directory_path,
-                                      storage=syncing_storage, null=True, blank=True)
+                              storage=syncing_storage, null=True, blank=True)
     description = models.CharField(verbose_name=_('description'), max_length=200, null=False, blank=False)
     is_public = models.BooleanField(verbose_name=_('public'), default=False)
 
@@ -90,27 +93,29 @@ class Game(models.Model):
         (1, _('friendly')),
         (2, _('qualifications')),
         (3, _('finals')),
-    )
-    GAME_STATUSES = (
-        (0, _('waiting')),
-        (1, _('playing')),
-        (2, _('done')),
-        (3, _('failed')),
+        (4, _('seeding')),
     )
 
-    # TODO: update this field when running
-    status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=GAME_STATUSES, default=0)
+    STATUSES = (
+        (0, _('waiting')),
+        (1, _('queued')),
+        (2, _('running')),
+        (3, _('finished')),
+        (4, _('failed')),
+    )
 
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     title = models.CharField(verbose_name=_('title'), max_length=200)
     players = models.ManyToManyField('base.Submit', verbose_name=_('players'), through='game.GameTeamSubmit')
     log_file = models.FileField(verbose_name=_('game log file'), upload_to='games/logs/', null=True, blank=True,
                                 storage=syncing_storage)
+    error_log = models.TextField(verbose_name=_('error log'), null=True, blank=True)
+    status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
 
     pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'), blank=True)
 
     game_type = models.PositiveSmallIntegerField(verbose_name=_('game type'), choices=GAME_TYPES, default=0)
-    game_config = models.ForeignKey('game.GameConfiguration', verbose_name=_('game configuration'))
+    game_config = models.ForeignKey('game.GameConfiguration', verbose_name=_('game configuration'), null=True)
 
     class Meta:
         verbose_name = _('game')
@@ -119,21 +124,26 @@ class Game(models.Model):
     def __unicode__(self):
         return self.title
 
+    def get_log_url(self):
+        return reverse('play_log') + '?game=%d&log=%s' % (self.id, os.path.basename(self.log_file.name))
+
     @classmethod
-    def create(cls, participants, game_type=1, title=None):
+    def create(cls, participants, game_type=1, game_conf=None, title=None):
         if not title:
             title = _('friendly game')
+        if not game_conf:
+            game_conf = GameConfiguration.objects.first()
         game = Game.objects.create(
-            competition=participants[0].competition,
             title=title,
             game_type=game_type,
+            game_config=game_conf,
         )
         for participant in participants:
-            GameTeamSubmit.objects.create(game=game, submit=participant.submit_set.last())
-        game.run()  # TODO
+            GameTeamSubmit.objects.create(game=game, submit=participant.final_submit)
+        run_game.delay(game.id)
 
     def get_participants(self):
-        return [submit.team for submit in self.players]
+        return [submit.team for submit in self.players.all()]
 
 
 class GameTeamSubmit(models.Model):

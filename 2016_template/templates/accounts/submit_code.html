@@ -54,15 +54,23 @@
                     <table class="table-striped striped">
                         <tr>
                             <th>#</th>
+                            <th>{% trans 'final submission' %}</th>
                             <th>{% trans 'status' %}</th>
                             <th>{% trans 'submitter' %}</th>
                             <th>{% trans 'programming language' %}</th>
                             <th>{% trans 'timestamp' %}</th>
-{#                            <th>{% trans 'download' %}</th>#}
+                            <th>{% trans 'download' %}</th>
                         </tr>
                         {% for submission in submissions %}
-                        <tr>
+                        <tr valign="middle">
                             <td>{{ forloop.counter }}</td>
+                            <td>
+                                {% if submission.status == 2 %}
+                                <input type="radio" id="submit-radio-{{ submission.id }}" name="final-submit" class="set-final" value="{{ submission.id }}"
+                                        {% if submission.id == submission.team.final_submission.id %}checked{% endif %} tab-index="0"/>
+                                <label for="submit-radio-{{ submission.id }}"></label>
+                                {% endif %}
+                            </td>
                             <td>{{ submission.get_status_display }}
                             {% if submission.status == 3 %}
                                 <br />
@@ -80,9 +88,9 @@
                                 {{ submission.timestamp }}
                             {% endif %}
                             </td>
-{#                            <td>#}
-{#                                <a href="{% url 'get_submission' submission.id %}">download</a>#}
-{#                            </td>#}
+                            <td>
+                                <a href="{% url 'get_submission' submission.id %}">{% trans 'download' %}</a>
+                            </td>
 
                         </tr>
                         {% endfor %}
@@ -152,6 +160,24 @@
                     $clog_holder.html(response);
                 }).fail(function () {
                     $clog_holder.html('{% trans 'Failed getting compilation log' %}');
+                });
+            });
+
+            $('.set-final').on('change', function() {
+                var $self = $(this);
+                var id = $self.val();
+
+                var set_final_url = '{% url 'set_final_submission' %}';
+                $.ajax({
+                    url: set_final_url + '?submission_id=' + id,
+                    cache: true,
+                    method: 'get',
+                    complete: function () {
+                    }
+                }).done(function (response) {
+                    Materialize.toast('{% trans 'Final submission changed' %}', 3000, 'green');
+                }).fail(function () {
+                    Materialize.toast('{% trans 'Failed changing final submission'%}', 3000, 'yellow');
                 });
             });
         });

@@ -20,7 +20,7 @@
                     var is_accept = $self.hasClass('accept');
 
                     $self.addClass('disabled');
-                    $self.sibling('.game-request').addClass('disabled');
+                    $self.siblings('.game-request').addClass('disabled');
                     $.ajax({
                         url: handle_request_url,
                         method: 'post',
@@ -35,7 +35,7 @@
                                 location.reload(true);
                             });
                         } else {
-                            Materialize.toast(response['message'], 3000, 'rounded');
+                            Materialize.toast(response['messaee'], 3000, 'rounded');
                         }
                     });
 
@@ -74,6 +74,9 @@
                                         {% trans 'team' %}
                                     </th>
                                     <th>
+                                        {% trans 'config' %}
+                                    </th>
+                                    <th>
                                         {% trans 'timestamp' %}
                                     </th>
                                     <th>
@@ -84,6 +87,9 @@
                                     <tr>
                                         <td>
                                             {{ request.requester.name }}
+                                        </td>
+                                        <td>
+                                            {{ request.game_config }}
                                         </td>
                                         <td>
                                             {% if LANGUAGE_BIDI %}
@@ -157,15 +163,35 @@
                                         {% trans 'team' %}
                                     </th>
                                     <th>
-                                        {% trans 'result' %}
+                                        {% trans 'config' %}
+                                    </th>
+                                    <th>
+                                        {% trans 'status' %}
                                     </th>
                                 </tr>
 
                                 {% for submission in participations %}
                                     <tr>
                                         <td>{{ submission.game.get_game_type_display }}</td>
-                                        <td>{{ submission.game.get_participants }}</td>
-                                        <td><a href="{{ submission.game.get_log_url }}">{{ submission.score }}</a></td>
+                                        <td>
+                                            {% for team in submission.game.get_participants %}
+                                                {{ team.name }}
+                                                {% if not forloop.last %}, {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                        <td>
+                                            {{ submission.game.game_config }}
+                                        </td>
+                                        <td>
+                                            {% if submission.game.status == 3 %}
+                                                <a href="{{ submission.game.get_log_url }}">
+                                                    {{ submission.game.get_status_display }}
+                                                    ({% trans 'score' %}: {{ submission.score|floatformat:2 }})
+                                                </a>
+                                            {% else %}
+                                                {{ submission.game.get_status_display }}
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                 {% endfor %}
 

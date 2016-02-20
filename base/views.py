@@ -3,21 +3,21 @@ import json
 from functools import wraps
 from urlparse import urlparse
 
+import os
 from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm, WillComeForm
 from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.utils.translation import get_language_from_request
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
-from game.models import Competition, GameTeamSubmit
+from game.models import Competition, GameTeamSubmit, Game, GameConfiguration
 from mezzanine.utils.email import send_mail_template
-from sendfile import sendfile
 from .tasks import compile_code
 
 
@@ -186,11 +186,14 @@ def teams(request):
         if not Submit.objects.filter(team=request.user.team).exists():
             show_friendly_button = False
 
+    public_configs = GameConfiguration.objects.filter(is_public=True).order_by('id')
+
     return render(request, 'custom/teams_list.html', {
         'teams': teams,
-        # 'show_friendly_button': show_friendly_button,
-        'show_friendly_button': False,
+        'show_friendly_button': show_friendly_button,
+        # 'show_friendly_button': False,
         'wait_time': wait_time,  # TODO: mjafar, you can show this in template(even a countdown!)
+        'public_configurations': public_configs,
     })
 
 
@@ -245,11 +248,10 @@ def my_games(request):
         messages.error(request, _('your team must be final'))
         return redirect('my_team')
 
-    return redirect('my_team')
-
-    participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game')
-    sent_requests = GameRequest.objects.filter(requester=request.team)
-    received_requests = GameRequest.objects.filter(requestee=request.team)
+    participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game').order_by(
+        'game__timestamp').reverse()
+    sent_requests = GameRequest.objects.filter(requester=request.team, accepted__isnull=True)
+    received_requests = GameRequest.objects.filter(requestee=request.team, accepted__isnull=True)
 
     return render(request, 'custom/my_games.html', context={
         'team': request.user.team,
@@ -314,7 +316,12 @@ def game_request(request):
     except Team.DoesNotExist:
         raise Http404()
 
-    wait = GameRequest.create(requester=request.team, requestee=team)
+    game_config_id = request.POST.get('config_id')
+    game_config = GameConfiguration.objects.get(id=game_config_id)
+    if not game_config.is_public:
+        return HttpResponseForbidden()
+
+    wait = GameRequest.create(requester=request.team, requestee=team, game_config=game_config)
     if wait:
         messages.error(request, _('you must wait %d minutes before another request') % wait)
         return HttpResponseRedirect(reverse('teams_list') + '?final=1')
@@ -503,5 +510,41 @@ def request_join(request, team_id):
 def get_submission(request, submit_id):
     submit = Submit.objects.get(pk=submit_id)
     if request.team.id != submit.team.id:
+        return HttpResponseForbidden()
+
+    submit.code.open()
+    submit.code.close()
+
+    response = HttpResponse()
+    response["Content-Disposition"] = "attachment; filename={0}.{1}".format(submit.id, 'zip')
+    response['X-Accel-Redirect'] = submit.code.url
+
+    return response
+
+
+@login_required
+@team_required
+def play_log(request):
+    game = get_object_or_404(Game, id=request.GET.get('game', None))
+    log = request.GET.get('log', '')
+    if os.path.basename(game.log_file.name) != log:
         raise Http404()
-    return sendfile(request, submit.code.url)
+    try:
+        game.log_file.open()
+        game.log_file.close()
+    except IOError:
+        raise Http404()
+    return render(request, 'log-player/log-player.html', context={'game': game})
+
+
+@login_required
+@team_required
+def final_submission(request):
+    if 'submission_id' not in request.GET:
+        return HttpResponseBadRequest()
+    submit_object = get_object_or_404(Submit, pk=request.GET.get('submission_id'))
+    if submit_object.team != request.team or submit_object.status != 2:
+        raise PermissionDenied()
+    submit_object.team.final_submission = submit_object
+    submit_object.team.save()
+    return HttpResponse("Final submit changed")

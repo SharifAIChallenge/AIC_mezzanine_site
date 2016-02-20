@@ -29,6 +29,11 @@
 
                 <div>پرداخت شما با موفقیت انجام شد. بعد از ۵ ثانیه به صفحه‌ی تیم خود هدایت خواهید شد.</div>
 
+                <script type="text/javascript">
+                    setTimeout(function () {
+                        window.location = '{% url 'my_team' %}'
+                    }, 5000);
+                </script>
             </div>
         </div>
     </div>

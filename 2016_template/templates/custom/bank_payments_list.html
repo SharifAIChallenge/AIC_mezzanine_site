@@ -25,11 +25,28 @@
                     {% endif %}
                 {% endnevercache %}
 
+                <table class="table-striped">
+                    <tr>
+                        <th>تاریخ</th>
+                        <th>مبلغ</th>
+                        <th>وضعیت</th>
+                    </tr>
                 {% for transaction in payments %}
-                    <div>
-                        {{ transaction.created }}, {{ transaction.amount }}, {{ transaction.status }}
-                    </div>
+                    <tr>
+                        <td>{{ transaction.created }}</td>
+                        <td>{{ transaction.amount }}</td>
+                        <td>
+                            {% if transaction.status == 'v' %}
+                                موفق
+                            {% elif transaction.status == 'u' %}
+                                ناشناخته
+                            {% else %}
+                                ناموفق
+                            {% endif %}
+                        </td>
+                    </tr>
                 {% endfor %}
+                </table>
 
             </div>
         </div>

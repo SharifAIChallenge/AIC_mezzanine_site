@@ -93,8 +93,15 @@ class MembersInline(admin.StackedInline):
 
 class TeamResource(resources.ModelResource):
     member1 = fields.Field()
+    member1_email = fields.Field()
+    member1_country = fields.Field()
+    member1_education_place = fields.Field()
     member2 = fields.Field()
+    member2_email = fields.Field()
+    member2_country = fields.Field()
+    member2_education_place = fields.Field()
     head = fields.Field()
+    has_successful_submit = fields.Field()
 
     class Meta:
         model = Team
@@ -103,6 +110,8 @@ class TeamResource(resources.ModelResource):
             'name',
             'timestamp',
             'head__email',
+            'head__country',
+            'head__education_place',
             'final',
             'will_come',
         )
@@ -110,13 +119,21 @@ class TeamResource(resources.ModelResource):
             'id',
             'name',
             'timestamp',
-            'head__email',
             'final',
             'head',
+            'head__email',
+            'head__country',
+            'head__education_place',
             'member1',
+            'member1_email',
+            'member1_country',
+            'member1_education_place',
             'member2',
+            'member2_email',
+            'member2_country',
+            'member2_education_place',
             'will_come',
-            'submit_count',
+            'has_successful_submit',
         )
 
     def dehydrate_head(self, team):
@@ -128,14 +145,50 @@ class TeamResource(resources.ModelResource):
             return members[0].get_full_name()
         return None
 
+    def dehydrate_member1_email(self, team):
+        members = team.get_members()
+        if len(members) > 0:
+            return members[0].email
+        return None
+
+    def dehydrate_member1_country(self, team):
+        members = team.get_members()
+        if len(members) > 0:
+            return members[0].country
+        return None
+
+    def dehydrate_member1_education_place(self, team):
+        members = team.get_members()
+        if len(members) > 0:
+            return members[0].education_place
+        return None
+
     def dehydrate_member2(self, team):
         members = team.get_members()
         if len(members) > 1:
             return members[1].get_full_name()
         return None
 
-    def dehydrate_submit_count(self, team):
-        return team.submit_set.count()
+    def dehydrate_member2_email(self, team):
+        members = team.get_members()
+        if len(members) > 0:
+            return members[0].email
+        return None
+
+    def dehydrate_member2_country(self, team):
+        members = team.get_members()
+        if len(members) > 0:
+            return members[0].country
+        return None
+
+    def dehydrate_member2_education_place(self, team):
+        members = team.get_members()
+        if len(members) > 0:
+            return members[0].education_place
+        return None
+
+    def dehydrate_has_successful_submit(self, team):
+        return team.submit_set.filter(status=2).exists()
 
 
 class TeamAdmin(ImportExportModelAdmin):

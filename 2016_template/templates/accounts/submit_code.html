@@ -58,7 +58,7 @@
                             <th>{% trans 'submitter' %}</th>
                             <th>{% trans 'programming language' %}</th>
                             <th>{% trans 'timestamp' %}</th>
-                            <th>{% trans 'download' %}</th>
+{#                            <th>{% trans 'download' %}</th>#}
                         </tr>
                         {% for submission in submissions %}
                         <tr>
@@ -80,9 +80,9 @@
                                 {{ submission.timestamp }}
                             {% endif %}
                             </td>
-                            <td>
-                                <a href="{% url 'get_submission' submission.id %}">download</a>
-                            </td>
+{#                            <td>#}
+{#                                <a href="{% url 'get_submission' submission.id %}">download</a>#}
+{#                            </td>#}
 
                         </tr>
                         {% endfor %}

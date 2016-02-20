@@ -121,6 +121,10 @@ def submit(request):
         messages.error(request, _("your team does not have enough members"))
         return redirect('invite_member')
     if request.method == 'POST':
+
+        messages.error(request, _('submit period has ended'))  # TODO: make it a field in competition
+        return redirect('submit_code')
+
         form = SubmitForm(competition, data=request.POST, files=request.FILES)
         if form.is_valid():
             new_submit = form.save(commit=False)
@@ -134,7 +138,7 @@ def submit(request):
     return render(request, 'accounts/submit_code.html', {
         'form': form,
         'title': _('submit new code'),
-        'submissions': Submit.objects.filter(team=request.team).order_by('-timestamp').all()
+        'submissions': Submit.objects.filter(team=request.team).order_by('-id')
     })
 
 
@@ -240,6 +244,8 @@ def my_games(request):
     if not request.team.final:
         messages.error(request, _('your team must be final'))
         return redirect('my_team')
+
+    return redirect('my_team')
 
     participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game')
     sent_requests = GameRequest.objects.filter(requester=request.team)

@@ -122,8 +122,8 @@ def submit(request):
         return redirect('invite_member')
     if request.method == 'POST':
 
-        messages.error(request, _('submit period has ended'))  # TODO: make it a field in competition
-        return redirect('submit_code')
+        # messages.error(request, _('submit period has ended'))  # TODO: make it a field in competition
+        # return redirect('submit_code')
 
         form = SubmitForm(competition, data=request.POST, files=request.FILES)
         if form.is_valid():

@@ -190,9 +190,9 @@ def teams(request):
 
     return render(request, 'custom/teams_list.html', {
         'teams': teams,
-        'show_friendly_button': show_friendly_button,
-        # 'show_friendly_button': False,
-        'wait_time': wait_time,  # TODO: mjafar, you can show this in template(even a countdown!)
+        # 'show_friendly_button': show_friendly_button,
+        'show_friendly_button': False,
+        'wait_time': wait_time,
         'public_configurations': public_configs,
     })
 
@@ -246,7 +246,7 @@ def my_team(request):
 def my_games(request):
     if not request.team.final:
         messages.error(request, _('your team must be final'))
-        return redirect('my_team')
+    return redirect('my_team')
 
     participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game').order_by(
         'game__timestamp').reverse()
@@ -306,7 +306,7 @@ def handle_game_request(request):
 def game_request(request):
     if not request.team.final:
         messages.error(request, _('your team must be final'))
-        return HttpResponseRedirect(reverse('teams_list') + '?final=1')
+    return HttpResponseRedirect(reverse('teams_list') + '?final=1')
 
     if 'team_id' not in request.POST:
         return HttpResponseBadRequest()

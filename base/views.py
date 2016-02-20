@@ -525,9 +525,13 @@ def play_log(request):
     log = request.GET.get('log', '')
     if os.path.basename(game.log_file.name) != log:
         raise Http404()
-    game.log_file.open()
-    game.log_file.close()
+    try:
+        game.log_file.open()
+        game.log_file.close()
+    except IOError:
+        raise Http404()
     return render(request, 'log-player/log-player.html', context={'game': game})
+
 
 @login_required
 @team_required

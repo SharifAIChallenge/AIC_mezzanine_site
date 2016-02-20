@@ -681,17 +681,15 @@ msgstr "کامپایل شده"
 
 #: base/models.py:70
 msgid "failed"
-msgstr "کامپایل ناموفق"
+msgstr " ناموفق"
 
 #: base/models.py:74
 msgid "code"
 msgstr "کد"
 
 #: base/models.py:78
-#, fuzzy
-#| msgid "compiled"
 msgid "compiled code"
-msgstr "کامپایل شده"
+msgstr "کد کامپایل شده"
 
 #: base/models.py:80
 msgid "log file"
@@ -1637,7 +1635,7 @@ msgid "c++"
 msgstr "‎C++‎"
 
 msgid "config"
-msgstr "نقشه"
+msgstr "تنظیمات"
 
 msgid "seeding"
 msgstr "گروه‌بندی"

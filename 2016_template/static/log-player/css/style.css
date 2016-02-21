@@ -103,8 +103,9 @@ button{
 #speed{
     position: absolute;
     top:11.5vh;
-    right:3.8vw;
-    /*width:100px;*/
+    right: 5vw;
+    width: 100px;
+    margin: 0px;
     /*height: 20px;*/
 }
 
@@ -143,7 +144,7 @@ input[type="range"]::-webkit-slider-thumb {
     background-color: #666;
     opacity: 0.5;
     width: 10px;
-    height: 26px;
+    height: 20px;
 }
 
 #logo{

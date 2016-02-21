@@ -17,6 +17,7 @@ function rb_init() {
     var step=0;
     var scores =Array();
     var cy;
+    var maxWeight=  50;
 
     var logAdr = $('#log-address').val();
     readMap(logAdr);
@@ -46,6 +47,8 @@ function rb_init() {
                     lvl = 1;
                 if (w > lvl2End)
                     lvl = 2;
+                if (w>maxWeight)
+                    w = maxWeight;
                 var color = nodeColors[1][lvl];
                 for (var j=0;j<cy.$(".1").length;j++)
                     if (cy.$(".1")[j].id()==''+log[i].args[0]){
@@ -72,7 +75,8 @@ function rb_init() {
                     lvl = 1;
                 if (survivals > lvl2End)
                     lvl = 2;
-
+                if (survivals>maxWeight)
+                    maxWeight = survivals;
                 var color = nodeColors[0][lvl];
                 for (var j=0;j<cy.$(".0").length;j++)
                     if (cy.$(".0")[j].id()==''+id){
@@ -96,21 +100,23 @@ function rb_init() {
         for (var i=0; i<log.length;i++)
             if (log[i].name == "4" && (log[i].args[3]!=0 || log[i].args[4]!=0)){
                 var id = log[i].args[0];
-                //var winner = log[i].args[1];
+                var winner = log[i].args[1];
                 var survivals = log[i].args[2];
                 var cas1 = log[i].args[3];
                 var cas2 = log[i].args[4];
 
                 var reds = cas1+survivals;
                 var blues = cas2;
-                for (var j=0;j<cy.$(".1").length;j++)
-                    if (cy.$(".1")[j].id()==''+id){
-                        reds = cas2;
-                        blues = cas1+survivals;
-                        break;
-                    }
+                if (winner == 1) {
+                    reds = cas2;
+                    blues = cas1 + survivals;
+                }
+
                 //console.log(cy.$(id).data("weight")+ "-" +log[i].args[1]+ "=" +w);
-                cy.$("#"+id).data('weight', reds+blues).data('size', reds+blues+minNodeSize).removeClass('0').removeClass('1').removeClass('-1').addClass('battle');
+                var w = reds + blues;
+                if (w>maxWeight)
+                    w = maxWeight;
+                cy.$("#"+id).data('weight', w).data('size', reds+blues+minNodeSize).removeClass('0').removeClass('1').removeClass('-1').addClass('battle');
                 var sum = reds+blues;
                 var reds100 = Math.floor((reds/sum)*100);
                 var blues100 = Math.floor((blues/sum)*100);
@@ -171,6 +177,8 @@ function rb_init() {
                     lvl = 1;
                 if (w > lvl2End)
                     lvl = 2;
+                if (w>maxWeight)
+                    w = maxWeight;
                 //alert(id+"@"+w);
                 //console.log(cy.$(id).data("weight")+ "-" +log[i].args[1]+ "=" +w);
                 cy.$(id).data('weight', w).data('size', w+minNodeSize).removeClass('0').removeClass('1').removeClass('-1').addClass(''+log[i].args[1]);
@@ -256,6 +264,8 @@ function rb_init() {
             if (log[i].name == "0"){
                 var id = "#"+log[i].args[0];
                 var w = log[i].args[1];
+                if (w>maxWeight)
+                    w = maxWeight;
                 //console.log(cy.$(id).data("weight")+ "-" +log[i].args[1]+ "=" +w);
                 cy.$(id).data('weight', w).data('size', w+minNodeSize).removeClass('0').removeClass('1').removeClass('-1').addClass(''+log[i].args[2]);
             }
@@ -470,11 +480,14 @@ function rb_init() {
 
     var stepFunction = function stepFa (complete){
         $(".light").fadeOut();
-        if (turn-2 < scores.length) {
+        if (turn-2 < scores.length && logs[turn+1]) {
             // rb's pattern;
         }else{
-            $("#turnButt").prop("disabled", true)
-            $("#stepButt").prop("disabled", true)
+            $("#turnButt").prop("disabled", true);
+            $("#stepButt").prop("disabled", true);
+            $("#stepButt").prop("background-color", "gray");
+            $("#turnButt").prop("background-color", "gray");
+            $("#playButt").prop("background-color", "gray");
             return;
         }
         if (step==0 || step==4){
@@ -545,16 +558,18 @@ function rb_init() {
             hasStopped = false;
             $("#playButt").text("Play");
             $("#playButt").attr("onclick","rb.play()");
+            $("#playButt").css("background-color", "#4CAF50");
             return;
         }
         $("#playButt").text("Stop");
         $("#playButt").attr("onclick","rb.stop()");
+        $("#playButt").css("background-color", "crimson");
         stepFunction();
-        var inter = $("#speed").val();
+        var inter = 1500-($("#speed").val()*1);
         //console.log(inter*1);
         $("#hidden").animate({
             top:'5px'
-        },inter*1,function(){
+        },inter,function(){
             playFa();
         });
         //setTimeout(  , 10000);

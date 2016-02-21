@@ -16,8 +16,8 @@ class GameAdmin(admin.ModelAdmin):
     inlines = (SubmitInline,)
 
     fieldsets = ((None, {"fields": ("title", "pre_games", "log_file", "error_log", "status",
-                                    "game_type", "game_config")}),)
-    list_display = ("title", "status", "game_type", "game_config")
+                                    "game_type", "game_config", "get_log_link")}),)
+    list_display = ("title", "status", "game_type", "game_config", "get_log_link")
     list_display_links = ("title", "status", "game_type", "game_config")
     list_editable = ()
     list_filter = ("status", "game_type", "game_config")

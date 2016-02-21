@@ -195,7 +195,7 @@ class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
     search_fields = ('name',)
     list_filter = ('final', 'show', 'will_come', 'head__country')
-    list_display = ('name', 'competition', 'head', 'countries', 'show', 'final', 'will_come')
+    list_display = ('name', 'competition', 'head', 'countries', 'show', 'final', 'is_last_submit_final', 'will_come')
     fields = (
         ('name', 'head', 'show'),
         ('competition', 'final'),
@@ -206,6 +206,17 @@ class TeamAdmin(ImportExportModelAdmin):
     def countries(self, obj):
         members = obj.member_set.all()
         return ",".join(list(set([str(member.country.name) for member in members])))
+
+    def is_last_submit_final(self, obj):
+        submits = obj.submit_set.all().order_by('-timestamp')
+        final_correct_submission = None
+        for submit in submits:
+            if submit.status == 3:
+                final_correct_submission = submit
+                break
+        return final_correct_submission == obj.final_submission
+
+    is_last_submit_final.boolean = True
 
 
 admin.site.register(Team, TeamAdmin)

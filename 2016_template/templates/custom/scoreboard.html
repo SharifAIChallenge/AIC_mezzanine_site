@@ -39,6 +39,7 @@
                 {% endnevercache %}
                 <table class="teams-list">
                     <tr>
+                        <th>#</th>
                         <th>{% trans 'score' %}</th>
                         <th>{% trans 'name' %}</th>
                         <th>{% trans 'team head' %}</th>
@@ -47,6 +48,7 @@
                     </tr>
                     {% for score in scores %}
                         <tr {% if forloop.counter < 48 %}class="non-final"{% endif %}>
+                            <td>{{ forloop.counter }}</td>
                             <td>{{ score.score }}</td>
                             <td>{{ score.team.name }}</td>
                             <td class="aligned">

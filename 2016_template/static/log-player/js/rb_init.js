@@ -542,10 +542,11 @@ function rb_init() {
         }
         edges = logs[0][3];
         nodes = logs[0][4];
+        //console.log($('#team-' + logs[0][5]));
         if (logs[0][5])
-            $("#team1").text(logs[0][5]);
+            $("#team1").text($('#team-' + logs[0][5]).val());
         if (logs[0][6])
-            $("#team2").text(logs[0][6]);
+            $("#team2").text($('#team-' + logs[0][6]).val());
         turn = 1;
     }
 

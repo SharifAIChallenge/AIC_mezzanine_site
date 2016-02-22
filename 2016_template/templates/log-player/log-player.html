@@ -5,7 +5,7 @@
     <title>{{ settings.SITE_TITLE }}</title>
     <link rel="shortcut icon" href="/static/images/logo-site.ico" type="image/x-icon">
     <script src="/static/log-player/js/jquery.js"></script>
-    <script src="/static/log-player/js/js/jq_color_anim.js"></script>
+    <script src="/static/log-player/js/jq_color_anim.js"></script>
     <script src="/static/log-player/js/cytoscape.min.js"></script>
     <!--<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>-->
     <link rel="stylesheet" href="/static/log-player/css/style.css">
@@ -14,8 +14,9 @@
 <body>
     <div hidden>
         <input type="hidden" id="log-address" value="{{ game.log_file.url }}">
-        <input type="hidden" id="team-" value="">
-        <input type="hidden" id="team-" value="">
+        {% for submit in game.players.all %}
+            <input type="hidden" id="team-{{ submit.id }}" value="{{ submit.team.name }}">
+        {% endfor %}
     </div>
     <div id="cy"></div>
     <button id="playButt" onclick="rb.play()">play</button>

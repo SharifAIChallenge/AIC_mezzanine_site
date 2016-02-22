@@ -40,16 +40,15 @@
                 <table class="teams-list">
                     <tr>
                         <th>#</th>
-                        <th>{% trans 'score' %}</th>
                         <th>{% trans 'name' %}</th>
                         <th>{% trans 'team head' %}</th>
                         <th>{% trans 'member' %}</th>
                         <th>{% trans 'member' %}</th>
+                        <th>{% trans 'score' %}</th>
                     </tr>
                     {% for score in scores %}
                         <tr {% if forloop.counter < 48 %}class="non-final"{% endif %}>
                             <td>{{ forloop.counter }}</td>
-                            <td>{{ score.score }}</td>
                             <td>{{ score.team.name }}</td>
                             <td class="aligned">
                                 <div>
@@ -78,6 +77,7 @@
                                     <img src="{{ score.team.get_members.1.country.flag }}"/>
                                 </div>
                             {% else %}-{% endif %}</td>
+                            <td>{{ score.score }}</td>
                         </tr>
                     {% endfor %}
                 </table>

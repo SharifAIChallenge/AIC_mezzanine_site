@@ -207,7 +207,7 @@ def scoreboard(request):
     else:
         game_type = 2
 
-    scores_list = TeamScore.objects.filter(game_type=game_type).values('score', 'team')
+    scores_list = TeamScore.objects.filter(game_type=game_type).select_related('team')
 
     return render(request, 'custom/scoreboard.html', {
         'scores': scores_list,

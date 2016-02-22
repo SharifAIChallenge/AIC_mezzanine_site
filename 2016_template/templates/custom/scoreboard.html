@@ -46,7 +46,7 @@
                         <th>{% trans 'member' %}</th>
                     </tr>
                     {% for score in scores %}
-                        <tr {% if forloop.counter >= 48 %}class="non-final"{% endif %}>
+                        <tr {% if forloop.counter < 48 %}class="non-final"{% endif %}>
                             <td>{{ score.score }}</td>
                             <td>{{ score.team.name }}</td>
                             <td class="aligned">

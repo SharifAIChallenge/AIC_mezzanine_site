@@ -203,9 +203,11 @@ def scoreboard(request):
     form = GameTypeForm(data=request.GET)
 
     if form.is_valid():
-        scores_list = TeamScore.objects.filter(game_type=form.cleaned_data['game_type']).values('score', 'team')
+        game_type = form.cleaned_data['game_type']
     else:
-        raise Http404()
+        game_type = 2
+
+    scores_list = TeamScore.objects.filter(game_type=game_type).values('score', 'team')
 
     return render(request, 'custom/scoreboard.html', {
         'scores': scores_list,

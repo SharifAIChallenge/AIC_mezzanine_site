@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-22 22:46+0330\n"
+"POT-Creation-Date: 2016-02-22 23:32+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgid ""
 msgstr ""
 
 #: 2016_template/templates/accounts/account_signup.html:15 base/views.py:104
-#: base/views.py:445 base/views.py:503
+#: base/views.py:460 base/views.py:518
 msgid "please check spams too"
 msgstr "Please check your spam directory too."
 
@@ -138,31 +138,41 @@ msgstr ""
 msgid "My Team"
 msgstr ""
 
-#: 2016_template/templates/base.html:113
-msgid "Final teams"
+#: 2016_template/templates/base.html:111
+#: 2016_template/templates/custom/my_games.html:4
+#: 2016_template/templates/custom/my_games.html:5
+msgid "My Games"
 msgstr ""
 
-#: 2016_template/templates/base.html:117
+#: 2016_template/templates/base.html:114
+#: 2016_template/templates/custom/scoreboard.html:4
+#: 2016_template/templates/custom/scoreboard.html:5
+#, fuzzy
+#| msgid "score"
+msgid "scoreboard"
+msgstr "Score"
+
+#: 2016_template/templates/base.html:118
 msgid "blog"
 msgstr "Blog"
 
-#: 2016_template/templates/base.html:129
+#: 2016_template/templates/base.html:130
 msgid "edit profile"
 msgstr "Edit Profile"
 
-#: 2016_template/templates/base.html:131
+#: 2016_template/templates/base.html:132
 msgid "logout"
 msgstr "Logout"
 
-#: 2016_template/templates/base.html:134
+#: 2016_template/templates/base.html:135
 msgid "login"
 msgstr "Login"
 
-#: 2016_template/templates/base.html:136
+#: 2016_template/templates/base.html:137
 msgid "signup"
 msgstr "Signup"
 
-#: 2016_template/templates/base.html:198
+#: 2016_template/templates/base.html:199
 msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
 msgstr "Student`s Scientific Chapter of Computer Engineering Department"
 
@@ -265,6 +275,7 @@ msgid "Delete"
 msgstr ""
 
 #: 2016_template/templates/custom/includes/team_member_row.html:31
+#: 2016_template/templates/custom/scoreboard.html:44
 #: 2016_template/templates/custom/teams_list.html:46 base/models.py:39
 msgid "team head"
 msgstr "Team head"
@@ -281,11 +292,6 @@ msgstr "Team members"
 msgid "invited member"
 msgstr "Team members"
 
-#: 2016_template/templates/custom/my_games.html:4
-#: 2016_template/templates/custom/my_games.html:5
-msgid "My Games"
-msgstr ""
-
 #: 2016_template/templates/custom/my_games.html:70
 msgid "Game requests"
 msgstr ""
@@ -294,6 +300,7 @@ msgstr ""
 #: 2016_template/templates/custom/my_games.html:163
 #: 2016_template/templates/custom/my_team.html:195 base/models.py:26
 #: base/models.py:53 base/models.py:85 base/models.py:108 base/models.py:139
+#: game/models.py:168
 msgid "team"
 msgstr "Team"
 
@@ -326,7 +333,9 @@ msgstr "Waiting for response"
 msgid "type"
 msgstr "Type"
 
-#: 2016_template/templates/custom/my_games.html:189 game/models.py:161
+#: 2016_template/templates/custom/my_games.html:190
+#: 2016_template/templates/custom/scoreboard.html:42 game/models.py:161
+#: game/models.py:169 game/models.py:173
 msgid "score"
 msgstr "Score"
 
@@ -363,6 +372,7 @@ msgstr "Join requests"
 
 #: 2016_template/templates/custom/my_team.html:225
 #: 2016_template/templates/custom/my_team.html:248
+#: 2016_template/templates/custom/scoreboard.html:43
 #: 2016_template/templates/custom/teams_list.html:45 base/models.py:38
 #: game/forms.py:10
 msgid "name"
@@ -416,6 +426,12 @@ msgstr "Game docs"
 msgid "submit new code"
 msgstr "Submit new code"
 
+#: 2016_template/templates/custom/my_team.html:341
+#, fuzzy
+#| msgid "games"
+msgid "My games"
+msgstr "Games"
+
 #: 2016_template/templates/custom/my_team.html:368
 msgid "change"
 msgstr "Change"
@@ -432,6 +448,8 @@ msgid ""
 "competitions. Finalization is neccessary for submitting the codes."
 msgstr ""
 
+#: 2016_template/templates/custom/scoreboard.html:45
+#: 2016_template/templates/custom/scoreboard.html:46
 #: 2016_template/templates/custom/teams_list.html:47
 #: 2016_template/templates/custom/teams_list.html:48 base/models.py:109
 #: base/models.py:140
@@ -602,11 +620,11 @@ msgstr ""
 msgid "base"
 msgstr ""
 
-#: base/forms.py:13
+#: base/forms.py:12
 msgid "Accept Terms"
 msgstr ""
 
-#: base/forms.py:14
+#: base/forms.py:13
 msgid "terms_of_service_text"
 msgstr ""
 "1. Participants must enter valid information in time of registration.<br>2. "
@@ -616,13 +634,18 @@ msgstr ""
 "onsite phase.<br>5. Timetable may change and it will be announced to teams "
 "if needed.<br>"
 
-#: base/forms.py:67
+#: base/forms.py:66
 msgid "user not found"
 msgstr ""
 
-#: base/forms.py:73 base/views.py:439
+#: base/forms.py:72 base/views.py:454
 msgid "AIChallenge team invitation"
 msgstr ""
+
+#: base/forms.py:94 game/forms.py:9 game/forms.py:24 game/forms.py:38
+#: game/models.py:118
+msgid "game type"
+msgstr "Game Type"
 
 #: base/models.py:23
 msgid "phone_number"
@@ -749,12 +772,12 @@ msgid "game configuration"
 msgstr ""
 
 #: base/page_processors.py:12 base/page_processors.py:22 base/views.py:118
-#: base/views.py:249 base/views.py:275 base/views.py:312
+#: base/views.py:264 base/views.py:290 base/views.py:327
 msgid "your team must be final"
 msgstr ""
 
-#: base/views.py:35 base/views.py:64 base/views.py:149 base/views.py:355
-#: base/views.py:399 base/views.py:428 base/views.py:455 base/views.py:485
+#: base/views.py:35 base/views.py:64 base/views.py:149 base/views.py:370
+#: base/views.py:414 base/views.py:443 base/views.py:470 base/views.py:500
 msgid "registration period has ended"
 msgstr ""
 
@@ -776,7 +799,7 @@ msgstr ""
 msgid "already part of the team"
 msgstr ""
 
-#: base/views.py:99 base/views.py:472
+#: base/views.py:99 base/views.py:487
 msgid "already part of another team"
 msgstr ""
 
@@ -789,20 +812,20 @@ msgstr ""
 msgid "successfully invited user %(name)s"
 msgstr ""
 
-#: base/views.py:121 base/views.py:411
+#: base/views.py:121 base/views.py:426
 msgid "your team does not have enough members"
 msgstr ""
 
-#: base/views.py:158 base/views.py:492
+#: base/views.py:158 base/views.py:507
 msgid "you already have a team"
 msgstr ""
 
-#: base/views.py:161 base/views.py:475 base/views.py:494
+#: base/views.py:161 base/views.py:490 base/views.py:509
 msgid "the team has reached max members"
 msgstr ""
 
-#: base/views.py:164 base/views.py:210 base/views.py:364 base/views.py:375
-#: base/views.py:496
+#: base/views.py:164 base/views.py:225 base/views.py:379 base/views.py:390
+#: base/views.py:511
 msgid "The team is final."
 msgstr ""
 
@@ -811,53 +834,53 @@ msgstr ""
 msgid "successfully joined team %s"
 msgstr ""
 
-#: base/views.py:283
+#: base/views.py:298
 msgid "No such game request found"
 msgstr ""
 
-#: base/views.py:289
+#: base/views.py:304
 msgid "Bad request"
 msgstr ""
 
-#: base/views.py:298
+#: base/views.py:313
 #, python-format
 msgid "this team can not play for %d minutes"
 msgstr ""
 
-#: base/views.py:303
+#: base/views.py:318
 msgid "Done"
 msgstr ""
 
-#: base/views.py:330
+#: base/views.py:345
 #, python-format
 msgid "you must wait %d minutes before another request"
 msgstr ""
 
-#: base/views.py:333
+#: base/views.py:348
 msgid "Challenged the team successfully"
 msgstr ""
 
-#: base/views.py:419
+#: base/views.py:434
 msgid "team is now finalized"
 msgstr ""
 
-#: base/views.py:446
+#: base/views.py:461
 msgid "invitation resend successful"
 msgstr ""
 
-#: base/views.py:500
+#: base/views.py:515
 msgid "AIChallenge team join request"
 msgstr ""
 
-#: base/views.py:502
+#: base/views.py:517
 msgid "join request has been sent"
 msgstr ""
 
-#: base/views.py:506
+#: base/views.py:521
 msgid "your request to join this team has been declined"
 msgstr ""
 
-#: base/views.py:508
+#: base/views.py:523
 msgid "you have requested to join this team before"
 msgstr ""
 
@@ -925,21 +948,17 @@ msgstr ""
 msgid "game"
 msgstr ""
 
-#: game/forms.py:9 game/forms.py:24 game/models.py:118
-msgid "game type"
-msgstr "Game Type"
-
-#: game/forms.py:11
+#: game/forms.py:11 game/forms.py:25
 #, fuzzy
 #| msgid "log file"
 msgid "file"
 msgstr "Log file"
 
-#: game/forms.py:11
+#: game/forms.py:11 game/forms.py:25
 msgid "csv"
 msgstr ""
 
-#: game/forms.py:29
+#: game/forms.py:43
 msgid "there are unfinished games"
 msgstr ""
 
@@ -1114,6 +1133,12 @@ msgstr "Games"
 #: game/models.py:158
 msgid "team submit"
 msgstr "Team Submit"
+
+#: game/models.py:170
+#, fuzzy
+#| msgid "game type"
+msgid "game types"
+msgstr "Game Type"
 
 #~ msgid "Failed changing final submission"
 #~ msgstr "Failed changing final submission"

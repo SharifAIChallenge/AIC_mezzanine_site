@@ -1649,3 +1649,9 @@ msgstr "دانلود"
 
 msgid "scoreboard"
 msgstr "جدول امتیازات"
+
+msgid "qualification games results"
+msgstr "نتیجه بازی‌های دور مقدماتی"
+
+msgid "random bot games results"
+msgstr "نتایج بازی‌ها با بات رندم"

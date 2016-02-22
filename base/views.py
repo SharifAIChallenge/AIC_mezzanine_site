@@ -207,11 +207,16 @@ def scoreboard(request):
     else:
         game_type = 2
 
+    GAME_TYPE_DESCRIPTIONS = {
+        2: _('qualification games results'),
+        4: _('random bot games results')
+    }
+
     scores_list = TeamScore.objects.filter(game_type=game_type).order_by('-score').select_related('team')
 
     return render(request, 'custom/scoreboard.html', {
         'scores': scores_list,
-        'form': form,
+        'title': GAME_TYPE_DESCRIPTIONS[game_type],
     })
 
 
@@ -266,8 +271,8 @@ def my_games(request):
         messages.error(request, _('your team must be final'))
         return redirect('my_team')
 
-    if not request.user.is_superuser:
-        return redirect('my_team')
+    # if not request.user.is_superuser:
+    #     return redirect('my_team')
 
     participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game').order_by(
         'game__timestamp').reverse()

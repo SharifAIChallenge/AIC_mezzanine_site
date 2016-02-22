@@ -194,12 +194,13 @@ class TeamResource(resources.ModelResource):
 class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
     search_fields = ('name',)
-    list_filter = ('final', 'show', 'will_come', 'head__country')
+    list_filter = ('final', 'show', 'will_come', 'head__country', 'final_submission')
     list_display = ('name', 'competition', 'head', 'countries', 'show', 'final', 'is_last_submit_final', 'will_come')
     fields = (
         ('name', 'head', 'show'),
         ('competition', 'final'),
         ('will_come',),
+        ('final_submission',),
     )
     inlines = [MembersInline]
 

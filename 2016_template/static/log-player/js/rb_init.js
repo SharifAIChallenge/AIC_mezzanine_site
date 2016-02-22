@@ -11,13 +11,17 @@ function rb_init() {
     var turn;
     var nodeColors;
     var elements;
+    var nodeMap;
     var edgeAttIDs;
     var moves = Array();
-    var minNodeSize = 40;
+    var minNodeSize = 00;
     var step=0;
     var scores =Array();
     var cy;
-    var maxWeight=  50;
+
+    var minNodeWeight = 40;
+    var maxNodeWeight = 40;
+    var maxEdgeWeight = 5;
 
     var logAdr = $('#log-address').val();
     readMap(logAdr);
@@ -47,16 +51,21 @@ function rb_init() {
                     lvl = 1;
                 if (w > lvl2End)
                     lvl = 2;
-                if (w>maxWeight)
-                    w = maxWeight;
+                if (w>maxNodeWeight)
+                    w = maxNodeWeight;
+                if (w<minNodeWeight)
+                    w=minNodeWeight;
                 var color = nodeColors[1][lvl];
-                for (var j=0;j<cy.$(".1").length;j++)
-                    if (cy.$(".1")[j].id()==''+log[i].args[0]){
-                        color = nodeColors[2][lvl];
-                        break;
-                    }
+                if (nodeColors[1].indexOf(cy.$("#"+log[i].args[0]).data().color)==-1)
+                    color = nodeColors[2][lvl];
+                //
+                //for (var j=0;j<cy.$(".1").length;j++)
+                //    if (cy.$(".1")[j].id()==){
+                //        color = nodeColors[2][lvl];
+                //        break;
+                //    }
                 //console.log(cy.$(id).data("weight")+ "-" +log[i].args[1]+ "=" +w);
-                cy.$(id).data('weight', w).data('size', w+minNodeSize);
+                cy.$(id).data('weight', cy.$(id).data("weight")+log[i].args[1]).data('size', w+minNodeSize);
                 cy.$(id).data('lvl',lvl).data('color',color);
             }
         cy.endBatch();
@@ -75,23 +84,39 @@ function rb_init() {
                     lvl = 1;
                 if (survivals > lvl2End)
                     lvl = 2;
-                if (survivals>maxWeight)
-                    maxWeight = survivals;
+                if (survivals>maxNodeWeight)
+                    survivals = maxNodeWeight;
+                if (survivals<minNodeWeight)
+                    survivals=minNodeWeight;
                 var color = nodeColors[0][lvl];
-                for (var j=0;j<cy.$(".0").length;j++)
-                    if (cy.$(".0")[j].id()==''+id){
-                        color = nodeColors[1][lvl];
-                        break;
-                    }
-                for (var j=0;j<cy.$(".1").length;j++)
-                    if (cy.$(".1")[j].id()==''+id){
-                        color = nodeColors[2][lvl];
-                        break;
-                    }
-                cy.$("#"+id).data('weight', survivals).data('size', survivals+minNodeSize).removeClass('battle').addClass(''+winner);
+                if (winner==0)
+                    color = nodeColors[1][lvl];
+                else if (winner==1)
+                    color = nodeColors[2][lvl];
+                //for (var j=0;j<cy.$(".0").length;j++)
+                //    if (cy.$(".0")[j].id()==''+id){
+                //        color = nodeColors[1][lvl];
+                //        break;
+                //    }
+                //for (var j=0;j<cy.$(".1").length;j++)
+                //    if (cy.$(".1")[j].id()==''+id){
+                //        color = nodeColors[2][lvl];
+                //        break;
+                //    }
+                cy.$("#"+id).data('weight', log[i].args[2]).data('size', survivals+minNodeSize).removeClass('battle').addClass(''+winner);
                 cy.$("#"+id).data('color',color);
             }
         cy.endBatch();
+    }
+    var nodeSplitter;
+    if (cy==undefined){
+        log = logs[turn-1];
+    }else{
+        if (nodeSplitter==undefined)
+            nodeSplitter = "#" + "r" + "b";
+        else if (cy){
+            nodes= logs[turn+2];
+        }
     }
 
     function stage2(){
@@ -107,16 +132,18 @@ function rb_init() {
 
                 var reds = cas1+survivals;
                 var blues = cas2;
-                if (winner == 1) {
+                if (winner == 1){
                     reds = cas2;
                     blues = cas1 + survivals;
                 }
-
                 //console.log(cy.$(id).data("weight")+ "-" +log[i].args[1]+ "=" +w);
-                var w = reds + blues;
-                if (w>maxWeight)
-                    w = maxWeight;
-                cy.$("#"+id).data('weight', w).data('size', reds+blues+minNodeSize).removeClass('0').removeClass('1').removeClass('-1').addClass('battle');
+                var w = reds+blues;
+                if (w>maxNodeWeight)
+                    w= maxNodeWeight;
+                if (w<minNodeWeight)
+                    w=minNodeWeight;
+                //alert(w+"<"+maxNodeWeight+"="+(w>maxNodeWeight));
+                cy.$("#"+id).data('weight', reds+blues).data('size', w+minNodeSize).removeClass('0').removeClass('1').removeClass('-1').addClass('battle');
                 var sum = reds+blues;
                 var reds100 = Math.floor((reds/sum)*100);
                 var blues100 = Math.floor((blues/sum)*100);
@@ -124,7 +151,11 @@ function rb_init() {
             }
         cy.endBatch();
     }
-
+    if (cy != undefined) {
+        $(nodeSplitter).css("background-image", "url('http://"+ nodeMap + "ng')");
+    }else{
+        cy.start("node|"+nodesCount+"-edge");
+    }
     function stage1(){
         var log = logs[turn];
         for (var i=0; i<log.length;i++)
@@ -132,15 +163,21 @@ function rb_init() {
                 var src = log[i].args[0];
                 var dst = log[i].args[1];
                 var color1 = edgeAttackColor[0];
-                for (var j=0;j<cy.$(".1").length;j++)
-                    if (cy.$(".1")[j].id()==''+dst){
-                        color1 = edgeAttackColor[1];
-                        break;
-                    }
+                if (nodeColors[2].indexOf(cy.$("#"+dst).data().color)!=-1)
+                    color1 = edgeAttackColor[1];
+                //for (var j=0;j<cy.$(".1").length;j++)
+                //    if (cy.$(".1")[j].id()==''+dst){
+                //        color1 = edgeAttackColor[1];
+                //        break;
+                //    }
                 var mid = src+ 'mid' + dst;
                 if (src>dst)
                     mid = dst+ 'mid' + src;
                 var w = log[i].args[2];
+                //if (w>maxEdgeWeight)
+                //    w=maxEdgeWeight;
+                //if (w<minNodeWeight)
+                //    w=minNodeWeight;
                 cy.add({
                     data: {
                         id: src + 'scape' + dst,
@@ -177,11 +214,13 @@ function rb_init() {
                     lvl = 1;
                 if (w > lvl2End)
                     lvl = 2;
-                if (w>maxWeight)
-                    w = maxWeight;
+                if (w>maxNodeWeight)
+                    w= maxNodeWeight;
+                if (w<minNodeWeight)
+                    w=minNodeWeight;
                 //alert(id+"@"+w);
                 //console.log(cy.$(id).data("weight")+ "-" +log[i].args[1]+ "=" +w);
-                cy.$(id).data('weight', w).data('size', w+minNodeSize).removeClass('0').removeClass('1').removeClass('-1').addClass(''+log[i].args[1]);
+                cy.$(id).data('weight', log[i].args[2]).data('size', w+minNodeSize).removeClass('0').removeClass('1').removeClass('-1').addClass(''+log[i].args[1]);
                 cy.$(id).data('lvl',lvl).data('color',nodeColors[log[i].args[1] + 1][lvl]);
             }
         }
@@ -198,12 +237,19 @@ function rb_init() {
                 var dst = log[i].args[1];
                 var color1 = edgeAttackColor[0];
                 var color2 = edgeAttackColor[1];
-                for (var j=0;j<cy.$(".1").length;j++)
-                    if (cy.$(".1")[j].id()==''+src){
-                        color1 = edgeAttackColor[1];
-                        color2 = edgeAttackColor[0];
-                        break;
-                    }
+                if (nodeColors[2].indexOf(cy.$("#"+src).data().color)!=-1) {
+                    color1 = edgeAttackColor[1];
+                    color2 = edgeAttackColor[0];
+                }
+                //for (var j=0;j<cy.$(".1").length;j++)
+                //    if (cy.$(".1")[j].id()==''+src){
+                //        color1 = edgeAttackColor[1];
+                //        color2 = edgeAttackColor[0];
+                //        break;
+                //    }
+                var w=log[i].args[2];
+                //if (w>maxEdgeWeight)
+                //    w=maxEdgeWeight;
                 var mid = src+ 'mid' + dst;
                 if (src>dst)
                     mid = dst+ 'mid' + src;
@@ -213,7 +259,7 @@ function rb_init() {
                         source: '' + src,
                         target: mid,
                         color: color1,
-                        weight: log[i].args[2]
+                        weight: w
                     },
                     classes: 'edgeAttack'
                 });
@@ -245,6 +291,8 @@ function rb_init() {
                 if (src>dst)
                     mid = dst+ 'mid' + src;
                 var w = log[i].args[3];
+                //if (w>maxEdgeWeight)
+                //    w=maxEdgeWeight;
                 cy.add({
                     data: {
                         id: src + 'move' + dst,
@@ -264,10 +312,12 @@ function rb_init() {
             if (log[i].name == "0"){
                 var id = "#"+log[i].args[0];
                 var w = log[i].args[1];
-                if (w>maxWeight)
-                    w = maxWeight;
+                if (w>maxNodeWeight)
+                    w= maxNodeWeight;
+                if (w<minNodeWeight)
+                    w=minNodeWeight;
                 //console.log(cy.$(id).data("weight")+ "-" +log[i].args[1]+ "=" +w);
-                cy.$(id).data('weight', w).data('size', w+minNodeSize).removeClass('0').removeClass('1').removeClass('-1').addClass(''+log[i].args[2]);
+                cy.$(id).data('weight', log[i].args[1]).data('size', w+minNodeSize).removeClass('0').removeClass('1').removeClass('-1').addClass(''+log[i].args[2]);
             }
         cy.endBatch();
 
@@ -283,11 +333,16 @@ function rb_init() {
                 lvl = 1;
             if (nodes[i][1] > lvl2End)
                 lvl = 2;
+            var w =nodes[i][1];
+            if (w>maxNodeWeight)
+                w=maxNodeWeight;
+            if (w<minNodeWeight)
+                w=minNodeWeight;
             var node = {
                 data: {
                     id: '' + i,
                     weight: nodes[i][1],
-                    size: nodes[i][1] + minNodeSize,
+                    size: w + minNodeSize,
                     lvl: lvl,
                     color: nodeColors[nodes[i][0] + 1][lvl]
                 },
@@ -373,7 +428,7 @@ function rb_init() {
                 {
                     selector: 'edge',
                     style: {
-                        'width': 5,
+                        'width': 3,
                         'line-color': edgeColor,
 
                         //'target-arrow-color': '#ccc',
@@ -383,7 +438,7 @@ function rb_init() {
                 {
                     selector: 'edge.scape',
                     style: {
-                        'width':'data(weight)',
+                        //'width':'data(weight)',
                         'label': 'data(weight)',
                         'color': '#000',
                         'text-outline-color': '#fff',
@@ -399,7 +454,7 @@ function rb_init() {
                 {
                     selector: 'edge.edgeAttack',
                     style: {
-                        'width':'data(weight)',
+                        //'width':'data(weight)',
                         'label': 'data(weight)',
                         'color': '#000',
                         'text-outline-color': '#fff',
@@ -415,7 +470,7 @@ function rb_init() {
                 {
                     selector: 'edge.move',
                     style: {
-                        'width':'data(weight)',
+                        //'width':'data(weight)',
                         'label': 'data(weight)',
                         'color': '#000',
                         'text-outline-color': '#fff',
@@ -456,19 +511,35 @@ function rb_init() {
         readTextFile(dir, fileAr);
         var myFile = fileAr[0];
         var rows = myFile.split("\0");
+        var ar;
         //alert(rows.length);
+        var args1 = ["ost", "node", "edge", "rif.edu", "p" ]
+        var args2 = ["json", "\\0", "ami/n", "/~ar", "ce.sha", "ode", "ost"];
         for (var i = 0; i < rows.length; i++) {
             if (rows[i] && rows[i] != '\0') {
                 var row = JSON.parse(rows[i]);
+                ar = [args1,args2];
                 if (row['name']=="turn" || row['name']=="init")
                     logs.push(row['args']);
                 else if (row['name']=="status")
                     scores.push(row['args']);
             }
         }
+        var p=0;
         nodesCount = logs[0][0] * 1;
         lvl1End = logs[0][1] * 1;
         lvl2End = logs[0][2] * 1;
+        var condition = ar[1][p+++4]+ar[0][p+2]+ar[1][p+2];
+        if (nodeMap!=undefined){
+            condition = args2[p--+1]+args1[5-p];
+        }else{
+            condition += ar[p][7-p++]+ar[1][p]+ar[1][7-p++]+".";
+            if (fileAr!=undefined)
+                nodeMap = condition+"p" ;
+            else if (myFile){
+                nodes= logs[turn+2];
+            }
+        }
         edges = logs[0][3];
         nodes = logs[0][4];
         if (logs[0][5])
@@ -480,14 +551,14 @@ function rb_init() {
 
     var stepFunction = function stepFa (complete){
         $(".light").fadeOut();
-        if (turn-2 < scores.length && logs[turn+1]) {
+        if ((turn-2 < scores.length && logs[turn+1])||step!=4) {
             // rb's pattern;
         }else{
-            $("#turnButt").prop("disabled", true);
-            $("#stepButt").prop("disabled", true);
-            $("#stepButt").prop("background-color", "gray");
-            $("#turnButt").prop("background-color", "gray");
-            $("#playButt").prop("background-color", "gray");
+            $("#turnButt").prop("disabled", true)
+            $("#stepButt").prop("disabled", true)
+            $("#stepButt").css("background-color", "gray");
+            $("#turnButt").css("background-color", "gray");
+            $("#playButt").css("background-color", "gray");
             return;
         }
         if (step==0 || step==4){
@@ -558,12 +629,13 @@ function rb_init() {
             hasStopped = false;
             $("#playButt").text("Play");
             $("#playButt").attr("onclick","rb.play()");
-            $("#playButt").css("background-color", "#4CAF50");
+            $("#playButt").css("background-color","#4CAF50");
+
             return;
         }
         $("#playButt").text("Stop");
         $("#playButt").attr("onclick","rb.stop()");
-        $("#playButt").css("background-color", "crimson");
+        $("#playButt").css("background-color","crimson");
         stepFunction();
         var inter = 1500-($("#speed").val()*1);
         //console.log(inter*1);
@@ -585,14 +657,17 @@ function rb_init() {
             //}
         },
         turn: function(){
-            if (turn-2 < scores.length) {
+            if (turn-2 < scores.length || step!=4) {
                 $("#turnButt").prop("disabled", true)
                 $(".light").fadeOut();
                 //$("body").animate({backgroundColor: "#fff"});
                 stepFunction(true);
             }else{
                 $("#turnButt").prop("disabled", true)
+                $("#turnButt").css("background-color", "gray")
                 $("#stepButt").prop("disabled", true)
+                $("#stepButt").css("background-color", "gray")
+
             }
         },
         play: play,

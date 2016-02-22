@@ -103,9 +103,9 @@ button{
 #speed{
     position: absolute;
     top:11.5vh;
-    right: 5vw;
-    width: 100px;
-    margin: 0px;
+    right:5vw;
+    width:100px;
+    margin:0px;
     /*height: 20px;*/
 }
 
@@ -159,7 +159,6 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 #rb{
-    /* image was too large! sorry rb. :( */
     background-size: cover;
     width: 20vw;
     height: 20vw;

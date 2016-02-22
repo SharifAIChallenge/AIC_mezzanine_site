@@ -12,7 +12,11 @@
     <script src="/static/log-player/js/rb_init.js"></script>
 </head>
 <body>
-    <div hidden><input type="hidden" id="log-address" value="{{ game.log_file.url }}"></div>
+    <div hidden>
+        <input type="hidden" id="log-address" value="{{ game.log_file.url }}">
+        <input type="hidden" id="team-" value="">
+        <input type="hidden" id="team-" value="">
+    </div>
     <div id="cy"></div>
     <button id="playButt" onclick="rb.play()">play</button>
     <div id="SpeedText">Speed</div>

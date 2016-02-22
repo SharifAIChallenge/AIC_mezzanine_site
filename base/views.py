@@ -533,11 +533,15 @@ def play_log(request):
     log = request.GET.get('log', '')
     if os.path.basename(game.log_file.name) != log:
         raise Http404()
+    if not request.user.is_superuser and request.team not in game.get_participants():
+        return HttpResponseForbidden()
     try:
         game.log_file.open()
         game.log_file.close()
     except IOError:
-        raise Http404()
+        response = HttpResponse()
+        response['Refresh'] = '5;url=%s' % request.get_full_path()
+        return response
     return render(request, 'log-player/log-player.html', context={'game': game})
 
 

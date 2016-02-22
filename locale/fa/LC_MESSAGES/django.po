@@ -1658,3 +1658,12 @@ msgstr "نتایج بازی‌ها با بات رندم"
 
 msgid "use this link to find a team and request a friendly game"
 msgstr "از لینک روبرو برای یافتن تیم‌ها و درخواست بازی دوستانه استفاده کنید"
+
+msgid "phone number"
+msgstr "تلفن ثابت"
+
+msgid "mobile number"
+msgstr "تلفن همراه"
+
+msgid "national code"
+msgstr "کدملی"

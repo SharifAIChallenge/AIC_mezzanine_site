@@ -27,15 +27,17 @@
 
                 <p class="muted">{{ team.name }}</p>
                 <div class="row">
-                    <form method="post" action="">
-                        {% csrf_token %}
-                        {{ form }}
-                        <div class="center-align col m12 s12 l12">
-                            <button type="submit" class="btn waves-effect">
-                                پرداخت
-                            </button>
-                        </div>
-                    </form>
+                    <div class="col s12 m8 l8">
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            {{ form }}
+                            <div class="center-align">
+                                <button type="submit" class="btn waves-effect">
+                                    تکمیل مشخصات و پرداخت
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

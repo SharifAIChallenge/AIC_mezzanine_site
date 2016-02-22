@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from game.forms import ScheduleForm, TeamScoresForm
+from game.forms import ScheduleForm, TeamScoresForm, UploadScoresForm
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -27,3 +27,15 @@ def get_team_scores(request):
     else:
         form = TeamScoresForm()
     return render(request, 'accounts/account_form.html', {'form': form, 'title': 'get scores'})
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def upload_scores(request):
+    if request.method == 'POST':
+        form = UploadScoresForm(files=request.FILES, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('upload_scores')
+    else:
+        form = UploadScoresForm()
+    return render(request, 'accounts/account_form.html', {'form': form, 'title': 'upload scores'})

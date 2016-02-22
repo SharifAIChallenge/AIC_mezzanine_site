@@ -162,3 +162,13 @@ class GameTeamSubmit(models.Model):
 
     class Meta:
         ordering = ('score',)
+
+
+class TeamScore(models.Model):
+    team = models.ForeignKey('base.Team', verbose_name=_('team'))
+    score = models.FloatField(verbose_name=_('score'))
+    game_type = models.PositiveSmallIntegerField(verbose_name=_('game types'), choices=Game.GAME_TYPES)
+
+    class Meta:
+        verbose_name = _('score')
+        unique_together = ('team', 'game_type')

@@ -4,7 +4,7 @@ from functools import wraps
 from urlparse import urlparse
 
 import os
-from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm, WillComeForm
+from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm, WillComeForm, GameTypeForm
 from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -16,7 +16,7 @@ from django.utils import timezone
 from django.utils.translation import get_language_from_request
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
-from game.models import Competition, GameTeamSubmit, Game, GameConfiguration
+from game.models import Competition, GameTeamSubmit, Game, GameConfiguration, TeamScore
 from mezzanine.utils.email import send_mail_template
 from .tasks import compile_code
 
@@ -195,6 +195,21 @@ def teams(request):
         'show_friendly_button': False,
         'wait_time': wait_time,
         'public_configurations': public_configs,
+    })
+
+
+@login_required
+def scoreboard(request):
+    form = GameTypeForm(data=request.GET)
+
+    if form.is_valid():
+        scores_list = TeamScore.objects.filter(game_type=form.cleaned_data['game_type']).values('score', 'team')
+    else:
+        raise Http404()
+
+    return render(request, 'custom/scoreboard.html', {
+        'scores': scores_list,
+        'form': form,
     })
 
 

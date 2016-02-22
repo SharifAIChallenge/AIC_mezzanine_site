@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
+from base.models import Submit, Team, TeamInvitation, Member
 from django import forms
-
 from django.utils.translation import ugettext_lazy as _
-
 from django_countries.widgets import CountrySelectWidget
+from game.models import Game
 from mezzanine.accounts.forms import ProfileForm as mezzanine_profile_form
 from mezzanine.utils.email import send_mail_template
-from base.models import Submit, Team, TeamInvitation, Member
 
 
 class ProfileForm(mezzanine_profile_form):
@@ -72,8 +71,8 @@ class InvitationForm(forms.Form):
         invitation, is_new = TeamInvitation.objects.get_or_create(member=self.member, team=team)
         send_mail_template(_('AIChallenge team invitation'), 'mail/invitation_mail', '',
                            self.member.email, context={'team': team.name,
-                'abs_link': invitation.accept_link,
-                'current_host': host})
+                                                       'abs_link': invitation.accept_link,
+                                                       'current_host': host})
 
 
 class WillComeForm(forms.ModelForm):
@@ -89,3 +88,7 @@ class WillComeForm(forms.ModelForm):
         model = Team
         fields = ('will_come',)
         widgets = {'will_come': forms.RadioSelect}
+
+
+class GameTypeForm(forms.Form):
+    game_type = forms.ChoiceField(choices=Game.GAME_TYPES, label=_('game type'), initial=2)

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags %}
+
+{% block meta_title %}{% trans 'scoreboard' %}{% endblock %}
+{% block title %}{% trans 'scoreboard' %}{% endblock %}
+{% block extra_head %}
+    {{ block.super }}
+    <style>
+        .aligned {
+        {% if LANGUAGE_BIDI %}
+            text-align: right;
+        {% else %}
+            text-align: left;
+        {% endif %}
+        }
+
+        .non-final {
+            background-color: rgba(255, 204, 0, 0.2);
+        }
+    </style>
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card-panel">
+                {% nevercache %}
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">&times;</button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endnevercache %}
+                <table class="teams-list">
+                    <tr>
+                        <th>{% trans 'score' %}</th>
+                        <th>{% trans 'name' %}</th>
+                        <th>{% trans 'team head' %}</th>
+                        <th>{% trans 'member' %}</th>
+                        <th>{% trans 'member' %}</th>
+                    </tr>
+                    {% for score in scores %}
+                        <tr {% if forloop.counter >= 48 %}class="non-final"{% endif %}>
+                            <td>{{ score.score }}</td>
+                            <td>{{ score.team.name }}</td>
+                            <td class="aligned">
+                                <div>
+                                    <img class="circle" style="vertical-align: middle; margin: 5px;"
+                                         width="40" height="40"
+                                         src="{% gravatar_url score.team.head.email 40 %}"/>
+                                    <span style="vertical-align: middle; margin-right: 5px">{{ score.team.head.get_full_name }}</span>
+                                    <img src="{{ score.team.head.country.flag }}"/>
+                                </div>
+                            </td>
+                            <td>{% if score.team.get_members.0 %}
+                                <div class="aligned">
+                                    <img class="circle" style="vertical-align: middle; margin: 5px;"
+                                         width="40" height="40"
+                                         src="{% gravatar_url score.team.get_members.0.email 40 %}"/>
+                                    <span style="vertical-align: middle; margin-right: 5px">{{ score.team.get_members.0.get_full_name }}</span>
+                                    <img src="{{ score.team.get_members.0.country.flag }}"/>
+                                </div>
+                            {% else %}-{% endif %}</td>
+                            <td>{% if score.team.get_members.1 %}
+                                <div class="aligned">
+                                    <img class="circle" style="vertical-align: middle; margin: 5px;"
+                                         width="40" height="40"
+                                         src="{% gravatar_url score.team.get_members.1.email 40 %}"/>
+                                    <span style="vertical-align: middle; margin-right: 5px">{{ score.team.get_members.1.get_full_name }}</span>
+                                    <img src="{{ score.team.get_members.1.country.flag }}"/>
+                                </div>
+                            {% else %}-{% endif %}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

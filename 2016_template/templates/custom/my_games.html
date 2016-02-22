@@ -170,29 +170,31 @@
                                     </th>
                                 </tr>
 
-                                {% for submission in participations %}
-                                    <tr>
-                                        <td>{{ submission.game.get_game_type_display }}</td>
-                                        <td>
-                                            {% for team in submission.game.get_participants %}
-                                                {{ team.name }}
-                                                {% if not forloop.last %}, {% endif %}
-                                            {% endfor %}
-                                        </td>
-                                        <td>
-                                            {{ submission.game.game_config }}
-                                        </td>
-                                        <td>
-                                            {% if submission.game.status == 3 %}
-                                                <a href="{{ submission.game.get_log_url }}">
-                                                    {{ submission.game.get_status_display }}
-                                                    ({% trans 'score' %}: {{ submission.score|floatformat:2 }})
-                                                </a>
-                                            {% else %}
-                                                {{ submission.game.get_status_display }}
-                                            {% endif %}
-                                        </td>
-                                    </tr>
+                                {% for participation in participations %}
+                                    {% if participation.game.game_type > 0 %}
+                                        <tr>
+                                            <td>{{ participation.game.get_game_type_display }}</td>
+                                            <td>
+                                                {% for team in participation.game.get_participants %}
+                                                    {{ team.name }}
+                                                    {% if not forloop.last %}, {% endif %}
+                                                {% endfor %}
+                                            </td>
+                                            <td>
+                                                {{ participation.game.game_config }}
+                                            </td>
+                                            <td>
+                                                {% if participation.game.status == 3 %}
+                                                    <a href="{{ participation.game.get_log_url }}">
+                                                        {{ participation.game.get_status_display }}
+                                                        ({% trans 'score' %}: {{ participation.score|floatformat:2 }})
+                                                    </a>
+                                                {% else %}
+                                                    {{ participation.game.get_status_display }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endif %}
                                 {% endfor %}
 
                             </table>

@@ -94,6 +94,7 @@ class Game(models.Model):
         (2, _('qualifications')),
         (3, _('finals')),
         (4, _('seeding')),
+        (5, _('supplementary')),
     )
 
     STATUSES = (

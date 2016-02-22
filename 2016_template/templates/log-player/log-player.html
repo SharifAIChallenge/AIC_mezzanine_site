@@ -15,7 +15,7 @@
     <div hidden>
         <input type="hidden" id="log-address" value="{{ game.log_file.url }}">
         {% for submit in game.players.all %}
-            <input type="hidden" id="team-{{ submit.id }}" value="{{ submit.team.name }}">
+            <input type="hidden" id="team-{{ submit.team.id }}" value="{{ submit.team.name }}">
         {% endfor %}
     </div>
     <div id="cy"></div>

@@ -43,9 +43,7 @@ Two samples named `local_settings.deploy.sample.py` and `local_settings.dev.samp
 Note that you may also set `BASE_AND_GAME_STORAGE` (default is `FileSystemStorage`). E.g in deployment servers you must set:
 
 ```sh
-BASE_AND_GAME_STORAGE = SyncingStorage(
-    'storages.backends.hashpath.HashPathStorage',
-    "storages.backends.sftpstorage.SFTPStorage")
+BASE_AND_GAME_STORAGE = SyncingHashStorage("storages.backends.sftpstorage.SFTPStorage")
 ```
 
 

@@ -216,7 +216,7 @@ def scoreboard(request):
 
     return render(request, 'custom/scoreboard.html', {
         'scores': scores_list,
-        'title': GAME_TYPE_DESCRIPTIONS[game_type],
+        'title': GAME_TYPE_DESCRIPTIONS[int(game_type)],
     })
 
 

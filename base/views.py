@@ -549,7 +549,6 @@ def get_submission(request, submit_id):
 
 
 @login_required
-@team_required
 def play_log(request):
     game = get_object_or_404(Game, id=request.GET.get('game', None))
     log = request.GET.get('log', '')

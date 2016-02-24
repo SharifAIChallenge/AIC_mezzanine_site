@@ -30,6 +30,10 @@ def team_required(function=None, register_period_only=False):
     def decorator(view_func):
         @wraps(view_func)
         def _wrapped_view(request, *args, **kwargs):
+            if request.user.is_superuser:
+                if hasattr(request.user, 'team') and request.user.team:
+                    request.team = request.user.team
+                return view_func(request, *args, **kwargs)
             if hasattr(request.user, 'team') and request.user.team:
                 if register_period_only and registration_period_ended(request):
                     messages.error(request, _("registration period has ended"))

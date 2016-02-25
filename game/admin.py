@@ -6,7 +6,6 @@ from mezzanine.core import admin as mezzanineAdmin
 admin.site.register(Competition)
 admin.site.register(DockerContainer)
 admin.site.register(ProgrammingLanguage)
-admin.site.register(TeamScore)
 
 
 class SubmitInline(mezzanineAdmin.StackedDynamicInlineAdmin):
@@ -48,3 +47,14 @@ class GameConfigurationAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
 
 
 admin.site.register(GameConfiguration, GameConfigurationAdmin)
+
+
+class TeamScoreAdmin(admin.ModelAdmin):
+    fieldsets = ((None, {"fields": ("team", "score", "game_type")}),)
+    list_display = ("team", "score", "game_type")
+    list_display_links = ("team", "score", "game_type")
+    list_editable = ()
+    list_filter = ("team", "score", "game_type")
+    search_fields = ("team", "score")
+
+admin.site.register(TeamScore, TeamScoreAdmin)

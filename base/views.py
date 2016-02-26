@@ -183,7 +183,7 @@ def teams(request):
     wait_time = 0
 
     if request.GET.get('submitted', '0') == '1':
-        teams = Submit.objects.filter(status=3).values_list('teams', flat=True).distinct()
+        teams = Submit.objects.filter(status=3).values_list('team', flat=True).distinct()
         if hasattr(request.user, 'team') and \
                 request.user.team and \
                 request.user.team.final and \

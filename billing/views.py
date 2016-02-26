@@ -31,12 +31,17 @@ def payment(request):
                 })
     else:
         error = None
+        unverified_transaction = request.team.transactions.filter(status='u')
+        if unverified_transaction.exists():
+            unverified_transaction.all()[0].update_status()
+        
+        if request.team.transactions.filter(status='u').exists():
+            error = _("You have unverified payment(s).")
         if not request.team.should_pay:
             error = _("There is nothing to pay for.")
         if request.team.transactions.filter(status='v').exists():
             error = _("You have already paid.")
-        if request.team.transactions.filter(status='u').exists():
-            error = _("You have unverified payment(s).")
+
         if error:
             return render(request, 'custom/bank_payment_error.html', context={
                 'error': error,

@@ -61,9 +61,13 @@ class Team(models.Model):
     @property
     def final_submit(self):
         if not self.final_submission:
-            self.final_submission = self.submit_set.filter(status=2).last()
+            self.final_submission = self.submit_set.filter(status=3).last()
             self.save()
         return self.final_submission
+
+    @property
+    def has_successful_submit(self):
+        return Submit.objects.filter(team=self, status=3).exists()
 
 
 def team_code_directory_path(instance, filename):

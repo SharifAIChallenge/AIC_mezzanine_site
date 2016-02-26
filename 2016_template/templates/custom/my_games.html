@@ -49,6 +49,12 @@
 {% block main %}
     <div class="row">
         <div class="col s12 m12 l8 offset-l2">
+
+            <div class="card-panel acc-hints">
+                {% trans 'use this link to find a team and request a friendly game' %}
+                <a class="white-text btn" href="{% url 'teams_list' %}?submitted=1">{% trans "Teams" %}</a>
+            </div>
+
             <div class="card-panel">
                 {% nevercache %}
                     {% if messages %}

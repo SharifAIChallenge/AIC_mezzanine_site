@@ -181,17 +181,19 @@ def teams(request):
 
     show_friendly_button = False
     wait_time = 0
-    if hasattr(request.user, 'team') and request.user.team:
-        show_friendly_button = True
-        if not request.user.team.final:
-            show_friendly_button = False
-        wait_time = GameRequest.check_last_time(request.user.team)
-        if wait_time:
-            show_friendly_button = False
-        if not Submit.objects.filter(team=request.user.team).exists():
-            show_friendly_button = False
 
-    public_configs = GameConfiguration.objects.filter(is_public=True).order_by('id')
+    if request.GET.get('submitted', '0') == '1':
+        teams = Submit.objects.filter(status=3).values_list('teams', flat=True).distinct()
+        if hasattr(request.user, 'team') and \
+                request.user.team and \
+                request.user.team.final and \
+                request.user.team.has_successful_submit:
+            show_friendly_button = True
+            wait_time = GameRequest.check_last_time(request.user.team)
+            if wait_time:
+                show_friendly_button = False
+
+    public_configs = GameConfiguration.objects.filter(is_public=True)
 
     return render(request, 'custom/teams_list.html', {
         'teams': teams,

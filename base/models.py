@@ -3,13 +3,15 @@ import base64
 import re
 import uuid
 
+import datetime
+
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models import SET_NULL
+from django.db.models import SET_NULL, Max
 from django.db.models.signals import post_save
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
@@ -206,14 +208,13 @@ class GameRequest(models.Model):
 
     @classmethod
     def check_last_time(cls, team):
-        # last_time = cls.objects.filter(requester=team, accepted=True).aggregate(Max('accept_time'))['accept_time__max']
-        # if last_time:
-        #     now = timezone.now()
-        #     one_hour_before = now - datetime.timedelta(hours=1)
-        #     seconds = (last_time - one_hour_before).total_seconds()
-        #     if seconds > 0:
-        #         return int(seconds / 60)
-        # return False
+        last_time = cls.objects.filter(requester=team, accepted=True).aggregate(Max('accept_time'))['accept_time__max']
+        if last_time:
+            now = timezone.now()
+            one_hour_before = now - datetime.timedelta(hours=1)
+            seconds = (last_time - one_hour_before).total_seconds()
+            if seconds > 0:
+                return int(seconds / 60)
         return False
 
     def accept(self, accepted):

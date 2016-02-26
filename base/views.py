@@ -195,8 +195,7 @@ def teams(request):
 
     return render(request, 'custom/teams_list.html', {
         'teams': teams,
-        # 'show_friendly_button': show_friendly_button,
-        'show_friendly_button': False,
+        'show_friendly_button': show_friendly_button,
         'wait_time': wait_time,
         'public_configurations': public_configs,
     })
@@ -275,12 +274,9 @@ def my_games(request):
         messages.error(request, _('your team must be final'))
         return redirect('my_team')
 
-    # if not request.user.is_superuser:
-    #     return redirect('my_team')
-
     participations = GameTeamSubmit.objects.filter(submit__team=request.team).select_related('game').order_by(
         'game__timestamp').reverse()
-    sent_requests = GameRequest.objects.filter(requester=request.team, accepted__isnull=True)
+    sent_requests = GameRequest.objects.filter(requester=request.team)
     received_requests = GameRequest.objects.filter(requestee=request.team, accepted__isnull=True)
 
     return render(request, 'custom/my_games.html', context={
@@ -304,6 +300,12 @@ def handle_game_request(request):
     try:
         game_request = GameRequest.objects.get(id=request.POST.get('id'), requestee=request.team)
     except GameRequest.DoesNotExist:
+        return HttpResponse(json.dumps({
+            'success': False,
+            'message': str(_('No such game request found'))
+        }), content_type='application/json')
+
+    if game_request.is_responded():
         return HttpResponse(json.dumps({
             'success': False,
             'message': str(_('No such game request found'))
@@ -336,7 +338,7 @@ def handle_game_request(request):
 def game_request(request):
     if not request.team.final:
         messages.error(request, _('your team must be final'))
-    return HttpResponseRedirect(reverse('teams_list') + '?final=1')
+        return HttpResponseRedirect(reverse('teams_list') + '?final=1')
 
     if 'team_id' not in request.POST:
         return HttpResponseBadRequest()

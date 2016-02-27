@@ -20,6 +20,7 @@ class Transaction(models.Model):
     order_id = models.CharField(max_length=100, null=True, blank=True)
     bank = models.CharField(max_length=20, choices=[(str(v), k) for k,v in BANK.items()])
     reference_id = models.CharField(max_length=100)
+    id2 = models.CharField(max_length=100, db_index=True, blank=True, null=True, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     error = models.CharField(max_length=100, null=True, blank=True)
@@ -38,6 +39,7 @@ class Transaction(models.Model):
             amount=amount,
             status='u',
             bank=bank,
+            id2=random_string,
         )
         from django.conf import settings
         username = settings.BANK_USERNAME
@@ -59,7 +61,7 @@ class Transaction(models.Model):
             'username': username,
             'password': password,
             'bankid': cls.BANK[bank],
-            'id2': t.id,
+            'id2': random_string,
             'callbackurl': callback_url,
             'nc': user.national_code,
             'name': user.first_name,

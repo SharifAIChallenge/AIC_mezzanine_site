@@ -34,7 +34,7 @@ def payment(request):
         unverified_transaction = request.team.transactions.filter(status='u')
         if unverified_transaction.exists():
             unverified_transaction.all()[0].update_status()
-        
+
         if request.team.transactions.filter(status='u').exists():
             error = _("You have unverified payment(s).")
         if not request.team.should_pay:
@@ -59,7 +59,7 @@ def complete_payment(request):
     if not our_id:
         raise PermissionDenied()
 
-    transaction = get_object_or_404(Transaction, id=our_id)
+    transaction = get_object_or_404(Transaction, id2=our_id)
     transaction.update_status()
 
     if transaction.status == 'v':

@@ -175,15 +175,15 @@ def accept_invite(request, slug):
 
 @login_required
 def teams(request):
-    teams = Team.objects.exclude(show=False)
+    teams_list = Team.objects.exclude(show=False)
     if request.GET.get('final', '0') == '1':
-        teams = teams.filter(final=True)
+        teams_list = teams_list.filter(final=True)
 
     show_friendly_button = False
     wait_time = 0
 
     if request.GET.get('submitted', '0') == '1':
-        teams = Submit.objects.filter(status=3).values_list('team', flat=True).distinct()
+        teams_list = teams_list.filter(submit__status=3)
         if hasattr(request.user, 'team') and \
                 request.user.team and \
                 request.user.team.final and \
@@ -196,7 +196,7 @@ def teams(request):
     public_configs = GameConfiguration.objects.filter(is_public=True)
 
     return render(request, 'custom/teams_list.html', {
-        'teams': teams,
+        'teams': teams_list,
         'show_friendly_button': show_friendly_button,
         'wait_time': wait_time,
         'public_configurations': public_configs,

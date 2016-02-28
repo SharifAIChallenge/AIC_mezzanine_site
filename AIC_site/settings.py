@@ -229,6 +229,7 @@ INSTALLED_APPS = (
     "django.contrib.staticfiles",
     "import_export",
     "2016_template",
+    'billing',
     'storages',
     'queued_storage',
     "mezzanine.boot",
@@ -432,3 +433,7 @@ LOGGING = {
         },
     }
 }
+
+BANK_USERNAME = os.environ.get('BANK_USERNAME', '')
+BANK_PASSWORD = os.environ.get('BANK_PASSWORD', '')
+BANK_GROUP_ID = os.environ.get('BANK_GROUP_ID', '')

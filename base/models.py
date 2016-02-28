@@ -47,6 +47,7 @@ class Team(models.Model):
 
     will_come = models.PositiveSmallIntegerField(verbose_name=_("will come to site"), choices=WILL_COME_CHOICES,
                                                  default=2)
+    paid = models.BooleanField(default=False)
 
     def __unicode__(self):
         return 'Team%d(%s)' % (self.id, self.name)

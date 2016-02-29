@@ -18,7 +18,7 @@ class Transaction(models.Model):
     amount = models.PositiveSmallIntegerField()
     status = models.CharField(choices=STATE, max_length=1)
     order_id = models.CharField(max_length=100, null=True, blank=True)
-    bank = models.CharField(max_length=1, choices=[(str(v), k) for k,v in BANK.items()])
+    bank = models.CharField(max_length=20, choices=[(str(v), k) for k,v in BANK.items()])
     reference_id = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

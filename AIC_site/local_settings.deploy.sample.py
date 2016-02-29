@@ -52,4 +52,7 @@ from AIC_site.storage import SyncingHashStorage
 
 BASE_AND_GAME_STORAGE = SyncingHashStorage("storages.backends.sftpstorage.SFTPStorage")
 
+BANK_USERNAME = ''
+BANK_PASSWORD = ''
+BANK_GROUP_ID = ''
 

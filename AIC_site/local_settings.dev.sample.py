@@ -49,3 +49,6 @@ from django.core.files.storage import FileSystemStorage
 BASE_AND_GAME_STORAGE = FileSystemStorage()
 
 
+BANK_USERNAME = ''
+BANK_PASSWORD = ''
+BANK_GROUP_ID = ''

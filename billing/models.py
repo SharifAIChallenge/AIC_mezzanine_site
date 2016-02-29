@@ -1,32 +1,31 @@
 from django.db import models
-from base.models import Member
+from base.models import Team
 from django.utils.crypto import get_random_string
 from suds.client import Client
-from django.core.urlresolvers import reverse
 
 
 class Transaction(models.Model):
     STATE = (
         ('u', 'unknown'),
         ('v', 'valid'),
-        ('c', 'cancelled')
+        ('c', 'cancelled'),
     )
     BANK = {
         'mellat': 1, 'tejarat': 2
     }
 
-    user = models.ForeignKey(Member, related_name='transactions')
+    team = models.ForeignKey(Team, related_name='transactions', null=True)
     amount = models.PositiveSmallIntegerField()
     status = models.CharField(choices=STATE, max_length=1)
-    our_id = models.CharField(max_length=100)
     order_id = models.CharField(max_length=100, null=True, blank=True)
     bank = models.CharField(max_length=1, choices=[(str(v), k) for k,v in BANK.items()])
     reference_id = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    error = models.CharField(max_length=100, null=True, blank=True)
 
     @classmethod
-    def begin_transaction(cls, user, amount, bank='mellat'):
+    def begin_transaction(cls, user, amount, callback_url, bank='mellat'):
         """
         :param user:
         :param amount: in rials
@@ -35,11 +34,10 @@ class Transaction(models.Model):
         """
         random_string = get_random_string(length=100)
         t = Transaction.objects.create(
-            user=user,
+            team=user.team,
             amount=amount,
             status='u',
             bank=bank,
-            our_id=random_string
         )
         from django.conf import settings
         username = settings.BANK_USERNAME
@@ -61,8 +59,8 @@ class Transaction(models.Model):
             'username': username,
             'password': password,
             'bankid': cls.BANK[bank],
-            'id2': random_string,
-            'callbackurl': reverse('bank_callback') + '?',
+            'id2': t.id,
+            'callbackurl': callback_url,
             'nc': user.national_code,
             'name': user.first_name,
             'family': user.last_name,
@@ -70,20 +68,24 @@ class Transaction(models.Model):
             'mobile': mobile,
             'email': user.email,
             'amount': amount,
-            'memo': t.pk,
+            'Memo': t.pk,
         }
+        print('callbackurl: ')
+        print(params['callbackurl'])
 
         def call_webservice(params):
-            cl = Client('http://payment.sharif.ir/research/ws.asmx')
-            return cl.service.Request(params)
+            cl = Client('http://payment.sharif.ir/research/ws.asmx?wsdl')
+            return cl.service.Request(**params)
 
         rescode, order_id = call_webservice(params).split(',')
-        t.order_id = order_id
-        t.save()
+
         if rescode == '0':
+            t.order_id = order_id
+            t.save()
             return 'http://payment.sharif.ir/research/submit.aspx?orderid={}'.format(order_id), t
         else:
             t.status = 'c'
+            t.error = order_id
             t.save()
             return '', t
 
@@ -100,16 +102,18 @@ class Transaction(models.Model):
             'bankid': self.BANK[self.bank],
             'orderid': self.order_id
         }
+
         def call_webservice(params):
-            cl = Client('http://payment.sharif.ir/research/ws.asmx')
-            return cl.service.Status(params)
+            cl = Client('http://payment.sharif.ir/research/ws.asmx?wsdl')
+            return cl.service.Status(**params)
 
         vercode, reference_id = call_webservice(params).split(':')
-        self.reference_id = reference_id
         if vercode == '0':
             self.status = 'v'
+            self.reference_id = reference_id
         else:
             self.status = 'c'
+            self.error = reference_id
         self.save()
 
         return reference_id

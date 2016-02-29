@@ -25,18 +25,21 @@
                     {% endif %}
                 {% endnevercache %}
 
+                <p>
+{#                    todo: translation #}
+                    پرداخت شما با خطای زیر مواجه شده است:
+                </p>
                 <p class="muted">{{ team.name }}</p>
-                <div class="row">
-                    <form method="post" action="">
-                        {% csrf_token %}
-                        {{ form }}
-                        <div class="center-align col m12 s12 l12">
-                            <button type="submit" class="btn waves-effect">
-                                پرداخت
-                            </button>
-                        </div>
-                    </form>
-                </div>
+                <p>
+                    برای دیدن پرداخت‌ها به
+                    <a href="{% url 'payments_list' %}">این صفحه</a>
+                    و برای پرداخت دوباره به
+                    <a href="{% url 'request_payment' %}">این صفحه</a>
+                    بروید.
+                </p>
+
+                <div>{{ error }}</div>
+
             </div>
         </div>
     </div>

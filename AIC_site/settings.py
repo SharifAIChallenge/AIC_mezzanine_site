@@ -433,7 +433,3 @@ LOGGING = {
         },
     }
 }
-
-BANK_USERNAME = os.environ.get('BANK_USERNAME', '')
-BANK_PASSWORD = os.environ.get('BANK_PASSWORD', '')
-BANK_GROUP_ID = os.environ.get('BANK_GROUP_ID', '')

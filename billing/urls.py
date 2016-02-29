@@ -4,6 +4,7 @@ from django.conf.urls import patterns, url
 
 urlpatterns = patterns(
     'billing.views',
-    url("^bankcb$", 'bank_callback', name='bank_callback'),
-    url('^pay/$', 'payment', name='pay_site_price')
+    url("^pay/", 'payment', name='request_payment'),
+    url("^payments/$", 'payments_list', name='payments_list'),
+    url("^complete/", 'complete_payment', name='complete_payment'),
 )

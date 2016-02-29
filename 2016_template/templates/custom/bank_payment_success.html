@@ -26,17 +26,9 @@
                 {% endnevercache %}
 
                 <p class="muted">{{ team.name }}</p>
-                <div class="row">
-                    <form method="post" action="">
-                        {% csrf_token %}
-                        {{ form }}
-                        <div class="center-align col m12 s12 l12">
-                            <button type="submit" class="btn waves-effect">
-                                پرداخت
-                            </button>
-                        </div>
-                    </form>
-                </div>
+
+                <div>پرداخت شما با موفقیت انجام شد. بعد از ۵ ثانیه به صفحه‌ی تیم خود هدایت خواهید شد.</div>
+
             </div>
         </div>
     </div>

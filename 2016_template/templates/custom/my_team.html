@@ -342,14 +342,18 @@
                                 </button>
                             </a>
                         </div>
-                        <div class="centered center-aligned center col s12 m12 l12">
-                            {% if request.team.paid_site_price %}
-                                هزینه‌ی شرکت تیم شما پرداخت شده است
-                            {% else %}
-                                هزینه‌ی شرکت تیم شما در مسابقه پرداخت نشده است. این هزینه برابر ۱۰۰ هزار تومان می‌باشد.<br />
-                                <a href="{% url 'pay_site_price' %}" class="btn btn-primary">پرداخت</a>
-                            {% endif %}
-                        </div>
+                        {% if request.team.should_pay %}
+                            <div class="centered center-aligned center col s12 m12 l12">
+                                {% if request.team.has_paid %}
+                                    هزینه‌ی شرکت تیم شما پرداخت شده است
+                                {% else %}
+                                    هزینه‌ی شرکت تیم شما در مسابقه پرداخت نشده است. این هزینه برابر
+{{ request.team.payment_value }}
+                                    ریال می‌باشد.<br />
+                                    <a href="{% url 'request_payment' %}" class="btn btn-primary">پرداخت</a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
                     {% endif %}
                 </div>
                 <div class="px-20 vertical spacer"></div>

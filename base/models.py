@@ -50,7 +50,8 @@ class Team(models.Model):
 
     will_come = models.PositiveSmallIntegerField(verbose_name=_("will come to site"), choices=WILL_COME_CHOICES,
                                                  default=2)
-    paid = models.BooleanField(default=False)
+    should_pay = models.BooleanField(verbose_name=_("Should pay?"), default=False)
+    payment_value = models.PositiveIntegerField(verbose_name=_("Payment value (rials)"), default=0)
 
     def __unicode__(self):
         return 'Team%d(%s)' % (self.id, self.name)
@@ -58,6 +59,10 @@ class Team(models.Model):
     class Meta:
         verbose_name = _('team')
         verbose_name_plural = _('teams')
+
+    @property
+    def has_paid(self):
+        return self.transactions.filter(status='v').exists()
 
     def get_members(self):
         return self.member_set.exclude(pk=self.head.pk).distinct()

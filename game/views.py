@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from game.forms import ScheduleForm, TeamScoresForm, UploadScoresForm
-from game.models import Competition, Group
+from game.models import Competition, Group, Game
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -51,6 +51,8 @@ def groups(request):
 
 def group_schedule(request, group_id):
     gt = get_object_or_404(Group, pk=group_id)
+    games = Game.objects.filter(game_type=6, group_id=group_id)
     return render(request, 'game/group.html', {
         'gt': gt,
+        'games': games,
     })

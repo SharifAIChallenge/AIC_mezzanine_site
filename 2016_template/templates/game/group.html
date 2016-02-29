@@ -71,11 +71,12 @@
                     <td>
                         {{ game.get_participants.1.name }}
                     </td>
-                    <td>
-                        {{ game.place }}
+                    <td title="{{ game.place.description }}">
+                        {{ game.place.name }}
                     </td>
                     <td>
-                        {{ game.time }}
+                        ساعت
+                        {{ game.time|date:'G:i'|farsi_digits }}
                     </td>
                 </tr>
             {% endfor %}

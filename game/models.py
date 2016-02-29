@@ -172,3 +172,16 @@ class TeamScore(models.Model):
     class Meta:
         verbose_name = _('score')
         unique_together = ('team', 'game_type')
+
+
+class Group(models.Model):
+    name = models.CharField(max_length=200)
+    competition = models.ForeignKey(Competition)
+    submits = models.ManyToManyField('base.Submit', through=GroupTeamSubmit)
+
+
+class GroupTeamSubmit(models.Model):
+    group = models.ForeignKey(Group)
+    submit = models.ForeignKey('base.Submit')
+
+    score = models.DecimalField(verbose_name=_('score'), default=0, max_digits=25, decimal_places=10)

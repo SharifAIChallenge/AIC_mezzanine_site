@@ -1,0 +1,27 @@
+{
+  "name": "AIC_site",
+  "homepage": "https://github.com/SharifAIChallenge/AIC_mezzanine_site",
+  "authors": [
+    "Naser Aliabadi <aliabadi@arsh.co>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "fancybox": "^2.1.5"
+  }
+}

@@ -9,4 +9,5 @@ urlpatterns = patterns(
 
     url(r'^groups$', 'groups', name="groups"),
     url(r'^groups/(?P<group_id>\d+)$', 'group_schedule', name='group_schedule'),
+    url(r'^bracket$', 'bracket', name="bracket"),
 )

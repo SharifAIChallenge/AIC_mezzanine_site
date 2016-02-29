@@ -22,12 +22,12 @@ var doubleElimination = {
             ]
         ]
     ]
-}
+};
 
 
 function saveFn(data, userData) {
-    var json = jQuery.toJSON(data)
-    $('#saveOutput').text('POST ' + userData + ' ' + json)
+    var json = jQuery.toJSON(data);
+    $('#saveOutput').text('POST ' + userData + ' ' + json);
     /* You probably want to do something like this
      jQuery.ajax("rest/"+userData, {contentType: 'application/json',
      dataType: 'json',
@@ -36,23 +36,22 @@ function saveFn(data, userData) {
      */
 }
 
-//$(function () {
-//    var container = $('#saved')
-//    container.bracket({
-//        init: doubleElimination,
-//        save: saveFn,
-//        userData: "http://myapi"
-//    })
-//
-//    /* You can also inquiry the current data */
-//    var data = container.bracket('data')
-//    $('#dataOutput').text(jQuery.toJSON(data))
-//})
+$(function () {
+    var container = $('#bracket');
+    container.bracket({
+        init: doubleElimination,
+        save: saveFn,
+        userData: "http://myapi"
+    });
 
+    /* You can also inquiry the current data */
+    var data = container.bracket('data');
+    $('#dataOutput').text(jQuery.toJSON(data))
+});
 
-//window.setInterval(function () {
-//    getPoints();  //calling every 10 seconds
-//}, 10 * 1000);
+window.setInterval(function () {
+    getPoints();  //calling every 10 seconds
+}, 10 * 1000);
 
 function getPoints() {
     $.ajax({
@@ -66,10 +65,3 @@ function getPoints() {
         $(this).addClass("done");
     });
 }
-
-$("a.group-link").fancybox({
-    type: 'iframe',
-    width: "100%",
-    height: "100%",
-    autoSize: false
-});

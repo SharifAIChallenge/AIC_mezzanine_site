@@ -56,3 +56,7 @@ def group_schedule(request, group_id):
         'gt': gt,
         'games': games,
     })
+
+
+def bracket(request):
+    return render(request, 'game/bracket.html')

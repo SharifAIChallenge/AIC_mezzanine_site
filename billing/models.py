@@ -26,7 +26,7 @@ class Transaction(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     @classmethod
-    def begin_transaction(cls, user, code_melli, amount, bank='mellat'):
+    def begin_transaction(cls, user, amount, bank='mellat'):
         """
         :param user:
         :param amount: in rials
@@ -52,7 +52,7 @@ class Transaction(models.Model):
         elif len(phone) > 7:
             phone = phone[:7]
 
-        mobile = user.phone_number
+        mobile = user.mobile_number
         if mobile[:2] != '09':
             mobile = '09{}'.format(mobile)
 
@@ -63,7 +63,7 @@ class Transaction(models.Model):
             'bankid': cls.BANK[bank],
             'id2': random_string,
             'callbackurl': reverse('bank_callback') + '?',
-            'nc': code_melli,
+            'nc': user.national_code,
             'name': user.first_name,
             'family': user.last_name,
             'tel': phone,

@@ -23,9 +23,11 @@ syncing_storage = settings.BASE_AND_GAME_STORAGE
 
 class Member(AbstractUser):
     phone_number = models.CharField(verbose_name=_("phone_number"), max_length=20, blank=True)
+    mobile_number = models.CharField(verbose_name=_("mobile_number"), max_length=11, blank=True)
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
     country = CountryField(verbose_name=_("country"), blank_label=_("choose your country"), default='IR')
     team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True, blank=True, on_delete=SET_NULL)
+    national_code = models.CharField(max_length=10, null=True, blank=True)
 
 
 class Team(models.Model):
@@ -41,6 +43,7 @@ class Team(models.Model):
     head = models.ForeignKey('base.Member', verbose_name=_("team head"), related_name='+')
     show = models.BooleanField(default=True, verbose_name=_("show team in public list"))
     final = models.BooleanField(default=False, verbose_name=_("team is final"))
+    site_participation_possible = models.BooleanField(default=False)
 
     final_submission = models.ForeignKey('base.Submit', verbose_name=_('final submission'),
                                          related_name="team_final_submission", null=True)
@@ -69,6 +72,12 @@ class Team(models.Model):
     @property
     def has_successful_submit(self):
         return Submit.objects.filter(team=self, status=3).exists()
+
+    @property
+    def paid_site_price(self):
+        from billing.models import Transaction
+        transaction = Transaction.objects.filter(status='v', user__in=self.member_set)
+        return len(transaction) > 0
 
 
 def team_code_directory_path(instance, filename):

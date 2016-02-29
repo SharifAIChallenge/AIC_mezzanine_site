@@ -7,10 +7,10 @@
             point
         </td>
     </tr>
-    {% for team in gt.team_set.all %}
+    {% for submit in gt.submits.all %}
         <tr class="team mix" data-point="1">
             <td>
-                {{ team.name }}
+                {{ submit.team.name }}
             </td>
             <td>
                 1

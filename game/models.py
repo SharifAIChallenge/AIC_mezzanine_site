@@ -95,6 +95,7 @@ class Game(models.Model):
         (3, _('finals')),
         (4, _('seeding')),
         (5, _('supplementary')),
+        (6, _('groups')),
     )
 
     STATUSES = (
@@ -120,6 +121,8 @@ class Game(models.Model):
 
     time = models.DateTimeField(verbose_name=_('time'), null=True)
     place = models.ForeignKey('game.GamePlace', null=True, verbose_name=_('place'))
+
+    group = models.ForeignKey('game.Group', null=True)
 
     class Meta:
         verbose_name = _('game')

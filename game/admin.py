@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
-from game.models import Game, Competition, GameTeamSubmit, ProgrammingLanguage, DockerContainer, GameConfiguration, TeamScore
+from game.models import Game, Competition, GameTeamSubmit, ProgrammingLanguage, DockerContainer, GameConfiguration, \
+    TeamScore, \
+    Group, GroupTeamSubmit, GamePlace
 from mezzanine.core import admin as mezzanineAdmin
 
 admin.site.register(Competition)
@@ -16,18 +18,18 @@ class GameAdmin(admin.ModelAdmin):
     inlines = (SubmitInline,)
 
     fieldsets = ((None, {"fields": ("title", "pre_games", "log_file", "error_log", "status",
-                                    "game_type", "game_config")}),)
+                                    "game_type", "game_config")}),
+                 ('advanced', {'fields': ('time', 'place', 'group')}))
     list_display = ("title", "status", "game_type", "game_config", "get_log_link")
     list_display_links = ("title", "status", "game_type", "game_config")
     list_editable = ()
     list_filter = ("status", "game_type", "game_config")
-    search_fields = ("title", )
+    search_fields = ("title",)
+
 
 admin.site.register(Game, GameAdmin)
 
-
-# class GameInline(admin.StackedInline):
-#     model = Game
+admin.site.register(GamePlace)
 
 
 class GameTeamSubmitAdmin(admin.ModelAdmin):
@@ -57,4 +59,7 @@ class TeamScoreAdmin(admin.ModelAdmin):
     list_filter = ("team", "score", "game_type")
     search_fields = ("team", "score")
 
+
 admin.site.register(TeamScore, TeamScoreAdmin)
+admin.site.register(Group)
+admin.site.register(GroupTeamSubmit)

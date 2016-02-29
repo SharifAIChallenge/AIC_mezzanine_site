@@ -199,6 +199,9 @@ class Group(models.Model):
     class Meta:
         verbose_name = _('group')
 
+    def __unicode__(self):
+        return u"group %s" % self.name
+
 
 class GamePlace(models.Model):
     name = models.CharField(max_length=200, verbose_name=_('name'))
@@ -206,3 +209,6 @@ class GamePlace(models.Model):
 
     class Meta:
         verbose_name = _('place')
+
+    def __unicode__(self):
+        return self.name

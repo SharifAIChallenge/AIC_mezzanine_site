@@ -15,7 +15,27 @@
 
 {% block main %}
     <div class="col-lg-4 col-md-12 col-sm-12">
-        {% include 'game/group_table.html' with gt=gt %}
+        <table id="group{{ gt.id }}" class="group">
+            <tr>
+                <td>
+                    name
+                </td>
+                <td>
+                    point
+                </td>
+            </tr>
+            {% for submit in gt.submits.all %}
+                <tr class="team mix" data-point="1">
+                    <td>
+                        {{ submit.team.name }}
+                    </td>
+                    <td>
+                        1
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
     </div>
     <div class="col-lg-8 col-md-12 col-sm-12">
         <table class="group">
@@ -61,4 +81,7 @@
             {% endfor %}
         </table>
     </div>
+
+
+    <script type="text/javascript" src="{% static 'scripts/mixitup_script.js' %}"></script>
 {% endblock %}

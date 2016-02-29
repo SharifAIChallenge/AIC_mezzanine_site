@@ -21,14 +21,35 @@
             <div class="col-lg-3 col-md-3 col-sm-6">
                 <h3 class="text-center title">
                     <a href="{% url 'group_schedule' gt.id %}" class="group-link"
-                       title="Group {{ gt.id }}">
+                       title="Group {{ gt.id }}" target="_blank">
                         Group {{ gt.id }}
                     </a>
                 </h3>
-                {% include 'game/group_table.html' with gt=gt %}
+                <table id="group{{ gt.id }}" class="group">
+                    <tr>
+                        <td>
+                            name
+                        </td>
+                        <td>
+                            point
+                        </td>
+                    </tr>
+                    {% for submit in gt.submits.all %}
+                        <tr class="team mix" data-point="1">
+                            <td>
+                                {{ submit.team.name }}
+                            </td>
+                            <td>
+                                1
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
             </div>
         {% endfor %}
     </div>
 
-{#    <script type="text/javascript" src="{% static 'scripts/game_script.js' %}"></script>#}
+    <script type="text/javascript" src="{% static 'scripts/mixitup_script.js' %}"></script>
+    {#    <script type="text/javascript" src="{% static 'scripts/game_script.js' %}"></script>#}
 {% endblock %}

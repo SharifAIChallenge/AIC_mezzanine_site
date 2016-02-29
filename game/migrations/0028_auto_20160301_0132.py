@@ -9,7 +9,6 @@ import game.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('base', '0039_auto_20160301_0132'),
         ('game', '0027_auto_20160222_2321'),
     ]
 

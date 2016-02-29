@@ -118,6 +118,9 @@ class Game(models.Model):
     game_type = models.PositiveSmallIntegerField(verbose_name=_('game type'), choices=GAME_TYPES, default=0)
     game_config = models.ForeignKey('game.GameConfiguration', verbose_name=_('game configuration'), null=True)
 
+    time = models.DateTimeField(verbose_name=_('time'), null=True)
+    place = models.ForeignKey('game.GamePlace', null=True, verbose_name=_('place'))
+
     class Meta:
         verbose_name = _('game')
         verbose_name_plural = _('games')
@@ -153,6 +156,10 @@ class Game(models.Model):
     def get_participants(self):
         return [submit.team for submit in self.players.all()]
 
+    def get_scores(self):
+        for team in self.get_participants():
+            yield GameTeamSubmit.objects.get(game_id=self.id, submit__team_id=team.id).score
+
 
 class GameTeamSubmit(models.Model):
     submit = models.ForeignKey('base.Submit', verbose_name=_('team submit'))
@@ -174,14 +181,25 @@ class TeamScore(models.Model):
         unique_together = ('team', 'game_type')
 
 
-class Group(models.Model):
-    name = models.CharField(max_length=200)
-    competition = models.ForeignKey(Competition)
-    submits = models.ManyToManyField('base.Submit', through=GroupTeamSubmit)
-
-
 class GroupTeamSubmit(models.Model):
-    group = models.ForeignKey(Group)
+    group = models.ForeignKey('game.Group')
     submit = models.ForeignKey('base.Submit')
 
     score = models.DecimalField(verbose_name=_('score'), default=0, max_digits=25, decimal_places=10)
+
+
+class Group(models.Model):
+    name = models.CharField(max_length=200, verbose_name=_('name'))
+    competition = models.ForeignKey(Competition, related_name='groups', verbose_name=_('competition'))
+    submits = models.ManyToManyField('base.Submit', through=GroupTeamSubmit)
+
+    class Meta:
+        verbose_name = _('group')
+
+
+class GamePlace(models.Model):
+    name = models.CharField(max_length=200, verbose_name=_('name'))
+    description = models.TextField(verbose_name=_('description'))
+
+    class Meta:
+        verbose_name = _('place')

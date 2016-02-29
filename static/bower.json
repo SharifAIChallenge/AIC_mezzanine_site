@@ -22,6 +22,9 @@
     "tests"
   ],
   "dependencies": {
-    "fancybox": "^2.1.5"
+    "fancybox": "^2.1.5",
+    "jquery-bracket": "^0.7.3",
+    "mixitup": "^2.1.11",
+    "bootstrap": "^3.3.6"
   }
 }

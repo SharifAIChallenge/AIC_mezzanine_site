@@ -1,0 +1,22 @@
+<table id="group{{ gt.id }}" class="group">
+    <tr>
+        <td>
+            name
+        </td>
+        <td>
+            point
+        </td>
+    </tr>
+    {% for team in gt.team_set.all %}
+        <tr class="team mix" data-point="1">
+            <td>
+                {{ team.name }}
+            </td>
+            <td>
+                1
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<script type="text/javascript" src="{% static 'scripts/mixitup_script.js' %}"></script>

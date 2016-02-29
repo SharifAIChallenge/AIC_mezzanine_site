@@ -1,8 +1,9 @@
 # -*- coding:utf-8 -*-
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from game.forms import ScheduleForm, TeamScoresForm, UploadScoresForm
+from game.models import Competition, Group
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -39,3 +40,17 @@ def upload_scores(request):
     else:
         form = UploadScoresForm()
     return render(request, 'accounts/account_form.html', {'form': form, 'title': 'upload scores'})
+
+
+def groups(request):
+    competition = Competition.objects.get(site_id=request.site_id)
+    return render(request, 'game/scoreboard.html', {
+        'competition': competition
+    })
+
+
+def group_schedule(request, group_id):
+    gt = get_object_or_404(Group, pk=group_id)
+    return render(request, 'game/group.html', {
+        'gt': gt,
+    })

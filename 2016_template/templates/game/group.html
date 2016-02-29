@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags staticfiles %}
+
+{% block meta_title %}{% trans 'group' %} {{ gt.name }}{% endblock %}
+{% block title %}{% trans 'group' %} {{ gt.name }}{% endblock %}
+
+{% block extra_head %}
+    <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/mixitup/src/jquery.mixitup.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/game_style.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="col-lg-4 col-md-12 col-sm-12">
+        {% include 'game/group_table.html' with gt=gt %}
+    </div>
+    <div class="col-lg-8 col-md-12 col-sm-12">
+        <table class="group">
+            <tr>
+                <td>
+                    {% trans 'team 1' %}
+                </td>
+
+                <td>
+                </td>
+
+                <td>
+                </td>
+
+                <td>
+                    {% trans 'team 2' %}
+                </td>
+                <td>
+                    {% trans 'place' %}
+                </td>
+                <td>
+                    {% trans 'time' %}
+                </td>
+            </tr>
+            {% for game in games %}
+                <tr>
+                    <td>
+                        {{ game.get_participants.0.name }}
+                    </td>
+                    {% for score in game.get_scores %}
+                        <td>{{ score }}</td>
+                    {% endfor %}
+                    <td>
+                        {{ game.get_participants.1.name }}
+                    </td>
+                    <td>
+                        {{ game.place }}
+                    </td>
+                    <td>
+                        {{ game.time }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

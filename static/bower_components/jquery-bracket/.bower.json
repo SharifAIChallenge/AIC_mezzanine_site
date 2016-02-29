@@ -1,0 +1,36 @@
+{
+  "name": "jquery-bracket",
+  "version": "0.7.3",
+  "homepage": "https://github.com/teijo/jquery-bracket",
+  "authors": [
+    "Teijo Laine"
+  ],
+  "description": "Library for organizing single and double elimination tournaments",
+  "main": "dist/jquery.bracket.min.js",
+  "keywords": [
+    "library",
+    "tournament",
+    "bracket"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": ">=1.6.2"
+  },
+  "_release": "0.7.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.7.3",
+    "commit": "79ea880c15931cddb375ece1b4b7a65bbf5e9d6e"
+  },
+  "_source": "git://github.com/teijo/jquery-bracket.git",
+  "_target": "^0.7.3",
+  "_originalSource": "jquery-bracket",
+  "_direct": true
+}

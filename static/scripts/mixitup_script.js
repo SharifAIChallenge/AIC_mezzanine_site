@@ -20,7 +20,7 @@ function getPoints() {
             $('#submit-' + score['id']).attr('data-point', score['score']).find(".score").text(score['score']);
         });
         $('.group').mixItUp('sort', 'point:desc');
-        setTimeout(getPoints, 1000);
+        setTimeout(getPoints, 10000);
     }).fail(function () {
         location.reload(true);
     });

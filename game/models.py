@@ -201,6 +201,7 @@ class Group(models.Model):
 
     class Meta:
         verbose_name = _('group')
+        ordering = ['name']
 
     def __unicode__(self):
         return u"group %s" % self.name

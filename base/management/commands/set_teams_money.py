@@ -1,4 +1,3 @@
-
 from django.core.management.base import BaseCommand
 from base.models import Team
 from django.db import transaction
@@ -13,7 +12,7 @@ class Command(BaseCommand):
             with transaction.atomic():
                 for line in file.readlines():
                     try:
-                        team = Team.objects.get(name=line)
+                        team = Team.objects.get(name=line.strip("\n"))
                         team.should_pay = True
                         team.payment_value = options["payment_value"][0]
                         team.save()

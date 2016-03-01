@@ -17,10 +17,22 @@ class ScheduleForm(forms.Form):
         csv_file = self.cleaned_data['file']
         for line in csv_file.readlines():
             teams = line.strip().split(',')
-            group = Group.objects.get(name=teams[0])
-            game_conf = GameConfiguration.objects.get(id=teams[1])
-            place = GamePlace.objects.get(id=teams[2])
-            time = datetime.datetime(*teams[3:8])
+            try:
+                group = Group.objects.get(name=teams[0])
+            except Group.DoesNotExist:
+                group = None
+            try:
+                game_conf = GameConfiguration.objects.get(id=teams[1])
+            except GameConfiguration.DoesNotExist:
+                continue
+            try:
+                place = GamePlace.objects.get(id=teams[2])
+            except GamePlace.DoesNotExist:
+                place = None
+            try:
+                time = datetime.datetime(*teams[3:8])
+            except ValueError:
+                time = None
             Game.create([Team.objects.get(id=team) for team in teams], game_type=game_type, game_conf=game_conf,
                         title=self.cleaned_data['name'], group=group, place=place, time=time)
 

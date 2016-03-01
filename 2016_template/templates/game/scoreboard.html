@@ -27,7 +27,7 @@
                     Group {{ gt.name }}
                 </a>
             </h3>
-            <table id="group{{ gt.id }}" class="group">
+            <table id="group-{{ gt.id }}" class="group">
                 <tr>
                     <td>
                         name
@@ -37,11 +37,11 @@
                     </td>
                 </tr>
                 {% for submit in gt.submits.all %}
-                    <tr class="team mix" data-point="1">
+                    <tr id="submit-{{ submit.id }}" class="team mix" data-point="1">
                         <td>
                             {{ submit.team.name }}
                         </td>
-                        <td>
+                        <td class="score">
                             1
                         </td>
                     </tr>

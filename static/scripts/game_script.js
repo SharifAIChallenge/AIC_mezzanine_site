@@ -49,19 +49,3 @@ $(function () {
     $('#dataOutput').text(jQuery.toJSON(data))
 });
 
-window.setInterval(function () {
-    getPoints();  //calling every 10 seconds
-}, 10 * 1000);
-
-function getPoints() {
-    $.ajax({
-        url: "get_points",
-        method: 'get',
-        context: document.body,
-        data: {
-            'group': 'all'
-        }
-    }).done(function () {
-        $(this).addClass("done");
-    });
-}

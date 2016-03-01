@@ -1,9 +1,11 @@
 # -*- coding:utf-8 -*-
+import json
+
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from game.forms import ScheduleForm, TeamScoresForm, UploadScoresForm, GroupingForm
-from game.models import Competition, Group, Game
+from game.models import Competition, Group, Game, GroupTeamSubmit
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -68,6 +70,13 @@ def group_schedule(request, group_id):
         'gt': gt,
         'games': games,
     })
+
+
+def get_scores_ajax(request):
+    competition = Competition.objects.get(site_id=request.site_id)
+    scores = GroupTeamSubmit.objects.filter(group__competition=competition).values_list('submit_id', 'score')
+    return HttpResponse(json.dumps([{'id': score[0], 'score': float(score[1])} for score in scores]),
+                        content_type="application/json")
 
 
 def bracket(request):

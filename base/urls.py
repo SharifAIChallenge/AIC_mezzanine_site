@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 
 urlpatterns = patterns(
     'base.views',
@@ -23,4 +23,5 @@ urlpatterns = patterns(
     url("^final_submission", 'final_submission', name='set_final_submission'),
     url("^play/$", 'play_log', name='play_log'),
     url("^scoreboard$", 'scoreboard', name="scoreboard"),
+    url("^billing/", include('billing.urls')),
 )

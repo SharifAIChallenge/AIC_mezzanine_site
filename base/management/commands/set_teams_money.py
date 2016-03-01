@@ -9,13 +9,13 @@ class Command(BaseCommand):
         parser.add_argument("payment_value", nargs=1, type=int)
 
     def handle(self, *args, **options):
-        with open(options.get("teams_list_file")) as file:
+        with open(options["teams_list_file"][0]) as file:
             with transaction.atomic():
                 for line in file.readlines():
                     try:
                         team = Team.objects.get(name=line)
                         team.should_pay = True
-                        team.payment_value = options.get("payment_value")
+                        team.payment_value = options["payment_value"][0]
                         team.save()
                     except:
                         print("Problem in settiing team's money: %s" % line)

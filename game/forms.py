@@ -33,7 +33,7 @@ class ScheduleForm(forms.Form):
                 time = datetime.datetime(*list(map(int, teams[3:8])))
             except ValueError:
                 time = None
-            Game.create([Team.objects.get(id=team) for team in teams[9:]], game_type=game_type, game_conf=game_conf,
+            Game.create([Team.objects.get(id=team) for team in teams[8:]], game_type=game_type, game_conf=game_conf,
                         title=self.cleaned_data['name'], group=group, place=place, time=time)
 
 

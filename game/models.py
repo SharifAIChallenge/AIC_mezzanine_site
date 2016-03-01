@@ -34,6 +34,8 @@ class Competition(models.Model):
     execution_time_limit = models.PositiveIntegerField(verbose_name=_('execution time limit (s)'), default=10 * 60,
                                                        blank=True)
 
+    submit_active = models.BooleanField(default=False)
+
     def __unicode__(self):
         return self.title
 

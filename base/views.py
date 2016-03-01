@@ -126,8 +126,8 @@ def submit(request):
         return redirect('invite_member')
     if request.method == 'POST':
 
-        if not request.user.is_superuser:
-            messages.error(request, _('submit period has ended'))  # TODO: make it a field in competition
+        if not request.user.is_superuser and not request.team.competition.submit_active:
+            messages.error(request, _('submit period has ended'))
             return redirect('submit_code')
 
         form = SubmitForm(competition, data=request.POST, files=request.FILES)

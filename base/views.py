@@ -578,7 +578,8 @@ def play_log(request):
 @login_required
 @team_required
 def final_submission(request):
-    raise PermissionDenied()
+    if not request.user.is_superuser and not request.team.competition.submit_active:
+        raise PermissionDenied()
     if 'submission_id' not in request.GET:
         return HttpResponseBadRequest()
     submit_object = get_object_or_404(Submit, pk=request.GET.get('submission_id'))

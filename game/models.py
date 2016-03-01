@@ -144,7 +144,7 @@ class Game(models.Model):
     get_log_link.short_description = "Log link"
 
     @classmethod
-    def create(cls, participants, game_type=1, game_conf=None, title=None):
+    def create(cls, participants, game_type=1, game_conf=None, title=None, **kwargs):
         if not title:
             title = _('friendly game')
         if not game_conf:
@@ -153,6 +153,7 @@ class Game(models.Model):
             title=title,
             game_type=game_type,
             game_config=game_conf,
+            **kwargs
         )
         for participant in participants:
             GameTeamSubmit.objects.create(game=game, submit=participant.final_submit)

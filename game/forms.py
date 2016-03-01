@@ -1,8 +1,10 @@
 # -*- coding:utf-8 -*-
+import datetime
+
 from base.models import Team
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from game.models import Game, GameConfiguration, TeamScore, Group, Competition, GroupTeamSubmit
+from game.models import Game, GameConfiguration, TeamScore, Group, Competition, GroupTeamSubmit, GamePlace
 
 
 class ScheduleForm(forms.Form):
@@ -15,9 +17,12 @@ class ScheduleForm(forms.Form):
         csv_file = self.cleaned_data['file']
         for line in csv_file.readlines():
             teams = line.strip().split(',')
-            game_conf = GameConfiguration.objects.get(id=teams[0])
-            Game.create([Team.objects.get(id=team) for team in teams[1:]], game_type=game_type, game_conf=game_conf,
-                        title=self.cleaned_data['name'])
+            group = Group.objects.get(name=teams[0])
+            game_conf = GameConfiguration.objects.get(id=teams[1])
+            place = GamePlace.objects.get(id=teams[2])
+            time = datetime.datetime(*teams[3:8])
+            Game.create([Team.objects.get(id=team) for team in teams], game_type=game_type, game_conf=game_conf,
+                        title=self.cleaned_data['name'], group=group, place=place, time=time)
 
 
 class UploadScoresForm(forms.Form):

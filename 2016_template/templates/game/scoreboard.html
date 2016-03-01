@@ -37,12 +37,12 @@
                     </td>
                 </tr>
                 {% for submit in gt.submits.all %}
-                    <tr id="submit-{{ submit.id }}" class="team mix" data-point="1">
+                    <tr id="submit-{{ submit.id }}" class="team mix" data-point="0">
                         <td>
                             {{ submit.team.name }}
                         </td>
                         <td class="score">
-                            1
+                            0
                         </td>
                     </tr>
                 {% endfor %}

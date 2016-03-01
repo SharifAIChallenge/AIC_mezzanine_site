@@ -1667,3 +1667,6 @@ msgstr "تلفن همراه"
 
 msgid "national code"
 msgstr "کدملی"
+
+msgid "grouping"
+msgstr "گروه‌بندی"

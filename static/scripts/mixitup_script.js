@@ -12,7 +12,7 @@ $('.group').mixItUp({
 
 function getPoints() {
     $.ajax({
-        url: "get-scores",
+        url: "/game/get-scores",
         method: 'get',
         data: {}
     }).done(function (response) {

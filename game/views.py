@@ -2,7 +2,7 @@
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from game.forms import ScheduleForm, TeamScoresForm, UploadScoresForm
+from game.forms import ScheduleForm, TeamScoresForm, UploadScoresForm, GroupingForm
 from game.models import Competition, Group, Game
 
 
@@ -40,6 +40,18 @@ def upload_scores(request):
     else:
         form = UploadScoresForm()
     return render(request, 'accounts/account_form.html', {'form': form, 'title': 'upload scores'})
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def grouping(request):
+    if request.method == 'POST':
+        form = GroupingForm(files=request.FILES, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('grouping')
+    else:
+        form = GroupingForm()
+    return render(request, 'accounts/account_form.html', {'form': form, 'title': 'grouping'})
 
 
 def groups(request):

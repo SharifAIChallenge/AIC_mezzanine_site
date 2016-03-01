@@ -7,6 +7,8 @@ urlpatterns = patterns(
     url("^scores/get$", 'get_team_scores', name="get_scores"),
     url("^scores/upload$", 'upload_scores', name="upload_scores"),
 
+    url("^grouping$", 'grouping', name="grouping"),
+
     url(r'^groups$', 'groups', name="groups"),
     url(r'^groups/(?P<group_id>\d+)$', 'group_schedule', name='group_schedule'),
     url(r'^bracket$', 'bracket', name="bracket"),

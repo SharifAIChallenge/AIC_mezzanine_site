@@ -2,7 +2,7 @@
 from base.models import Team
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from game.models import Game, GameConfiguration, TeamScore
+from game.models import Game, GameConfiguration, TeamScore, Group, Competition, GroupTeamSubmit
 
 
 class ScheduleForm(forms.Form):
@@ -32,6 +32,20 @@ class UploadScoresForm(forms.Form):
             team_score = line.strip().split(',')
             team_scores.append(TeamScore(team_id=team_score[0], score=team_score[1], game_type=game_type))
         TeamScore.objects.bulk_create(team_scores)
+
+
+class GroupingForm(forms.Form):
+    competition = forms.ModelChoiceField(queryset=Competition.objects.all(), label=_('competition'))
+    file = forms.FileField(label=_('file'), help_text=_('csv'))
+
+    def save(self):
+        competition = self.cleaned_data['competition']
+        csv_file = self.cleaned_data['file']
+        for line in csv_file.readlines():
+            group_info = line.strip().split(',')
+            group = Group.objects.create(name=group_info[0], competition=competition)
+            for team_id in group_info[1:]:
+                GroupTeamSubmit.objects.create(submit=Team.objects.get(id=team_id).final_submission, group=group)
 
 
 class TeamScoresForm(forms.Form):

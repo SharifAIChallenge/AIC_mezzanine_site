@@ -4,7 +4,8 @@ import datetime
 from base.models import Team
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from game.models import Game, GameConfiguration, TeamScore, Group, Competition, GroupTeamSubmit, GamePlace
+from game.models import Game, GameConfiguration, TeamScore, Group, Competition, GroupTeamSubmit, GamePlace, \
+    DoubleEliminationGroup, DoubleEliminationTeamProxy
 
 
 class ScheduleForm(forms.Form):
@@ -63,6 +64,36 @@ class GroupingForm(forms.Form):
             group = Group.objects.create(name=group_info[0], competition=competition)
             for team_id in group_info[1:]:
                 GroupTeamSubmit.objects.create(submit=Team.objects.get(id=team_id).final_submission, group=group)
+
+
+class DoubleEliminationForm(forms.Form):
+    competition = forms.ModelChoiceField(queryset=Competition.objects.all(), label=_('competition'))
+    file = forms.FileField(label=_('file'), help_text=_('csv'))
+
+    def save(self):
+        competition = self.cleaned_data['competition']
+        csv_file = self.cleaned_data['file']
+        degs = []
+        for line in csv_file.readlines():
+            group_info = line.strip().split(',')
+            deg = DoubleEliminationGroup.objects.create(competition=competition)
+            team_count = int(group_info[0])
+            group_info = group_info[1:]
+            for i in range(team_count):
+                team = Team.objects.get(id=group_info[0])
+                group_info = group_info[1:]
+                DoubleEliminationTeamProxy.objects.create(team=team, group=deg)
+            team_proxy_count = int(group_info[0])
+            group_info = group_info[1:]
+            for i in range(team_proxy_count):
+                source_deg, source_rank = int(group_info[0]), int(group_info[1])
+                group_info = group_info[2:]
+                DoubleEliminationTeamProxy.objects.create(source_group=degs[source_deg - 1], source_rank=source_rank,
+                                                          group=deg)
+            deg.games_csv = ','.join(*group_info)
+            deg.save()
+            deg.try_start_games()
+            degs.append(deg)
 
 
 class TeamScoresForm(forms.Form):

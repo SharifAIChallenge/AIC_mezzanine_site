@@ -4,7 +4,7 @@ import json
 from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from game.forms import ScheduleForm, TeamScoresForm, UploadScoresForm, GroupingForm
+from game.forms import ScheduleForm, TeamScoresForm, UploadScoresForm, GroupingForm, DoubleEliminationForm
 from game.models import Competition, Group, Game, GroupTeamSubmit
 
 
@@ -54,6 +54,18 @@ def grouping(request):
     else:
         form = GroupingForm()
     return render(request, 'accounts/account_form.html', {'form': form, 'title': 'grouping'})
+
+
+@user_passes_test(lambda u: u.is_superuser)
+def double_elimination(request):
+    if request.method == 'POST':
+        form = DoubleEliminationForm(files=request.FILES, data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('double_elimination')
+    else:
+        form = DoubleEliminationForm()
+    return render(request, 'accounts/account_form.html', {'form': form, 'title': 'double elimination'})
 
 
 def groups(request):

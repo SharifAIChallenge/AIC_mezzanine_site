@@ -8,6 +8,7 @@ urlpatterns = patterns(
     url("^scores/upload$", 'upload_scores', name="upload_scores"),
 
     url("^grouping$", 'grouping', name="grouping"),
+    url("^double-elimination$", 'double_elimination', name="double_elimination"),
 
     url(r'^groups$', 'groups', name="groups"),
     url(r'^groups/(?P<group_id>\d+)$', 'group_schedule', name='group_schedule'),

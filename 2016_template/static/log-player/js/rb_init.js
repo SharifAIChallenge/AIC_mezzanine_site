@@ -104,7 +104,8 @@ function rb_init() {
                 //        break;
                 //    }
                 cy.$("#"+id).data('weight', log[i].args[2]).data('size', survivals+minNodeSize).removeClass('battle').addClass(''+winner);
-                cy.$("#"+id).data('color',color);
+                if (!(winner==-1 && (log[i].args[3]>0 && survivals==0)))
+                    cy.$("#"+id).data('color',color);
             }
         cy.endBatch();
     }

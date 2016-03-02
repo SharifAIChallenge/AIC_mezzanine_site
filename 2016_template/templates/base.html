@@ -107,11 +107,9 @@
                         <li><a href="{% url 'my_team' %}">{% trans "My Team" %}</a></li>
                     {% endif %}
 
-                    {% if request.user.team.final and request.user.team.competition.my_games_active %}
-                        <li><a href="{% url 'my_games' %}">{% trans "My Games" %}</a></li>
-                    {% endif %}
-
                     <li><a href="{% url 'scoreboard' %}">{% trans "scoreboard" %}</a></li>
+
+                    <li><a href="{% url 'groups' %}">{% trans "group stage" %}</a></li>
 
                     {% page_menu "pages/menus/partial_menu.html" %}
 

@@ -1682,3 +1682,6 @@ msgstr "مکان"
 
 msgid "time"
 msgstr "زمان"
+
+msgid "group stage"
+msgstr "مرحله گروهی"

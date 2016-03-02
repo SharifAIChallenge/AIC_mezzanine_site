@@ -177,7 +177,7 @@
                                 </tr>
 
                                 {% for participation in participations %}
-                                    {% if participation.game.game_type > 0 %}
+                                    {% if participation.game.game_type > 0 and participation.game.game_type < 6 %}
                                         <tr>
                                             <td>{{ participation.game.get_game_type_display }}</td>
                                             <td>

@@ -75,9 +75,9 @@
                         {{ game.place.name }}
                     </td>
                     <td>
-                        {% if user.is_staff %}<a href="{{ game.get_log_url }}&save=1">{% endif %}
+                        {% if user.is_staff and game.status == 3 %}<a href="{{ game.get_log_url }}&save=1">{% endif %}
                         {{ game.time|date:'G:i'|farsi_digits }}
-                        {% if user.is_staff %}</a>{% endif %}
+                        {% if user.is_staff and game.status == 3 %}</a>{% endif %}
                     </td>
                 </tr>
             {% endfor %}

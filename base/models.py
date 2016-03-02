@@ -230,7 +230,7 @@ class GameRequest(models.Model):
         last_time = cls.objects.filter(requester=team, accepted=True).aggregate(Max('accept_time'))['accept_time__max']
         if last_time:
             now = timezone.now()
-            one_hour_before = now - datetime.timedelta(hours=1)
+            one_hour_before = now - datetime.timedelta(minutes=15)
             seconds = (last_time - one_hour_before).total_seconds()
             if seconds > 0:
                 return int(seconds / 60)

@@ -272,7 +272,7 @@ def my_team(request):
 @login_required
 @team_required
 def my_games(request):
-    if not request.user.is_superuser and not request.team.competition.submit_active:
+    if not request.user.is_superuser and not request.team.competition.my_games_active:
         raise Http404()
 
     if not request.team.final:

@@ -560,14 +560,13 @@ def get_submission(request, submit_id):
 
 
 @login_required
-@team_required
 def play_log(request):
     game = get_object_or_404(Game, id=request.GET.get('game', None))
     log = request.GET.get('log', '')
     save = request.GET.get('save', '0') == '1'
     if os.path.basename(game.log_file.name) != log:
         raise Http404()
-    if not request.user.is_staff and request.team not in game.get_participants():
+    if not request.user.is_staff and request.user.team not in game.get_participants():
         raise PermissionDenied()
     try:
         game.log_file.open()

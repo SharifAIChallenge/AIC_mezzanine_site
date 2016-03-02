@@ -1670,3 +1670,15 @@ msgstr "کدملی"
 
 msgid "grouping"
 msgstr "گروه‌بندی"
+
+msgid "team 1"
+msgstr "تیم اول"
+
+msgid "team 2"
+msgstr "تیم دوم"
+
+msgid "place"
+msgstr "مکان"
+
+msgid "time"
+msgstr "زمان"

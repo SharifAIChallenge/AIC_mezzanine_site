@@ -18,10 +18,10 @@
         <table id="group-{{ gt.id }}" class="group">
             <tr>
                 <td>
-                    name
+                    {% trans 'name' %}
                 </td>
                 <td>
-                    point
+                    {% trans 'score' %}
                 </td>
             </tr>
             {% for submit in gt.submits.all %}

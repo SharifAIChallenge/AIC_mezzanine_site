@@ -90,7 +90,7 @@ class DoubleEliminationForm(forms.Form):
                 group_info = group_info[2:]
                 DoubleEliminationTeamProxy.objects.create(source_group=degs[source_deg - 1], source_rank=source_rank,
                                                           group=deg)
-            deg.games_csv = ','.join(*group_info)
+            deg.games_csv = ','.join(group_info)
             deg.save()
             deg.try_start_games()
             degs.append(deg)

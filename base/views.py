@@ -272,6 +272,9 @@ def my_team(request):
 @login_required
 @team_required
 def my_games(request):
+    if not request.user.is_superuser and not request.team.competition.submit_active:
+        raise Http404()
+
     if not request.team.final:
         messages.error(request, _('your team must be final'))
         return redirect('my_team')

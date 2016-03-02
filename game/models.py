@@ -35,6 +35,7 @@ class Competition(models.Model):
                                                        blank=True)
 
     submit_active = models.BooleanField(default=False)
+    my_games_active = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.title

@@ -15,7 +15,7 @@ class Transaction(models.Model):
     }
 
     team = models.ForeignKey(Team, related_name='transactions', null=True)
-    amount = models.PositiveSmallIntegerField()
+    amount = models.PositiveIntegerField()
     status = models.CharField(choices=STATE, max_length=1)
     order_id = models.CharField(max_length=100, null=True, blank=True)
     bank = models.CharField(max_length=20, choices=[(str(v), k) for k,v in BANK.items()])

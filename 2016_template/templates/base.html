@@ -107,8 +107,8 @@
                         <li><a href="{% url 'my_team' %}">{% trans "My Team" %}</a></li>
                     {% endif %}
 
-                    {% if request.user.team.final %}
-                    <li><a href="{% url 'my_games' %}">{% trans "My Games" %}</a></li>
+                    {% if request.user.team.final and request.user.team.competition.my_games_active %}
+                        <li><a href="{% url 'my_games' %}">{% trans "My Games" %}</a></li>
                     {% endif %}
 
                     <li><a href="{% url 'scoreboard' %}">{% trans "scoreboard" %}</a></li>

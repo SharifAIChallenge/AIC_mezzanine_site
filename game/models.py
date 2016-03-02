@@ -259,21 +259,25 @@ class DoubleEliminationGroup(models.Model):
         if DoubleEliminationTeamProxy.objects.filter(group_id=self.id, team__isnull=True).exists():
             return False
         teams = self.games_csv.split(',')
-        try:
-            game_conf = GameConfiguration.objects.get(id=teams[0])
-        except GameConfiguration.DoesNotExist:
-            return False
-        try:
-            place = GamePlace.objects.get(id=teams[1])
-        except GamePlace.DoesNotExist:
-            place = None
-        try:
-            time = datetime.datetime(*list(map(int, teams[2:7])))
-        except ValueError:
-            time = None
-        Game.create([de_team.team for de_team in DoubleEliminationTeamProxy.objects.filter(group_id=self.id)],
-                    game_type=3, game_conf=game_conf, title="double elimination",
-                    double_elimination_group=self, place=place, time=time)
+        count = int(teams[0])
+        teams = teams[1:]
+        for i in range(count):
+            try:
+                game_conf = GameConfiguration.objects.get(id=teams[0])
+            except GameConfiguration.DoesNotExist:
+                return False
+            try:
+                place = GamePlace.objects.get(id=teams[1])
+            except GamePlace.DoesNotExist:
+                place = None
+            try:
+                time = datetime.datetime(*list(map(int, teams[2:7])))
+            except ValueError:
+                time = None
+            teams = teams[7:]
+            Game.create([de_team.team for de_team in DoubleEliminationTeamProxy.objects.filter(group_id=self.id)],
+                        game_type=3, game_conf=game_conf, title="double elimination",
+                        double_elimination_group=self, place=place, time=time)
 
     def try_end(self):
         if not self.is_done() or self.finished:

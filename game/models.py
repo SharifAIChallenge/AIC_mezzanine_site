@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import datetime
+
 import os
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -128,6 +130,9 @@ class Game(models.Model):
     group = models.ForeignKey('game.Group', null=True)
     counted_in_group = models.BooleanField(default=False)
 
+    double_elimination_group = models.ForeignKey('game.DoubleEliminationGroup', null=True)
+    counted_in_double_elimination_group = models.BooleanField(default=False)
+
     class Meta:
         verbose_name = _('game')
         verbose_name_plural = _('games')
@@ -168,7 +173,21 @@ class Game(models.Model):
         for team in self.get_participants():
             yield GameTeamSubmit.objects.get(game_id=self.id, submit__team_id=team.id).score
 
-    def save_group_score(self):
+    def save_group_score(self, double_elimination=False):
+        if double_elimination:
+            if not self.double_elimination_group:
+                raise ValueError('game has no double elimination group')
+            if self.counted_in_double_elimination_group:
+                return
+            for game_submit in self.gameteamsubmit_set.all():
+                team_proxy = DoubleEliminationTeamProxy.objects.get(group_id=self.double_elimination_group_id,
+                                                                    team_id=game_submit.submit.team_id)
+                team_proxy.score += game_submit.score
+                team_proxy.save()
+            self.counted_in_double_elimination_group = True
+            self.save()
+            self.double_elimination_group.try_end()
+            return
         if not self.group:
             raise ValueError('game has no group!')
         if self.counted_in_group:
@@ -219,6 +238,60 @@ class Group(models.Model):
 
     def __unicode__(self):
         return u"group %s" % self.name
+
+
+class DoubleEliminationGroup(models.Model):
+    competition = models.ForeignKey(Competition, related_name='double_elimination_groups',
+                                    verbose_name=_('competition'))
+    finished = models.BooleanField(default=False)
+
+    games_csv = models.TextField(blank=True)
+
+    def is_done(self):
+        if Game.objects.filter(double_elimination_group_id=self.id).exists():
+            return not Game.objects.filter(double_elimination_group_id=self.id).exclude(status=3).exists()
+        return False
+
+    def get_rank(self, n):
+        return DoubleEliminationTeamProxy.objects.filter(group_id=self.id).order_by('-score')[n - 1]
+
+    def try_start_games(self):
+        if DoubleEliminationTeamProxy.objects.filter(group_id=self.id, team__isnull=True).exists():
+            return False
+        teams = self.games_csv.split(',')
+        try:
+            game_conf = GameConfiguration.objects.get(id=teams[0])
+        except GameConfiguration.DoesNotExist:
+            return False
+        try:
+            place = GamePlace.objects.get(id=teams[1])
+        except GamePlace.DoesNotExist:
+            place = None
+        try:
+            time = datetime.datetime(*list(map(int, teams[2:7])))
+        except ValueError:
+            time = None
+        Game.create([de_team.team for de_team in DoubleEliminationTeamProxy.objects.filter(group_id=self.id)],
+                    game_type=3, game_conf=game_conf, title="double elimination",
+                    double_elimination_group=self, place=place, time=time)
+
+    def try_end(self):
+        if not self.is_done() or self.finished:
+            return False
+        for team_proxy in DoubleEliminationTeamProxy.objects.filter(source_group_id=self.id, team__isnull=True):
+            team_proxy.team = self.get_rank(team_proxy.source_rank)
+            team_proxy.save()
+            team_proxy.group.try_start_games()
+
+
+class DoubleEliminationTeamProxy(models.Model):
+    group = models.ForeignKey('game.DoubleEliminationGroup', related_name='teams')
+    score = models.DecimalField(verbose_name=_('score'), default=0, max_digits=25, decimal_places=10)
+
+    team = models.ForeignKey('base.Team', null=True)
+
+    source_group = models.ForeignKey('game.DoubleEliminationGroup', related_name='+', null=True)
+    source_rank = models.PositiveSmallIntegerField(default=0)
 
 
 class GamePlace(models.Model):

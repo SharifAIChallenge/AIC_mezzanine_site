@@ -577,6 +577,8 @@ def play_log(request):
         return response
     if save and game.group:
         game.save_group_score()
+    if save and game.double_elimination_group:
+        game.save_group_score(True)
     return render(request, 'log-player/log-player.html', context={'game': game})
 
 

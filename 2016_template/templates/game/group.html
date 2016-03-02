@@ -75,8 +75,9 @@
                         {{ game.place.name }}
                     </td>
                     <td>
-                        ساعت
+                        {% if user.is_staff %}<a href="{{ game.get_log_url }}&save=1">{% endif %}
                         {{ game.time|date:'G:i'|farsi_digits }}
+                        {% if user.is_staff %}</a>{% endif %}
                     </td>
                 </tr>
             {% endfor %}

@@ -564,6 +564,7 @@ def get_submission(request, submit_id):
 def play_log(request):
     game = get_object_or_404(Game, id=request.GET.get('game', None))
     log = request.GET.get('log', '')
+    save = request.GET.get('save', '0') == '1'
     if os.path.basename(game.log_file.name) != log:
         raise Http404()
     if not request.user.is_superuser and request.team not in game.get_participants():
@@ -575,6 +576,8 @@ def play_log(request):
         response = HttpResponse()
         response['Refresh'] = '5;url=%s' % request.get_full_path()
         return response
+    if save and game.group:
+        game.save_group_score()
     return render(request, 'log-player/log-player.html', context={'game': game})
 
 

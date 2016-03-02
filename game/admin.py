@@ -19,7 +19,7 @@ class GameAdmin(admin.ModelAdmin):
 
     fieldsets = ((None, {"fields": ("title", "pre_games", "log_file", "error_log", "status",
                                     "game_type", "game_config")}),
-                 ('advanced', {'fields': ('time', 'place', 'group')}))
+                 ('advanced', {'fields': ('time', 'place', 'group', 'counted_in_group')}))
     list_display = ("title", "status", "game_type", "game_config", "get_log_link")
     list_display_links = ("title", "status", "game_type", "game_config")
     list_editable = ()

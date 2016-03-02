@@ -126,6 +126,7 @@ class Game(models.Model):
     place = models.ForeignKey('game.GamePlace', null=True, verbose_name=_('place'))
 
     group = models.ForeignKey('game.Group', null=True)
+    counted_in_group = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = _('game')
@@ -166,6 +167,18 @@ class Game(models.Model):
     def get_scores(self):
         for team in self.get_participants():
             yield GameTeamSubmit.objects.get(game_id=self.id, submit__team_id=team.id).score
+
+    def save_group_score(self):
+        if not self.group:
+            raise ValueError('game has no group!')
+        if self.counted_in_group:
+            return
+        for game_submit in self.gameteamsubmit_set.all():
+            group_submit = GroupTeamSubmit.objects.get(group_id=self.group_id, submit=game_submit.submit)
+            group_submit.score += game_submit.score
+            group_submit.save()
+        self.counted_in_group = True
+        self.save()
 
 
 class GameTeamSubmit(models.Model):

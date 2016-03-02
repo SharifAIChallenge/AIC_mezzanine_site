@@ -65,7 +65,7 @@ $(document).ready(function(e){
         // date = 12 bahman 94 9:00 AM
         // TODO: get time from server
 		date: '03/02/2016 07:29:59',
-		offset: -7,
+		offset: +3.5,
 		day: 'روز',
 		days: 'روز'
 	}, function () {

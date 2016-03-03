@@ -248,6 +248,9 @@ class DoubleEliminationGroup(models.Model):
 
     games_csv = models.TextField(blank=True)
 
+    class Meta:
+        ordering = ['id']
+
     def is_done(self):
         if Game.objects.filter(double_elimination_group_id=self.id).exists():
             return not Game.objects.filter(double_elimination_group_id=self.id).exclude(status=3).exists()
@@ -303,6 +306,9 @@ class DoubleEliminationTeamProxy(models.Model):
 
     source_group = models.ForeignKey('game.DoubleEliminationGroup', related_name='+', null=True)
     source_rank = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        ordering = ['id']
 
 
 class GamePlace(models.Model):

@@ -114,3 +114,17 @@ div.jQBracket .team.highlight {
     padding: 100px 300px 20px 300px;
     background-color: whitesmoke;
 }
+
+div.jQBracket .team {
+    width: 140px;
+}
+
+div.jQBracket .team div.label {
+    width: 120px;
+    height: 100%;
+    white-space: pre-line;
+}
+
+div.jQBracket.rl .round {
+    width: 140px;
+}

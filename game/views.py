@@ -104,7 +104,8 @@ def get_final_brackets(request):
         'results': [
             [
                 [
-                    []
+                    [1, 2, 'aaaaa'],
+                    [5, 3, 'bbbbb']
                 ]
             ],
             [],

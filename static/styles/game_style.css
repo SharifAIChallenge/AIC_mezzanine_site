@@ -128,3 +128,7 @@ div.jQBracket .team div.label {
 div.jQBracket .round {
     width: 140px;
 }
+
+div.jQBracket {
+    width: 100%!important;
+}

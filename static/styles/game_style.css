@@ -111,5 +111,6 @@ div.jQBracket .team.highlight {
 
 .card-panel {
     margin: -100px -300px -100px -300px;
-    padding: 0 300px 0 300px;
+    padding: 100px 300px 20px 300px;
+    background-color: whitesmoke;
 }

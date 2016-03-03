@@ -99,7 +99,7 @@ def get_final_brackets(request):
     brackets = {
         "teams": [
             ['team1', 'team2'],
-            ['team1', 'team2']
+            ['team3', 'team4']
         ],
         'results': [
             [

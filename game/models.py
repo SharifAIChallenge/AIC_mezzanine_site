@@ -252,7 +252,7 @@ class DoubleEliminationGroup(models.Model):
         ordering = ['id']
 
     def get_scores(self):
-        a = [float(detp.score) for detp in DoubleEliminationTeamProxy.objects.filter(group_id=self.id)]
+        a = [int(detp.score * 10) / 10 for detp in DoubleEliminationTeamProxy.objects.filter(group_id=self.id)]
         a.append(reverse('de_games', kwargs={'group_id': self.id}))
         return a
 

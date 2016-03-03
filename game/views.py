@@ -109,7 +109,7 @@ def get_final_brackets(request):
             [group.get_scores() for group in group_list[24:32]],
             [group.get_scores() for group in group_list[44:48]],
             [group.get_scores() for group in group_list[54:56]],
-            [group.get_scores() for group in group_list[59]],
+            [group.get_scores() for group in group_list[59:60]],
         ],
         [
             [group.get_scores() for group in group_list[16:24]],

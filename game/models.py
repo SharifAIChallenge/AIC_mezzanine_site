@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 from game.tasks import run_game
 
@@ -261,7 +262,8 @@ class DoubleEliminationGroup(models.Model):
 
     def is_done(self):
         if Game.objects.filter(double_elimination_group_id=self.id).exists():
-            return not Game.objects.filter(double_elimination_group_id=self.id).exclude(status=3).exists()
+            return Game.objects.filter(double_elimination_group_id=self.id) \
+                .filter(~Q(status=3) | Q(counted_in_double_elimination_group=False)).exists()
         return False
 
     def get_rank(self, n):

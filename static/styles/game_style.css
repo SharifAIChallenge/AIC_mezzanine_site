@@ -90,21 +90,26 @@
     display: none;
 }
 
-.lose {
+div.jQBracket .team.lose {
     background-color: #d9534f;
     border-color: #d43f3a;
 }
 
-.win {
+div.jQBracket .team.win {
     background-color: #5cb85c;
     border-color: #4cae4c;
 }
 
-.highlight {
+div.jQBracket .team.highlight {
     background-color: #5bc0de;
     border-color: #46b8da;
 }
 
 .label {
     color: #024457;
+}
+
+.card-panel {
+    margin: 0 -300px 0 -300px;
+    padding: 0 300px 0 300px;
 }

@@ -16,6 +16,7 @@ function getPoints() {
         var container = $('#bracket');
         container.bracket({
             init: response,
+            skipConsolationRound: true,
             onMatchClick: onclick
         });
         setTimeout(getPoints, 10000);

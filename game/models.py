@@ -251,6 +251,9 @@ class DoubleEliminationGroup(models.Model):
     class Meta:
         ordering = ['id']
 
+    def get_scores(self):
+        return [detp.score for detp in DoubleEliminationTeamProxy.objects.filter(group_id=self.id)]
+
     def is_done(self):
         if Game.objects.filter(double_elimination_group_id=self.id).exists():
             return not Game.objects.filter(double_elimination_group_id=self.id).exclude(status=3).exists()

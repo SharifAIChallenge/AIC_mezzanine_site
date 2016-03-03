@@ -253,7 +253,7 @@ class DoubleEliminationGroup(models.Model):
         return False
 
     def get_rank(self, n):
-        return DoubleEliminationTeamProxy.objects.filter(group_id=self.id).order_by('-score')[n - 1]
+        return DoubleEliminationTeamProxy.objects.filter(group_id=self.id).order_by('-score')[n - 1].team
 
     def try_start_games(self):
         if DoubleEliminationTeamProxy.objects.filter(group_id=self.id, team__isnull=True).exists():

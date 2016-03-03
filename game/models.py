@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import datetime
+from time import sleep
 
 import os
 from django.conf import settings
@@ -165,6 +166,7 @@ class Game(models.Model):
         )
         for participant in participants:
             GameTeamSubmit.objects.create(game=game, submit=participant.final_submit)
+            sleep(1)  # TODO: TOFF
         run_game.delay(game.id)
 
     def get_participants(self):

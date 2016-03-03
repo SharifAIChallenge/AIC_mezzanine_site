@@ -95,7 +95,7 @@ def bracket(request):
     return render(request, 'game/bracket.html')
 
 
-def get_final_brackets():
+def get_final_brackets(request):
     brackets = {
         "teams": [
             ['team1', 'team2'],

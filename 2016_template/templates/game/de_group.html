@@ -33,29 +33,29 @@
                     {% trans 'place' %}
                 </td>
                 <td>
-                    {% trans 'time' %}
+                    {% trans 'play' %}
                 </td>
             </tr>
             {% for game in games %}
-                {% if user.is_staff and game.status == 3 %}<a href="{{ game.get_log_url }}&save=1">{% endif %}
-            <tr>
-                <td>
-                    {{ game.get_participants.0.name }}
-                </td>
-                {% for score in game.get_scores %}
-                    <td>{% if game.counted_in_group %}{{ score }}{% else %}-{% endif %}</td>
-                {% endfor %}
-                <td>
-                    {{ game.get_participants.1.name }}
-                </td>
-                <td title="{{ game.place.description }}">
-                    {{ game.place.name }}
-                </td>
-                <td>
-                    {{ game.time|date:'G:i'|farsi_digits }}
-                </td>
-            </tr>
-            {% if user.is_staff and game.status == 3 %}</a>{% endif %}
+                <tr>
+                    <td>
+                        {{ game.get_participants.0.name }}
+                    </td>
+                    {% for score in game.get_scores %}
+                        <td>{% if game.counted_in_group %}{{ score }}{% else %}-{% endif %}</td>
+                    {% endfor %}
+                    <td>
+                        {{ game.get_participants.1.name }}
+                    </td>
+                    <td title="{{ game.place.description }}">
+                        {{ game.place.name }}
+                    </td>
+                    <td>
+                        {% if user.is_staff and game.status == 3 %}<a href="{{ game.get_log_url }}&save=1">{% endif %}
+                        {% trans 'play' %}
+                        {% if user.is_staff and game.status == 3 %}</a>{% endif %}
+                    </td>
+                </tr>
             {% endfor %}
         </table>
     </div>

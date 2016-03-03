@@ -15,4 +15,5 @@ urlpatterns = patterns(
     url(r'^get-scores$', 'get_scores_ajax'),
     url(r'^bracket$', 'bracket', name="bracket"),
     url(r'^get-brackets', 'get_final_brackets'),
+    url(r'^de-groups/(?P<group_id>\d+)$', 'double_elimination_games', name='de_games'),
 )

@@ -129,3 +129,8 @@ def get_final_brackets(request):
 
     brackets = {"teams": teams, 'results': results}
     return HttpResponse(json.dumps(brackets), content_type='application/json')
+
+
+def double_elimination_games(request, group_id):
+    games = Game.objects.filter(double_elimination_group_id=group_id)
+    return render(request, 'game/de_group.html', {'games': games})

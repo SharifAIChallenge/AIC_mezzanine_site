@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from game.forms import ScheduleForm, TeamScoresForm, UploadScoresForm, GroupingForm, DoubleEliminationForm
-from game.models import Competition, Group, Game, GroupTeamSubmit
+from game.models import Competition, Group, Game, GroupTeamSubmit, DoubleEliminationTeamProxy, DoubleEliminationGroup
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -98,14 +98,14 @@ def bracket(request):
 def get_final_brackets(request):
     brackets = {
         "teams": [
-            ['team1', 'team2'],
-            ['team3', 'team4']
-        ],
+            [detp.team.name for detp in
+             DoubleEliminationTeamProxy.objects.filter(group=group, source_group__isnull=True)]
+            for group in DoubleEliminationGroup.objects.filter(teams__source_group__isnull=True)
+            ],
         'results': [
             [
                 [
-                    [1, 2, 'aaaaa'],
-                    [5, 3, 'bbbbb']
+                    [],
                 ]
             ],
             [],

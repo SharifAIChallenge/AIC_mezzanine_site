@@ -243,6 +243,7 @@ class Group(models.Model):
 class DoubleEliminationGroup(models.Model):
     competition = models.ForeignKey(Competition, related_name='double_elimination_groups',
                                     verbose_name=_('competition'))
+    started = models.BooleanField(default=False)
     finished = models.BooleanField(default=False)
 
     games_csv = models.TextField(blank=True)
@@ -258,6 +259,8 @@ class DoubleEliminationGroup(models.Model):
     def try_start_games(self):
         if DoubleEliminationTeamProxy.objects.filter(group_id=self.id, team__isnull=True).exists():
             return False
+        if self.started:
+            return
         teams = self.games_csv.split(',')
         count = int(teams[0])
         teams = teams[1:]
@@ -278,6 +281,8 @@ class DoubleEliminationGroup(models.Model):
             Game.create([de_team.team for de_team in DoubleEliminationTeamProxy.objects.filter(group_id=self.id)],
                         game_type=3, game_conf=game_conf, title="double elimination",
                         double_elimination_group=self, place=place, time=time)
+        self.started = True
+        self.save()
 
     def try_end(self):
         if not self.is_done() or self.finished:
@@ -286,6 +291,8 @@ class DoubleEliminationGroup(models.Model):
             team_proxy.team = self.get_rank(team_proxy.source_rank)
             team_proxy.save()
             team_proxy.group.try_start_games()
+        self.finished = True
+        self.save()
 
 
 class DoubleEliminationTeamProxy(models.Model):

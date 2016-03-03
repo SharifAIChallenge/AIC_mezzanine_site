@@ -262,7 +262,7 @@ class DoubleEliminationGroup(models.Model):
 
     def is_done(self):
         if Game.objects.filter(double_elimination_group_id=self.id).exists():
-            return Game.objects.filter(double_elimination_group_id=self.id) \
+            return not Game.objects.filter(double_elimination_group_id=self.id) \
                 .filter(~Q(status=3) | Q(counted_in_double_elimination_group=False)).exists()
         return False
 

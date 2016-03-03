@@ -91,6 +91,7 @@ def get_scores_ajax(request):
                         content_type="application/json")
 
 
+@user_passes_test(lambda u: u.is_staff)
 def bracket(request):
     return render(request, 'game/bracket.html')
 

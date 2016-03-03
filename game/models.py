@@ -164,9 +164,10 @@ class Game(models.Model):
             game_config=game_conf,
             **kwargs
         )
+        game_team_submits = []
         for participant in participants:
-            GameTeamSubmit.objects.create(game=game, submit=participant.final_submit)
-            sleep(1)  # TODO: TOFF
+            game_team_submits.append(GameTeamSubmit(game=game, submit=participant.final_submit))
+        GameTeamSubmit.objects.bulk_create(game_team_submits)
         run_game.delay(game.id)
 
     def get_participants(self):

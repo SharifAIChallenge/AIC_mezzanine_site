@@ -99,8 +99,8 @@ def get_final_brackets(request):
     brackets = {
         "teams": [
             [detp.team.name for detp in
-             DoubleEliminationTeamProxy.objects.filter(group=group, source_group__isnull=True)]
-            for group in DoubleEliminationGroup.objects.filter(teams__source_group__isnull=True)
+             DoubleEliminationTeamProxy.objects.filter(group=group, source_group__isnull=True).distinct()]
+            for group in DoubleEliminationGroup.objects.filter(teams__source_group__isnull=True).distinct()
             ],
         'results': [
             [

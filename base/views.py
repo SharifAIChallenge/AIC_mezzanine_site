@@ -126,7 +126,8 @@ def submit(request):
         return redirect('invite_member')
     if request.method == 'POST':
 
-        if not request.user.is_superuser and not request.team.competition.submit_active:
+        # if not request.user.is_superuser and not request.team.competition.submit_active:
+        if not request.user.is_superuser and not request.team.should_pay:
             messages.error(request, _('submit period has ended'))
             return redirect('submit_code')
 
@@ -585,7 +586,9 @@ def play_log(request):
 @login_required
 @team_required
 def final_submission(request):
-    if not request.user.is_superuser and not request.team.competition.submit_active:
+    # if not request.user.is_superuser and not request.team.competition.submit_active:
+    #     raise PermissionDenied()
+    if not request.user.is_superuser and not request.team.should_pay:
         raise PermissionDenied()
     if 'submission_id' not in request.GET:
         return HttpResponseBadRequest()

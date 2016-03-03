@@ -42,7 +42,7 @@
                         {{ game.get_participants.0.name }}
                     </td>
                     {% for score in game.get_scores %}
-                        <td>{% if game.counted_in_group %}{{ score }}{% else %}-{% endif %}</td>
+                        <td>{% if game.counted_in_double_elimination_group %}{{ score }}{% else %}-{% endif %}</td>
                     {% endfor %}
                     <td>
                         {{ game.get_participants.1.name }}

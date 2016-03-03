@@ -8,7 +8,13 @@ admin.site.register(Competition)
 admin.site.register(DockerContainer)
 admin.site.register(ProgrammingLanguage)
 admin.site.register(DoubleEliminationGroup)
-admin.site.register(DoubleEliminationTeamProxy)
+
+
+class DoubleEliminationTeamProxyAdmin(admin.ModelAdmin):
+    list_display = ('group', 'score', 'team')
+
+
+admin.site.register(DoubleEliminationTeamProxy, DoubleEliminationTeamProxyAdmin)
 
 
 class SubmitInline(mezzanineAdmin.StackedDynamicInlineAdmin):

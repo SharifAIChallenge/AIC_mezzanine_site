@@ -257,8 +257,10 @@ class DoubleEliminationGroup(models.Model):
     def __unicode__(self):
         return "#%d" % self.id
 
-    def get_scores(self):
+    def get_scores(self, rev):
         a = [int(detp.score * 10) / 10 for detp in DoubleEliminationTeamProxy.objects.filter(group_id=self.id)]
+        if rev:
+            a.reverse()
         a.append(reverse('de_games', kwargs={'group_id': self.id}))
         return a
 

@@ -90,17 +90,21 @@
     display: none;
 }
 
-.team.lose {
+.lose {
     background-color: #d9534f;
     border-color: #d43f3a;
 }
 
-.team.win {
+.win {
     background-color: #5cb85c;
     border-color: #4cae4c;
 }
 
-.team.highlight {
+.highlight {
     background-color: #5bc0de;
     border-color: #46b8da;
+}
+
+.label {
+    color: #024457;
 }

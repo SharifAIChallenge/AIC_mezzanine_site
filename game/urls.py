@@ -14,4 +14,5 @@ urlpatterns = patterns(
     url(r'^groups/(?P<group_id>\d+)$', 'group_schedule', name='group_schedule'),
     url(r'^get-scores$', 'get_scores_ajax'),
     url(r'^bracket$', 'bracket', name="bracket"),
+    url(r'^get-brackets', 'get_final_brackets'),
 )

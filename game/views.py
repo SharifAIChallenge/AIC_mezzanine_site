@@ -93,3 +93,23 @@ def get_scores_ajax(request):
 
 def bracket(request):
     return render(request, 'game/bracket.html')
+
+
+def get_final_brackets():
+    brackets = {
+        "teams": [
+            ['team1', 'team2'],
+            ['team1', 'team2']
+        ],
+        'results': [
+            [
+                [
+                    []
+                ]
+            ],
+            [],
+            []
+        ]
+    }
+
+    return HttpResponse(json.dumps(brackets), content_type='application/json')

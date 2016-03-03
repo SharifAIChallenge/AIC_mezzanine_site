@@ -284,7 +284,12 @@ class DoubleEliminationGroup(models.Model):
             except ValueError:
                 time = None
             teams = teams[7:]
-            Game.create([de_team.team for de_team in DoubleEliminationTeamProxy.objects.filter(group_id=self.id)],
+            Game.create([de_team.team for de_team in
+                         DoubleEliminationTeamProxy.objects.filter(group_id=self.id).order_by('id')],
+                        game_type=3, game_conf=game_conf, title="double elimination",
+                        double_elimination_group=self, place=place, time=time)
+            Game.create([de_team.team for de_team in
+                         DoubleEliminationTeamProxy.objects.filter(group_id=self.id).order_by('-id')],
                         game_type=3, game_conf=game_conf, title="double elimination",
                         double_elimination_group=self, place=place, time=time)
         self.started = True

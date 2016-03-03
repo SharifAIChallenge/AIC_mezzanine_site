@@ -301,6 +301,8 @@ class DoubleEliminationGroup(models.Model):
         if not self.is_done() or self.finished:
             return False
         for team_proxy in DoubleEliminationTeamProxy.objects.filter(source_group_id=self.id, team__isnull=True):
+            if team_proxy.source_rank == 1:
+                continue  # TODO
             team_proxy.team = self.get_rank(team_proxy.source_rank)
             team_proxy.save()
             team_proxy.group.try_start_games()

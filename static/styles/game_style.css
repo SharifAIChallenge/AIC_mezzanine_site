@@ -115,20 +115,7 @@ div.jQBracket .team.highlight {
     background-color: whitesmoke;
 }
 
-div.jQBracket .team {
-    width: 140px;
-}
 
 div.jQBracket .team div.label {
-    width: 120px;
-    height: 100%;
-    white-space: pre-line;
-}
-
-div.jQBracket .round {
-    width: 140px;
-}
-
-div.jQBracket {
-    width: 100%!important;
+    text-overflow: ellipsis;
 }

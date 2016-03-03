@@ -106,25 +106,25 @@ def get_final_brackets(request):
     results = [
         [
             [group.get_scores() for group in group_list[0:16]],
-            # [group.get_scores() for group in group_list[24:32]],
-            # [group.get_scores() for group in group_list[44:48]],
-            # [group.get_scores() for group in group_list[54:56]],
-            # [group.get_scores() for group in group_list[59]],
+            [group.get_scores() for group in group_list[24:32]],
+            [group.get_scores() for group in group_list[44:48]],
+            [group.get_scores() for group in group_list[54:56]],
+            [group.get_scores() for group in group_list[59]],
         ],
         [
             [group.get_scores() for group in group_list[16:24]],
-            # [group.get_scores() for group in group_list[40:32:-1]],
-            # [group.get_scores() for group in group_list[44:40:-1]],
-            # [group_list[49].get_scores(), group_list[48].get_scores(), group_list[51].get_scores(),
-            #  group_list[50].get_scores()],
-            # [group_list[52].get_scores(), group_list[53].get_scores()],
-            # [group_list[57].get_scores(), group_list[56].get_scores()],
-            # [group_list[58].get_scores()],
-            # [group_list[60].get_scores()],
+            [group.get_scores() for group in group_list[40:32:-1]],
+            [group.get_scores() for group in group_list[44:40:-1]],
+            [group_list[49].get_scores(), group_list[48].get_scores(), group_list[51].get_scores(),
+             group_list[50].get_scores()],
+            [group_list[52].get_scores(), group_list[53].get_scores()],
+            [group_list[57].get_scores(), group_list[56].get_scores()],
+            [group_list[58].get_scores()],
+            [group_list[60].get_scores()],
         ],
         [
-            # [group_list[61].get_scores()],
-            # [group_list[62].get_scores()],
+            [group_list[61].get_scores()],
+            [group_list[62].get_scores()],
         ]
     ]
 

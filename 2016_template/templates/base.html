@@ -108,12 +108,12 @@
                     {% endif %}
 
                     <li><a href="{% url 'scoreboard' %}">{% trans "scoreboard" %}</a></li>
-v
+
                     <li><a href="{% url 'groups' %}">{% trans "group stage" %}</a></li>
 
                     <li><a href="{% url 'bracket' %}">{% trans "elimination stage" %}</a></li>
 
-                    {% page_menu "pages/menus/partial_menu.html" %}
+{#                    {% page_menu "pages/menus/partial_menu.html" %}#}
 
                     <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir">{% trans "blog" %}</a>
                     </li>

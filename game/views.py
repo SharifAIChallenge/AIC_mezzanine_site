@@ -91,7 +91,6 @@ def get_scores_ajax(request):
                         content_type="application/json")
 
 
-@user_passes_test(lambda u: u.is_staff)
 def bracket(request):
     return render(request, 'game/bracket.html')
 
@@ -132,7 +131,6 @@ def get_final_brackets(request):
     return HttpResponse(json.dumps(brackets), content_type='application/json')
 
 
-@user_passes_test(lambda u: u.is_staff)
 def double_elimination_games(request, group_id):
     games = Game.objects.filter(double_elimination_group_id=group_id)
     return render(request, 'game/de_group.html', {'games': games})

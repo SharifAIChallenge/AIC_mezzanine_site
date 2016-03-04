@@ -51,9 +51,8 @@
                         {{ game.place.name }}
                     </td>
                     <td>
-                        {% if user.is_staff and game.status == 3 %}<a href="{{ game.get_log_url }}&save=1">{% endif %}
-                        {% trans 'play' %}
-                        {% if user.is_staff and game.status == 3 %}</a>{% endif %}
+                        <a href="{{ game.get_log_url }}{% if user.is_staff and game.status == 3 %}&save=1{% endif %}">
+                            {% trans 'play' %}</a>
                     </td>
                 </tr>
             {% endfor %}

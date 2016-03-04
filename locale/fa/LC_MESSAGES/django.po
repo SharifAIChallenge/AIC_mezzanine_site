@@ -1685,3 +1685,6 @@ msgstr "زمان"
 
 msgid "group stage"
 msgstr "مرحله گروهی"
+
+msgid "elimination stage"
+msgstr "مرحله حذفی"

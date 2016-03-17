@@ -18,6 +18,7 @@ class Competition(models.Model):
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     title = models.CharField(verbose_name=_('title'), max_length=200)
     site = models.OneToOneField(Site, verbose_name=_('site'), null=True)
+    staff_team = models.ForeignKey('base.StaffTeam', verbose_name=_('staff'), blank=True, null=True)
     max_members = models.PositiveSmallIntegerField(verbose_name=_("max team members count"), default=3)
     min_members = models.PositiveSmallIntegerField(verbose_name=_("min team members count"), default=3)
 

@@ -125,6 +125,36 @@ class Submit(models.Model):
         verbose_name_plural = _('submits')
 
 
+class StaffTeam(models.Model):
+    name = models.CharField(verbose_name=_('team name'), max_length=100)
+    parent = models.ForeignKey('StaffTeam', verbose_name=_('parent team'), null=True, blank=True, related_name='sub_teams')
+    members = models.ManyToManyField('StaffMember', verbose_name=_('team members'), blank=True, related_name='teams')
+
+    def __unicode__(self):
+        return '%s (%s)' % (self.name, self.parent) if self.parent else self.name
+
+    class Meta:
+        verbose_name = _('staff team')
+        verbose_name_plural = _('staff teams')
+
+
+class StaffMember(models.Model):
+    name = models.CharField(verbose_name=_('full name'), max_length=150)
+    email = models.EmailField(blank=True)
+    entrance_year = models.PositiveIntegerField(verbose_name=_('entrance year'))
+    role = models.CharField(verbose_name=_('label'), max_length=150, blank=True)
+    bio = models.CharField(verbose_name=_('biography'), max_length=300, blank=True)
+    image = models.ImageField(verbose_name=_('image'), upload_to='staff/images/', storage=syncing_storage, null=True)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = _('staff member')
+        verbose_name_plural = _('staff')
+        ordering = ('name',)
+
+
 class TeamInvitation(models.Model):
     accepted = models.BooleanField(verbose_name=_('accepted'), default=False)
     team = models.ForeignKey('base.Team', verbose_name=_('team'))

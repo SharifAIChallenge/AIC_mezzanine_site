@@ -5,7 +5,8 @@ from urlparse import urlparse
 
 import os
 from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm, WillComeForm, GameTypeForm
-from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit
+from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit, \
+    StaffMember
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -598,3 +599,8 @@ def final_submission(request):
     submit_object.team.final_submission = submit_object
     submit_object.team.save()
     return HttpResponse("Final submit changed")
+
+
+def staff_list(request):
+    print(dir(request))
+    return render(request, 'staff/staff-list.html', context={'staff': StaffMember.objects.all()})

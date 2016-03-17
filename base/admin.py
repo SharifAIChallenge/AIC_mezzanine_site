@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from base.models import Team, Submit, TeamInvitation, Member, JoinRequest, Email, Message, GameRequest
+from base.models import Team, Submit, TeamInvitation, Member, JoinRequest, Email, Message, GameRequest, \
+    StaffTeam, StaffMember
 from django.contrib import admin
 from import_export import resources, fields
 from import_export.admin import ImportExportModelAdmin
@@ -22,6 +23,13 @@ class SubmitAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Submit, SubmitAdmin)
+
+
+class StaffSubTeamInline(admin.TabularInline):
+    model = StaffTeam
+
+admin.site.register(StaffTeam)
+admin.site.register(StaffMember)
 
 
 class MemberResource(resources.ModelResource):

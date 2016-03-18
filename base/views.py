@@ -612,3 +612,24 @@ def staff_list(request):
         'team_path': root_team.get_ancestors(include_self=True),
         'staff': StaffMember.objects.filter(teams__in=teams).distinct()
     })
+
+
+def generate_team_html(team):
+    sub_teams = team.sub_teams.all()
+    team_link = '<a href="%s?team=%d">%s</a>' % (reverse('staff_list'), team.id, team.name)
+    return '%s%s' % (team_link, generate_teams_html(sub_teams) if sub_teams else '')
+
+
+def generate_teams_html(teams):
+    teams_html = ''.join(['<li>%s</li>' % (generate_team_html(sub_team),) for sub_team in teams])
+    return '<ul>%s</ul>' % (teams_html,)
+
+
+def staff_teams_list(request):
+    # I'm so sorry about this line of code, but I have no other choice... :(
+    competition = Competition.objects.last()
+    root_team = competition.staff_team
+    return render(request, 'staff/staff-teams-list.html', context={
+        'root_team': root_team,
+        'teams_html_list': generate_team_html(root_team),
+    })

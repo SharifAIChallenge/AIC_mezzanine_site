@@ -32,7 +32,9 @@
                     <div class="col s12">
                         <div class="nav-container">
                             {% for team in team_path %}
-                                <a class="nav-item" href="{% url 'staff_list' %}?team={{ team.id }}">{{ team.name }}</a>
+                                <a class="nav-item" href="{% url 'staff_list' %}?team={{ team.id }}">
+                                    {{ team.name }}
+                                </a>
                                 {% if not forloop.last %} <span class="nav-arrow">&gt;</span> {% endif %}
                             {% endfor %}
                         </div>
@@ -42,8 +44,8 @@
                         {% if staff_member.image %}
                         <div class="col s3">
                             <div class="card">
-                                <div class="card-image waves-effect waves-block waves-light">
-                                    <img src="{{ staff_member.image.url }}" class="activator"/>
+                                <div class="card-image">
+                                    <img src="{{ staff_member.image.url }}"/>
 
                                     <div class="card-title activator">
                                         {{ staff_member.name }}
@@ -51,19 +53,24 @@
                                 </div>
                                 <div class="card-data text-white">
                                     <div class="header">
-                                        <div class="card-title">{{ staff_member.name }}</div>
+                                        <div class="card-title">{{ staff_member.name }} ({{ staff_member.entrance_year }})</div>
                                     </div>
                                     <p>
 {#                                        {% if staff_member.label %}<b>Role: </b>{{ staff_member.label }}<br>{% endif %}#}
-                                        <b>Entrance Year: </b>{{ staff_member.entrance_year }}<br>
-                                        <b>Bio: </b>{{ staff_member.bio }}<br>
+{#                                        <b>Entrance Year: </b>{{ staff_member.entrance_year }}<br>#}
+                                        <span class="title">Bio: </span>
+                                        <span class="bio">{{ staff_member.bio }}</span>
                                         {% with teams=staff_member.teams.all %}
                                             {% if teams %}
-                                                <b>Team(s): </b>
+                                                <span class="title">Team(s):</span>
+                                                <span class="bio">
                                                 {% for team in teams %}
-                                                    <a href="{% url 'staff_list' %}?team={{ team.id }}">{{ team.name }}</a>
-                                                    {% if not forloop.last %}, {% endif %}
+                                                    <a href="{% url 'staff_list' %}?team={{ team.id }}" title="{{ team.name }}">
+                                                        <img class="team-icon" src="{{ team.icon.url }}">
+                                                    </a>
+{#                                                    {% if not forloop.last %}, {% endif %}#}
                                                 {% endfor %}
+                                                </span>
                                             {% endif %}
                                         {% endwith %}
                                     </p>
@@ -104,13 +111,24 @@
             padding: 0.5rem 1rem;
             color: black;
             font-size: 0.7rem;
+            line-height: 1rem;
         }
         body .card .card-data .card-title {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: black;
         }
+        body .card .card-data .title {
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: block;
+            padding-top: 0.4rem;
+        }
         body .card .card-data .bio {
-            font-size: 0.6rem;
+            font-size: 0.7rem;
+            width: 100%;
+            display: block;
+            direction: rtl;
+            text-align: justify;
         }
         body .card:hover .card-data {
             display: block;
@@ -125,6 +143,12 @@
         }
         body .nav-container {
             margin: 1rem 0;
+        }
+        body .card .team-icon {
+            width: 1.8rem;
+            height: 1.8rem;
+            vertical-align: middle;
+            margin: 0.2rem;
         }
     </style>
 {% endblock %}

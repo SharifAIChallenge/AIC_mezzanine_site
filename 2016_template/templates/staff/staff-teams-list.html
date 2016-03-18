@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags other_ssc_tags jdate_tags %}
+
+{% block meta_title %}{% trans 'staff' %}{% endblock %}
+{% block title %}{% trans 'staff' %}{% endblock %}
+
+{% block breadcrumb_menu %}
+    {{ block.super }}
+    <li>{{ title }}</li>
+{% endblock %}
+
+{% block main_hack %}
+    <div class="row">
+        <div class="col s12 m12 l10 offset-l1">
+            <div class="card-panel">
+                {% nevercache %}
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert alert-dismissable alert-{{ message.tags }}"
+                                     data-alert="alert">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-hidden="true">&times;</button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endnevercache %}
+
+                <div class="row" dir="ltr">
+                    <div class="col s12 list-wrapper">
+                        {{ teams_html_list|safe }}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_body %}
+    <style>
+        body .list-wrapper {
+            font-size: 1.3rem;
+            font-weight: bold;
+            line-height: 3rem;
+        }
+        body .list-wrapper li {
+            margin-left: 3rem;
+        }
+    </style>
+{% endblock %}

@@ -5,7 +5,7 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from mezzanine.conf import settings
 from mezzanine.core.views import direct_to_template
-from base.views import staff_list
+from base.views import staff_list, staff_teams_list
 
 admin.autodiscover()
 
@@ -31,7 +31,8 @@ urlpatterns += patterns(
         url("^$", 'AIC_site.views.index', name="home"),
         url("^team/", include('base.urls')),
         url("^game/", include('game.urls')),
-        url("^staff/", staff_list, name="staff_list"),
+        url("^staff/$", staff_list, name="staff_list"),
+        url("^staff/teams/$", staff_teams_list, name="staff_teams_list"),
         ("^", include("mezzanine.urls")),
 )
 

@@ -131,6 +131,7 @@ class StaffTeam(MPTTModel):
     name = models.CharField(verbose_name=_('team name'), max_length=100)
     parent = TreeForeignKey('self', verbose_name=_('parent team'), null=True, blank=True, related_name='sub_teams')
     members = models.ManyToManyField('StaffMember', verbose_name=_('team members'), blank=True, related_name='teams')
+    icon = models.ImageField(verbose_name=_('icon'), upload_to='staff/teams/icons/', storage=syncing_storage, null=True)
 
     def __unicode__(self):
         return '%s (%s)' % (self.name, self.parent) if self.parent else self.name
@@ -144,7 +145,7 @@ class StaffMember(models.Model):
     name = models.CharField(verbose_name=_('full name'), max_length=150)
     email = models.EmailField(blank=True)
     entrance_year = models.PositiveIntegerField(verbose_name=_('entrance year'))
-    role = models.CharField(verbose_name=_('label'), max_length=150, blank=True)
+    role = models.CharField(verbose_name=_('role'), max_length=150, blank=True)
     bio = models.CharField(verbose_name=_('biography'), max_length=300, blank=True)
     image = models.ImageField(verbose_name=_('image'), upload_to='staff/images/', storage=syncing_storage, null=True)
 

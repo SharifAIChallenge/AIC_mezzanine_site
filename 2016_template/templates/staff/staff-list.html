@@ -28,7 +28,7 @@
                     {% endif %}
                 {% endnevercache %}
 
-                <div class="row">
+                <div class="row" dir="ltr">
                     <div class="col s12">
                         <div class="nav-container">
                             {% for team in team_path %}
@@ -82,8 +82,12 @@
 {% block extra_body %}
     <style>
         body .card .card-image .card-title {
-            font-size: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
             text-shadow: 1px 1px #000;
+            padding: 0.6rem;
+            width: 100%;
+            text-align: center;
         }
         body .card:hover .card-image .card-title {
             display: none;

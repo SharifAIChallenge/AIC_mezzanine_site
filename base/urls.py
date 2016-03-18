@@ -24,5 +24,4 @@ urlpatterns = patterns(
     url("^play/$", 'play_log', name='play_log'),
     url("^scoreboard$", 'scoreboard', name="scoreboard"),
     url("^billing/", include('billing.urls')),
-    url("^staff/$", 'staff_list', name="staff_list"),
 )

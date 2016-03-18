@@ -29,6 +29,15 @@
                 {% endnevercache %}
 
                 <div class="row">
+                    <div class="col s12">
+                        <div class="nav-container">
+                            {% for team in team_path %}
+                                <a class="nav-item" href="{% url 'staff_list' %}?team={{ team.id }}">{{ team.name }}</a>
+                                {% if not forloop.last %} <span class="nav-arrow">&gt;</span> {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
                     {% for staff_member in staff %}
                         {% if staff_member.image %}
                         <div class="col s3">
@@ -52,7 +61,8 @@
                                             {% if teams %}
                                                 <b>Team(s): </b>
                                                 {% for team in teams %}
-                                                    {{ team.name }}{% if not forloop.last %}, {% endif %}
+                                                    <a href="{% url 'staff_list' %}?team={{ team.id }}">{{ team.name }}</a>
+                                                    {% if not forloop.last %}, {% endif %}
                                                 {% endfor %}
                                             {% endif %}
                                         {% endwith %}
@@ -71,16 +81,16 @@
 
 {% block extra_body %}
     <style>
-        body .card .card-title {
+        body .card .card-image .card-title {
             font-size: 1rem;
-            width: 100%;
+            text-shadow: 1px 1px #000;
         }
         body .card:hover .card-image .card-title {
             display: none;
         }
         body .card .card-data {
             position: absolute;
-            z-index: 1000;
+            z-index: 800;
             top: 0;
             left: 0;
             width: 100%;
@@ -100,6 +110,17 @@
         }
         body .card:hover .card-data {
             display: block;
+        }
+        body .nav-item {
+            font-size: 1rem;
+        }
+        body .nav-arrow {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin: 5px;
+        }
+        body .nav-container {
+            margin: 1rem 0;
         }
     </style>
 {% endblock %}

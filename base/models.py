@@ -16,6 +16,8 @@ from django.db.models.signals import post_save
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
+from mptt.fields import TreeForeignKey
+from mptt.models import MPTTModel
 from game.models import Game, GameTeamSubmit
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
@@ -125,9 +127,9 @@ class Submit(models.Model):
         verbose_name_plural = _('submits')
 
 
-class StaffTeam(models.Model):
+class StaffTeam(MPTTModel):
     name = models.CharField(verbose_name=_('team name'), max_length=100)
-    parent = models.ForeignKey('StaffTeam', verbose_name=_('parent team'), null=True, blank=True, related_name='sub_teams')
+    parent = TreeForeignKey('self', verbose_name=_('parent team'), null=True, blank=True, related_name='sub_teams')
     members = models.ManyToManyField('StaffMember', verbose_name=_('team members'), blank=True, related_name='teams')
 
     def __unicode__(self):

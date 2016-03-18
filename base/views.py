@@ -6,7 +6,7 @@ from urlparse import urlparse
 import os
 from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm, WillComeForm, GameTypeForm
 from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit, \
-    StaffMember
+    StaffMember, StaffTeam
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -602,5 +602,13 @@ def final_submission(request):
 
 
 def staff_list(request):
-    print(dir(request))
-    return render(request, 'staff/staff-list.html', context={'staff': StaffMember.objects.all()})
+    # I'm so sorry about this line of code, but I have no other choice... :(
+    competition = Competition.objects.last()
+    team_id = request.GET.get('team', None)
+    root_team = get_object_or_404(StaffTeam, id=team_id) if team_id else competition.staff_team
+    teams = root_team.get_descendants(include_self=True)
+    return render(request, 'staff/staff-list.html', context={
+        'root_team': root_team,
+        'team_path': root_team.get_ancestors(include_self=True),
+        'staff': StaffMember.objects.filter(teams__in=teams).distinct()
+    })

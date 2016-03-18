@@ -247,6 +247,7 @@ INSTALLED_APPS = (
     "game",
     "django_countries",
     "django_gravatar",
+    "mptt",
 
     'ckeditor',
 

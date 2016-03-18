@@ -63,3 +63,4 @@ tzlocal==1.2
 websocket-client==0.35.0
 wsgiref==0.1.2
 suds==0.4
+django-mptt==0.8.3

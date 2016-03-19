@@ -41,43 +41,45 @@
                     </div>
 
                     {% for staff_member in staff %}
-                        {% if staff_member.image %}
-                        <div class="col s3">
-                            <div class="card">
-                                <div class="card-image">
-                                    <img src="{{ staff_member.image.url }}"/>
+                    <div class="col s3">
+                        <div class="card">
+                            <div class="card-image">
+                                {% if staff_member.image %}
+                                <img src="{{ staff_member.image.url }}"/>
+                                {% else %}
+                                <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8+uH1fwAJgwPRE9898wAAAABJRU5ErkJggg==" />
+                                {% endif %}
 
-                                    <div class="card-title activator">
-                                        {{ staff_member.name }}
-                                    </div>
-                                </div>
-                                <div class="card-data text-white">
-                                    <div class="header">
-                                        <div class="card-title">{{ staff_member.name }} ({{ staff_member.entrance_year }})</div>
-                                    </div>
-                                    <p>
-{#                                        {% if staff_member.label %}<b>Role: </b>{{ staff_member.label }}<br>{% endif %}#}
-{#                                        <b>Entrance Year: </b>{{ staff_member.entrance_year }}<br>#}
-                                        <span class="title">Bio: </span>
-                                        <span class="bio">{{ staff_member.bio }}</span>
-                                        {% with teams=staff_member.teams.all %}
-                                            {% if teams %}
-                                                <span class="title">Team(s):</span>
-                                                <span class="bio">
-                                                {% for team in teams %}
-                                                    <a href="{% url 'staff_list' %}?team={{ team.id }}" title="{{ team.name }}">
-                                                        <img class="team-icon" src="{{ team.icon.url }}">
-                                                    </a>
-{#                                                    {% if not forloop.last %}, {% endif %}#}
-                                                {% endfor %}
-                                                </span>
-                                            {% endif %}
-                                        {% endwith %}
-                                    </p>
+                                <div class="card-title activator">
+                                    {{ staff_member.name }}
                                 </div>
                             </div>
+                            <div class="card-data text-white">
+                                <div class="header">
+                                    <div class="card-title">{{ staff_member.name }} ({{ staff_member.entrance_year }})</div>
+                                </div>
+                                <p>
+{#                                        {% if staff_member.label %}<b>Role: </b>{{ staff_member.label }}<br>{% endif %}#}
+{#                                        <b>Entrance Year: </b>{{ staff_member.entrance_year }}<br>#}
+                                    <span class="title">Bio: </span>
+                                    <span class="bio">{{ staff_member.bio }}</span>
+                                    {% with teams=staff_member.teams.all %}
+                                        {% if teams %}
+                                            <span class="title">Team(s):</span>
+                                            <span class="bio">
+                                            {% for team in teams %}
+                                                <a href="{% url 'staff_list' %}?team={{ team.id }}" title="{{ team.name }}">
+                                                    <img class="team-icon" src="{{ team.icon.url }}">
+                                                </a>
+{#                                                    {% if not forloop.last %}, {% endif %}#}
+                                            {% endfor %}
+                                            </span>
+                                        {% endif %}
+                                    {% endwith %}
+                                </p>
+                            </div>
                         </div>
-                        {% endif %}
+                    </div>
                     {% endfor %}
                 </div>
 

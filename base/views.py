@@ -616,7 +616,7 @@ def staff_list(request):
 
 def generate_team_html(team):
     sub_teams = team.sub_teams.all()
-    team_link = '<a href="%s?team=%d">%s</a>' % (reverse('staff_list'), team.id, team.name)
+    team_link = '<a href="%s?team=%d" title="%s"><img src="%s" /></a>' % (reverse('staff_list'), team.id, team.name, team.icon.url)
     return '%s%s' % (team_link, generate_teams_html(sub_teams) if sub_teams else '')
 
 

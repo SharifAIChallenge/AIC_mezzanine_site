@@ -629,7 +629,8 @@ def staff_teams_list(request):
     # I'm so sorry about this line of code, but I have no other choice... :(
     competition = Competition.objects.last()
     root_team = competition.staff_team
+    print(generate_teams_html([root_team,]))
     return render(request, 'staff/staff-teams-list.html', context={
         'root_team': root_team,
-        'teams_html_list': generate_team_html(root_team),
+        'teams_html_list': generate_teams_html([root_team,]),
     })

@@ -1,0 +1,79 @@
+{% extends "pages/richtextpage.html" %}
+
+{% load mezzanine_tags staticfiles i18n %}
+
+{% block extra_css %}
+<!--<link type="text/css" rel="stylesheet" href="/static/lightbox/css/loading.css">-->
+{% endblock extra_css %}
+{% block left_wrapper %}
+{% endblock %}
+
+{% block main %}
+
+<div class="card">
+    {% block image %}
+    {% if page.gallery.featured_image %}
+    <div class="card-image">
+        <img src="{{ MEDIA_URL }}{% thumbnail page.featured_image 1100 0%}">
+    </div>
+    {% else %}{% endif %}
+    {% endblock %}
+    <h3 class="cyan-text card-header">
+        <span>
+        <a class="cyan-text" href="{{ post_url }}">
+            <span class="px-40 horizontal spacer">&nbsp;</span> {% block title %}{{ page.gallery.title }} {% endblock %}<span class="px-40 horizontal spacer">&nbsp;</span>
+        </a>
+        </span>
+    </h3>
+
+
+    <div class="card-content">
+        {% block content %}
+        {{ page.gallery.content|richtext_filters|safe }}
+        {% endblock %}
+    </div>
+</div>
+
+
+<div class="px-10 vertical spacer"></div>
+
+<div class="row" id="image_container">
+    {% with page.gallery.images.all as images %}
+    {% for image in images %}
+    <div class="image col s12 m6 l6">
+        <div class="hoverable teal card">
+            <div class="card-image">
+                <a href="{{ MEDIA_URL }}{% thumbnail image.file 1100 0 %}" data-lightbox="gallery"
+                   data-title="
+                   {% blocktrans with url=image.file.url %}
+                   Click <a href='{{ url }}'>here</a> to see the original image.
+                   {% endblocktrans %}
+                   ">
+                    <img alt="{{ image.description }}" src="{{ MEDIA_URL }}{% thumbnail image.file 300 0 %}">
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endwith %}
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+{% endblock %}
+
+{% block extra_body %}
+<script type="text/javascript">
+	$('#image_container').imagesLoaded( function() {
+		$('#image_container').masonry({
+		    isOriginLeft: false,
+			itemSelector: '.image',
+			transitionDuration: 1,
+		});
+	});
+</script>
+{% endblock %}
+
+

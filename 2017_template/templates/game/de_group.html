@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags staticfiles other_ssc_tags jdate_tags %}
+
+{% block meta_title %}{% trans 'group' %} {{ gt.name }}{% endblock %}
+{% block title %}{% trans 'group' %} {{ gt.name }}{% endblock %}
+
+{% block extra_head %}
+    <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/game_style.css' %}"/>
+{% endblock %}
+
+{% block main %}
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <table class="group">
+            <tr>
+                <td>
+                    {% trans 'team 1' %}
+                </td>
+
+                <td>
+                </td>
+
+                <td>
+                </td>
+
+                <td>
+                    {% trans 'team 2' %}
+                </td>
+                <td>
+                    {% trans 'place' %}
+                </td>
+                <td>
+                    {% trans 'play' %}
+                </td>
+            </tr>
+            {% for game in games %}
+                <tr>
+                    <td>
+                        {{ game.get_participants.0.name }}
+                    </td>
+                    {% for score in game.get_scores %}
+                        <td>{% if game.counted_in_double_elimination_group %}{{ score }}{% else %}-{% endif %}</td>
+                    {% endfor %}
+                    <td>
+                        {{ game.get_participants.1.name }}
+                    </td>
+                    <td title="{{ game.place.description }}">
+                        {{ game.place.name }}
+                    </td>
+                    <td>
+                        <a href="{{ game.get_log_url }}{% if user.is_staff and game.status == 3 %}&save=1{% endif %}">
+                            {% trans 'play' %}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

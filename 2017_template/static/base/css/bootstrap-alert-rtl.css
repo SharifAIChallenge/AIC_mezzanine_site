@@ -1,0 +1,14 @@
+.alert-dismissable,
+.alert-dismissible {
+  padding-left: 35px;
+  padding-right: 15px;
+}
+.alert-dismissable .close,
+.alert-dismissible .close {
+  right: auto;
+  left: -21px;
+}
+
+.close {
+  float: left;
+}

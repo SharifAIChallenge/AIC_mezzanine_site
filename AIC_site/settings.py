@@ -89,6 +89,7 @@ FORMS_USE_HTML5 = True
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
     'aichallenge.sharif.edu:2016',
+    'aichallenge.sharif.edu:2017'
     'aichallenge.sharif.edu',
     'localhost:8000',
     'localhost',
@@ -228,7 +229,7 @@ INSTALLED_APPS = (
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
     "import_export",
-    "2016_template",
+    "2017_template",
     'billing',
     'storages',
     'queued_storage',

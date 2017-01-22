@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags staticfiles other_ssc_tags jdate_tags %}
+
+{% block meta_title %}{% trans 'group' %} {{ gt.name }}{% endblock %}
+{% block title %}{% trans 'group' %} {{ gt.name }}{% endblock %}
+
+{% block extra_head %}
+    <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript"
+            src="{% static 'bower_components/jquery-bracket/dist/jquery.bracket.min.js' %}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}"/>
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'bower_components/jquery-bracket/dist/jquery.bracket.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/game_style.css' %}"/>
+{% endblock %}
+
+{% block main %}
+    <div class="card-panel">
+        <div id="bracket" dir="ltr"></div>
+        <div style="clear: both"></div>
+    </div>
+    <script type="text/javascript" src="{% static 'scripts/game_script.js' %}"></script>
+{% endblock %}

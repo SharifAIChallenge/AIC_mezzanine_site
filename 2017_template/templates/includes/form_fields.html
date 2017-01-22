@@ -1,0 +1,74 @@
+{% load mezzanine_tags other_ssc_tags i18n %}
+
+{% nevercache %}
+    <input type="hidden" name="referrer" value="{{ request.META.HTTP_REFERER }}">
+    {% csrf_token %}
+{% endnevercache %}
+
+{% for field in form_for_fields %}
+    {% if field.is_hidden %}
+        {{ field }}
+    {% else %}
+
+        <div>
+
+            {% if field.help_text and field.help_text != "required" and field.help_text != "ضروری" %}
+                <div class="{% if LANGUAGE_BIDI %}right-aligned {% endif %}help-block">{{ field.help_text|safe }}</div>
+            {% endif %}
+
+
+            <div class="input-field left-align" {% if field.field.type == "booleanfield" %} {% if LANGUAGE_BIDI %} dir="rtl"{% endif %} {% endif %}>
+                {% if field.field.widget|is_radio_select %}
+                    {% if field.label %}<p class="grey-text text-lighten-1">&nbsp;&nbsp;{{ field.label }}</p>{% endif %}
+                    {% for radio in field %}
+                        <span>
+            {{ radio.tag }}
+            <label for="{{ field.auto_id }}_{{ radio.index }}">
+                <span class="left spaced">{{ radio.choice_label }}</span>
+            </label>
+        </span>
+                    {% endfor %}
+                    <p></p>
+                {% elif field.field.widget|is_multiple_checkbox %}
+                    {% if field.label %}<p class="grey-text text-lighten-1">&nbsp;&nbsp;{{ field.label }}</p>{% endif %}
+                    {% for check in field %}
+                        <span>
+            {{ check.tag }}
+            <label for="{{ field.auto_id }}_{{ check.index }}">
+                <span class="left spaced">{{ check.choice_label }}</span>
+            </label>
+        </span>
+                    {% endfor %}
+                    <p></p>
+                {% elif field.field.widget|is_file_input %}
+                    <div class="file-field input-field">
+                        <div class="btn">
+                            <span>{% trans "Choose File" %}</span>
+                            <input id="{{ field.auto_id }}" name="{{ field.name }}" type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text" placeholder="{{ field.label }}">
+                        </div>
+                    </div>
+                {% else %}
+                    {{ field }}
+                    {% if field.label %}
+                        <label class="control-label" for="{{ field.auto_id }}" {% if LANGUAGE_BIDI %} dir="rtl"{% endif %}>
+                            {% if field.field.required %} * {% endif %}{{ field.label }}
+                        </label>
+                    {% endif %}
+                {% endif %}
+            </div>
+
+            {% if field.errors %}
+                <p class="red-text help-block">
+                    {% for e in field.errors %}
+                        {% if not forloop.first %} / {% endif %}{{ e }}
+                    {% endfor %}
+                </p>
+            {% endif %}
+            <div class="px-10 vertical spacer"></div>
+        </div>
+    {% endif %}
+{% endfor %}
+

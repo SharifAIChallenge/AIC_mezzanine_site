@@ -1,0 +1,19 @@
+{% extends "pages/richtextpage.html" %}
+
+
+{% block meta_title %}{{ page.title }}{% endblock %}
+
+{% block meta_keywords %}{% endblock %}
+
+{% block meta_description %}{% endblock %}
+
+{% block title %}
+{{ page.title }}
+{% endblock %}
+
+{% block content %}
+<p>{{ context.message }}</p>
+{% for field, entry in context.fields %}
+<p><h6>{{ field }}:</h6> {{ entry }}</p>
+{% endfor %}
+{% endblock %}

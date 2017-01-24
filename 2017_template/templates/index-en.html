@@ -59,7 +59,7 @@
             <li><a href="#award" tabindex="-1" hidefocus="true">Trophies</a></li>
             <li><a href="#about" tabindex="-1" hidefocus="true">About</a></li>
             <li><a href="/contact-us/" tabindex="-1" hidefocus="true">Contact us</a></li>
-            <li><a href="//aichallenge-en.blog.ir" tabindex="-1" hidefocus="true">Blog</a></li>
+{#            <li><a href="//aichallenge-en.blog.ir" tabindex="-1" hidefocus="true">Blog</a></li> #}
             <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
         </ul>
         <div class="mobile">
@@ -80,7 +80,8 @@
                 <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
 
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'my_team' %}" tabindex="-1" hidefocus="true"  class="signup-dump">My Team</a></li>
+                                            <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"
+                           class="signout-dump">{% trans 'edit profile' %}</a>
                     <li><a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">logout</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">login</a></li>
@@ -91,7 +92,8 @@
         </div>
         <div class="float">
             {% if user.is_authenticated %}
-                <a href="{% url 'my_team' %}" tabindex="-1" hidefocus="true"  class="signup-dump">My Team</a>
+                <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"
+                           class="signout-dump">{% trans 'edit profile' %}</a>
                 <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">logout</a>
             {% else %}
                 <a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">login</a>

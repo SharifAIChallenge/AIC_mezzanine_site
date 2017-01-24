@@ -76,10 +76,10 @@
             <li><a href="#history" tabindex="-1" hidefocus="true">تاریخچه</a></li>
             <li><a href="#award" tabindex="-1" hidefocus="true">جوایز</a></li>
             <li><a href="#about" tabindex="-1" hidefocus="true">معرفی</a></li>
-            <li><a href="/staff/teams/" tabindex="-1" hidefocus="true">برگزارکنندگان</a></li>
-            <li><a href="#sponsors" tabindex="-1" hidefocus="true">حامیان</a></li>
+{#            <li><a href="/staff/teams/" tabindex="-1" hidefocus="true">برگزارکنندگان</a></li>#}
+{#            <li><a href="#sponsors" tabindex="-1" hidefocus="true">حامیان</a></li>#}
             <li><a href="/contact-us/" tabindex="-1" hidefocus="true">تماس با ما</a></li>
-            <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true">وبلاگ</a></li>
+{#            <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true">وبلاگ</a></li>#}
             <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
         </ul>
         <div class="mobile">
@@ -100,7 +100,8 @@
 {#                <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true">وبلاگ</a></li>#}
                 <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'my_team' %}" tabindex="-1" hidefocus="true"  class="signup-dump">{% trans "My Team" %}</a></li>
+                        <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"
+                           class="signout-dump">{% trans 'edit profile' %}</a>
                     <li><a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">خروج</a></li>
                 {% else %}
                     <li><a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">ورود</a></li>
@@ -111,7 +112,7 @@
         </div>
         <div class="float">
             {% if user.is_authenticated %}
-                <a href="{% url 'my_team' %}" tabindex="-1" hidefocus="true"  class="signup-dump">{% trans "My Team" %}</a>
+                <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"  class="signup-dump">{% trans "edit profile" %}</a>
                 <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">خروج</a>
             {% else %}
                 <a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">ورود</a>

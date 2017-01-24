@@ -335,7 +335,7 @@ RAVEN_CONFIG = {
 }
 
 LOGIN_URL = "/login/"
-LOGIN_REDIRECT_URL = "/team/my"
+#LOGIN_REDIRECT_URL = "/"
 LOGOUT_URL = "/logout/"
 SIGNUP_URL = "/signup/"
 ACCOUNTS_PROFILE_FORM_CLASS = "base.forms.ProfileForm"

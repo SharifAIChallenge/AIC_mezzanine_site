@@ -7,7 +7,7 @@
         <img src="{{ MEDIA_URL }}{% thumbnail post.featured_image 400 0%}">
     </div>
     {% else %}{% endif %}
-    <h3 class="cyan-text card-header">
+    <h4 class="cyan-text card-header">
         <span>
         <a class="cyan-text" href="{{ post_url }}">
             <span class="px-40 horizontal spacer">&nbsp;</span> {{ post.title }} <span class="px-40 horizontal spacer">&nbsp;</span>
@@ -18,16 +18,16 @@
             </span>
         {% endif %}
         </span>
-    </h3>
+    </h4>
     <div class="card-content">
         {{ post.content | safe }}
     </div>
     <div class="card-action">
-        <h5 class="read-more">
+        <h7 class="read-more">
             <a class="cyan-text" href="{{ post_url }}">
                 {% trans "Read More" %}
             </a>
-        </h5>
+        </h7>
     </div>
 </div>
 

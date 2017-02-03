@@ -118,11 +118,13 @@
 {#                    <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir">{% trans "blog" %}</a>#}
 {#                    </li>#}
 {##}
+                     <li><a href="/blog/" tabindex="-1" hidefocus="true">{% trans 'blog' %}</a></li>
                     {% if LANGUAGE_BIDI %}
                         <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
                     {% else %}
                         <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
                     {% endif %}
+
                 </ul>
                 <div class="float {% if LANGUAGE_BIDI %}left{% else %}right{% endif %}">
                     {% if user.is_authenticated %}

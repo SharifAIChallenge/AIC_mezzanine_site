@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n future mezzanine_tags blog_tags keyword_tags disqus_tags %}
 
-{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "news" %}{% endif %}{% endblock %}
+{% block meta_title %}{% if page %}{{ page.meta_title }}{% else %}{% trans "blog" %}{% endif %}{% endblock %}
 
 {% block meta_keywords %}{% metablock %}
 {% keywords_for page as keywords %}
@@ -22,7 +22,7 @@
 {% block breadcrumb_menu %}
 {{ block.super }}
 <span class="card-panel">
-    <a href="{% url 'blog_post_list' %}">{% trans "news" %}</a>
+    <a href="{% url 'blog_post_list' %}">{% trans "blog" %}</a>
 </span>
 {% if tag or category or year or month or author %}
 <span class="card-panel">{% spaceless %}

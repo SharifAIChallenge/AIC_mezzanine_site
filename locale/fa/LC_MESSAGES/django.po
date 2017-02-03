@@ -164,7 +164,7 @@ msgstr "مرحله حذفی"
 
 #: 2016_template/templates/base.html:118
 msgid "blog"
-msgstr "وبلاگ"
+msgstr "بلاگ"
 
 #: 2016_template/templates/base.html:130
 msgid "edit profile"

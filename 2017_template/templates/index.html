@@ -81,7 +81,7 @@
 {#            <li><a href="#sponsors" tabindex="-1" hidefocus="true">حامیان</a></li>#}
 -->
             <li><a href="/contact-us/" tabindex="-1" hidefocus="true">تماس با ما</a></li>
-{#            <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true">وبلاگ</a></li>#}
+            <li><a href="/blog/" tabindex="-1" hidefocus="true">بلاگ</a></li>
             <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
         </ul>
         <div class="mobile">
@@ -104,7 +104,7 @@
 -->
 
                 <li><a href="/contact-us/" tabindex="-1" hidefocus="true">تماس با ما</a></li>
-{#                <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true">وبلاگ</a></li>#}
+                <li><a href="/blog/" tabindex="-1" hidefocus="true">بلاگ</a></li>
                 <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
                 {% if user.is_authenticated %}
                         <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"

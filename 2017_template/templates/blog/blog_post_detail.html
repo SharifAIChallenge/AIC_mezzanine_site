@@ -12,7 +12,7 @@
 {{ blog_post.description }}
 {% endmetablock %}{% endblock %}
 
-{% block title %}
+{% block salam %}
 {{ blog_post.title }}
 {% endblock %}
 
@@ -27,7 +27,16 @@
 
 {% block blog_post_main%}
 <article>
+
+
+
     <div class="main card-panel">
+        <h4 class="cyan-text card-header">
+            <span>
+            <a class="cyan-text" href="{{ post_url }}">
+                <span class="px-40 horizontal spacer">&nbsp;</span> {{ blog_post.title }} <span class="px-40 horizontal spacer">&nbsp;</span>
+            </a>
+        </h4>
         {% block blog_post_detail_content %}
         {{ blog_post.content|richtext_filters|safe }}
         {% endblock %}

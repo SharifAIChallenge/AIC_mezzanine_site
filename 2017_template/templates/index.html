@@ -81,7 +81,6 @@
 {#            <li><a href="#sponsors" tabindex="-1" hidefocus="true">حامیان</a></li>#}
 -->
             <li><a href="/contact-us/" tabindex="-1" hidefocus="true">تماس با ما</a></li>
-            <li><a href="/blog/" tabindex="-1" hidefocus="true">بلاگ</a></li>
             <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
         </ul>
         <div class="mobile">
@@ -111,7 +110,6 @@
                            class="signout-dump">{% trans 'edit profile' %}</a>
                     <li><a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">خروج</a></li>
                 {% else %}
-                    <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true" class="signin-dump">بلاگ</a></li>
                     <li><a href="{% url 'login' %}" tabindex="-1" hidefocus="true"
                        class="signup-dump">ثبت‌نام</a></li>
                 {% endif %}
@@ -122,7 +120,7 @@
                 <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"  class="signup-dump">{% trans "edit profile" %}</a>
                 <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">خروج</a>
             {% else %}
-                <a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true" class="signin-dump">بلاگ</a>
+                <a href="/blog/" tabindex="-1" hidefocus="true" class="signin-dump">بلاگ</a>
                 <a href="{% url 'login' %}" tabindex="-1" hidefocus="true"
                    class="signin-dump">ورود/ثبت نام</a>
             {% endif %}

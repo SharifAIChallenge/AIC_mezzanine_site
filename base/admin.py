@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from base.models import Team, Submit, TeamInvitation, Member, JoinRequest, Email, Message, GameRequest, \
-    StaffTeam, StaffMember
+    StaffTeam, StaffMember, TeamMember
 from django.contrib import admin
 from import_export import resources, fields
 from import_export.admin import ImportExportModelAdmin
@@ -83,8 +83,8 @@ admin.site.register(Member, MemberAdmin)
 
 
 class MembersInline(admin.StackedInline):
-    model = Member
-    fields = ('username', 'first_name', 'last_name', 'email', 'country')
+    model = TeamMember
+    fields = ('member',)
     readonly_fields = fields
     extra = 0
 
@@ -105,7 +105,6 @@ class TeamResource(resources.ModelResource):
     member2_email = fields.Field()
     member2_country = fields.Field()
     member2_education_place = fields.Field()
-    head = fields.Field()
     has_successful_submit = fields.Field()
 
     class Meta:
@@ -188,6 +187,7 @@ class TeamResource(resources.ModelResource):
 
 class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
+    inlines = [MembersInline,]
     search_fields = ('name',)
     list_filter = ('final', 'show', 'will_come', 'final_submission')
     list_display = ('name', 'competition', 'countries', 'show', 'final', 'is_last_submit_final', 'site_participation_possible', 'should_pay', 'payment_value')

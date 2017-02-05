@@ -4,7 +4,7 @@ import re
 import uuid
 
 import datetime
-
+from mezzanine.utils.sites import current_site_id
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
@@ -18,7 +18,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
-from game.models import Game, GameTeamSubmit
+from game.models import Game, GameTeamSubmit, Competition
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -31,7 +31,9 @@ class Member(AbstractUser):
     teams = models.ManyToManyField('base.Team', verbose_name=_("teams"), blank=True, through="TeamMember")
     national_code = models.CharField(max_length=10, null=True, verbose_name=_("national code"), blank=True)
 
-    def team(self, competition):
+    @property
+    def team(self):
+        competition = Competition.objects.get(site_id=current_site_id())
         return next((x for x in self.teams if x.competition == competition), None)
 
 

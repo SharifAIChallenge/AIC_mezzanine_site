@@ -46,7 +46,6 @@ class MemberResource(resources.ModelResource):
             'phone_number',
             'education_place',
             'date_joined',
-            'team__name',
         )
         export_order = (
             'id',
@@ -58,7 +57,6 @@ class MemberResource(resources.ModelResource):
             'country',
             'education_place',
             'date_joined',
-            'team__name',
         )
 
     def dehydrate_country(self, member):
@@ -69,13 +67,12 @@ class MemberAdmin(ImportExportModelAdmin):
     resource_class = MemberResource
     search_fields = ('username', 'email', 'first_name', 'last_name', 'education_place')
     list_filter = ('is_active',)
-    list_display = ('username', 'first_name', 'last_name', 'email', 'country', 'education_place', 'team', 'is_active')
+    list_display = ('username', 'first_name', 'last_name', 'email', 'country', 'education_place', 'is_active')
     fields = (
         ('first_name', 'last_name'),
         ('username', 'email', 'phone_number'),
         ('password',),
         ('country', 'education_place'),
-        ('team',),
         ('is_active', 'is_staff', 'is_superuser'),
         ('date_joined', 'last_login'),
     )
@@ -117,9 +114,6 @@ class TeamResource(resources.ModelResource):
             'id',
             'name',
             'timestamp',
-            'head__email',
-            'head__country',
-            'head__education_place',
             'final',
             'will_come',
         )
@@ -128,10 +122,6 @@ class TeamResource(resources.ModelResource):
             'name',
             'timestamp',
             'final',
-            'head',
-            'head__email',
-            'head__country',
-            'head__education_place',
             'member1',
             'member1_email',
             'member1_country',
@@ -143,9 +133,6 @@ class TeamResource(resources.ModelResource):
             'will_come',
             'has_successful_submit',
         )
-
-    def dehydrate_head(self, team):
-        return team.head.get_full_name()
 
     def dehydrate_member1(self, team):
         members = team.get_members()
@@ -202,17 +189,16 @@ class TeamResource(resources.ModelResource):
 class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
     search_fields = ('name',)
-    list_filter = ('final', 'show', 'will_come', 'head__country', 'final_submission')
-    list_display = ('name', 'competition', 'head', 'countries', 'show', 'final', 'is_last_submit_final', 'site_participation_possible', 'should_pay', 'payment_value')
+    list_filter = ('final', 'show', 'will_come', 'final_submission')
+    list_display = ('name', 'competition', 'countries', 'show', 'final', 'is_last_submit_final', 'site_participation_possible', 'should_pay', 'payment_value')
     fields = (
-        ('name', 'head', 'show'),
+        ('name', 'show'),
         ('competition', 'final'),
         ('will_come','site_participation_possible'),
         ('final_submission',),
         ('should_pay',),
         ('payment_value',),
     )
-    inlines = [MembersInline]
 
     def countries(self, obj):
         members = obj.member_set.all()

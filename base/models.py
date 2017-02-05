@@ -28,8 +28,11 @@ class Member(AbstractUser):
     mobile_number = models.CharField(verbose_name=_("mobile number"), max_length=11, blank=True)
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
     country = CountryField(verbose_name=_("country"), blank_label=_("choose your country"), default='IR')
-    team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True, blank=True, on_delete=SET_NULL)
+    teams = models.ManyToManyField('base.Team', verbose_name=_("teams"), null=True, blank=True, through="TeamMember")
     national_code = models.CharField(max_length=10, null=True, verbose_name=_("national code"), blank=True)
+
+    def team(self, competition):
+        return next((x for x in self.teams if x.competition == competition), None)
 
 
 class Team(models.Model):
@@ -86,6 +89,24 @@ class Team(models.Model):
         from billing.models import Transaction
         transaction = Transaction.objects.filter(status='v', user__in=self.member_set)
         return len(transaction) > 0
+
+
+class TeamMember(models.Model):
+    member = models.ForeignKey(Member)
+    team = models.ForeignKey(Team)
+    confirmed = models.BooleanField(default=False)
+    is_head = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    date_confirmed = models.DateTimeField(null=True)
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        if not self.id:
+            if TeamMember.objects.filter(member=self.member,
+                                         confirmed=True,
+                                         team__competition__id=self.team__competition__id):
+                raise Exception(u"یک نفر در دو تیم نمی‌تواند عضو باشد!")
+        super(TeamMember, self).save(force_insert, force_update, using, update_fields)
 
 
 def team_code_directory_path(instance, filename):

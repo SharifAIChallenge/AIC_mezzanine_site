@@ -81,7 +81,6 @@
 {#            <li><a href="#sponsors" tabindex="-1" hidefocus="true">حامیان</a></li>#}
 -->
             <li><a href="/contact-us/" tabindex="-1" hidefocus="true">تماس با ما</a></li>
-            <li><a href="/blog/" tabindex="-1" hidefocus="true">بلاگ</a></li>
             <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
         </ul>
         <div class="mobile">
@@ -105,13 +104,12 @@
 
                 <li><a href="/contact-us/" tabindex="-1" hidefocus="true">تماس با ما</a></li>
                 <li><a href="/blog/" tabindex="-1" hidefocus="true">بلاگ</a></li>
-                <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
+{#                <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>#}
                 {% if user.is_authenticated %}
                         <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"
                            class="signout-dump">{% trans 'edit profile' %}</a>
                     <li><a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">خروج</a></li>
                 {% else %}
-                    <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true" class="signin-dump">بلاگ</a></li>
                     <li><a href="{% url 'login' %}" tabindex="-1" hidefocus="true"
                        class="signup-dump">ثبت‌نام</a></li>
                 {% endif %}
@@ -122,7 +120,7 @@
                 <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"  class="signup-dump">{% trans "edit profile" %}</a>
                 <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">خروج</a>
             {% else %}
-                <a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir/" tabindex="-1" hidefocus="true" class="signin-dump">بلاگ</a>
+                <a href="/blog/" tabindex="-1" hidefocus="true" class="signin-dump">بلاگ</a>
                 <a href="{% url 'login' %}" tabindex="-1" hidefocus="true"
                    class="signin-dump">ورود/ثبت نام</a>
             {% endif %}
@@ -361,31 +359,29 @@
     -->
     
     
-    <!--
+
     
     <div class="section clearfix section-sponsors odd" id="sponsors">
         <div class="sp-wp">
             <h2 class="title run">حامیان مسابقه</h2>
             <div id="cross" class="inconsolata bold">
-                <div class="col">
-                    <a href="//isti.ir" tabindex="-1" hidefocus="true"
-                       target="_blank"><span>معاونت علمی فناوری ریاست جمهوری </span><img
-                            alt="bayan" src="/static/images/moavenatelmi.png" style="height: 75%"></a>
-                </div>
-                <div class="col">
-                    <a href="//sharif.ir" tabindex="-1" hidefocus="true" target="_blank"><span>معاونت پژوهشی دانشگاه شریف</span><img
-                            alt="bayan" src="/static/images/sharif-color.png"></a>
-                </div>
-                <div class="col">
-                    <a href="//bayan.co.ir" tabindex="-1" hidefocus="true"
-                       target="_blank"><span>شرکت دانش بنیان بیان</span><img alt="bayan"
-                                                                             src="/static/images/sponsors/bayan.png"></a>
+{#                <div class="col">#}
+{#                    <a href="//isti.ir" tabindex="-1" hidefocus="true"#}
+{#                       target="_blank"><span>معاونت علمی فناوری ریاست جمهوری </span><img#}
+{#                            alt="bayan" src="/static/images/moavenatelmi.png" style="height: 75%"></a>#}
+{#                </div>#}
+{#                <div class="col">#}
+{#                    <a href="//sharif.ir" tabindex="-1" hidefocus="true" target="_blank"><span>معاونت پژوهشی دانشگاه شریف</span><img#}
+{#                            alt="bayan" src="/static/images/sharif-color.png"></a>#}
+{#                </div>#}
+                <div class="col" style="margin-right: 34%">
+                    <a href="https://tap30.ir/" tabindex="-1" hidefocus="true" target="_blank"><span>سامانه هوشمند درخواست تاکسی TAP30</span><img width=80% alt="TAP30"
+                                                                             src="/static/images/TAP30.png"></a>
                 </div>
             </div>
         </div>
     </div>
-    
-    -->
+
 
     <!-- Start of StatCounter Code for Default Guide -->
     <a title="shopify traffic stats"

@@ -28,7 +28,7 @@ class Member(AbstractUser):
     mobile_number = models.CharField(verbose_name=_("mobile number"), max_length=11, blank=True)
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
     country = CountryField(verbose_name=_("country"), blank_label=_("choose your country"), default='IR')
-    teams = models.ManyToManyField('base.Team', verbose_name=_("teams"), null=True, blank=True, through="TeamMember")
+    teams = models.ManyToManyField('base.Team', verbose_name=_("teams"), blank=True, through="TeamMember")
     national_code = models.CharField(max_length=10, null=True, verbose_name=_("national code"), blank=True)
 
     def team(self, competition):
@@ -44,7 +44,6 @@ class Team(models.Model):
 
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=True)
-    members = models.ManyToManyField('Member', related_name="teams")
     name = models.CharField(verbose_name=_('name'), max_length=200)
     head = models.ForeignKey('base.Member', verbose_name=_("team head"), related_name='+')
     show = models.BooleanField(default=True, verbose_name=_("show team in public list"))

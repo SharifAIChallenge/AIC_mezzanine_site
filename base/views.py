@@ -8,19 +8,17 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, HttpResponseForbidden
+from django.http import Http404, HttpResponse, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-from django.utils.translation import get_language_from_request
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 from mezzanine.utils.email import send_mail_template
 
-from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm, WillComeForm, GameTypeForm, NewTeamForm
-from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit, \
+from base.forms import TeamForm, InvitationForm, TeamNameForm, NewTeamForm
+from base.models import TeamInvitation, Team, JoinRequest, Submit, \
     StaffMember, StaffTeam
-from game.models import Competition, GameTeamSubmit, Game, GameConfiguration, TeamScore
-from .tasks import compile_code
+from game.models import Competition, Game
 
 
 def registration_period_ended(request):

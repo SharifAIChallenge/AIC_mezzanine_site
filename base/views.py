@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 import json
+import os
 from functools import wraps
 from urlparse import urlparse
 
-import os
-from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm, WillComeForm, GameTypeForm
-from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit, \
-    StaffMember, StaffTeam
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -17,8 +14,12 @@ from django.utils import timezone
 from django.utils.translation import get_language_from_request
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
-from game.models import Competition, GameTeamSubmit, Game, GameConfiguration, TeamScore
 from mezzanine.utils.email import send_mail_template
+
+from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm, WillComeForm, GameTypeForm, NewTeamForm
+from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit, \
+    StaffMember, StaffTeam
+from game.models import Competition, GameTeamSubmit, Game, GameConfiguration, TeamScore
 from .tasks import compile_code
 
 
@@ -61,6 +62,27 @@ def team_required(function=None, register_period_only=False):
     if function:
         return decorator(function)
     return decorator
+
+
+@login_required
+def new_team_page(request):
+    if registration_period_ended(request):
+        messages.error(request, _("registration period has ended"))
+
+    competition = Competition.objects.get(site_id=request.site_id)
+
+    if request.method == 'POST':
+        form = NewTeamForm(data=request.POST, user=request.user)
+        if form.is_valid():
+            form.save(competition=competition, host=request.get_host())
+    else:
+        form = NewTeamForm(user=request.user)
+
+    invitations = TeamInvitation.objects.filter(member=request.user, team__competition=competition,
+                                                accepted=False).select_related('team')
+    return render(request, 'accounts/new_team_page.html', {
+        'form': form, 'title': 'TODO', 'invitations': invitations
+    })
 
 
 @login_required
@@ -616,7 +638,8 @@ def staff_list(request):
 
 def generate_team_html(team):
     sub_teams = team.sub_teams.all()
-    team_link = '<a href="%s?team=%d" title="%s"><img src="%s" /></a>' % (reverse('staff_list'), team.id, team.name, team.icon.url)
+    team_link = '<a href="%s?team=%d" title="%s"><img src="%s" /></a>' % (
+        reverse('staff_list'), team.id, team.name, team.icon.url)
     return '%s%s' % (team_link, generate_teams_html(sub_teams) if sub_teams else '')
 
 
@@ -629,8 +652,8 @@ def staff_teams_list(request):
     # I'm so sorry about this line of code, but I have no other choice... :(
     competition = Competition.objects.last()
     root_team = competition.staff_team
-    print(generate_teams_html([root_team,]))
+    print(generate_teams_html([root_team, ]))
     return render(request, 'staff/staff-teams-list.html', context={
         'root_team': root_team,
-        'teams_html_list': generate_teams_html([root_team,]),
+        'teams_html_list': generate_teams_html([root_team, ]),
     })

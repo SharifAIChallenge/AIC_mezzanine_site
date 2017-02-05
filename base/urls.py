@@ -4,6 +4,7 @@ from django.conf.urls import patterns, url, include
 
 urlpatterns = patterns(
     'base.views',
+    url("^$", 'new_team_page', name="new_team_page"),
     url("^submit$", 'submit', name='submit_code'),
     url("^register$", 'register_team', name='register_team'),
     url("^invite$", 'invite_member', name='invite_member'),

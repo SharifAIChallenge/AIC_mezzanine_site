@@ -69,13 +69,13 @@ class MemberAdmin(ImportExportModelAdmin):
     resource_class = MemberResource
     search_fields = ('username', 'email', 'first_name', 'last_name', 'education_place')
     list_filter = ('is_active',)
-    list_display = ('username', 'first_name', 'last_name', 'email', 'country', 'education_place', 'team', 'is_active')
+    list_display = ('username', 'first_name', 'last_name', 'email', 'country', 'education_place', 'teams', 'is_active')
     fields = (
         ('first_name', 'last_name'),
         ('username', 'email', 'phone_number'),
         ('password',),
         ('country', 'education_place'),
-        ('team',),
+        ('teams',),
         ('is_active', 'is_staff', 'is_superuser'),
         ('date_joined', 'last_login'),
     )

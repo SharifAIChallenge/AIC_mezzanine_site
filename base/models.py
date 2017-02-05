@@ -28,8 +28,11 @@ class Member(AbstractUser):
     mobile_number = models.CharField(verbose_name=_("mobile number"), max_length=11, blank=True)
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
     country = CountryField(verbose_name=_("country"), blank_label=_("choose your country"), default='IR')
-    team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True, blank=True, on_delete=SET_NULL)
+    teams = models.ManyToManyField('base.Team', verbose_name=_("teams"), null=True, blank=True)
     national_code = models.CharField(max_length=10, null=True, verbose_name=_("national code"), blank=True)
+
+    def team(self, competition):
+        return next((x for x in self.teams if x.competition == competition), None)
 
 
 class Team(models.Model):

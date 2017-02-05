@@ -61,7 +61,9 @@
             -->
             <li><a href="#about" tabindex="-1" hidefocus="true">About</a></li>
             <li><a href="/contact-us/" tabindex="-1" hidefocus="true">Contact us</a></li>
+            <!--
             <li><a href="/blog/" tabindex="-1" hidefocus="true">Blog</a></li>
+            -->
             <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
         </ul>
         <div class="mobile">
@@ -80,29 +82,39 @@
                 -->
                 <li><a href="#about" tabindex="-1" hidefocus="true">About</a></li>
                 <li><a href="/contact-us/" tabindex="-1" hidefocus="true">Contact us</a></li>
+                <!--
                 <li><a href="/blog/" tabindex="-1" hidefocus="true">Blog</a></li>
+                -->
                 <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
 
                 {% if user.is_authenticated %}
+                    <li><a href="/blog/" tabindex="-1" hidefocus="true" class="signin-dump">Blog</a></li>
                                             <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"
-                           class="signout-dump">{% trans 'edit profile' %}</a>
+                           class="signin-dump">{% trans 'edit profile' %}</a>
                     <li><a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">logout</a></li>
                 {% else %}
-                    <li><a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">login</a></li>
-                    <li><a href="{% url 'signup' %}" tabindex="-1" hidefocus="true"
-                       class="signup-dump">signup</a></li>
+                    <li><a href="/blog/" tabindex="-1" hidefocus="true" class="signin-dump">Blog</a></li>
+                    <li><a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">login/Sign Up</a></li>
+                    <!--
+                    <li><a href="{# url 'signup' #}" tabindex="-1" hidefocus="true"
+                       class="signin-dump">signup</a></li>
+                       -->
                 {% endif %}
             </ul>
         </div>
         <div class="float">
             {% if user.is_authenticated %}
+                <a href="/blog/" tabindex="-1" hidefocus="true" class="signin-dump">Blog</a>
                 <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"
-                           class="signout-dump">{% trans 'edit profile' %}</a>
+                           class="signin-dump">{% trans 'edit profile' %}</a>
                 <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">Logout</a>
             {% else %}
-                <a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">Login</a>
-                <a href="{% url 'signup' %}" tabindex="-1" hidefocus="true"
+                <a href="/blog/" tabindex="-1" hidefocus="true" class="signin-dump">Blog</a>
+                <a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">Login/Sign Up</a>
+                <!--
+                <a href="{# url 'signup'#}" tabindex="-1" hidefocus="true"
                    class="signup-dump">Sign Up</a>
+                   -->
             {% endif %}
         </div>
     </div>

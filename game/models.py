@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 import datetime
-from time import sleep
-
 import os
+
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
+from mezzanine.utils.sites import current_site_id
+
 from game.tasks import run_game
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
@@ -48,6 +49,10 @@ class Competition(models.Model):
     class Meta:
         verbose_name = _('competition')
         verbose_name_plural = _('competitions')
+
+    @classmethod
+    def get_current_instance(cls):
+        return cls.objects.get(site_id=current_site_id())
 
 
 def game_config_directory_path(instance, filename):

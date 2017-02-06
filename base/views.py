@@ -18,7 +18,7 @@ from mezzanine.utils.email import send_mail_template
 
 from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm, WillComeForm, GameTypeForm, NewTeamForm
 from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit, \
-    StaffMember, StaffTeam
+    StaffMember, StaffTeam, TeamMember
 from game.models import Competition, GameTeamSubmit, Game, GameConfiguration, TeamScore
 from .tasks import compile_code
 
@@ -81,7 +81,7 @@ def new_team_page(request):
     invitations = TeamInvitation.objects.filter(member=request.user, team__competition=competition,
                                                 accepted=False).select_related('team')
     return render(request, 'accounts/new_team_page.html', {
-        'form': form, 'title': 'TODO', 'invitations': invitations
+        'form': form, 'title': 'TeamRegister', 'invitations': invitations
     })
 
 
@@ -420,7 +420,10 @@ def remove(request):
             if team.final:
                 messages.error(request, _("The team is final."))
             raise PermissionDenied()
-        team.delete()
+        managers = TeamMember.objects.filter(team=request.team)
+        for manager in list(managers):
+            manager.delete()
+        request.team.delete()
     elif type == 'member':
         member = Member.objects.get(pk=id)
         if not request.team.member_set.filter(id=id).exists():
@@ -431,8 +434,7 @@ def remove(request):
         if member.team.final:
             messages.error(request, _("The team is final."))
             raise PermissionDenied()
-        member.team = None
-        member.save()
+        TeamMember.objects.get(member=member, team=request.team).delete()
     elif type == 'invitation':
         try:
             invitation = TeamInvitation.objects.get(pk=id)

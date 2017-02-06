@@ -4,7 +4,7 @@ import re
 import uuid
 
 import datetime
-
+from mezzanine.utils.sites import current_site_id
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
@@ -18,7 +18,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
-from game.models import Game, GameTeamSubmit
+from game.models import Game, GameTeamSubmit, Competition
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -28,8 +28,17 @@ class Member(AbstractUser):
     mobile_number = models.CharField(verbose_name=_("mobile number"), max_length=11, blank=True)
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
     country = CountryField(verbose_name=_("country"), blank_label=_("choose your country"), default='IR')
-    team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True, blank=True, on_delete=SET_NULL)
+    teams = models.ManyToManyField('base.Team', verbose_name=_("teams"), blank=True,
+                                   through="TeamMember")
     national_code = models.CharField(max_length=10, null=True, verbose_name=_("national code"), blank=True)
+
+    @property
+    def team(self):
+        competition = Competition.objects.get(site_id=current_site_id())
+        for x in self.teams.all():
+            if x.competition == competition:
+                return x
+        return None
 
 
 class Team(models.Model):
@@ -42,7 +51,6 @@ class Team(models.Model):
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=True)
     name = models.CharField(verbose_name=_('name'), max_length=200)
-    head = models.ForeignKey('base.Member', verbose_name=_("team head"), related_name='+')
     show = models.BooleanField(default=True, verbose_name=_("show team in public list"))
     final = models.BooleanField(default=False, verbose_name=_("team is final"))
     site_participation_possible = models.BooleanField(default=False)
@@ -85,6 +93,24 @@ class Team(models.Model):
         from billing.models import Transaction
         transaction = Transaction.objects.filter(status='v', user__in=self.member_set)
         return len(transaction) > 0
+
+
+class TeamMember(models.Model):
+    member = models.ForeignKey(Member)
+    team = models.ForeignKey(Team)
+    confirmed = models.BooleanField(default=False)
+    is_head = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    date_confirmed = models.DateTimeField(null=True)
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        if not self.id:
+            if TeamMember.objects.filter(member=self.member,
+                                         confirmed=True,
+                                         team__competition__id=self.team.competition.id):
+                raise Exception(u"یک نفر در دو تیم نمی‌تواند عضو باشد!")
+        super(TeamMember, self).save(force_insert, force_update, using, update_fields)
 
 
 def team_code_directory_path(instance, filename):
@@ -179,8 +205,7 @@ class TeamInvitation(models.Model):
         verbose_name_plural = _('invitations')
 
     def accept(self):
-        self.member.team = self.team
-        self.member.save()
+        TeamMember.objects.create(member=self.member, team=self.team,confirmed =True)
         self.accepted = True
         self.save()
 
@@ -203,10 +228,13 @@ class JoinRequest(models.Model):
         verbose_name_plural = _('join requests')
 
     def accept(self):
-        self.member.team = self.team
-        self.member.save()
+        TeamMember.objects.create(member=self.member, team=self.team, confirmed =True)
         self.accepted = True
         self.save()
+        # self.member.team = self.team
+        # self.member.save()
+        # self.accepted = True
+        # self.save()
 
 
 class Email(models.Model):

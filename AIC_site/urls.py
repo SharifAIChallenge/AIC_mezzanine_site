@@ -29,7 +29,7 @@ if settings.USE_MODELTRANSLATION:
 urlpatterns += patterns(
         '',
         url("^$", 'AIC_site.views.index', name="home"),
-        #url("^team/", include('base.urls')),
+        url("^team/", include('base.urls')),
         #url("^game/", include('game.urls')),
         #url("^staff/$", staff_list, name="staff_list"),
         #url("^staff/teams/$", staff_teams_list, name="staff_teams_list"),

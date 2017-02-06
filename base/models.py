@@ -222,7 +222,10 @@ class TeamInvitation(models.Model):
         verbose_name_plural = _('invitations')
 
     def accept(self):
-        TeamMember.objects.create(member=self.member, team=self.team, confirmed=True)
+        if self.accepted:
+            return
+        team_member = TeamMember.objects.get(member=self.member, team=self.team)
+        team_member.confirmed = True
         self.accepted = True
         self.save()
 

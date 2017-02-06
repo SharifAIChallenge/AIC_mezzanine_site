@@ -51,7 +51,6 @@ class Team(models.Model):
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=True)
     name = models.CharField(verbose_name=_('name'), max_length=200)
-    head = models.ForeignKey('base.Member', verbose_name=_("team head"), related_name='+')
     show = models.BooleanField(default=True, verbose_name=_("show team in public list"))
     final = models.BooleanField(default=False, verbose_name=_("team is final"))
     site_participation_possible = models.BooleanField(default=False)

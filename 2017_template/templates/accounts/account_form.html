@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_with_menu.html" %}
 {% load i18n mezzanine_tags other_ssc_tags %}
 
 {% block meta_title %}{{ title }}{% endblock %}
@@ -10,47 +10,43 @@
     <li>{{ title }}</li>
 {% endblock %}
 
-{% block main_hack %}
-    <div class="row">
-        <div class="col s12 m12 l8 offset-l4">
-            <div class="card-panel">
-                {% nevercache %}
-                    {% if messages %}
-                        <div class="messages">
-                            {% for message in messages %}
-                                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                                    <button type="button" class="close" data-dismiss="alert"
-                                            aria-hidden="true">&times;</button>
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endnevercache %}
-
-                {% block pre_form_part %}{% endblock %}
-
-                {% errors_for form %}
-
-                <form class="mezzanine-form" method="post"{% if form.is_multipart %}
-                      enctype="multipart/form-data"{% endif %}>
-                    <fieldset>
-                        <legend>{{ title }}</legend>
-                        {% fields_for form %}
-                        {% block before_account_form_actions %}{% endblock %}
-                        <div class="form-actions">
-                            {% block account_form_actions %}
-                                <input class="right btn" type="submit" value="{{ title }}">
-                            {% endblock %}
-                        </div>
-                        {% block after_account_form_actions %}{% endblock %}
-                    </fieldset>
-                </form>
+{% block right_panel %}
+    <div class="card-panel">
+        {% nevercache %}
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                    <button type="button" class="close" data-dismiss="alert"
+                            aria-hidden="true">&times;</button>
+                    {{ message }}
+                </div>
+                {% endfor %}
             </div>
-            <div class="card-panel acc-hints">
-                {% block main %}{% endblock %}
-            </div>
-        </div>
+            {% endif %}
+        {% endnevercache %}
+
+        {% block pre_form_part %}{% endblock %}
+
+        {% errors_for form %}
+
+        <form class="mezzanine-form" method="post"{% if form.is_multipart %}
+              enctype="multipart/form-data"{% endif %}>
+            <fieldset>
+                <legend>{{ title }}</legend>
+                {% fields_for form %}
+                {% block before_account_form_actions %}{% endblock %}
+                <div class="form-actions">
+                    {% block account_form_actions %}
+                    <input class="right btn" type="submit" value="{{ title }}">
+                    {% endblock %}
+                </div>
+                {% block after_account_form_actions %}{% endblock %}
+            </fieldset>
+        </form>
+    </div>
+    <div class="card-panel acc-hints">
+        {% block main %}{% endblock %}
     </div>
 {% endblock %}
 

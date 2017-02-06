@@ -28,13 +28,17 @@ class Member(AbstractUser):
     mobile_number = models.CharField(verbose_name=_("mobile number"), max_length=11, blank=True)
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
     country = CountryField(verbose_name=_("country"), blank_label=_("choose your country"), default='IR')
-    teams = models.ManyToManyField('base.Team', verbose_name=_("teams"), blank=True, through="TeamMember")
+    teams = models.ManyToManyField('base.Team', verbose_name=_("teams"), blank=True,
+                                   through="TeamMember")
     national_code = models.CharField(max_length=10, null=True, verbose_name=_("national code"), blank=True)
 
     @property
     def team(self):
         competition = Competition.objects.get(site_id=current_site_id())
-        return next((x for x in self.teams if x.competition == competition), None)
+        for x in self.teams.all():
+            if x.competition == competition:
+                return x
+        return None
 
 
 class Team(models.Model):
@@ -105,7 +109,7 @@ class TeamMember(models.Model):
         if not self.id:
             if TeamMember.objects.filter(member=self.member,
                                          confirmed=True,
-                                         team__competition__id=self.team__competition__id):
+                                         team__competition__id=self.team.competition.id):
                 raise Exception(u"یک نفر در دو تیم نمی‌تواند عضو باشد!")
         super(TeamMember, self).save(force_insert, force_update, using, update_fields)
 
@@ -202,8 +206,7 @@ class TeamInvitation(models.Model):
         verbose_name_plural = _('invitations')
 
     def accept(self):
-        self.member.team = self.team
-        self.member.save()
+        TeamMember.objects.create(member=self.member, team=self.team,confirmed =True)
         self.accepted = True
         self.save()
 
@@ -226,10 +229,13 @@ class JoinRequest(models.Model):
         verbose_name_plural = _('join requests')
 
     def accept(self):
-        self.member.team = self.team
-        self.member.save()
+        TeamMember.objects.create(member=self.member, team=self.team, confirmed =True)
         self.accepted = True
         self.save()
+        # self.member.team = self.team
+        # self.member.save()
+        # self.accepted = True
+        # self.save()
 
 
 class Email(models.Model):

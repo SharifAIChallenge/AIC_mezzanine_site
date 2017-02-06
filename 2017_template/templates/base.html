@@ -15,6 +15,9 @@
         <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url 'blog_post_feed' 'rss' %}">
         <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url 'blog_post_feed' 'atom' %}">
     {% endifinstalled %}
+        <link rel="stylesheet" href="/static/scripts/bootstrap.min.css">
+        <script src="/static/scripts/jquery.min.js"></script>
+        <script src="/static/scripts/bootstrap.min.js"></script>
 
     {% compress css %}
         <link type="text/css" rel="stylesheet" href="/static/base/css/bootstrap-alert.css">
@@ -118,9 +121,9 @@
 {#                    <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir">{% trans "blog" %}</a>#}
 {#                    </li>#}
 {##}
-                    {#
-                     <li><a href="/blog/" tabindex="-1" hidefocus="true">{% trans 'blog' %}</a></li>
-                     #}
+
+{#                     <li><a href="/blog/" tabindex="-1" hidefocus="true">{% trans 'blog' %}</a></li>#}
+
                     {% if LANGUAGE_BIDI %}
                         <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('en')">English</a></li>
                     {% else %}
@@ -191,10 +194,9 @@
                     <li><a href="http://instagram.com/aichallenge" title="instagram" target="_blank"><i
                             class="icon-instagram-circled"></i></a></li>
                     <!-- <li><a href="http://instagram.com/@username" title="Sharif University" target="_blank"><i class="icon-sharif-circled"></i></a></li> -->
-                    <li><a href="//aichallenge{% if not LANGUAGE_BIDI %}-en{% endif %}.blog.ir" title="blog"
-                           target="_blank"><i
-                            class="icon-blog-circled"></i></a>
-                    </li>
+                    <li><a href="https://tlgrm.me/aichallenge" title="Telegram" target="_blank"><i
+                        class="icon-telegram-circled"></i></a>
+                </li>
                 </ul>
             {% endif %}
             <div class="logos">

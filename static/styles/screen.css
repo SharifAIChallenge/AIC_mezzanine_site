@@ -925,6 +925,8 @@ body.ltr .section-award.animated .col-left {
         transition: all 0.2s ease-in-out 0s; }
       .social-media li a .icon-twitter-circled::before {
         background: #C3C7D8 url("../images/footer-icon-twitter.png") no-repeat scroll center center; }
+      .social-media li a .icon-telegram-circled::before {
+        background: #C3C7D8 url("../images/footer-icon-telegram.png") no-repeat scroll center center; }
       .social-media li a .icon-instagram-circled::before {
         background: #C3C7D8 url("../images/footer-icon-instagram.png") no-repeat scroll center center; }
       .social-media li a .icon-blog-circled::before {

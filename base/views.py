@@ -69,21 +69,26 @@ def register_team(request):
     if is_registration_period_ended(request):
         messages.error(request, _("registration period has ended"))
         return redirect('teams_list')
+
     user_team = request.user.team
     if user_team:
         if user_team.is_finalized:
             return redirect('my_team')
         else:
-            raise NotImplementedError
+            form = TeamForm(instance=user_team, user=request.user)
+    else:
+        form = TeamForm(user=request.user)
 
     if request.method == 'POST':
-        form = TeamForm(data=request.POST, user=request.user)
+        if user_team:
+            form = TeamForm(data=request.POST, user=request.user, instance=user_team)
+        else:
+            form = TeamForm(data=request.POST, user=request.user)
         if form.is_valid():
             team = form.save(request.get_host)
             request.session['team'] = team.id
-    else:
-        form = TeamForm(user=request.user)
-    context = {'form': form, 'title': _('register new team')}
+
+    context = {'form': form, 'title': _('register new team'), 'can_submit': 1 if form.can_edit else []}
 
     return render(request, 'accounts/invite_team.html', context)
 
@@ -604,7 +609,6 @@ def staff_teams_list(request):
     # I'm so sorry about this line of code, but I have no other choice... :(
     competition = Competition.objects.last()
     root_team = competition.staff_team
-    print(generate_teams_html([root_team, ]))
     return render(request, 'staff/staff-teams-list.html', context={
         'root_team': root_team,
         'teams_html_list': generate_teams_html([root_team, ]),

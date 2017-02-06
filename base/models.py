@@ -36,11 +36,10 @@ class Member(AbstractUser):
 
     @property
     def team(self):
-        competition = Competition.get_current_instance()
-        for x in self.teams.all():
-            if x.competition == competition:
-                return x
-        return None
+        team_member = TeamMember.objects.filter(member=self,
+                                                team__competition=Competition.get_current_instance(),
+                                                confirmed=True).first()
+        return team_member.team if team_member else None
 
 
 class Team(models.Model):
@@ -226,6 +225,7 @@ class TeamInvitation(models.Model):
             return
         team_member = TeamMember.objects.get(member=self.member, team=self.team)
         team_member.confirmed = True
+        team_member.date_confirmed = datetime.datetime.now()
         self.accepted = True
         self.save()
 

@@ -184,7 +184,7 @@ hr {
         font: 14px "BYekan", "Open Sans", sans-serif;
         border-top: 4px solid transparent;
         margin-top: 0px;
-        padding-top: 12px;
+        padding-top: 21px;
         padding-bottom: 19px;
         padding-right: 12px;
         padding-left: 12px;
@@ -195,12 +195,84 @@ hr {
         #header .wrapper > .menu li:focus {
           outline: 0px none !important; }
         #header .wrapper > .menu li > a {
-          color: #FFF; }
+          color: #FFF;
+        }
         #header .wrapper > .menu li:hover, #header .wrapper > .menu li.onvisible {
           border-top-color: #CCA63E;
           background: rgba(0, 0, 0, 0.1); }
           #header .wrapper > .menu li:hover a, #header .wrapper > .menu li.onvisible a {
             color: #FFF; }
+      #header .wrapper .float > .menuleft {
+      display: inline-block; }
+      #header .wrapper .float > .menuleft li {
+        display: inline-block;
+        margin-right: 5px;
+        font: 14px "BYekan", "Open Sans", sans-serif;
+        border-top: 4px solid transparent;
+        margin-top: 0px;
+        padding-top: 12px;
+        padding-bottom: 19px;
+        padding-right: 12px;
+        padding-left: 12px;
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s; }
+        #header .wrapper .float > .menuleft li:focus {
+          outline: 0px none !important; }
+        #header .wrapper .float > .menuleft li > a {
+          color: #FFF; }
+        #header .wrapper .float > .menuleft li:hover, #header .wrapper .float > .menuleft li.onvisible {
+          border-top-color: #CCA63E;
+          background: rgba(0, 0, 0, 0.1); }
+          #header .wrapper .float > .menuleft li:hover a, #header .wrapper .float > .menuleft li.onvisible a {
+            color: #FFF; }
+        #header .wrapper .menu #power > .glyphicon.glyphicon-off {
+              font-size: 25px;
+              margin-top: 8px;
+              padding-top: 8px;
+              padding-left: 5px;
+            }
+      #header .wrapper .menu > a.signin-dump {
+        display: inline-block;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        -moz-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        padding: 6px 35px;
+        font: 14px "BYekan", "Open Sans", sans-serif;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        background: transparent;
+        color: #FFF;
+        line-height: 23px;
+        vertical-align: top;
+        margin-top: 12px;
+        -moz-border-radius: 2.5px;
+        -webkit-border-radius: 2.5px;
+        border-radius: 2.5px; }
+      #header .wrapper .menu > a.signout-dump {
+        display: inline-block;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        -moz-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        padding: 6px 35px;
+        font: 14px "BYekan", "Open Sans", sans-serif;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        background: transparent;
+        color: #FFF;
+        line-height: 23px;
+        vertical-align: top;
+        margin-top: 12px;
+        -moz-border-radius: 2.5px;
+        -webkit-border-radius: 2.5px;
+        border-radius: 2.5px; }
     #header .wrapper > .mobile {
       display: none;
       float: right; }
@@ -288,7 +360,7 @@ hr {
         border-radius: 2.5px; }
         #header .wrapper .float > a.signup-dump:hover {
           background: #E2A712; }
-      #header .wrapper .float > a.signin-dump {
+      #header .wrapper .menu > a.signin-dump {
         display: inline-block;
         border: 1px solid rgba(255, 255, 255, 0.2);
         -moz-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;

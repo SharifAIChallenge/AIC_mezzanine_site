@@ -108,7 +108,8 @@ class Team(models.Model):
 
     @property
     def head(self):
-        return TeamMember.objects.filter(team=self, is_head=True).first().memer
+        team_member = TeamMember.objects.filter(team=self, is_head=True).first()
+        return team_member.member if team_member else None
 
 
 class TeamMember(models.Model):

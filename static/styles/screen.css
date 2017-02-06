@@ -407,7 +407,7 @@ body.ltr .content {
   text-align: right;
   padding-left: 3em;
   padding-right: 3em;
-  vertical-align: middle; }
+  vertical-align: top; }
 
 .content .column {
   width: 49%;
@@ -742,7 +742,7 @@ body.ltr .timeline.animated {
 
 .prizes-text h5 {
   font-family: "BYekan", "Open Sans", sans-serif, "tahoma", Arial, sans-serif;
-  font-size: 1.2em;
+  font-size: 1.5em;
   color: #EC5353; }
 
 .section-award .content::before {

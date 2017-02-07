@@ -1565,8 +1565,8 @@ msgstr "Game Type"
 #~ msgid "حامیان"
 #~ msgstr "Sponsors"
 
-#~ msgid "تماس با ما"
-#~ msgstr "Contact Us"
+msgid "contact"
+msgstr "Contact Us"
 
 #~ msgid "وبلاگ"
 #~ msgstr "Weblog"

@@ -11,7 +11,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
-from django.db import models
+from django.db import models, transaction
 from django.db.models import Max
 from django.db.models.signals import post_save
 from django.utils import timezone
@@ -223,11 +223,13 @@ class TeamInvitation(models.Model):
     def accept(self):
         if self.accepted:
             return
-        team_member = TeamMember.objects.get(member=self.member, team=self.team)
-        team_member.confirmed = True
-        team_member.date_confirmed = datetime.datetime.now()
-        self.accepted = True
-        self.save()
+        with transaction.atomic():
+            team_member = TeamMember.objects.get(member=self.member, team=self.team)
+            team_member.confirmed = True
+            team_member.date_confirmed = datetime.datetime.now()
+            self.accepted = True
+            self.save()
+            TeamInvitation.objects.filter(member=self.member, team__competition=self.team.competition).delete()
 
     @property
     def accept_link(self):

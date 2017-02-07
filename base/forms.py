@@ -91,9 +91,12 @@ class TeamForm(forms.ModelForm):
                     try:
                         member = Member.objects.get(Q(username=member_identification)
                                                     | Q(email=member_identification))
-                        if TeamMember.objects.filter(member=member,
-                                                     confirmed=True,
-                                                     team__competition=self.competition).exists():
+                        q = TeamMember.objects.filter(member=member,
+                                                      confirmed=True,
+                                                      team__competition=self.competition)
+                        if self.instance.id:
+                            q = q.exclude(team=self.instance)
+                        if q.exists():
                             self.errors[self.MEMBER_FIELD_NAME.format(i)] = [_("this user has another team")]
                         else:
                             self.members.add(member)
@@ -110,20 +113,22 @@ class TeamForm(forms.ModelForm):
                     raise forms.ValidationError(_("you can not remove an accepted member"))
 
     def save(self, host=None, commit=True):
-        is_edit = True if self.instance else False
+        is_edit = True if self.instance.id else False
         instance = super(TeamForm, self).save(commit=False)
         with transaction.atomic():
             if is_edit:
-                TeamMember.objects.filter(team=instance).delete()
+                TeamMember.objects.filter(team=instance).exclude(member__in=self.members).delete()
                 TeamInvitation.objects.filter(team=instance).exclude(member__in=self.members).delete()
             else:
                 instance.competition = self.competition
-                instance.save()
+            instance.save()
+            old_members = set([team_member.member for team_member in self.old_team_members])
+            new_members = set(self.members) - old_members
             team_members = [TeamMember(member=member,
                                        team=instance,
                                        is_head=member == self.user,
                                        confirmed=member == self.user)
-                            for member in self.members]
+                            for member in new_members]
             TeamMember.objects.bulk_create(team_members)
         for member in self.members:
             if member == self.user:
@@ -131,13 +136,14 @@ class TeamForm(forms.ModelForm):
             invitation, new = TeamInvitation.objects.update_or_create(team=instance,
                                                                       member=member,
                                                                       defaults={'accepted': False})
-            send_mail_template(_('AIChallenge team invitation'),
-                               'mail/invitation_mail',
-                               '',
-                               self.user.email,
-                               context={'team': instance.name,
-                                        'abs_link': invitation.accept_link,
-                                        'current_host': host})
+            if new:
+                send_mail_template(_('AIChallenge team invitation'),
+                                   'mail/invitation_mail',
+                                   '',
+                                   self.user.email,
+                                   context={'team': instance.name,
+                                            'abs_link': invitation.accept_link,
+                                            'current_host': host})
 
         return instance
 

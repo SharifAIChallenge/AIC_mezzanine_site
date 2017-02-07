@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load pages_tags mezzanine_tags %}
+
+{% block main_hack %}
+<div class="row">
+    <div class="col s12 m4 l4 {% if LANGUAGE_BIDI %} right {% endif %}">
+        {% block left_panel %}
+        <div class="row">
+            <div class="col s1">&nbsp;</div>
+            <div class="col s10">
+                <ul class="collapsible card" data-collapsible="accordion">
+                    {% page_menu "pages/menus/left_menu.html" %}
+                </ul>
+                {# {% page_menu page "pages/menus/left_menu_children.html" %} #}
+            </div>
+            <div class="col s1">&nbsp;</div>
+        </div>
+        {% endblock %}
+    </div>
+    <div class="col s12 m8 l8">
+        {% block right_panel %}
+        {% block main %}
+        &nbsp;
+        {% endblock %}
+        {% endblock %}
+    </div>
+
+</div>
+{% endblock %}

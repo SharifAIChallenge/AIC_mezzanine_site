@@ -168,6 +168,7 @@ hr {
     clear: both;
     zoom: 1;
     margin: 0px auto; }
+
     #header .wrapper > .logo {
       float: right;
       display: none;
@@ -176,6 +177,7 @@ hr {
       background: url("../images/logo.jpg") no-repeat center center;
       width: 139px;
       height: 45px; }
+
     #header .wrapper > .menu {
       display: inline-block; }
       #header .wrapper > .menu li {
@@ -184,7 +186,7 @@ hr {
         font: 14px "BYekan", "Open Sans", sans-serif;
         border-top: 4px solid transparent;
         margin-top: 0px;
-        padding-top: 21px;
+        padding-top: 12px;
         padding-bottom: 19px;
         padding-right: 12px;
         padding-left: 12px;
@@ -199,9 +201,17 @@ hr {
         }
         #header .wrapper > .menu li:hover, #header .wrapper > .menu li.onvisible {
           border-top-color: #CCA63E;
-          background: rgba(0, 0, 0, 0.1); }
+          background: rgba(0, 0, 0, 0.1);}
           #header .wrapper > .menu li:hover a, #header .wrapper > .menu li.onvisible a {
             color: #FFF; }
+
+          #header .wrapper .menu #power > .glyphicon.glyphicon-off {
+              font-size: 25px;
+              text-align: center;
+              vertical-align: middle;
+              padding-left: 5px;
+            }
+
       #header .wrapper .float > .menuleft {
       display: inline-block; }
       #header .wrapper .float > .menuleft li {
@@ -227,12 +237,7 @@ hr {
           background: rgba(0, 0, 0, 0.1); }
           #header .wrapper .float > .menuleft li:hover a, #header .wrapper .float > .menuleft li.onvisible a {
             color: #FFF; }
-        #header .wrapper .menu #power > .glyphicon.glyphicon-off {
-              font-size: 25px;
-              margin-top: 8px;
-              padding-top: 8px;
-              padding-left: 5px;
-            }
+
       #header .wrapper .menu > a.signin-dump {
         display: inline-block;
         border: 1px solid rgba(255, 255, 255, 0.2);

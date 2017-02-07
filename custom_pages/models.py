@@ -5,6 +5,7 @@ from mezzanine.pages.models import Page, RichText
 from django.utils.translation import ugettext_lazy as _
 from django.utils.html import escape
 
+
 class ContainerPage(Page):
     pass
 

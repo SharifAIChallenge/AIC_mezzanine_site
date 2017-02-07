@@ -9,12 +9,12 @@ from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import redirect, render
 
 from billing.forms import UserCompletionForm
-from base.views import team_required
+from base.views import team_required_and_finilized
 from .models import Transaction
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 def payment(request):
     if request.method == 'POST':
         form = UserCompletionForm(request.POST, instance=request.user)
@@ -53,7 +53,7 @@ def payment(request):
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 def complete_payment(request):
     our_id = request.GET.get('id2', None)
     if not our_id:
@@ -73,7 +73,7 @@ def complete_payment(request):
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 def payments_list(request):
     unknown_payments = Transaction.objects.filter(status='u')
     for transaction in unknown_payments:

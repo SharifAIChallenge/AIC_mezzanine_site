@@ -168,6 +168,7 @@ hr {
     clear: both;
     zoom: 1;
     margin: 0px auto; }
+
     #header .wrapper > .logo {
       float: right;
       display: none;
@@ -176,6 +177,7 @@ hr {
       background: url("../images/logo.jpg") no-repeat center center;
       width: 139px;
       height: 45px; }
+
     #header .wrapper > .menu {
       display: inline-block; }
       #header .wrapper > .menu li {
@@ -195,12 +197,87 @@ hr {
         #header .wrapper > .menu li:focus {
           outline: 0px none !important; }
         #header .wrapper > .menu li > a {
-          color: #FFF; }
+          color: #FFF;
+        }
         #header .wrapper > .menu li:hover, #header .wrapper > .menu li.onvisible {
           border-top-color: #CCA63E;
-          background: rgba(0, 0, 0, 0.1); }
+          background: rgba(0, 0, 0, 0.1);}
           #header .wrapper > .menu li:hover a, #header .wrapper > .menu li.onvisible a {
             color: #FFF; }
+
+          #header .wrapper .menu #power > .glyphicon.glyphicon-off {
+              font-size: 25px;
+              text-align: center;
+              vertical-align: middle;
+              padding-left: 5px;
+            }
+
+      #header .wrapper .float > .menuleft {
+      display: inline-block; }
+      #header .wrapper .float > .menuleft li {
+        display: inline-block;
+        margin-right: 5px;
+        font: 14px "BYekan", "Open Sans", sans-serif;
+        border-top: 4px solid transparent;
+        margin-top: 0px;
+        padding-top: 12px;
+        padding-bottom: 19px;
+        padding-right: 12px;
+        padding-left: 12px;
+        -moz-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s; }
+        #header .wrapper .float > .menuleft li:focus {
+          outline: 0px none !important; }
+        #header .wrapper .float > .menuleft li > a {
+          color: #FFF; }
+        #header .wrapper .float > .menuleft li:hover, #header .wrapper .float > .menuleft li.onvisible {
+          border-top-color: #CCA63E;
+          background: rgba(0, 0, 0, 0.1); }
+          #header .wrapper .float > .menuleft li:hover a, #header .wrapper .float > .menuleft li.onvisible a {
+            color: #FFF; }
+
+      #header .wrapper .menu > a.signin-dump {
+        display: inline-block;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        -moz-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        padding: 6px 35px;
+        font: 14px "BYekan", "Open Sans", sans-serif;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        background: transparent;
+        color: #FFF;
+        line-height: 23px;
+        vertical-align: top;
+        margin-top: 12px;
+        -moz-border-radius: 2.5px;
+        -webkit-border-radius: 2.5px;
+        border-radius: 2.5px; }
+      #header .wrapper .menu > a.signout-dump {
+        display: inline-block;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        -moz-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+        padding: 6px 35px;
+        font: 14px "BYekan", "Open Sans", sans-serif;
+        -moz-transition: all 0.5s;
+        -o-transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+        transition: all 0.5s;
+        background: transparent;
+        color: #FFF;
+        line-height: 23px;
+        vertical-align: top;
+        margin-top: 12px;
+        -moz-border-radius: 2.5px;
+        -webkit-border-radius: 2.5px;
+        border-radius: 2.5px; }
     #header .wrapper > .mobile {
       display: none;
       float: right; }
@@ -214,6 +291,7 @@ hr {
         border-radius: 3px;
         background: #FFF;
         margin: 0 auto;
+        margin-right: 8px;
         padding-top: 12px;
         margin-top: 12px;
         float: right; }
@@ -288,7 +366,7 @@ hr {
         border-radius: 2.5px; }
         #header .wrapper .float > a.signup-dump:hover {
           background: #E2A712; }
-      #header .wrapper .float > a.signin-dump {
+      #header .wrapper .menu > a.signin-dump {
         display: inline-block;
         border: 1px solid rgba(255, 255, 255, 0.2);
         -moz-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
@@ -501,83 +579,34 @@ img {
 .section-program {
   min-height: 800px; }
 
-.mouse-animate {
+.competition > a.competition-dump {
   position: absolute;
   bottom: 10px;
-  right: 50%;
-  margin-right: -12px;
+  margin: 0px auto 32px auto;
   z-index: 10;
-  *zoom: 1; }
-  .mouse-animate .mouse_scroll {
-    display: block;
-    margin: 0 auto;
-    width: 24px;
-    height: 100px;
-    margin-top: 125px; }
-  .mouse-animate .m_scroll_arrows {
-    display: block;
-    width: 5px;
-    height: 5px;
-    ms-transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    border-right: 2px solid #f1f1f1;
-    border-bottom: 2px solid #f1f1f1;
-    margin: 0 0 3px 4px;
-    width: 16px;
-    height: 16px; }
-  .mouse-animate .unu {
-    margin-top: 1px; }
-  .mouse-animate .unu,
-  .mouse-animate .doi,
-  .mouse-animate .trei {
-    -webkit-animation: mouse-scroll 1s infinite;
-    -moz-animation: mouse-scroll 1s infinite;
-    animation: mouse-scroll 1s infinite; }
-  .mouse-animate .unu {
-    -webkit-animation-delay: .1s;
-    -moz-animation-delay: .1s;
-    animation-delay: .1s;
-    -webkit-animation-direction: alternate; }
-  .mouse-animate .doi {
-    -webkit-animation-delay: .2s;
-    -moz-animation-delay: .2s;
-    animation-delay: .2s;
-    -webkit-animation-direction: alternate;
-    margin-top: -6px; }
-  .mouse-animate .trei {
-    -webkit-animation-delay: .3s;
-    -moz-animation-delay: .3s;
-    animation-delay: .3s;
-    -webkit-animation-direction: alternate;
-    margin-top: -6px; }
-  .mouse-animate .mouse {
-    height: 42px;
-    width: 24px;
-    -moz-border-radius: 14px;
-    -webkit-border-radius: 14px;
-    border-radius: 14px;
-    transform: none;
-    border: 2px solid #f1f1f1;
-    top: 170px;
-    margin-right: -4px; }
-  .mouse-animate .wheel {
-    height: 5px;
-    width: 2px;
-    display: block;
-    margin: 5px auto;
-    background: #FFF;
-    position: relative;
-    height: 4px;
-    width: 4px;
-    border: 2px solid #fff;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px; }
-  .mouse-animate .wheel {
-    -webkit-animation: mouse-wheel 0.6s linear infinite;
-    -moz-animation: mouse-wheel 0.6s linear infinite;
-    animation: mouse-wheel 0.6s linear infinite; }
+  /**zoom: 1;*/
+  right: 41.6%;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+  -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+  box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
+  padding: 6px 35px;
+  font: 20px "BYekan", "Open Sans", sans-serif;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  background: #1995da;
+  color: #FFF;
+  line-height: 23px;
+  vertical-align: top;
+  text-align: center;
+  margin-bottom: 32px;
+  -moz-border-radius: 2.5px;
+  -webkit-border-radius: 2.5px;
+  border-radius: 2.5px;
+}
 
 .section-program .content::before {
   position: absolute;

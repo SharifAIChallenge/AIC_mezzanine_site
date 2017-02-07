@@ -1,24 +1,26 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import, unicode_literals
+
 import base64
+import datetime
 import re
 import uuid
 
-import datetime
-from mezzanine.utils.sites import current_site_id
 from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
-from django.db import models
-from django.db.models import SET_NULL, Max
+from django.db import models, transaction
+from django.db.models import Max
 from django.db.models.signals import post_save
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
-from game.models import Game, GameTeamSubmit, Competition
+
+from game.models import Game, Competition
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -34,11 +36,10 @@ class Member(AbstractUser):
 
     @property
     def team(self):
-        competition = Competition.objects.get(site_id=current_site_id())
-        for x in self.teams.all():
-            if x.competition == competition:
-                return x
-        return None
+        team_member = TeamMember.objects.filter(member=self,
+                                                team__competition=Competition.get_current_instance(),
+                                                confirmed=True).first()
+        return team_member.team if team_member else None
 
 
 class Team(models.Model):
@@ -64,7 +65,7 @@ class Team(models.Model):
     payment_value = models.PositiveIntegerField(verbose_name=_("Payment value (rials)"), default=0)
 
     def __unicode__(self):
-        return 'Team%d(%s)' % (self.id, self.name)
+        return "Team%d(%s)" % (self.id, self.name)
 
     class Meta:
         verbose_name = _('team')
@@ -93,6 +94,21 @@ class Team(models.Model):
         from billing.models import Transaction
         transaction = Transaction.objects.filter(status='v', user__in=self.member_set)
         return len(transaction) > 0
+
+    @property
+    def is_finalized(self):
+        competition = Competition.get_current_instance()
+        if self.member_set.count() >= competition.min_members:
+            for team_member in self.teammember_set.all():
+                if not team_member.confirmed:
+                    return False
+            return True
+        return False
+
+    @property
+    def head(self):
+        team_member = TeamMember.objects.filter(team=self, is_head=True).first()
+        return team_member.member if team_member else None
 
 
 class TeamMember(models.Model):
@@ -205,9 +221,15 @@ class TeamInvitation(models.Model):
         verbose_name_plural = _('invitations')
 
     def accept(self):
-        TeamMember.objects.create(member=self.member, team=self.team,confirmed =True)
-        self.accepted = True
-        self.save()
+        if self.accepted:
+            return
+        with transaction.atomic():
+            team_member = TeamMember.objects.get(member=self.member, team=self.team)
+            team_member.confirmed = True
+            team_member.date_confirmed = datetime.datetime.now()
+            self.accepted = True
+            self.save()
+            TeamInvitation.objects.filter(member=self.member, team__competition=self.team.competition).delete()
 
     @property
     def accept_link(self):
@@ -228,7 +250,7 @@ class JoinRequest(models.Model):
         verbose_name_plural = _('join requests')
 
     def accept(self):
-        TeamMember.objects.create(member=self.member, team=self.team, confirmed =True)
+        TeamMember.objects.create(member=self.member, team=self.team, confirmed=True)
         self.accepted = True
         self.save()
         # self.member.team = self.team

@@ -4,10 +4,8 @@ from django.conf.urls import patterns, url, include
 
 urlpatterns = patterns(
     'base.views',
-    url("^$", 'new_team_page', name="new_team_page"),
     url("^submit$", 'submit', name='submit_code'),
     url("^register$", 'register_team', name='register_team'),
-    url("^invite$", 'invite_member', name='invite_member'),
     url("^get/submission/(?P<submit_id>\d+).zip$", 'get_submission', name='get_submission'),
     url("^accept/(?P<slug>\w+)$", 'accept_invite', name='accept_invitation'),
     url("^list$", 'teams', name='teams_list'),

@@ -16,14 +16,14 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 from mezzanine.utils.email import send_mail_template
 
-from base.forms import SubmitForm, TeamForm, InvitationForm, TeamNameForm, WillComeForm, GameTypeForm, NewTeamForm
+from base.forms import SubmitForm, TeamForm, TeamNameForm, WillComeForm, GameTypeForm
 from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit, \
     StaffMember, StaffTeam, TeamMember
 from game.models import Competition, GameTeamSubmit, Game, GameConfiguration, TeamScore
 from .tasks import compile_code
 
 
-def registration_period_ended(request):
+def is_registration_period_ended(request):
     competition = Competition.objects.get(site_id=request.site_id)
     return timezone.now() > competition.registration_finish_date
 
@@ -37,7 +37,7 @@ def team_required(function=None, register_period_only=False):
                     request.team = request.user.team
                 return view_func(request, *args, **kwargs)
             if hasattr(request.user, 'team') and request.user.team:
-                if register_period_only and registration_period_ended(request):
+                if register_period_only and is_registration_period_ended(request):
                     messages.error(request, _("registration period has ended"))
                     resolved_login_url = reverse('my_team')
                 else:
@@ -65,76 +65,32 @@ def team_required(function=None, register_period_only=False):
 
 
 @login_required
-def new_team_page(request):
-    if registration_period_ended(request):
-        messages.error(request, _("registration period has ended"))
-
-    competition = Competition.objects.get(site_id=request.site_id)
-
-    if request.method == 'POST':
-        form = NewTeamForm(data=request.POST, user=request.user)
-        if form.is_valid():
-            form.save(competition=competition, host=request.get_host())
-    else:
-        form = NewTeamForm(user=request.user)
-
-    invitations = TeamInvitation.objects.filter(member=request.user, team__competition=competition,
-                                                accepted=False).select_related('team')
-    return render(request, 'accounts/new_team_page.html', {
-        'form': form, 'title': 'TeamRegister', 'invitations': invitations
-    })
-
-
-@login_required
 def register_team(request):
-    if registration_period_ended(request):
+    if is_registration_period_ended(request):
         messages.error(request, _("registration period has ended"))
         return redirect('teams_list')
-    if request.user.team:
-        return redirect('my_team')
+
+    user_team = request.user.team
+    if user_team:
+        if user_team.is_finalized:
+            return redirect('my_team')
+        else:
+            form = TeamForm(instance=user_team, user=request.user)
+    else:
+        form = TeamForm(user=request.user)
+
     if request.method == 'POST':
-        form = TeamForm(data=request.POST)
+        if user_team:
+            form = TeamForm(data=request.POST, user=request.user, instance=user_team)
+        else:
+            form = TeamForm(data=request.POST, user=request.user)
         if form.is_valid():
-            team = form.save(user=request.user, competition=Competition.objects.get(site_id=request.site_id))
+            team = form.save(request.get_host)
             request.session['team'] = team.id
-            return redirect('invite_member')
-    else:
-        form = TeamForm()
-    context = {'form': form, 'title': _('register new team')}
 
-    invitation = TeamInvitation.objects.filter(member=request.user, accepted=False).select_related('team').all()[:1]
-    is_invited = len(invitation) > 0
-    context['is_invited'] = is_invited
-    if is_invited:
-        context['invitation'] = invitation[0]
+    context = {'form': form, 'title': _('register new team'), 'can_submit': form.can_edit}
+
     return render(request, 'accounts/invite_team.html', context)
-
-
-@login_required
-@team_required(register_period_only=True)
-def invite_member(request):
-    if request.user.id != request.team.head_id:
-        messages.error(request, _("only head can invite"))
-        return redirect('my_team')
-    if request.method == 'POST':
-        form = InvitationForm(data=request.POST)
-        if form.is_valid():
-            if form.member.team:
-                if form.member.team == request.team:
-                    messages.info(request, _("already part of the team"))
-                else:
-                    messages.error(request, _("already part of another team"))
-            elif TeamInvitation.objects.filter(member=form.member, team=request.team).exists():
-                messages.warning(request, _("you have invited this user before!"))
-            else:
-                form.save(team=request.team, host=request.get_host)
-                messages.info(request, _("please check spams too"))
-                messages.success(request,
-                                 _('successfully invited user %(name)s') % {'name': form.member.get_full_name()})
-                return redirect('invite_member')
-    else:
-        form = InvitationForm()
-    return render(request, 'accounts/invite_team.html', {'form': form, 'title': _('invite member to team')})
 
 
 @login_required
@@ -173,7 +129,7 @@ def submit(request):
 
 @login_required
 def accept_invite(request, slug):
-    if registration_period_ended(request):
+    if is_registration_period_ended(request):
         messages.error(request, _("registration period has ended"))
         return redirect('teams_list')
     try:
@@ -408,7 +364,7 @@ def compile_log(request):
 @team_required
 @require_POST
 def remove(request):
-    if registration_period_ended(request):
+    if is_registration_period_ended(request):
         return HttpResponse(json.dumps({"success": False, "message": str(_("registration period has ended"))}),
                             content_type='application/json')
     type = request.POST.get('type')
@@ -454,7 +410,7 @@ def remove(request):
 @team_required
 @require_POST
 def finalize(request):
-    if registration_period_ended(request):
+    if is_registration_period_ended(request):
         return HttpResponse(json.dumps({"success": False, "message": str(_("registration period has ended"))}),
                             content_type='application/json')
     id = request.POST.get('id')
@@ -483,7 +439,7 @@ def finalize(request):
 @team_required
 @require_POST
 def resend_invitation_mail(request):
-    if registration_period_ended(request):
+    if is_registration_period_ended(request):
         return HttpResponse(json.dumps({"success": False, "message": str(_("registration period has ended"))}),
                             content_type='application/json')
     id = request.POST.get('id')
@@ -510,7 +466,7 @@ def resend_invitation_mail(request):
 @team_required
 @require_POST
 def accept_decline_request(request):
-    if registration_period_ended(request):
+    if is_registration_period_ended(request):
         return HttpResponse(json.dumps({"success": False, "message": str(_("registration period has ended"))}),
                             content_type='application/json')
     try:
@@ -540,7 +496,7 @@ def accept_decline_request(request):
 
 @login_required
 def request_join(request, team_id):
-    if registration_period_ended(request):
+    if is_registration_period_ended(request):
         messages.error(request, _("registration period has ended"))
         return redirect('teams_list')
     try:
@@ -626,8 +582,7 @@ def final_submission(request):
 
 
 def staff_list(request):
-    # I'm so sorry about this line of code, but I have no other choice... :(
-    competition = Competition.objects.last()
+    competition = Competition.get_current_instance()
     team_id = request.GET.get('team', None)
     root_team = get_object_or_404(StaffTeam, id=team_id) if team_id else competition.staff_team
     teams = root_team.get_descendants(include_self=True)
@@ -654,7 +609,6 @@ def staff_teams_list(request):
     # I'm so sorry about this line of code, but I have no other choice... :(
     competition = Competition.objects.last()
     root_team = competition.staff_team
-    print(generate_teams_html([root_team, ]))
     return render(request, 'staff/staff-teams-list.html', context={
         'root_team': root_team,
         'teams_html_list': generate_teams_html([root_team, ]),

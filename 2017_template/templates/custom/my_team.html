@@ -302,25 +302,7 @@
                 {#                {% endif %}#}
                 <div class="px-20 vertical spacer"></div>
                 <div class="row">
-                    {% if not team.final %}
-                        {% if request.user == team.head %}
-                            <div class="col s6 m6 l6 offset-m1">
-                                {% if not team.get_members.0 or not team.get_members.1 %}
-                                    <a href="{% url 'invite_member' %}">
-                                        <button type="button" class="btn waves-effect waves-green">
-                                            {% trans 'invite member to team' %}
-                                        </button>
-                                    </a>
-                                {% endif %}
-                            </div>
-                        {% else %}
-                            <div class="col s12 m12 l12 offset-m1">
-                                <button type="button" class="btn waves-effect waves-red leaveteam">
-                                    {% trans 'leave team' %}
-                                </button>
-                            </div>
-                        {% endif %}
-                    {% else %}
+                    {% if team.final %}
                         <div class="col s4 m4 l4" style="text-align: center">
                             <a href="/docs/competition/">
                                 <button type="button" class="btn waves-effect waves-green gamedocs">

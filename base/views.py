@@ -24,7 +24,7 @@ from .tasks import compile_code
 
 
 def is_registration_period_ended(request):
-    competition = Competition.objects.get(site_id=request.site_id)
+    competition = Competition.get_current_instance()
     return timezone.now() > competition.registration_finish_date
 
 
@@ -131,7 +131,7 @@ def submit(request):
 def accept_invite(request, slug):
     if is_registration_period_ended(request):
         messages.error(request, _("registration period has ended"))
-        return redirect('teams_list')
+        return Http404() # it should fix
     try:
         invitation = TeamInvitation.objects.get(slug=slug)
     except TeamInvitation.DoesNotExist:
@@ -144,7 +144,7 @@ def accept_invite(request, slug):
     if invitation.team.member_set.count() == invitation.team.competition.max_members:
         messages.error(request, _("the team has reached max members"))
         return redirect('my_team')
-    if invitation.team.final:
+    if invitation.team.is_finalized:
         messages.error(request, _("The team is final."))
     else:
         invitation.accept()

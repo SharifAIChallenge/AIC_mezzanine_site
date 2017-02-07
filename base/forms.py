@@ -140,7 +140,7 @@ class TeamForm(forms.ModelForm):
                 send_mail_template(_('AIChallenge team invitation'),
                                    'mail/invitation_mail',
                                    '',
-                                   self.user.email,
+                                   member.email,
                                    context={'team': instance.name,
                                             'abs_link': invitation.accept_link,
                                             'current_host': host})

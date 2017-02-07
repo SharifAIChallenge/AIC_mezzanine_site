@@ -13,6 +13,14 @@ class ContainerPage(Page):
         verbose_name_plural = _("Container Pages")
 
 
+class MenuPage(Page, RichText):
+    pass
+
+    class Meta:
+        verbose_name = _("Rich Text With Menu Page")
+        verbose_name_plural = _("Rich Text With Menu Pages")
+
+
 class QAPage(Page, RichText):
     responder_mail = models.CharField(max_length=2014, null=True, blank=True, verbose_name=_("Responder Mail"))
 

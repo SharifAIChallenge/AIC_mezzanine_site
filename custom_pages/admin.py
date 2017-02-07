@@ -5,7 +5,7 @@ from mezzanine.core import admin as mezzanineAdmin
 
 from mezzanine.pages.admin import PageAdmin
 
-from .models import ContainerPage, QAPage, AskedQuestion
+from .models import ContainerPage, QAPage, AskedQuestion, MenuPage
 
 
 class ContainerPageAdmin(PageAdmin):
@@ -39,3 +39,10 @@ class AskedQuestionAdmin(mezzanineAdmin.BaseTranslationModelAdmin):
     search_fields = ("question", "answer")
 
 admin.site.register(AskedQuestion, AskedQuestionAdmin)
+
+
+class MenuPageAdmin(PageAdmin):
+    pass
+
+admin.site.register(MenuPage, MenuPageAdmin)
+

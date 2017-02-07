@@ -1,0 +1,27 @@
+{% extends "accounts/account_form.html" %}
+{% load i18n mezzanine_tags other_ssc_tags %}
+
+
+{% block pre_form_part %}
+    {% if is_invited %}
+        <div class="messages">
+            <div class="alert alert-dismissable alert-info" data-alert="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                {% blocktrans with team_name=invitation.team.name invitation_accept_link=invitation.accept_link %}
+                    You are invited to team {{ team_name }}. <a class="btn btn-primary" href="{{ invitation_accept_link }}">accept</a>
+                {% endblocktrans %}
+            </div>
+        </div>
+    {% endif %}
+
+    <p>
+        {% blocktrans with url="/docs/site/registration/" %}
+            Click <a href='{{ url }}'>here</a> to view documentation of team registration.
+        {% endblocktrans %}
+    </p>
+{% endblock %}
+
+
+{% block main %}
+    <a class="btn" href="{% url 'teams_list' %}">{% trans "Teams" %}</a>
+{% endblock %}

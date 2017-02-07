@@ -1,0 +1,151 @@
+html {
+    font-family: "IRANSans-web" !important;
+}
+
+body {
+    background: linear-gradient(to right, rgba(235, 232, 204, 0.45), rgba(235, 232, 204, 0.45)),
+    url('/static/base/image/pattern/gplay.png'),
+    linear-gradient(to right, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25)),
+    linear-gradient(to right, rgba(235, 232, 204, 1), rgba(235, 232, 204, 1));
+}
+
+#main-content {
+    background: url('/static/base/image/back-net.png') bottom left no-repeat;
+    background-size: 40%;
+    margin-bottom: -40px;
+    padding-bottom: 20px;
+}
+
+.card-header {
+    text-align: center;
+}
+
+.card-header span {
+    border-top: solid 8px;
+}
+
+.main-header.card {
+    margin: 0px;
+    border-radius: 0px;
+}
+
+.main-header.card img {
+    border-radius: 0px;
+}
+
+#top-lang {
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.lang.flag {
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding-left: 18px;
+    height: 14px;
+    background-position: center 0px;
+}
+
+.lang.fa.flag {
+    margin-top: 14px;
+    background-image: url('/static/base/image/fa.svg');
+}
+
+.lang.en.flag {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    background-image: url('/static/base/image/en.svg');
+}
+
+#language_selector_form {
+    display: none;
+}
+
+.px-10.vertical.spacer {
+    height: 10px !important;
+}
+
+.px-20.vertical.spacer {
+    height: 20px !important;
+}
+
+.px-40.vertical.spacer {
+    height: 40px !important;
+}
+
+.px-20.horizontal.spacer {
+    width: 20px !important;
+}
+
+.px-40.horizontal.spacer {
+    width: 40px !important;
+}
+
+.right.spaced {
+    padding-left: 30px;
+}
+
+.left.spaced {
+    padding-right: 30px;
+}
+
+.full.width {
+    width: 100%;
+}
+
+.breadcrumb.rtl > span {
+    float: right;
+}
+
+.breadcrumb.ltr > span {
+    float: left;
+}
+
+.category-box {
+    margin: 0px 0px 0px 7px !important;
+    padding: 4px;
+    border-radius: 7px;
+    font-size: .4em;
+}
+
+.new-post h5 {
+    margin: 0px;
+    padding: 7px;
+}
+
+.read-more {
+    margin: 0px;
+}
+
+fieldset {
+    padding: 10px !important;
+}
+
+td, th {
+    text-align: center;
+}
+
+th {
+    background-color: #eeeeee;
+    font-weight: bold !important;
+    font-size: 17px !important;
+    padding: 10px 0 !important;
+}
+
+.alert-error {
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+}
+
+.alert-error hr {
+    border-top-color: #e6c1c7;
+}
+
+.alert-error .alert-link {
+    color: #953b39;
+}
+
+td {
+    vertical-align: middle;
+}

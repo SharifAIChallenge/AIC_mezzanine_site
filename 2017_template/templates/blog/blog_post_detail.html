@@ -1,0 +1,84 @@
+{% extends "blog/blog_post_list.html" %}
+{% load mezzanine_tags comment_tags keyword_tags rating_tags i18n future disqus_tags %}
+
+{% block meta_title %}{{ blog_post.meta_title }}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% keywords_for blog_post as tags %}
+{% for tag in tags %}{% if not forloop.first %}, {% endif %}{{ tag }}{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ blog_post.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title %}
+{{ blog_post.title }}
+{% endblock %}
+
+{% block breadcrumb_menu %}
+{{ block.super }}
+<span class="card-panel">
+    {{ blog_post.title }}
+</span>
+{% endblock %}
+
+{% block main %}
+
+{% block blog_post_main%}
+<article>
+
+
+
+    <div class="main card-panel">
+        <h4 class="cyan-text card-header">
+            <span>
+            <a class="cyan-text" href="{{ post_url }}">
+                <span class="px-40 horizontal spacer">&nbsp;</span> {{ blog_post.title }} <span class="px-40 horizontal spacer">&nbsp;</span>
+            </a>
+        </h4>
+        {% block blog_post_detail_content %}
+        {{ blog_post.content|richtext_filters|safe }}
+        {% endblock %}
+    </div>
+
+    <div>
+        {% block blog_post_detail_related_posts %}
+        {% if blog_post.related_posts.all %}
+
+        <div class="px-20 vertical spacer"></div>
+        <div id="related-posts">
+            <h4 class="teal-text">{% trans 'Related News' %}</h4>
+            <div class="row">
+                {% for post in blog_post.related_posts.all %}
+                <div class="right col s12 m6 l6">
+                    {% include 'generic/post_card.html' %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% endblock %}
+
+
+    </div>
+
+    {% block blog_post_detail_comments %}
+    {% if blog_post.allow_comments %}{% comments_for blog_post %}{% endif %}
+    {% endblock %}
+</article>
+
+
+{% block blog_post_list_post_content %}
+{% endblock %}
+
+
+{% block read_more %}
+{% endblock %}
+{% endblock %}
+
+{% endblock %}
+
+
+{% block extra_body %}
+{% endblock %}

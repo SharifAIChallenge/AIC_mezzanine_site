@@ -1,0 +1,66 @@
+{% extends "pages/page.html" %}
+{% load mezzanine_tags i18n %}
+
+{% block main %}
+    <div class="card">
+        {% block image %}
+        {% if page.featured_image %}
+        <div class="card-image">
+            <img src="{{ MEDIA_URL }}{% thumbnail page.featured_image 1100 0%}">
+        </div>
+        {% else %}{% endif %}
+        {% endblock %}
+        <h3 class="cyan-text card-header">
+            <span>
+            <a class="cyan-text" href="{{ post_url }}">
+                <span class="px-40 horizontal spacer">&nbsp;</span> {% block title %}{{ page.title }} {% endblock %}<span class="px-40 horizontal spacer">&nbsp;</span>
+            </a>
+            </span>
+        </h3>
+
+
+        <div class="card-content">
+            {% block content %}
+            {{ page.qapage.content|richtext_filters|safe }}
+            {% endblock %}
+        </div>
+
+    </div>
+    {% for question in page.qapage.askedquestion_set.all %}
+        {% if question.is_approved %}
+            <div class="card">
+                <div class="card-content">
+                    {{ question.question|linebreaks }}
+                </div>
+                {% if question.answer %}
+                    <div class="card-action">
+                        {{ question.answer|richtext_filters|safe }}
+                    </div>
+                {% else %}
+                    <div class="center-align card-action">
+                        {% trans 'No answer provided yet' %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    <div class="card-panel">
+        {% if request.GET.sent == '1' %}
+            <div class="messages">
+                <div class="alert alert-dismissable alert-success" data-alert="alert">
+                    <button type="button" class="close" data-dismiss="alert"
+                            aria-hidden="true">&times;</button>
+                    {% trans 'Thanks for asking a question.' %}
+                </div>
+            </div>
+        {% endif %}
+        <form class="mezzanine-form" method="post">
+            {% fields_for form %}
+            <div class="form-actions">
+                <input class="submit btn" type="submit" value="{% trans 'Send Question' %}">
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

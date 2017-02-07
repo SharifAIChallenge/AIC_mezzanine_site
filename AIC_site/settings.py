@@ -71,7 +71,7 @@ EXTRA_MODEL_FIELDS = (
 
 BLOG_USE_FEATURED_IMAGE = True
 
-BLOG_SLUG = "news"
+BLOG_SLUG = "blog"
 
 # If True, the django-modeltranslation will be added to the
 # INSTALLED_APPS setting.
@@ -89,6 +89,7 @@ FORMS_USE_HTML5 = True
 # See https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = [
     'aichallenge.sharif.edu:2016',
+    'aichallenge.sharif.edu:2017'
     'aichallenge.sharif.edu',
     'localhost:8000',
     'localhost',
@@ -228,7 +229,7 @@ INSTALLED_APPS = (
     "django.contrib.sitemaps",
     "django.contrib.staticfiles",
     "import_export",
-    "2016_template",
+    "2017_template",
     'billing',
     'storages',
     'queued_storage',
@@ -334,7 +335,7 @@ RAVEN_CONFIG = {
 }
 
 LOGIN_URL = "/login/"
-LOGIN_REDIRECT_URL = "/team/my"
+#LOGIN_REDIRECT_URL = "/"
 LOGOUT_URL = "/logout/"
 SIGNUP_URL = "/signup/"
 ACCOUNTS_PROFILE_FORM_CLASS = "base.forms.ProfileForm"

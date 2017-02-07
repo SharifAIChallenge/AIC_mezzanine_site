@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-07 11:31+0330\n"
+"POT-Creation-Date: 2017-02-07 11:51+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -417,7 +417,7 @@ msgstr ""
 #: 2017_template/templates/custom/my_games.html:80
 #: 2017_template/templates/custom/my_games.html:169
 #: 2017_template/templates/custom/my_team.html:195 base/models.py:71
-#: base/models.py:151 base/models.py:205 base/models.py:239 game/models.py:224
+#: base/models.py:151 base/models.py:205 base/models.py:241 game/models.py:224
 msgid "team"
 msgstr "Team"
 
@@ -507,7 +507,7 @@ msgid "finalize team"
 msgstr "Finilize the team"
 
 #: 2016_template/templates/custom/my_team.html:221
-#: 2017_template/templates/custom/my_team.html:221 base/models.py:248
+#: 2017_template/templates/custom/my_team.html:221 base/models.py:250
 msgid "join requests"
 msgstr "Join requests"
 
@@ -584,7 +584,7 @@ msgstr ""
 #: 2017_template/templates/custom/scoreboard.html:47
 #: 2017_template/templates/custom/teams_list.html:47
 #: 2017_template/templates/custom/teams_list.html:48 base/models.py:206
-#: base/models.py:240
+#: base/models.py:242
 msgid "member"
 msgstr "Member"
 
@@ -594,7 +594,7 @@ msgid "friendly game"
 msgstr "Friendly Game"
 
 #: 2016_template/templates/custom/teams_list.html:90
-#: 2017_template/templates/custom/teams_list.html:90 base/models.py:247
+#: 2017_template/templates/custom/teams_list.html:90 base/models.py:249
 msgid "join request"
 msgstr "Join request"
 
@@ -898,27 +898,27 @@ msgstr ""
 msgid "brother you are hitting wrong!"
 msgstr ""
 
-#: base/forms.py:97
+#: base/forms.py:100
 msgid "this user has another team"
 msgstr ""
 
-#: base/forms.py:101
+#: base/forms.py:104
 msgid "this user has not account"
 msgstr ""
 
-#: base/forms.py:103
+#: base/forms.py:106
 msgid "at least {} members required for team"
 msgstr ""
 
-#: base/forms.py:110
+#: base/forms.py:113
 msgid "you can not remove an accepted member"
 msgstr ""
 
-#: base/forms.py:134 base/views.py:454
+#: base/forms.py:140 base/views.py:454
 msgid "AIChallenge team invitation"
 msgstr ""
 
-#: base/forms.py:159 game/forms.py:12 game/forms.py:42 game/forms.py:100
+#: base/forms.py:165 game/forms.py:12 game/forms.py:42 game/forms.py:100
 #: game/models.py:132
 msgid "game type"
 msgstr "Game Type"
@@ -1094,7 +1094,7 @@ msgstr ""
 msgid "staff member"
 msgstr "Staff Members"
 
-#: base/models.py:204 base/models.py:238
+#: base/models.py:204 base/models.py:240
 msgid "accepted"
 msgstr "Accepted"
 
@@ -1114,27 +1114,27 @@ msgstr ""
 msgid "invitations"
 msgstr ""
 
-#: base/models.py:243
+#: base/models.py:245
 msgid "request of {} to join {} [{}]"
 msgstr ""
 
-#: base/models.py:289
+#: base/models.py:291
 msgid "requester"
 msgstr ""
 
-#: base/models.py:290
+#: base/models.py:292
 msgid "requestee"
 msgstr ""
 
-#: base/models.py:292
+#: base/models.py:294
 msgid "state"
 msgstr ""
 
-#: base/models.py:293
+#: base/models.py:295
 msgid "accept time"
 msgstr ""
 
-#: base/models.py:294 game/models.py:133
+#: base/models.py:296 game/models.py:133
 msgid "game configuration"
 msgstr ""
 

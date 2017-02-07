@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-07 11:31+0330\n"
+"POT-Creation-Date: 2017-02-07 11:51+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -421,7 +421,7 @@ msgstr "درخواست‌های بازی"
 #: 2017_template/templates/custom/my_games.html:80
 #: 2017_template/templates/custom/my_games.html:169
 #: 2017_template/templates/custom/my_team.html:195 base/models.py:71
-#: base/models.py:151 base/models.py:205 base/models.py:239 game/models.py:224
+#: base/models.py:151 base/models.py:205 base/models.py:241 game/models.py:224
 msgid "team"
 msgstr "تیم"
 
@@ -511,7 +511,7 @@ msgid "finalize team"
 msgstr "نهایی کردن تیم"
 
 #: 2016_template/templates/custom/my_team.html:221
-#: 2017_template/templates/custom/my_team.html:221 base/models.py:248
+#: 2017_template/templates/custom/my_team.html:221 base/models.py:250
 msgid "join requests"
 msgstr "درخواست‌های عضویت"
 
@@ -590,7 +590,7 @@ msgstr ""
 #: 2017_template/templates/custom/scoreboard.html:47
 #: 2017_template/templates/custom/teams_list.html:47
 #: 2017_template/templates/custom/teams_list.html:48 base/models.py:206
-#: base/models.py:240
+#: base/models.py:242
 msgid "member"
 msgstr "عضو"
 
@@ -600,7 +600,7 @@ msgid "friendly game"
 msgstr "بازی دوستانه"
 
 #: 2016_template/templates/custom/teams_list.html:90
-#: 2017_template/templates/custom/teams_list.html:90 base/models.py:247
+#: 2017_template/templates/custom/teams_list.html:90 base/models.py:249
 msgid "join request"
 msgstr "درخواست عضویت"
 
@@ -920,31 +920,31 @@ msgstr "تنها سرگروه امکان تغییر تیم را دارد"
 msgid "brother you are hitting wrong!"
 msgstr "داداش داری اشتباه می‌زنی"
 
-#: base/forms.py:97
+#: base/forms.py:100
 #, fuzzy
 #| msgid "user not found"
 msgid "this user has another team"
 msgstr "کاربر یافت نشد"
 
-#: base/forms.py:101
+#: base/forms.py:104
 #, fuzzy
 #| msgid "user not found"
 msgid "this user has not account"
 msgstr "کاربر یافت نشد"
 
-#: base/forms.py:103
+#: base/forms.py:106
 msgid "at least {} members required for team"
 msgstr "حداقل {} نفر برای تشکیل تیم نیاز است."
 
-#: base/forms.py:110
+#: base/forms.py:113
 msgid "you can not remove an accepted member"
 msgstr "شما نمی‌توانید یک عضو پذیرفته شده را حذف کنید."
 
-#: base/forms.py:134 base/views.py:454
+#: base/forms.py:140 base/views.py:454
 msgid "AIChallenge team invitation"
 msgstr "دعوت عضویت تیم در AIChallenge"
 
-#: base/forms.py:159 game/forms.py:12 game/forms.py:42 game/forms.py:100
+#: base/forms.py:165 game/forms.py:12 game/forms.py:42 game/forms.py:100
 #: game/models.py:132
 msgid "game type"
 msgstr "نوع بازی"
@@ -1122,7 +1122,7 @@ msgstr "تصویر"
 msgid "staff member"
 msgstr "عضو تیم برگزاری"
 
-#: base/models.py:204 base/models.py:238
+#: base/models.py:204 base/models.py:240
 msgid "accepted"
 msgstr "پذیرفته"
 
@@ -1142,27 +1142,27 @@ msgstr "دعوت"
 msgid "invitations"
 msgstr "دعوت‌ها"
 
-#: base/models.py:243
+#: base/models.py:245
 msgid "request of {} to join {} [{}]"
 msgstr "درخواست {} به پیوستن {} [{}]"
 
-#: base/models.py:289
+#: base/models.py:291
 msgid "requester"
 msgstr "درخواست دهنده"
 
-#: base/models.py:290
+#: base/models.py:292
 msgid "requestee"
 msgstr "مورد درخواست"
 
-#: base/models.py:292
+#: base/models.py:294
 msgid "state"
 msgstr "وضعیت"
 
-#: base/models.py:293
+#: base/models.py:295
 msgid "accept time"
 msgstr "زمان قبول"
 
-#: base/models.py:294 game/models.py:133
+#: base/models.py:296 game/models.py:133
 msgid "game configuration"
 msgstr "تنظیمات بازی"
 

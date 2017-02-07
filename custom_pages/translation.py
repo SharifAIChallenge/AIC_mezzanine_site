@@ -24,4 +24,3 @@ class TranslatedMenuPage(TranslationOptions):
     fields = ("content", )
 
 translator.register(MenuPage, TranslatedMenuPage)
-

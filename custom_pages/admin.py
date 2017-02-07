@@ -45,4 +45,3 @@ class MenuPageAdmin(PageAdmin):
     pass
 
 admin.site.register(MenuPage, MenuPageAdmin)
-

@@ -28,7 +28,7 @@ def is_registration_period_ended(request):
     return timezone.now() > competition.registration_finish_date
 
 
-def team_required(function=None, register_period_only=False):
+def team_required_and_finilized(function=None, register_period_only=False):
     def decorator(view_func):
         @wraps(view_func)
         def _wrapped_view(request, *args, **kwargs):
@@ -41,6 +41,9 @@ def team_required(function=None, register_period_only=False):
                     messages.error(request, _("registration period has ended"))
                     resolved_login_url = reverse('my_team')
                 else:
+                    if not request.user.team.is_finalized:
+                        messages.error(request, _("Your team is not finalized."))
+                        return redirect('register_team')
                     request.team = request.user.team
                     return view_func(request, *args, **kwargs)
             else:
@@ -94,15 +97,17 @@ def register_team(request):
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 def submit(request):
+    print("i was here")
     competition = request.team.competition
-    if not request.team.final:
+    if not request.team.is_finalized():
         messages.error(request, _('your team must be final'))
-        return redirect('my_team')
+        return redirect('register_team')
     if request.team.member_set.count() < request.team.competition.min_members:
         messages.error(request, _("your team does not have enough members"))
-        return redirect('invite_member')
+        return redirect('register_team')
+
     if request.method == 'POST':
 
         if not request.user.is_superuser and not request.team.competition.submit_active:
@@ -206,7 +211,7 @@ def scoreboard(request):
 
 
 @login_required
-@team_required(register_period_only=True)
+@team_required_and_finilized(register_period_only=True)
 @require_POST
 def change_team_name(request, id):
     team_name_form = TeamNameForm(request.POST, instance=Team.objects.get(id=id))
@@ -222,15 +227,9 @@ def change_team_name(request, id):
 
 
 @login_required
-@team_required
-def my_team(request):
+@team_required_and_finilized
+def my_team_under_construction(request):
     # A temporary response, while my_team page is under construction
-    try:
-        user_team = request.user.team
-        if user_team is None or not user_team.is_finalized:
-            return redirect('register_team')
-    except:
-        return redirect('register_team')
 
     context = dict()
     page = dict()
@@ -243,41 +242,17 @@ def my_team(request):
 
 
 @login_required
-@team_required
-def my_team_under_construction(request):
+@team_required_and_finilized
+def my_team_info(request):
     """ The original my_team view, which should replace current my_team view """
-    try:
-        user_team = request.user.team
-        if user_team is None or not user_team.is_finalized:
-            return redirect('register_team')
-    except:
-        return redirect('register_team')
-
-    if request.method == 'POST':
-        will_come_form = WillComeForm(request.POST, instance=request.team)
-        if will_come_form.is_valid():
-            will_come_form.save()
-            return redirect('my_team')
-    else:
-        will_come_form = WillComeForm(instance=request.team)
-    for message in Message.objects.filter(to_date__gte=timezone.now(), from_date__lte=timezone.now()):
-        if get_language_from_request(request).startswith('en'):
-            messages.info(request, message.english_text)
-        else:
-            messages.info(request, message.persian_text)
     team = request.team
-    team_name_form = TeamNameForm(instance=team)
-    join_requests = JoinRequest.objects.filter(team=team, accepted__isnull=True).select_related('member').all()
     return render(request, 'custom/my_team.html', {
         'team': team,
-        'team_name_form': team_name_form,
-        'join_requests': join_requests,
-        'will_come_form': will_come_form,
     })
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 def my_games(request):
     if not request.user.is_superuser and not request.team.competition.my_games_active:
         raise Http404()
@@ -300,7 +275,7 @@ def my_games(request):
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 @require_POST
 def handle_game_request(request):
     if not request.team.final:
@@ -345,7 +320,7 @@ def handle_game_request(request):
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 @require_POST
 def game_request(request):
     if not request.team.final:
@@ -375,7 +350,7 @@ def game_request(request):
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 def compile_log(request):
     if 'submission_id' not in request.GET:
         return HttpResponseBadRequest()
@@ -388,7 +363,7 @@ def compile_log(request):
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 @require_POST
 def remove(request):
     if is_registration_period_ended(request):
@@ -434,7 +409,7 @@ def remove(request):
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 @require_POST
 def finalize(request):
     if is_registration_period_ended(request):
@@ -463,7 +438,7 @@ def finalize(request):
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 @require_POST
 def resend_invitation_mail(request):
     if is_registration_period_ended(request):
@@ -490,7 +465,7 @@ def resend_invitation_mail(request):
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 @require_POST
 def accept_decline_request(request):
     if is_registration_period_ended(request):
@@ -552,7 +527,7 @@ def request_join(request, team_id):
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 def get_submission(request, submit_id):
     submit = Submit.objects.get(pk=submit_id)
     if request.team.id != submit.team.id:
@@ -592,7 +567,7 @@ def play_log(request):
 
 
 @login_required
-@team_required
+@team_required_and_finilized
 def final_submission(request):
     if not request.user.is_superuser and not request.team.competition.submit_active:
         raise PermissionDenied()

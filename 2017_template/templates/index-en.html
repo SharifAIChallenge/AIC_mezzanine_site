@@ -55,17 +55,19 @@
     <div class="wrapper">
         <a href="#0" class="logo" tabindex="-1" hidefocus="true"></a>
         <ul class="menu landingPage">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" id="power"><span class="glyphicon glyphicon-off power"></span></a>
+                <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"  class="signin-dump">{% trans "edit profile" %}</a>
+            {% else %}
+                <a href="{% url 'login' %}" tabindex="-1" hidefocus="true"
+                   class="signin-dump">Login/Sign Up</a>
+            {% endif %}
             <li><a href="#index" tabindex="-1" hidefocus="true">Home</a></li>
             <li><a href="#info" tabindex="-1" hidefocus="true">Introduction</a></li>
             <li><a href="#program" tabindex="-1" hidefocus="true">Schedule</a></li>
             <li><a href="#history" tabindex="-1" hidefocus="true">History</a></li>
             <li><a href="#award" tabindex="-1" hidefocus="true">Trophies</a></li>
             <li><a href="#about" tabindex="-1" hidefocus="true">About</a></li>
-            <li><a href="/contact-us/" tabindex="-1" hidefocus="true">Contact us</a></li>
-            <!--
-            <li><a href="/blog/" tabindex="-1" hidefocus="true">Blog</a></li>
-            -->
-            <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
         </ul>
         <div class="mobile">
             <a id="menu-toggle" href="#" class="menu-button">
@@ -80,41 +82,25 @@
                 <li><a href="#history" tabindex="-1" hidefocus="true">History</a></li>
                 <li><a href="#award" tabindex="-1" hidefocus="true">Trophies</a></li>
                 <li><a href="#about" tabindex="-1" hidefocus="true">About</a></li>
-                <li><a href="/contact-us/" tabindex="-1" hidefocus="true">Contact us</a></li>
-                <!--
                 <li><a href="/blog/" tabindex="-1" hidefocus="true">Blog</a></li>
-                -->
-                <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فارسی</a></li>
 
                 {% if user.is_authenticated %}
-                    <li><a href="/blog/" tabindex="-1" hidefocus="true" class="signin-dump">Blog</a></li>
-                                            <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"
-                           class="signin-dump">{% trans 'edit profile' %}</a>
-                    <li><a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">logout</a></li>
+                    <li><a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true">{% trans 'edit profile' %}</a></li>
+                    <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فا</a></li>
+                    <li><a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" >logout</a></li>
                 {% else %}
-                    <li><a href="/blog/" tabindex="-1" hidefocus="true" class="signin-dump">Blog</a></li>
-                    <li><a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">login/Sign Up</a></li>
-                    <!--
-                    <li><a href="{# url 'signup' #}" tabindex="-1" hidefocus="true"
-                       class="signin-dump">signup</a></li>
-                       -->
+                    <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فا</a></li>
+                    <li><a href="{% url 'login' %}" tabindex="-1" hidefocus="true">login/Sign Up</a></li>
                 {% endif %}
+
             </ul>
         </div>
         <div class="float">
-            {% if user.is_authenticated %}
-                <a href="/blog/" tabindex="-1" hidefocus="true" class="signin-dump">Blog</a>
-                <a href="{% url 'profile_update' %}" tabindex="-1" hidefocus="true"
-                           class="signin-dump">{% trans 'edit profile' %}</a>
-                <a href="{% url 'logout' %}" tabindex="-1" hidefocus="true" class="signout-dump">Logout</a>
-            {% else %}
-                <a href="/blog/" tabindex="-1" hidefocus="true" class="signin-dump">Blog</a>
-                <a href="{% url 'login' %}" tabindex="-1" hidefocus="true" class="signin-dump">Login/Sign Up</a>
-                <!--
-                <a href="{# url 'signup'#}" tabindex="-1" hidefocus="true"
-                   class="signup-dump">Sign Up</a>
-                   -->
-            {% endif %}
+            <ul class="menuleft">
+                <li><a href="/contact-us/" tabindex="-1" hidefocus="true">Contact us</a></li>
+                <li><a href="/blog/" tabindex="-1" hidefocus="true">Blog</a></li>
+                <li><a href="#" tabindex="-1" hidefocus="true" onclick="setlang('fa')">فا</a></li>
+            </ul>
         </div>
     </div>
 </div>

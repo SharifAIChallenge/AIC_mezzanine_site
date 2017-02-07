@@ -227,9 +227,9 @@ class TeamInvitation(models.Model):
             team_member = TeamMember.objects.get(member=self.member, team=self.team)
             team_member.confirmed = True
             team_member.date_confirmed = datetime.datetime.now()
+            team_member.save()
             self.accepted = True
             self.save()
-            TeamInvitation.objects.filter(member=self.member, team__competition=self.team.competition).delete()
 
     @property
     def accept_link(self):

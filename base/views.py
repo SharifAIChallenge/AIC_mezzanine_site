@@ -141,9 +141,9 @@ def accept_invite(request, slug):
     if request.user.team:
         messages.error(request, _("you already have a team"))
         return redirect('my_team')
-    if invitation.team.member_set.count() == invitation.team.competition.max_members:
-        messages.error(request, _("the team has reached max members"))
-        return redirect('my_team')
+    # if invitation.team.member_set.count() == invitation.team.competition.max_members:
+    #     messages.error(request, _("the team has reached max members"))
+    #     return redirect('my_team')
     if invitation.team.is_finalized:
         messages.error(request, _("The team is final."))
     else:

@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_countries.widgets import CountrySelectWidget
 from mezzanine.accounts.forms import ProfileForm as mezzanine_profile_form
 from mezzanine.utils.email import send_mail_template
+from requests.exceptions import ConnectionError
 
 from base.models import Submit, Team, Member, TeamInvitation, TeamMember
 from game.models import Game, Competition
@@ -130,6 +131,8 @@ class TeamForm(forms.ModelForm):
                                        confirmed=member == self.user)
                             for member in new_members]
             TeamMember.objects.bulk_create(team_members)
+
+        mail_error = False
         for member in self.members:
             if member == self.user:
                 continue
@@ -137,14 +140,18 @@ class TeamForm(forms.ModelForm):
                                                                       member=member,
                                                                       defaults={'accepted': False})
             if new:
-                send_mail_template(_('AIChallenge team invitation'),
-                                   'mail/invitation_mail',
-                                   '',
-                                   member.email,
-                                   context={'team': instance.name,
-                                            'abs_link': invitation.accept_link,
-                                            'current_host': host})
-
+                try:
+                    send_mail_template(_('AIChallenge team invitation'),
+                                       'mail/invitation_mail',
+                                       '',
+                                       member.email,
+                                       context={'team': instance.name,
+                                                'abs_link': invitation.accept_link,
+                                                'current_host': host})
+                except :
+                    mail_error = True
+        if mail_error:
+            raise ConnectionError()
         return instance
 
 

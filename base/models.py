@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import, unicode_literals
-
 import base64
-import datetime
 import re
 import uuid
+
+import datetime
 
 from ckeditor.fields import RichTextField
 from django.conf import settings
@@ -12,15 +11,14 @@ from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models import Max
+from django.db.models import SET_NULL, Max
 from django.db.models.signals import post_save
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
-
-from game.models import Game, Competition
+from game.models import Game, GameTeamSubmit
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -30,17 +28,8 @@ class Member(AbstractUser):
     mobile_number = models.CharField(verbose_name=_("mobile number"), max_length=11, blank=True)
     education_place = models.CharField(verbose_name=_("education place"), max_length=255, blank=True)
     country = CountryField(verbose_name=_("country"), blank_label=_("choose your country"), default='IR')
-    teams = models.ManyToManyField('base.Team', verbose_name=_("teams"), blank=True,
-                                   through="TeamMember")
+    team = models.ForeignKey('base.Team', verbose_name=_("team"), null=True, blank=True, on_delete=SET_NULL)
     national_code = models.CharField(max_length=10, null=True, verbose_name=_("national code"), blank=True)
-
-    @property
-    def team(self):
-        competition = Competition.get_current_instance()
-        for x in self.teams.all():
-            if x.competition == competition:
-                return x
-        return None
 
 
 class Team(models.Model):
@@ -53,6 +42,7 @@ class Team(models.Model):
     timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
     competition = models.ForeignKey('game.Competition', verbose_name=_('competition'), null=True)
     name = models.CharField(verbose_name=_('name'), max_length=200)
+    head = models.ForeignKey('base.Member', verbose_name=_("team head"), related_name='+')
     show = models.BooleanField(default=True, verbose_name=_("show team in public list"))
     final = models.BooleanField(default=False, verbose_name=_("team is final"))
     site_participation_possible = models.BooleanField(default=False)
@@ -66,7 +56,7 @@ class Team(models.Model):
     payment_value = models.PositiveIntegerField(verbose_name=_("Payment value (rials)"), default=0)
 
     def __unicode__(self):
-        return "Team%d(%s)" % (self.id, self.name)
+        return 'Team%d(%s)' % (self.id, self.name)
 
     class Meta:
         verbose_name = _('team')
@@ -95,39 +85,6 @@ class Team(models.Model):
         from billing.models import Transaction
         transaction = Transaction.objects.filter(status='v', user__in=self.member_set)
         return len(transaction) > 0
-
-    @property
-    def is_finalized(self):
-        competition = Competition.get_current_instance()
-        if self.member_set.count() >= competition.min_members:
-            for team_member in self.teammember_set.all():
-                if not team_member.confirmed:
-                    return False
-            return True
-        return False
-
-    @property
-    def head(self):
-        team_member = TeamMember.objects.filter(team=self, is_head=True).first()
-        return team_member.member if team_member else None
-
-
-class TeamMember(models.Model):
-    member = models.ForeignKey(Member)
-    team = models.ForeignKey(Team)
-    confirmed = models.BooleanField(default=False)
-    is_head = models.BooleanField(default=False)
-    date_joined = models.DateTimeField(auto_now_add=True)
-    date_confirmed = models.DateTimeField(null=True)
-
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        if not self.id:
-            if TeamMember.objects.filter(member=self.member,
-                                         confirmed=True,
-                                         team__competition__id=self.team.competition.id):
-                raise Exception(u"یک نفر در دو تیم نمی‌تواند عضو باشد!")
-        super(TeamMember, self).save(force_insert, force_update, using, update_fields)
 
 
 def team_code_directory_path(instance, filename):
@@ -222,7 +179,8 @@ class TeamInvitation(models.Model):
         verbose_name_plural = _('invitations')
 
     def accept(self):
-        TeamMember.objects.create(member=self.member, team=self.team, confirmed=True)
+        self.member.team = self.team
+        self.member.save()
         self.accepted = True
         self.save()
 
@@ -245,13 +203,10 @@ class JoinRequest(models.Model):
         verbose_name_plural = _('join requests')
 
     def accept(self):
-        TeamMember.objects.create(member=self.member, team=self.team, confirmed=True)
+        self.member.team = self.team
+        self.member.save()
         self.accepted = True
         self.save()
-        # self.member.team = self.team
-        # self.member.save()
-        # self.accepted = True
-        # self.save()
 
 
 class Email(models.Model):

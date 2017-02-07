@@ -921,14 +921,10 @@ msgid "brother you are hitting wrong!"
 msgstr "داداش داری اشتباه می‌زنی"
 
 #: base/forms.py:100
-#, fuzzy
-#| msgid "user not found"
 msgid "this user has another team"
 msgstr "کاربر یافت نشد"
 
 #: base/forms.py:104
-#, fuzzy
-#| msgid "user not found"
 msgid "this user has not account"
 msgstr "کاربر یافت نشد"
 

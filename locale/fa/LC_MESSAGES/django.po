@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-07 19:47+0330\n"
+"POT-Creation-Date: 2017-02-08 01:43+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,6 @@ msgstr ""
 "                "
 
 #: 2016_template/templates/accounts/invite_team.html:18
-#: 2017_template/templates/accounts/invite_team.html:18
 #, python-format
 msgid ""
 "\n"
@@ -76,7 +75,6 @@ msgstr ""
 #: 2016_template/templates/custom/my_games.html:55
 #: 2016_template/templates/custom/teams_list.html:4
 #: 2016_template/templates/custom/teams_list.html:5
-#: 2017_template/templates/accounts/invite_team.html:34
 #: 2017_template/templates/custom/my_games.html:55
 #: 2017_template/templates/custom/teams_list.html:4
 #: 2017_template/templates/custom/teams_list.html:5
@@ -156,13 +154,13 @@ msgid "submit period has ended"
 msgstr "زمان ارسال کد به اتمام رسیده است"
 
 #: 2016_template/templates/base.html:82 2016_template/templates/index.html:67
-#: 2017_template/templates/base.html:85 2017_template/templates/index.html:69
+#: 2017_template/templates/base.html:90 2017_template/templates/index.html:74
 msgid "Change"
 msgstr "تغییر"
 
 #: 2016_template/templates/base.html:105
 #: 2016_template/templates/search_results.html:13
-#: 2017_template/templates/base.html:108
+#: 2017_template/templates/base.html:120
 #: 2017_template/templates/search_results.html:13
 msgid "Home"
 msgstr "صفحه‌ی اصلی"
@@ -197,33 +195,33 @@ msgstr "مرحله گروهی"
 msgid "elimination stage"
 msgstr "مرحله حذفی"
 
-#: 2016_template/templates/base.html:118 2017_template/templates/base.html:136
-#: 2017_template/templates/base.html:142
+#: 2016_template/templates/base.html:118 2017_template/templates/base.html:147
 #: 2017_template/templates/blog/blog_post_list.html:4
 #: 2017_template/templates/blog/blog_post_list.html:25
 msgid "blog"
 msgstr "بلاگ"
 
-#: 2016_template/templates/base.html:130 2017_template/templates/base.html:138
-#: 2017_template/templates/index-en.html:60
-#: 2017_template/templates/index-en.html:88
-#: 2017_template/templates/index.html:77 2017_template/templates/index.html:109
+#: 2016_template/templates/base.html:130 2017_template/templates/base.html:115
+#: 2017_template/templates/index-en.html:65
+#: 2017_template/templates/index-en.html:93
+#: 2017_template/templates/index.html:82
+#: 2017_template/templates/index.html:114
 msgid "edit profile"
 msgstr " ویرایش مشخصات"
 
-#: 2016_template/templates/base.html:132 2017_template/templates/base.html:140
+#: 2016_template/templates/base.html:132
 msgid "logout"
 msgstr "خروج"
 
-#: 2016_template/templates/base.html:135 2017_template/templates/base.html:144
+#: 2016_template/templates/base.html:135
 msgid "login"
 msgstr "ورود"
 
-#: 2016_template/templates/base.html:137 2017_template/templates/base.html:144
+#: 2016_template/templates/base.html:137
 msgid "signup"
 msgstr "ثبت نام"
 
-#: 2016_template/templates/base.html:199 2017_template/templates/base.html:205
+#: 2016_template/templates/base.html:199 2017_template/templates/base.html:213
 msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
 msgstr "انجمن علمی دانشجویی دانشکده مهندسی کامپیوتر دانشگاه صنعتی شریف"
 
@@ -809,6 +807,23 @@ msgstr "ادامه‌ی نوشتار"
 msgid "staff"
 msgstr "برگزار کنندگان"
 
+#: 2017_template/templates/accounts/invite_team.html:18
+msgid ""
+"\n"
+"            <p>Until you don't register a complete team, you can't go to "
+"your team page.\n"
+"                You can see competition documentation from the <em>blog</em>."
+"</p>\n"
+"            <p>Click <a href=%(url)s>here</a> to view documentation of team "
+"registration.<p>\n"
+"        "
+msgstr ""
+"\n"
+"            <p>تا زمانی که تیم شما به طور کامل ثبت نشده است، نمی‌توانید به صفحه‌ی تیمتان بروید.                  "
+"تا زمان تکمیل تیم، می‌توانید مستندات مسابقه را از طریق بلاگ مسابقه دریافت نمایید."
+"            <p>برای مشاهده‌ی راهنمای ثبت تیم  "
+"<a href=%(url)s>این‌ صفحه</a> را مشاهده کنید.\n"
+"        "
 #: 2017_template/templates/accounts/new_team_page.html:11
 #, fuzzy, python-format
 #| msgid ""
@@ -864,11 +879,11 @@ msgstr "انگلیسی"
 msgid "base"
 msgstr "اصلی"
 
-#: base/forms.py:15
+#: base/forms.py:16
 msgid "Accept Terms"
 msgstr "قوانین را می‌پذیرم"
 
-#: base/forms.py:16
+#: base/forms.py:17
 msgid "terms_of_service_text"
 msgstr ""
 "قوانین مسابقه:<br>\n"
@@ -883,43 +898,43 @@ msgstr ""
 "۵- امکان اعمال تغییرات مقتضی در زمان‌بندی های اعلام شده درصورت نیاز، برای تیم "
 "برگزار کننده مسابقات محفوظ می‌باشد.<br>"
 
-#: base/forms.py:60
+#: base/forms.py:61
 msgid "member {}"
 msgstr "عضو {}"
 
-#: base/forms.py:62
+#: base/forms.py:63
 msgid "email or username"
 msgstr "ایمیل یا نام کاربری"
 
-#: base/forms.py:80
+#: base/forms.py:81
 msgid "just team's head can edit team"
 msgstr "تنها سرگروه امکان تغییر تیم را دارد"
 
-#: base/forms.py:87
+#: base/forms.py:88
 msgid "brother you are hitting wrong!"
 msgstr "داداش داری اشتباه می‌زنی"
 
-#: base/forms.py:100
+#: base/forms.py:101
 msgid "this user has another team"
 msgstr "کاربر یافت نشد"
 
-#: base/forms.py:104
+#: base/forms.py:105
 msgid "this user has not account"
 msgstr "کاربر یافت نشد"
 
-#: base/forms.py:106
+#: base/forms.py:107
 msgid "at least {} members required for team"
 msgstr "حداقل {} نفر برای تشکیل تیم نیاز است."
 
-#: base/forms.py:113
+#: base/forms.py:114
 msgid "you can not remove an accepted member"
 msgstr "شما نمی‌توانید یک عضو پذیرفته شده را حذف کنید."
 
-#: base/forms.py:140 base/views.py:456
+#: base/forms.py:144 base/views.py:456
 msgid "AIChallenge team invitation"
 msgstr "دعوت عضویت تیم در AIChallenge"
 
-#: base/forms.py:165 game/forms.py:12 game/forms.py:42 game/forms.py:100
+#: base/forms.py:172 game/forms.py:12 game/forms.py:42 game/forms.py:100
 #: game/models.py:132
 msgid "game type"
 msgstr "نوع بازی"
@@ -1175,10 +1190,6 @@ msgstr "تیم شما تعداد اعضای کافی ندارد"
 msgid "you already have a team"
 msgstr "شما در حال حاضر عضو این تیم هستید"
 
-#: base/views.py:150 base/views.py:492 base/views.py:511
-msgid "the team has reached max members"
-msgstr "تیم شما به حداکثر تعداد رسیده است"
-
 #: base/views.py:153 base/views.py:222 base/views.py:379 base/views.py:393
 #: base/views.py:513
 msgid "The team is final."
@@ -1234,6 +1245,10 @@ msgstr "با موفقیت بازارسال شد"
 #: base/views.py:489
 msgid "already part of another team"
 msgstr "عضو تیم دیگری است."
+
+#: base/views.py:492 base/views.py:511
+msgid "the team has reached max members"
+msgstr "تیم شما به حداکثر تعداد رسیده است"
 
 #: base/views.py:517
 msgid "AIChallenge team join request"
@@ -1723,8 +1738,8 @@ msgstr "نوع بازی"
 #~ msgid "avatar"
 #~ msgstr "عکس پروفایل"
 
-msgid "contact"
-msgstr "تماس با ما"
+#~ msgid "contact"
+#~ msgstr "تماس با ما"
 
 #~ msgid "password"
 #~ msgstr "گذرواژه"

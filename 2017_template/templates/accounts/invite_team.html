@@ -15,8 +15,10 @@
     {% endif %}
 
     <p>
-        {% blocktrans with url="/docs/site/registration/" %}
-            Click <a href='{{ url }}'>here</a> to view documentation of team registration.
+        {% blocktrans with url="/team/registration_guide" %}
+            <p>Until you don't register a complete team, you can't go to your team page.
+                You can see competition documentation from the <em>blog</em>.</p>
+            <p>Click <a href={{ url }}>here</a> to view documentation of team registration.<p>
         {% endblocktrans %}
     </p>
 {% endblock %}
@@ -30,6 +32,6 @@
     {% endif %}
 {% endblock %}
 
-{% block main %}
-    <a class="btn" href="{% url 'teams_list' %}">{% trans "Teams" %}</a>
-{% endblock %}
+{#{% block main %}#}
+{#    <a class="btn" href="{% url 'teams_list' %}">{% trans "Teams" %}</a>#}
+{#{% endblock %}#}

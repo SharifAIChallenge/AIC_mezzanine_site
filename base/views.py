@@ -35,7 +35,7 @@ def team_required_and_finilized(function=None, register_period_only=False):
             if request.user.is_superuser:
                 if hasattr(request.user, 'team') and request.user.team:
                     request.team = request.user.team
-                return view_func(request, *args, **kwargs)
+                    return view_func(request, *args, **kwargs)
             if hasattr(request.user, 'team') and request.user.team:
                 if register_period_only and is_registration_period_ended(request):
                     messages.error(request, _("registration period has ended"))

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-07 19:47+0330\n"
+"POT-Creation-Date: 2017-02-08 01:43+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,6 @@ msgid ""
 msgstr ""
 
 #: 2016_template/templates/accounts/invite_team.html:18
-#: 2017_template/templates/accounts/invite_team.html:18
 #, python-format
 msgid ""
 "\n"
@@ -68,7 +67,6 @@ msgstr ""
 #: 2016_template/templates/custom/my_games.html:55
 #: 2016_template/templates/custom/teams_list.html:4
 #: 2016_template/templates/custom/teams_list.html:5
-#: 2017_template/templates/accounts/invite_team.html:34
 #: 2017_template/templates/custom/my_games.html:55
 #: 2017_template/templates/custom/teams_list.html:4
 #: 2017_template/templates/custom/teams_list.html:5
@@ -148,13 +146,13 @@ msgid "submit period has ended"
 msgstr ""
 
 #: 2016_template/templates/base.html:82 2016_template/templates/index.html:67
-#: 2017_template/templates/base.html:85 2017_template/templates/index.html:69
+#: 2017_template/templates/base.html:90 2017_template/templates/index.html:74
 msgid "Change"
 msgstr ""
 
 #: 2016_template/templates/base.html:105
 #: 2016_template/templates/search_results.html:13
-#: 2017_template/templates/base.html:108
+#: 2017_template/templates/base.html:120
 #: 2017_template/templates/search_results.html:13
 msgid "Home"
 msgstr ""
@@ -191,33 +189,33 @@ msgstr "Group Stage"
 msgid "elimination stage"
 msgstr "Elimination Stage"
 
-#: 2016_template/templates/base.html:118 2017_template/templates/base.html:136
-#: 2017_template/templates/base.html:142
+#: 2016_template/templates/base.html:118 2017_template/templates/base.html:147
 #: 2017_template/templates/blog/blog_post_list.html:4
 #: 2017_template/templates/blog/blog_post_list.html:25
 msgid "blog"
 msgstr "Blog"
 
-#: 2016_template/templates/base.html:130 2017_template/templates/base.html:138
-#: 2017_template/templates/index-en.html:60
-#: 2017_template/templates/index-en.html:88
-#: 2017_template/templates/index.html:77 2017_template/templates/index.html:109
+#: 2016_template/templates/base.html:130 2017_template/templates/base.html:115
+#: 2017_template/templates/index-en.html:65
+#: 2017_template/templates/index-en.html:93
+#: 2017_template/templates/index.html:82
+#: 2017_template/templates/index.html:114
 msgid "edit profile"
 msgstr "Edit Profile"
 
-#: 2016_template/templates/base.html:132 2017_template/templates/base.html:140
+#: 2016_template/templates/base.html:132
 msgid "logout"
 msgstr "Logout"
 
-#: 2016_template/templates/base.html:135 2017_template/templates/base.html:144
+#: 2016_template/templates/base.html:135
 msgid "login"
 msgstr "Login"
 
-#: 2016_template/templates/base.html:137 2017_template/templates/base.html:144
+#: 2016_template/templates/base.html:137
 msgid "signup"
 msgstr "Signup"
 
-#: 2016_template/templates/base.html:199 2017_template/templates/base.html:205
+#: 2016_template/templates/base.html:199 2017_template/templates/base.html:213
 msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
 msgstr "Student`s Scientific Chapter of Computer Engineering Department"
 
@@ -799,6 +797,19 @@ msgstr ""
 msgid "staff"
 msgstr "Staff"
 
+#: 2017_template/templates/accounts/invite_team.html:18
+#, python-format
+msgid ""
+"\n"
+"            <p>Until you don't register a complete team, you can't go to "
+"your team page.\n"
+"                You can see competition documentation from the <em>blog</em>."
+"</p>\n"
+"            <p>Click <a href=%(url)s>here</a> to view documentation of team "
+"registration.<p>\n"
+"        "
+msgstr ""
+
 #: 2017_template/templates/accounts/new_team_page.html:11
 #, python-format
 msgid ""
@@ -845,11 +856,11 @@ msgstr ""
 msgid "base"
 msgstr ""
 
-#: base/forms.py:15
+#: base/forms.py:16
 msgid "Accept Terms"
 msgstr ""
 
-#: base/forms.py:16
+#: base/forms.py:17
 msgid "terms_of_service_text"
 msgstr ""
 "1. Participants must enter valid information in time of registration.<br>2. "
@@ -859,45 +870,45 @@ msgstr ""
 "onsite phase.<br>5. Timetable may change and it will be announced to teams "
 "if needed.<br>"
 
-#: base/forms.py:60
+#: base/forms.py:61
 #, fuzzy
 #| msgid "member"
 msgid "member {}"
 msgstr "Member"
 
-#: base/forms.py:62
+#: base/forms.py:63
 msgid "email or username"
 msgstr ""
 
-#: base/forms.py:80
+#: base/forms.py:81
 msgid "just team's head can edit team"
 msgstr ""
 
-#: base/forms.py:87
+#: base/forms.py:88
 msgid "brother you are hitting wrong!"
 msgstr ""
 
-#: base/forms.py:100
+#: base/forms.py:101
 msgid "this user has another team"
 msgstr ""
 
-#: base/forms.py:104
+#: base/forms.py:105
 msgid "this user has not account"
 msgstr ""
 
-#: base/forms.py:106
+#: base/forms.py:107
 msgid "at least {} members required for team"
 msgstr ""
 
-#: base/forms.py:113
+#: base/forms.py:114
 msgid "you can not remove an accepted member"
 msgstr ""
 
-#: base/forms.py:140 base/views.py:456
+#: base/forms.py:144 base/views.py:456
 msgid "AIChallenge team invitation"
 msgstr ""
 
-#: base/forms.py:165 game/forms.py:12 game/forms.py:42 game/forms.py:100
+#: base/forms.py:172 game/forms.py:12 game/forms.py:42 game/forms.py:100
 #: game/models.py:132
 msgid "game type"
 msgstr "Game Type"
@@ -1149,10 +1160,6 @@ msgstr ""
 msgid "you already have a team"
 msgstr ""
 
-#: base/views.py:150 base/views.py:492 base/views.py:511
-msgid "the team has reached max members"
-msgstr ""
-
 #: base/views.py:153 base/views.py:222 base/views.py:379 base/views.py:393
 #: base/views.py:513
 msgid "The team is final."
@@ -1209,6 +1216,10 @@ msgstr ""
 
 #: base/views.py:489
 msgid "already part of another team"
+msgstr ""
+
+#: base/views.py:492 base/views.py:511
+msgid "the team has reached max members"
 msgstr ""
 
 #: base/views.py:517
@@ -1565,8 +1576,8 @@ msgstr "Game Type"
 #~ msgid "حامیان"
 #~ msgstr "Sponsors"
 
-msgid "contact"
-msgstr "Contact Us"
+#~ msgid "contact"
+#~ msgstr "Contact Us"
 
 #~ msgid "وبلاگ"
 #~ msgstr "Weblog"

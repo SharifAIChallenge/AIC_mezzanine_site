@@ -88,7 +88,7 @@ def register_team(request):
             team = form.save(request.get_host)
             request.session['team'] = team.id
 
-    context = {'form': form, 'title': _('register new team'), 'can_submit': 1 if form.can_edit else []}
+    context = {'form': form, 'title': _('register new team'), 'can_submit': form.can_edit}
 
     return render(request, 'accounts/invite_team.html', context)
 

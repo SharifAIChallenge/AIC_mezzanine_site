@@ -53,7 +53,7 @@ class TeamForm(forms.ModelForm):
         self.members = set() if not self.instance else [team_member.member for team_member in team_members]
         self.competition = Competition.get_current_instance()
 
-        can_edit = self.user == self.instance.head if self.instance else False
+        can_edit = self.user == self.instance.head if self.instance.id else True
         self.can_edit = can_edit
 
         for i in range(self.competition.max_members):
@@ -91,7 +91,12 @@ class TeamForm(forms.ModelForm):
                     try:
                         member = Member.objects.get(Q(username=member_identification)
                                                     | Q(email=member_identification))
-                        self.members.add(member)
+                        if TeamMember.objects.filter(member=member,
+                                                     confirmed=True,
+                                                     team__competition=self.competition).exists():
+                            self.errors[self.MEMBER_FIELD_NAME.format(i)] = [_("this user has another team")]
+                        else:
+                            self.members.add(member)
                     except Member.DoesNotExist:
                         self.errors[self.MEMBER_FIELD_NAME.format(i)] = [_("this user has not account")]
         if len(self.members) < self.competition.min_members:

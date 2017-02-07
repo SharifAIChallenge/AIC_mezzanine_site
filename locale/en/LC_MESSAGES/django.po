@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-19 15:58+0330\n"
+"POT-Creation-Date: 2017-02-07 11:31+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,29 +18,34 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: 2016_template/templates/accounts/account_signup.html:7
+#: 2017_template/templates/accounts/account_signup.html:7
 msgid ""
 "You're already logged in. If you'd like to create a new account, you'll need "
 "to log out first."
 msgstr ""
 
 #: 2016_template/templates/accounts/account_signup.html:11
+#: 2017_template/templates/accounts/account_signup.html:11
 msgid ""
 "After signing up, your account will be reviewed for approval. You'll receive "
 "an email when your account is activated."
 msgstr ""
 
 #: 2016_template/templates/accounts/account_signup.html:13
+#: 2017_template/templates/accounts/account_signup.html:13
 msgid ""
 "After signing up, you'll receive an email with a link you need to click, in "
 "order to activate your account."
 msgstr ""
 
-#: 2016_template/templates/accounts/account_signup.html:15 base/views.py:109
-#: base/views.py:480 base/views.py:538
+#: 2016_template/templates/accounts/account_signup.html:15
+#: 2017_template/templates/accounts/account_signup.html:15 base/views.py:460
+#: base/views.py:518
 msgid "please check spams too"
 msgstr "Please check your spam directory too."
 
 #: 2016_template/templates/accounts/invite_team.html:10
+#: 2017_template/templates/accounts/invite_team.html:10
 #, python-format
 msgid ""
 "\n"
@@ -50,6 +55,7 @@ msgid ""
 msgstr ""
 
 #: 2016_template/templates/accounts/invite_team.html:18
+#: 2017_template/templates/accounts/invite_team.html:18
 #, python-format
 msgid ""
 "\n"
@@ -62,14 +68,20 @@ msgstr ""
 #: 2016_template/templates/custom/my_games.html:55
 #: 2016_template/templates/custom/teams_list.html:4
 #: 2016_template/templates/custom/teams_list.html:5
+#: 2017_template/templates/accounts/invite_team.html:34
+#: 2017_template/templates/custom/my_games.html:55
+#: 2017_template/templates/custom/teams_list.html:4
+#: 2017_template/templates/custom/teams_list.html:5
 msgid "Teams"
 msgstr ""
 
 #: 2016_template/templates/accounts/submit_code.html:53
+#: 2017_template/templates/accounts/submit_code.html:53
 msgid "previous submissions"
 msgstr "Previous Submissions"
 
-#: 2016_template/templates/accounts/submit_code.html:57 base/models.py:50
+#: 2016_template/templates/accounts/submit_code.html:57
+#: 2017_template/templates/accounts/submit_code.html:57 base/models.py:59
 #, fuzzy
 #| msgid "Final submission changed"
 msgid "final submission"
@@ -77,64 +89,83 @@ msgstr "Final submission changed"
 
 #: 2016_template/templates/accounts/submit_code.html:58
 #: 2016_template/templates/custom/my_games.html:89
-#: 2016_template/templates/custom/my_games.html:175 base/models.py:115
-#: game/models.py:123
+#: 2016_template/templates/custom/my_games.html:175
+#: 2017_template/templates/accounts/submit_code.html:58
+#: 2017_template/templates/custom/my_games.html:89
+#: 2017_template/templates/custom/my_games.html:175 base/models.py:157
+#: game/models.py:128
 msgid "status"
 msgstr "Status"
 
 #: 2016_template/templates/accounts/submit_code.html:59
+#: 2017_template/templates/accounts/submit_code.html:59
 msgid "submitter"
 msgstr "Submitter"
 
-#: 2016_template/templates/accounts/submit_code.html:60 base/models.py:117
+#: 2016_template/templates/accounts/submit_code.html:60
+#: 2017_template/templates/accounts/submit_code.html:60 base/models.py:159
 msgid "programming language"
 msgstr "Programming Language"
 
 #: 2016_template/templates/accounts/submit_code.html:61
-#: 2016_template/templates/custom/my_games.html:86 base/models.py:42
-#: base/models.py:107 game/models.py:18 game/models.py:117
+#: 2016_template/templates/custom/my_games.html:86
+#: 2017_template/templates/accounts/submit_code.html:61
+#: 2017_template/templates/custom/my_games.html:86 base/models.py:52
+#: base/models.py:149 game/models.py:19 game/models.py:122
 msgid "timestamp"
 msgstr "Timestamp"
 
 #: 2016_template/templates/accounts/submit_code.html:62
 #: 2016_template/templates/accounts/submit_code.html:92
+#: 2017_template/templates/accounts/submit_code.html:62
+#: 2017_template/templates/accounts/submit_code.html:92
 msgid "download"
 msgstr "Download"
 
 #: 2016_template/templates/accounts/submit_code.html:105
+#: 2017_template/templates/accounts/submit_code.html:105
 msgid "Compile log"
 msgstr ""
 
 #: 2016_template/templates/accounts/submit_code.html:114
+#: 2017_template/templates/accounts/submit_code.html:114
 msgid "Close"
 msgstr ""
 
 #: 2016_template/templates/accounts/submit_code.html:162
+#: 2017_template/templates/accounts/submit_code.html:162
 msgid "Failed getting compilation log"
 msgstr "Failed to load compilation log"
 
 #: 2016_template/templates/accounts/submit_code.html:178
+#: 2017_template/templates/accounts/submit_code.html:178
 msgid "Final submission changed"
 msgstr "Final submission changed"
 
-#: 2016_template/templates/accounts/submit_code.html:180 base/views.py:132
+#: 2016_template/templates/accounts/submit_code.html:180
+#: 2017_template/templates/accounts/submit_code.html:180 base/views.py:110
 msgid "submit period has ended"
 msgstr ""
 
 #: 2016_template/templates/base.html:82 2016_template/templates/index.html:67
+#: 2017_template/templates/base.html:85 2017_template/templates/index.html:69
 msgid "Change"
 msgstr ""
 
 #: 2016_template/templates/base.html:105
 #: 2016_template/templates/search_results.html:13
+#: 2017_template/templates/base.html:108
+#: 2017_template/templates/search_results.html:13
 msgid "Home"
 msgstr ""
 
 #: 2016_template/templates/base.html:107
 #: 2016_template/templates/custom/my_team.html:4
 #: 2016_template/templates/custom/my_team.html:5
-#: 2016_template/templates/index.html:102
-#: 2016_template/templates/index.html:113
+#: 2016_template/templates/index.html:103
+#: 2016_template/templates/index.html:114
+#: 2017_template/templates/custom/my_team.html:4
+#: 2017_template/templates/custom/my_team.html:5
 msgid "My Team"
 msgstr ""
 
@@ -143,6 +174,10 @@ msgstr ""
 #: 2016_template/templates/custom/scoreboard.html:5
 #: 2016_template/templates/game/scoreboard.html:4
 #: 2016_template/templates/game/scoreboard.html:5
+#: 2017_template/templates/custom/scoreboard.html:4
+#: 2017_template/templates/custom/scoreboard.html:5
+#: 2017_template/templates/game/scoreboard.html:4
+#: 2017_template/templates/game/scoreboard.html:5
 #, fuzzy
 #| msgid "score"
 msgid "scoreboard"
@@ -156,31 +191,39 @@ msgstr "Group Stage"
 msgid "elimination stage"
 msgstr "Elimination Stage"
 
-#: 2016_template/templates/base.html:118
+#: 2016_template/templates/base.html:118 2017_template/templates/base.html:136
+#: 2017_template/templates/base.html:142
+#: 2017_template/templates/blog/blog_post_list.html:4
+#: 2017_template/templates/blog/blog_post_list.html:25
 msgid "blog"
 msgstr "Blog"
 
-#: 2016_template/templates/base.html:130
+#: 2016_template/templates/base.html:130 2017_template/templates/base.html:138
+#: 2017_template/templates/index-en.html:96
+#: 2017_template/templates/index-en.html:112
+#: 2017_template/templates/index.html:115
+#: 2017_template/templates/index.html:127
 msgid "edit profile"
 msgstr "Edit Profile"
 
-#: 2016_template/templates/base.html:132
+#: 2016_template/templates/base.html:132 2017_template/templates/base.html:140
 msgid "logout"
 msgstr "Logout"
 
-#: 2016_template/templates/base.html:135
+#: 2016_template/templates/base.html:135 2017_template/templates/base.html:144
 msgid "login"
 msgstr "Login"
 
-#: 2016_template/templates/base.html:137
+#: 2016_template/templates/base.html:137 2017_template/templates/base.html:144
 msgid "signup"
 msgstr "Signup"
 
-#: 2016_template/templates/base.html:199
+#: 2016_template/templates/base.html:199 2017_template/templates/base.html:205
 msgid "انجمن علمی دانشجویی دانشکده کامپیوتر دانشگاه شریف"
 msgstr "Student`s Scientific Chapter of Computer Engineering Department"
 
 #: 2016_template/templates/blog/blog_post_detail.html:42
+#: 2017_template/templates/blog/blog_post_detail.html:51
 msgid "Related News"
 msgstr ""
 
@@ -190,58 +233,72 @@ msgid "news"
 msgstr "News"
 
 #: 2016_template/templates/blog/blog_post_list.html:30
+#: 2017_template/templates/blog/blog_post_list.html:30
 msgid "Tag:"
 msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:32
+#: 2017_template/templates/blog/blog_post_list.html:32
 msgid "Category:"
 msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:36
+#: 2017_template/templates/blog/blog_post_list.html:36
 msgid "Author:"
 msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:51
+#: 2017_template/templates/blog/blog_post_list.html:51
 msgid "Viewing news tagged"
 msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:53
+#: 2017_template/templates/blog/blog_post_list.html:53
 msgid "Viewing news for the category"
 msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:55
+#: 2017_template/templates/blog/blog_post_list.html:55
 msgid "Viewing news from"
 msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:58
+#: 2017_template/templates/blog/blog_post_list.html:58
 msgid "Viewing news by"
 msgstr ""
 
 #: 2016_template/templates/blog/blog_post_list.html:64
+#: 2017_template/templates/blog/blog_post_list.html:64
 msgid "Recent news"
 msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:7
+#: 2017_template/templates/blog/includes/filter_panel.html:7
 msgid "Recent Posts"
 msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:26
+#: 2017_template/templates/blog/includes/filter_panel.html:26
 msgid "Categories"
 msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:41
+#: 2017_template/templates/blog/includes/filter_panel.html:41
 msgid "Tags"
 msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:60
+#: 2017_template/templates/blog/includes/filter_panel.html:60
 msgid "Authors"
 msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:77
+#: 2017_template/templates/blog/includes/filter_panel.html:77
 msgid "Archive"
 msgstr ""
 
 #: 2016_template/templates/blog/includes/filter_panel.html:96
+#: 2017_template/templates/blog/includes/filter_panel.html:96
 msgid "Feeds"
 msgstr ""
 
@@ -249,6 +306,10 @@ msgstr ""
 #: 2016_template/templates/blog/includes/filter_panel.html:103
 #: 2016_template/templates/blog/includes/filter_panel.html:107
 #: 2016_template/templates/blog/includes/filter_panel.html:111
+#: 2017_template/templates/blog/includes/filter_panel.html:99
+#: 2017_template/templates/blog/includes/filter_panel.html:103
+#: 2017_template/templates/blog/includes/filter_panel.html:107
+#: 2017_template/templates/blog/includes/filter_panel.html:111
 msgid "RSS"
 msgstr ""
 
@@ -256,6 +317,10 @@ msgstr ""
 #: 2016_template/templates/blog/includes/filter_panel.html:104
 #: 2016_template/templates/blog/includes/filter_panel.html:108
 #: 2016_template/templates/blog/includes/filter_panel.html:112
+#: 2017_template/templates/blog/includes/filter_panel.html:100
+#: 2017_template/templates/blog/includes/filter_panel.html:104
+#: 2017_template/templates/blog/includes/filter_panel.html:108
+#: 2017_template/templates/blog/includes/filter_panel.html:112
 msgid "Atom"
 msgstr ""
 
@@ -267,41 +332,61 @@ msgstr ""
 #: 2016_template/templates/custom/bank_payment_success.html:5
 #: 2016_template/templates/custom/bank_payments_list.html:4
 #: 2016_template/templates/custom/bank_payments_list.html:5
+#: 2017_template/templates/custom/bank_payment.html:4
+#: 2017_template/templates/custom/bank_payment.html:5
+#: 2017_template/templates/custom/bank_payment_error.html:4
+#: 2017_template/templates/custom/bank_payment_error.html:5
+#: 2017_template/templates/custom/bank_payment_success.html:4
+#: 2017_template/templates/custom/bank_payment_success.html:5
+#: 2017_template/templates/custom/bank_payments_list.html:4
+#: 2017_template/templates/custom/bank_payments_list.html:5
 msgid "Bank payment"
 msgstr ""
 
 #: 2016_template/templates/custom/includes/join_requests_row.html:19
 #: 2016_template/templates/custom/my_games.html:111
 #: 2016_template/templates/custom/my_team.html:228
+#: 2017_template/templates/custom/includes/join_requests_row.html:19
+#: 2017_template/templates/custom/my_games.html:111
+#: 2017_template/templates/custom/my_team.html:228
 msgid "accept"
 msgstr ""
 
 #: 2016_template/templates/custom/includes/join_requests_row.html:24
 #: 2016_template/templates/custom/my_team.html:231
+#: 2017_template/templates/custom/includes/join_requests_row.html:24
+#: 2017_template/templates/custom/my_team.html:231
 msgid "decline"
 msgstr ""
 
 #: 2016_template/templates/custom/includes/team_member_row.html:22
+#: 2017_template/templates/custom/includes/team_member_row.html:22
 msgid "Withdraw"
 msgstr ""
 
 #: 2016_template/templates/custom/includes/team_member_row.html:24
+#: 2017_template/templates/custom/includes/team_member_row.html:24
 msgid "Delete"
 msgstr ""
 
 #: 2016_template/templates/custom/includes/team_member_row.html:31
 #: 2016_template/templates/custom/scoreboard.html:45
-#: 2016_template/templates/custom/teams_list.html:46 base/models.py:45
+#: 2016_template/templates/custom/teams_list.html:46
+#: 2017_template/templates/custom/includes/team_member_row.html:31
+#: 2017_template/templates/custom/scoreboard.html:45
+#: 2017_template/templates/custom/teams_list.html:46
 msgid "team head"
 msgstr "Team head"
 
 #: 2016_template/templates/custom/includes/team_member_row.html:33
+#: 2017_template/templates/custom/includes/team_member_row.html:33
 #, fuzzy
 #| msgid "team members"
 msgid "team member"
 msgstr "Team members"
 
 #: 2016_template/templates/custom/includes/team_member_row.html:35
+#: 2017_template/templates/custom/includes/team_member_row.html:35
 #, fuzzy
 #| msgid "team members"
 msgid "invited member"
@@ -309,91 +394,120 @@ msgstr "Team members"
 
 #: 2016_template/templates/custom/my_games.html:4
 #: 2016_template/templates/custom/my_games.html:5
-#: 2016_template/templates/custom/my_team.html:342
+#: 2016_template/templates/custom/my_team.html:307
+#: 2017_template/templates/custom/my_games.html:4
+#: 2017_template/templates/custom/my_games.html:5
+#: 2017_template/templates/custom/my_team.html:324
 msgid "My Games"
 msgstr ""
 
 #: 2016_template/templates/custom/my_games.html:54
+#: 2017_template/templates/custom/my_games.html:54
 msgid "use this link to find a team and request a friendly game"
 msgstr ""
 
 #: 2016_template/templates/custom/my_games.html:76
+#: 2017_template/templates/custom/my_games.html:76
 msgid "Game requests"
 msgstr ""
 
 #: 2016_template/templates/custom/my_games.html:80
 #: 2016_template/templates/custom/my_games.html:169
-#: 2016_template/templates/custom/my_team.html:195 base/models.py:31
-#: base/models.py:62 base/models.py:109 base/models.py:163 base/models.py:194
-#: game/models.py:219
+#: 2016_template/templates/custom/my_team.html:195
+#: 2017_template/templates/custom/my_games.html:80
+#: 2017_template/templates/custom/my_games.html:169
+#: 2017_template/templates/custom/my_team.html:195 base/models.py:71
+#: base/models.py:151 base/models.py:205 base/models.py:239 game/models.py:224
 msgid "team"
 msgstr "Team"
 
 #: 2016_template/templates/custom/my_games.html:83
 #: 2016_template/templates/custom/my_games.html:172
+#: 2017_template/templates/custom/my_games.html:83
+#: 2017_template/templates/custom/my_games.html:172
 msgid "config"
 msgstr ""
 
 #: 2016_template/templates/custom/my_games.html:113
+#: 2017_template/templates/custom/my_games.html:113
 msgid "reject"
 msgstr "Reject"
 
 #: 2016_template/templates/custom/my_games.html:143
+#: 2017_template/templates/custom/my_games.html:143
 msgid "watch game"
 msgstr "Watch game"
 
 #: 2016_template/templates/custom/my_games.html:145
+#: 2017_template/templates/custom/my_games.html:145
 msgid "waiting for run"
 msgstr "Waiting for run"
 
 #: 2016_template/templates/custom/my_games.html:148
+#: 2017_template/templates/custom/my_games.html:148
 msgid "rejected"
 msgstr "Rejected"
 
 #: 2016_template/templates/custom/my_games.html:151
+#: 2017_template/templates/custom/my_games.html:151
 msgid "waiting for accept"
 msgstr "Waiting for response"
 
 #: 2016_template/templates/custom/my_games.html:166
+#: 2017_template/templates/custom/my_games.html:166
 msgid "type"
 msgstr "Type"
 
 #: 2016_template/templates/custom/my_games.html:196
 #: 2016_template/templates/custom/scoreboard.html:48
 #: 2016_template/templates/game/group.html:24
-#: 2016_template/templates/game/scoreboard.html:36 game/models.py:212
-#: game/models.py:220 game/models.py:224 game/models.py:232 game/models.py:324
+#: 2016_template/templates/game/scoreboard.html:36
+#: 2017_template/templates/custom/my_games.html:196
+#: 2017_template/templates/custom/scoreboard.html:48
+#: 2017_template/templates/game/group.html:24
+#: 2017_template/templates/game/scoreboard.html:36 game/models.py:217
+#: game/models.py:225 game/models.py:229 game/models.py:237 game/models.py:329
 msgid "score"
 msgstr "Score"
 
 #: 2016_template/templates/custom/my_team.html:64
+#: 2017_template/templates/custom/my_team.html:64
 msgid "User removed from team"
 msgstr ""
 
 #: 2016_template/templates/custom/my_team.html:104
+#: 2017_template/templates/custom/my_team.html:104
 msgid "Team deleted"
 msgstr "Your team is removed from competitions"
 
 #: 2016_template/templates/custom/my_team.html:166
+#: 2017_template/templates/custom/my_team.html:166
 msgid "You left the team"
 msgstr "You left the team"
 
 #: 2016_template/templates/custom/my_team.html:203
+#: 2017_template/templates/custom/my_team.html:203
 msgid "remove team"
 msgstr "Remove team"
 
 #: 2016_template/templates/custom/my_team.html:208
-#: 2016_template/templates/custom/my_team.html:370
+#: 2016_template/templates/custom/my_team.html:335
+#: 2017_template/templates/custom/my_team.html:208
+#: 2017_template/templates/custom/my_team.html:352
 msgid "change team name"
 msgstr "Change team name"
 
 #: 2016_template/templates/custom/my_team.html:213
-#: 2016_template/templates/custom/my_team.html:387
-#: 2016_template/templates/custom/my_team.html:394
+#: 2016_template/templates/custom/my_team.html:352
+#: 2016_template/templates/custom/my_team.html:359
+#: 2017_template/templates/custom/my_team.html:213
+#: 2017_template/templates/custom/my_team.html:369
+#: 2017_template/templates/custom/my_team.html:376
 msgid "finalize team"
 msgstr "Finilize the team"
 
-#: 2016_template/templates/custom/my_team.html:221 base/models.py:203
+#: 2016_template/templates/custom/my_team.html:221
+#: 2017_template/templates/custom/my_team.html:221 base/models.py:248
 msgid "join requests"
 msgstr "Join requests"
 
@@ -402,49 +516,60 @@ msgstr "Join requests"
 #: 2016_template/templates/custom/scoreboard.html:44
 #: 2016_template/templates/custom/teams_list.html:45
 #: 2016_template/templates/game/group.html:21
-#: 2016_template/templates/game/scoreboard.html:33 base/models.py:44
-#: game/forms.py:13 game/models.py:236 game/models.py:336
+#: 2016_template/templates/game/scoreboard.html:33
+#: 2017_template/templates/custom/my_team.html:225
+#: 2017_template/templates/custom/my_team.html:248
+#: 2017_template/templates/custom/scoreboard.html:44
+#: 2017_template/templates/custom/teams_list.html:45
+#: 2017_template/templates/game/group.html:21
+#: 2017_template/templates/game/scoreboard.html:33 base/models.py:54
+#: game/forms.py:13 game/models.py:241 game/models.py:341
 msgid "name"
 msgstr "Name"
 
-#: 2016_template/templates/custom/my_team.html:244 base/models.py:133
+#: 2016_template/templates/custom/my_team.html:244
+#: 2017_template/templates/custom/my_team.html:244 base/models.py:175
 msgid "team members"
 msgstr "Team members"
 
 #: 2016_template/templates/custom/my_team.html:252
+#: 2017_template/templates/custom/my_team.html:252
 msgid "remove user from team"
 msgstr "remove"
 
 #: 2016_template/templates/custom/my_team.html:256
+#: 2017_template/templates/custom/my_team.html:256
 msgid "membership status"
 msgstr "Status"
 
-#: 2016_template/templates/custom/my_team.html:311 base/views.py:115
-msgid "invite member to team"
-msgstr "Invite member to team"
-
-#: 2016_template/templates/custom/my_team.html:319
+#: 2016_template/templates/custom/my_team.html:284
 msgid "leave team"
 msgstr "Leave the team"
 
-#: 2016_template/templates/custom/my_team.html:327
+#: 2016_template/templates/custom/my_team.html:292
+#: 2017_template/templates/custom/my_team.html:309
 msgid "game docs"
 msgstr "Game docs"
 
-#: 2016_template/templates/custom/my_team.html:334 base/views.py:147
+#: 2016_template/templates/custom/my_team.html:299
+#: 2017_template/templates/custom/my_team.html:316 base/views.py:125
 msgid "submit new code"
 msgstr "Submit new code"
 
-#: 2016_template/templates/custom/my_team.html:378
+#: 2016_template/templates/custom/my_team.html:343
+#: 2017_template/templates/custom/my_team.html:360
 msgid "change"
 msgstr "Change"
 
-#: 2016_template/templates/custom/my_team.html:380
-#: 2016_template/templates/custom/my_team.html:397
+#: 2016_template/templates/custom/my_team.html:345
+#: 2016_template/templates/custom/my_team.html:362
+#: 2017_template/templates/custom/my_team.html:362
+#: 2017_template/templates/custom/my_team.html:379
 msgid "cancel"
 msgstr "Cancel"
 
-#: 2016_template/templates/custom/my_team.html:389
+#: 2016_template/templates/custom/my_team.html:354
+#: 2017_template/templates/custom/my_team.html:371
 msgid ""
 "Finalize your team when all members are joined. After finalization no one "
 "can join or leave the team, team name cannot be changed and you cannot leave "
@@ -454,25 +579,34 @@ msgstr ""
 #: 2016_template/templates/custom/scoreboard.html:46
 #: 2016_template/templates/custom/scoreboard.html:47
 #: 2016_template/templates/custom/teams_list.html:47
-#: 2016_template/templates/custom/teams_list.html:48 base/models.py:164
-#: base/models.py:195
+#: 2016_template/templates/custom/teams_list.html:48
+#: 2017_template/templates/custom/scoreboard.html:46
+#: 2017_template/templates/custom/scoreboard.html:47
+#: 2017_template/templates/custom/teams_list.html:47
+#: 2017_template/templates/custom/teams_list.html:48 base/models.py:206
+#: base/models.py:240
 msgid "member"
 msgstr "Member"
 
-#: 2016_template/templates/custom/teams_list.html:50 game/models.py:159
+#: 2016_template/templates/custom/teams_list.html:50
+#: 2017_template/templates/custom/teams_list.html:50 game/models.py:164
 msgid "friendly game"
 msgstr "Friendly Game"
 
-#: 2016_template/templates/custom/teams_list.html:90 base/models.py:202
+#: 2016_template/templates/custom/teams_list.html:90
+#: 2017_template/templates/custom/teams_list.html:90 base/models.py:247
 msgid "join request"
 msgstr "Join request"
 
 #: 2016_template/templates/custom/teams_list.html:99
 #: 2016_template/templates/custom/teams_list.html:132
+#: 2017_template/templates/custom/teams_list.html:99
+#: 2017_template/templates/custom/teams_list.html:132
 msgid "Challenge"
 msgstr ""
 
 #: 2016_template/templates/custom/teams_list.html:116
+#: 2017_template/templates/custom/teams_list.html:116
 msgid "Configuration"
 msgstr ""
 
@@ -481,12 +615,20 @@ msgstr ""
 #: 2016_template/templates/game/de_group.html:4
 #: 2016_template/templates/game/de_group.html:5
 #: 2016_template/templates/game/group.html:4
-#: 2016_template/templates/game/group.html:5 game/models.py:241
+#: 2016_template/templates/game/group.html:5
+#: 2017_template/templates/game/bracket.html:4
+#: 2017_template/templates/game/bracket.html:5
+#: 2017_template/templates/game/de_group.html:4
+#: 2017_template/templates/game/de_group.html:5
+#: 2017_template/templates/game/group.html:4
+#: 2017_template/templates/game/group.html:5 game/models.py:246
 msgid "group"
 msgstr ""
 
 #: 2016_template/templates/game/de_group.html:20
 #: 2016_template/templates/game/group.html:44
+#: 2017_template/templates/game/de_group.html:20
+#: 2017_template/templates/game/group.html:44
 #, fuzzy
 #| msgid "team"
 msgid "team 1"
@@ -494,100 +636,128 @@ msgstr "Team"
 
 #: 2016_template/templates/game/de_group.html:30
 #: 2016_template/templates/game/group.html:54
+#: 2017_template/templates/game/de_group.html:30
+#: 2017_template/templates/game/group.html:54
 #, fuzzy
 #| msgid "team"
 msgid "team 2"
 msgstr "Team"
 
 #: 2016_template/templates/game/de_group.html:33
-#: 2016_template/templates/game/group.html:57 game/models.py:131
-#: game/models.py:340
+#: 2016_template/templates/game/group.html:57
+#: 2017_template/templates/game/de_group.html:33
+#: 2017_template/templates/game/group.html:57 game/models.py:136
+#: game/models.py:345
 msgid "place"
 msgstr ""
 
 #: 2016_template/templates/game/de_group.html:36
 #: 2016_template/templates/game/de_group.html:55
+#: 2017_template/templates/game/de_group.html:36
+#: 2017_template/templates/game/de_group.html:55
 #, fuzzy
 #| msgid "played"
 msgid "play"
 msgstr "Played"
 
-#: 2016_template/templates/game/group.html:60 game/models.py:130
+#: 2016_template/templates/game/group.html:60
+#: 2017_template/templates/game/group.html:60 game/models.py:135
 #, fuzzy
 #| msgid "timestamp"
 msgid "time"
 msgstr "Timestamp"
 
 #: 2016_template/templates/generic/includes/comment.html:10
+#: 2017_template/templates/generic/includes/comment.html:10
 #, python-format
 msgid "written on%(sometime)s ago"
 msgstr ""
 
 #: 2016_template/templates/generic/includes/comment.html:27
+#: 2017_template/templates/generic/includes/comment.html:27
 msgid "There are currently no comments"
 msgstr ""
 
 #: 2016_template/templates/generic/includes/comment_form.html:16
+#: 2017_template/templates/generic/includes/comment_form.html:16
 msgid "Name"
 msgstr ""
 
 #: 2016_template/templates/generic/includes/comment_form.html:20
+#: 2017_template/templates/generic/includes/comment_form.html:20
 msgid "Email"
 msgstr ""
 
 #: 2016_template/templates/generic/includes/comment_form.html:29
+#: 2017_template/templates/generic/includes/comment_form.html:29
 msgid "Comment"
 msgstr ""
 
 #: 2016_template/templates/generic/includes/comments.html:4
+#: 2017_template/templates/generic/includes/comments.html:4
 msgid "Comments"
 msgstr ""
 
 #: 2016_template/templates/generic/includes/comments.html:19
+#: 2017_template/templates/generic/includes/comments.html:19
 msgid "New Comment"
 msgstr ""
 
 #: 2016_template/templates/generic/post_card.html:17
+#: 2017_template/templates/generic/post_card.html:17
 msgid "New"
 msgstr ""
 
 #: 2016_template/templates/generic/post_card.html:28
+#: 2017_template/templates/generic/post_card.html:28
 msgid "Read More"
 msgstr ""
 
 #: 2016_template/templates/includes/form_fields.html:46
+#: 2017_template/templates/includes/form_fields.html:46
 msgid "Choose File"
 msgstr ""
 
 #: 2016_template/templates/includes/pagination.html:7
+#: 2017_template/templates/includes/pagination.html:7
 msgid "Page"
 msgstr ""
 
 #: 2016_template/templates/includes/pagination.html:7
+#: 2017_template/templates/includes/pagination.html:7
 msgid "of"
 msgstr ""
 
 #: 2016_template/templates/mail/invitation_mail.html:9
 #: 2016_template/templates/mail/invitation_mail.txt:3
+#: 2017_template/templates/mail/invitation_mail.html:9
+#: 2017_template/templates/mail/invitation_mail.txt:3
 msgid "you have been invited to team:"
 msgstr ""
 
 #: 2016_template/templates/mail/invitation_mail.html:11
 #: 2016_template/templates/mail/invitation_mail.txt:4
+#: 2017_template/templates/mail/invitation_mail.html:11
+#: 2017_template/templates/mail/invitation_mail.txt:4
 msgid "click on below link to accept:"
 msgstr ""
 
 #: 2016_template/templates/mail/join_request_mail.html:9
 #: 2016_template/templates/mail/join_request_mail.txt:2
+#: 2017_template/templates/mail/join_request_mail.html:9
+#: 2017_template/templates/mail/join_request_mail.txt:2
 msgid "following user has requested to join your team:"
 msgstr ""
 
 #: 2016_template/templates/mail/join_request_mail.html:13
 #: 2016_template/templates/mail/join_request_mail.txt:4
+#: 2017_template/templates/mail/join_request_mail.html:13
+#: 2017_template/templates/mail/join_request_mail.txt:4
 msgid "you can accept or decline this request in the 'my tean' page"
 msgstr ""
 
 #: 2016_template/templates/pages/gallery.html:48
+#: 2017_template/templates/pages/gallery.html:48
 #, python-format
 msgid ""
 "\n"
@@ -597,24 +767,31 @@ msgid ""
 msgstr ""
 
 #: 2016_template/templates/pages/qapage.html:41
+#: 2017_template/templates/pages/qapage.html:41
 msgid "No answer provided yet"
 msgstr ""
 
 #: 2016_template/templates/pages/qapage.html:54
+#: 2017_template/templates/pages/qapage.html:54
 msgid "Thanks for asking a question."
 msgstr ""
 
 #: 2016_template/templates/pages/qapage.html:61
+#: 2017_template/templates/pages/qapage.html:61
 msgid "Send Question"
 msgstr ""
 
 #: 2016_template/templates/search_results.html:5
 #: 2016_template/templates/search_results.html:6
 #: 2016_template/templates/search_results.html:15
+#: 2017_template/templates/search_results.html:5
+#: 2017_template/templates/search_results.html:6
+#: 2017_template/templates/search_results.html:15
 msgid "Search Results"
 msgstr ""
 
 #: 2016_template/templates/search_results.html:22
+#: 2017_template/templates/search_results.html:22
 #, python-format
 msgid ""
 "\n"
@@ -622,6 +799,7 @@ msgid ""
 msgstr ""
 
 #: 2016_template/templates/search_results.html:26
+#: 2017_template/templates/search_results.html:26
 #, python-format
 msgid ""
 "\n"
@@ -630,16 +808,31 @@ msgid ""
 msgstr ""
 
 #: 2016_template/templates/search_results.html:37
+#: 2017_template/templates/search_results.html:37
 msgid "read more"
 msgstr ""
 
 #: 2016_template/templates/staff/staff-list.html:4
 #: 2016_template/templates/staff/staff-list.html:5
 #: 2016_template/templates/staff/staff-teams-list.html:4
-#: 2016_template/templates/staff/staff-teams-list.html:5 base/models.py:157
-#: game/models.py:21
+#: 2016_template/templates/staff/staff-teams-list.html:5
+#: 2017_template/templates/staff/staff-list.html:4
+#: 2017_template/templates/staff/staff-list.html:5
+#: 2017_template/templates/staff/staff-teams-list.html:4
+#: 2017_template/templates/staff/staff-teams-list.html:5 base/models.py:199
+#: game/models.py:22
 msgid "staff"
 msgstr "Staff"
+
+#: 2017_template/templates/accounts/new_team_page.html:11
+#, python-format
+msgid ""
+"\n"
+"                        You are invited to team %(team_name)s.\n"
+"                        <a class=\"btn btn-primary\" href="
+"\"%(invitation_accept_link)s\">accept</a>\n"
+"                    "
+msgstr ""
 
 #: AIC_site/settings.py:22
 msgid "Media Library"
@@ -661,11 +854,11 @@ msgstr ""
 msgid "Featured Image"
 msgstr ""
 
-#: AIC_site/settings.py:115
+#: AIC_site/settings.py:116
 msgid "Persian"
 msgstr ""
 
-#: AIC_site/settings.py:116
+#: AIC_site/settings.py:117
 msgid "English"
 msgstr ""
 
@@ -673,11 +866,11 @@ msgstr ""
 msgid "base"
 msgstr ""
 
-#: base/forms.py:12
+#: base/forms.py:15
 msgid "Accept Terms"
 msgstr ""
 
-#: base/forms.py:13
+#: base/forms.py:16
 msgid "terms_of_service_text"
 msgstr ""
 "1. Participants must enter valid information in time of registration.<br>2. "
@@ -687,354 +880,367 @@ msgstr ""
 "onsite phase.<br>5. Timetable may change and it will be announced to teams "
 "if needed.<br>"
 
-#: base/forms.py:66
-msgid "user not found"
+#: base/forms.py:60
+#, fuzzy
+#| msgid "member"
+msgid "member {}"
+msgstr "Member"
+
+#: base/forms.py:62
+msgid "email or username"
 msgstr ""
 
-#: base/forms.py:72 base/views.py:474
+#: base/forms.py:80
+msgid "just team's head can edit team"
+msgstr ""
+
+#: base/forms.py:87
+msgid "brother you are hitting wrong!"
+msgstr ""
+
+#: base/forms.py:97
+msgid "this user has another team"
+msgstr ""
+
+#: base/forms.py:101
+msgid "this user has not account"
+msgstr ""
+
+#: base/forms.py:103
+msgid "at least {} members required for team"
+msgstr ""
+
+#: base/forms.py:110
+msgid "you can not remove an accepted member"
+msgstr ""
+
+#: base/forms.py:134 base/views.py:454
 msgid "AIChallenge team invitation"
 msgstr ""
 
-#: base/forms.py:94 game/forms.py:12 game/forms.py:42 game/forms.py:100
-#: game/models.py:127
+#: base/forms.py:159 game/forms.py:12 game/forms.py:42 game/forms.py:100
+#: game/models.py:132
 msgid "game type"
 msgstr "Game Type"
 
-#: base/models.py:27
+#: base/models.py:29
 msgid "phone number"
 msgstr ""
 
-#: base/models.py:28
+#: base/models.py:30
 #, fuzzy
 #| msgid "member"
 msgid "mobile number"
 msgstr "Member"
 
-#: base/models.py:29
+#: base/models.py:31
 msgid "education place"
 msgstr ""
 
-#: base/models.py:30
+#: base/models.py:32
 msgid "country"
 msgstr ""
 
-#: base/models.py:30
+#: base/models.py:32
 msgid "choose your country"
 msgstr ""
 
-#: base/models.py:32
-msgid "national code"
-msgstr ""
-
-#: base/models.py:37
-msgid "yes"
-msgstr "Yes"
-
-#: base/models.py:38
-msgid "no"
-msgstr "No"
-
-#: base/models.py:39
-msgid "not decided yet"
-msgstr "Not decided yet"
-
-#: base/models.py:43 game/forms.py:56 game/forms.py:70 game/models.py:49
-#: game/models.py:58 game/models.py:237 game/models.py:250
-msgid "competition"
-msgstr ""
-
-#: base/models.py:46
-msgid "show team in public list"
-msgstr ""
-
-#: base/models.py:47
-msgid "team is final"
-msgstr ""
-
-#: base/models.py:53
-msgid "will come to site"
-msgstr ""
-
-#: base/models.py:55
-msgid "Should pay?"
-msgstr ""
-
-#: base/models.py:56
-msgid "Payment value (rials)"
-msgstr ""
-
-#: base/models.py:63
+#: base/models.py:33 base/models.py:72
 msgid "teams"
 msgstr "Teams"
 
-#: base/models.py:100 game/models.py:110
+#: base/models.py:35
+msgid "national code"
+msgstr ""
+
+#: base/models.py:47
+msgid "yes"
+msgstr "Yes"
+
+#: base/models.py:48
+msgid "no"
+msgstr "No"
+
+#: base/models.py:49
+msgid "not decided yet"
+msgstr "Not decided yet"
+
+#: base/models.py:53 game/forms.py:56 game/forms.py:70 game/models.py:50
+#: game/models.py:63 game/models.py:242 game/models.py:255
+msgid "competition"
+msgstr ""
+
+#: base/models.py:55
+msgid "show team in public list"
+msgstr ""
+
+#: base/models.py:56
+msgid "team is final"
+msgstr ""
+
+#: base/models.py:62
+msgid "will come to site"
+msgstr ""
+
+#: base/models.py:64
+msgid "Should pay?"
+msgstr ""
+
+#: base/models.py:65
+msgid "Payment value (rials)"
+msgstr ""
+
+#: base/models.py:142 game/models.py:115
 msgid "waiting"
 msgstr "Waiting"
 
-#: base/models.py:101 game/models.py:111
+#: base/models.py:143 game/models.py:116
 msgid "queued"
 msgstr "Queued"
 
-#: base/models.py:102
+#: base/models.py:144
 msgid "compiling"
 msgstr "Compiling"
 
-#: base/models.py:103
+#: base/models.py:145
 msgid "compiled"
 msgstr "Compiled"
 
-#: base/models.py:104 game/models.py:114
+#: base/models.py:146 game/models.py:119
 msgid "failed"
 msgstr "Failed"
 
-#: base/models.py:108
+#: base/models.py:150
 msgid "code"
 msgstr "Code"
 
-#: base/models.py:112
+#: base/models.py:154
 msgid "compiled code"
 msgstr "Compiled code"
 
-#: base/models.py:114
+#: base/models.py:156
 msgid "log file"
 msgstr "Log file"
 
-#: base/models.py:119
+#: base/models.py:161
 msgid "played"
 msgstr "Played"
 
-#: base/models.py:120
+#: base/models.py:162
 msgid "won"
 msgstr "Won"
 
-#: base/models.py:126
+#: base/models.py:168
 msgid "submit"
 msgstr "Submit"
 
-#: base/models.py:127
+#: base/models.py:169
 msgid "submits"
 msgstr "Submits"
 
-#: base/models.py:131
+#: base/models.py:173
 #, fuzzy
 #| msgid "change team name"
 msgid "team name"
 msgstr "Change team name"
 
-#: base/models.py:132
+#: base/models.py:174
 #, fuzzy
 #| msgid "leave team"
 msgid "parent team"
 msgstr "Leave the team"
 
-#: base/models.py:134
+#: base/models.py:176
 msgid "icon"
 msgstr ""
 
-#: base/models.py:140
+#: base/models.py:182
 #, fuzzy
 #| msgid "leave team"
 msgid "staff team"
 msgstr "Staff Team"
 
-#: base/models.py:141
+#: base/models.py:183
 #, fuzzy
 #| msgid "teams"
 msgid "staff teams"
 msgstr "Staff Teams"
 
-#: base/models.py:145
+#: base/models.py:187
 #, fuzzy
 #| msgid "name"
 msgid "full name"
 msgstr "Name"
 
-#: base/models.py:147
+#: base/models.py:189
 msgid "entrance year"
 msgstr ""
 
-#: base/models.py:148
+#: base/models.py:190
 msgid "role"
 msgstr ""
 
-#: base/models.py:149
+#: base/models.py:191
 msgid "biography"
 msgstr ""
 
-#: base/models.py:150
+#: base/models.py:192
 msgid "image"
 msgstr ""
 
-#: base/models.py:156
+#: base/models.py:198
 #, fuzzy
 #| msgid "team members"
 msgid "staff member"
 msgstr "Staff Members"
 
-#: base/models.py:162 base/models.py:193
+#: base/models.py:204 base/models.py:238
 msgid "accepted"
 msgstr "Accepted"
 
-#: base/models.py:165
+#: base/models.py:207
 msgid "slug"
 msgstr ""
 
-#: base/models.py:174
+#: base/models.py:216
 msgid "invitation of {} to join {} [{}]"
 msgstr ""
 
-#: base/models.py:178
+#: base/models.py:220
 msgid "invitation"
 msgstr ""
 
-#: base/models.py:179
+#: base/models.py:221
 msgid "invitations"
 msgstr ""
 
-#: base/models.py:198
+#: base/models.py:243
 msgid "request of {} to join {} [{}]"
 msgstr ""
 
-#: base/models.py:241
+#: base/models.py:289
 msgid "requester"
 msgstr ""
 
-#: base/models.py:242
+#: base/models.py:290
 msgid "requestee"
 msgstr ""
 
-#: base/models.py:244
+#: base/models.py:292
 msgid "state"
 msgstr ""
 
-#: base/models.py:245
+#: base/models.py:293
 msgid "accept time"
 msgstr ""
 
-#: base/models.py:246 game/models.py:128
+#: base/models.py:294 game/models.py:133
 msgid "game configuration"
 msgstr ""
 
-#: base/page_processors.py:12 base/page_processors.py:22 base/views.py:123
-#: base/views.py:281 base/views.py:304 base/views.py:347
+#: base/page_processors.py:12 base/page_processors.py:22 base/views.py:101
+#: base/views.py:259 base/views.py:282 base/views.py:325
 msgid "your team must be final"
 msgstr ""
 
-#: base/views.py:40 base/views.py:69 base/views.py:155 base/views.py:390
-#: base/views.py:434 base/views.py:463 base/views.py:490 base/views.py:520
+#: base/views.py:41 base/views.py:70 base/views.py:133 base/views.py:368
+#: base/views.py:414 base/views.py:443 base/views.py:470 base/views.py:500
 msgid "registration period has ended"
 msgstr ""
 
-#: base/views.py:47
+#: base/views.py:48
 msgid ""
 "you are not in a team, create one below or request your team leader to "
 "invite you"
 msgstr ""
 
-#: base/views.py:81
+#: base/views.py:91
 msgid "register new team"
 msgstr ""
 
-#: base/views.py:95
-msgid "only head can invite"
-msgstr ""
-
-#: base/views.py:102
-msgid "already part of the team"
-msgstr ""
-
-#: base/views.py:104 base/views.py:507
-msgid "already part of another team"
-msgstr ""
-
-#: base/views.py:106
-msgid "you have invited this user before!"
-msgstr ""
-
-#: base/views.py:111
-#, python-format
-msgid "successfully invited user %(name)s"
-msgstr ""
-
-#: base/views.py:126 base/views.py:446
+#: base/views.py:104 base/views.py:426
 msgid "your team does not have enough members"
 msgstr ""
 
-#: base/views.py:164 base/views.py:527
+#: base/views.py:142 base/views.py:507
 msgid "you already have a team"
 msgstr ""
 
-#: base/views.py:167 base/views.py:510 base/views.py:529
+#: base/views.py:145 base/views.py:490 base/views.py:509
 msgid "the team has reached max members"
 msgstr ""
 
-#: base/views.py:170 base/views.py:239 base/views.py:399 base/views.py:410
-#: base/views.py:531
+#: base/views.py:148 base/views.py:217 base/views.py:377 base/views.py:391
+#: base/views.py:511
 msgid "The team is final."
 msgstr ""
 
-#: base/views.py:173
+#: base/views.py:151
 #, python-format
 msgid "successfully joined team %s"
 msgstr ""
 
-#: base/views.py:218
+#: base/views.py:196
 #, fuzzy
 #| msgid "qualifications"
 msgid "qualification games results"
 msgstr "Qualifications"
 
-#: base/views.py:219
+#: base/views.py:197
 msgid "random bot games results"
 msgstr ""
 
-#: base/views.py:312 base/views.py:318
+#: base/views.py:290 base/views.py:296
 msgid "No such game request found"
 msgstr ""
 
-#: base/views.py:324
+#: base/views.py:302
 msgid "Bad request"
 msgstr ""
 
-#: base/views.py:333
+#: base/views.py:311
 #, python-format
 msgid "this team can not play for %d minutes"
 msgstr ""
 
-#: base/views.py:338
+#: base/views.py:316
 msgid "Done"
 msgstr ""
 
-#: base/views.py:365
+#: base/views.py:343
 #, python-format
 msgid "you must wait %d minutes before another request"
 msgstr ""
 
-#: base/views.py:368
+#: base/views.py:346
 msgid "Challenged the team successfully"
 msgstr ""
 
-#: base/views.py:454
+#: base/views.py:434
 msgid "team is now finalized"
 msgstr ""
 
-#: base/views.py:481
+#: base/views.py:461
 msgid "invitation resend successful"
 msgstr ""
 
-#: base/views.py:535
+#: base/views.py:487
+msgid "already part of another team"
+msgstr ""
+
+#: base/views.py:515
 msgid "AIChallenge team join request"
 msgstr ""
 
-#: base/views.py:537
+#: base/views.py:517
 msgid "join request has been sent"
 msgstr ""
 
-#: base/views.py:541
+#: base/views.py:521
 msgid "your request to join this team has been declined"
 msgstr ""
 
-#: base/views.py:543
+#: base/views.py:523
 msgid "you have requested to join this team before"
 msgstr ""
 
@@ -1110,7 +1316,7 @@ msgstr ""
 msgid "A new question is waiting for you!"
 msgstr ""
 
-#: game/apps.py:8 game/models.py:140 game/models.py:210
+#: game/apps.py:8 game/models.py:145 game/models.py:215
 msgid "game"
 msgstr ""
 
@@ -1128,183 +1334,186 @@ msgstr ""
 msgid "there are unfinished games"
 msgstr ""
 
-#: game/models.py:19 game/models.py:73 game/models.py:118
+#: game/models.py:20 game/models.py:78 game/models.py:123
 msgid "title"
 msgstr ""
 
-#: game/models.py:20
+#: game/models.py:21
 msgid "site"
 msgstr ""
 
-#: game/models.py:22
+#: game/models.py:23
 msgid "max team members count"
 msgstr ""
 
-#: game/models.py:23
+#: game/models.py:24
 msgid "min team members count"
 msgstr ""
 
-#: game/models.py:25
+#: game/models.py:26
 msgid "registration start date"
 msgstr ""
 
-#: game/models.py:26
+#: game/models.py:27
 msgid "registration finish date"
 msgstr ""
 
-#: game/models.py:28
+#: game/models.py:29
 msgid "number of players per game"
 msgstr ""
 
-#: game/models.py:29
+#: game/models.py:30
 msgid "supported languages"
 msgstr ""
 
-#: game/models.py:31
+#: game/models.py:32
 msgid "server container"
 msgstr ""
 
-#: game/models.py:33
+#: game/models.py:34
 msgid "game logger"
 msgstr ""
 
-#: game/models.py:35
+#: game/models.py:36
 msgid "additional containers"
 msgstr ""
 
-#: game/models.py:38
+#: game/models.py:39
 msgid "compile time limit (s)"
 msgstr ""
 
-#: game/models.py:39
+#: game/models.py:40
 msgid "execution time limit (s)"
 msgstr ""
 
-#: game/models.py:50
+#: game/models.py:51
 msgid "competitions"
 msgstr ""
 
-#: game/models.py:59
+#: game/models.py:64
 msgid "configuration file"
 msgstr ""
 
-#: game/models.py:61 game/models.py:85 game/models.py:337
+#: game/models.py:66 game/models.py:90 game/models.py:342
 msgid "description"
 msgstr ""
 
-#: game/models.py:62
+#: game/models.py:67
 msgid "public"
 msgstr ""
 
-#: game/models.py:68
+#: game/models.py:73
 msgid "Game Configuration"
 msgstr ""
 
-#: game/models.py:69
+#: game/models.py:74
 msgid "Game Configurations"
 msgstr ""
 
-#: game/models.py:74
+#: game/models.py:79
 msgid "compile container"
 msgstr ""
 
-#: game/models.py:76
+#: game/models.py:81
 msgid "execute container"
 msgstr ""
 
-#: game/models.py:84
+#: game/models.py:89
 msgid "tag"
 msgstr ""
 
-#: game/models.py:86
+#: game/models.py:91
 msgid "dockerfile source"
 msgstr ""
 
-#: game/models.py:88
+#: game/models.py:93
 msgid "version"
 msgstr ""
 
-#: game/models.py:89
+#: game/models.py:94
 msgid "cores"
 msgstr ""
 
-#: game/models.py:90
+#: game/models.py:95
 msgid "memory"
 msgstr ""
 
-#: game/models.py:91
+#: game/models.py:96
 msgid "swap"
 msgstr ""
 
-#: game/models.py:92
+#: game/models.py:97
 msgid "build log"
 msgstr ""
 
-#: game/models.py:100
+#: game/models.py:105
 msgid "manual"
 msgstr ""
 
-#: game/models.py:101
+#: game/models.py:106
 msgid "friendly"
 msgstr "Friendly"
 
-#: game/models.py:102
+#: game/models.py:107
 msgid "qualifications"
 msgstr "Qualifications"
 
-#: game/models.py:103
+#: game/models.py:108
 msgid "finals"
 msgstr "Finals"
 
-#: game/models.py:104
+#: game/models.py:109
 msgid "seeding"
 msgstr ""
 
-#: game/models.py:105
+#: game/models.py:110
 msgid "supplementary"
 msgstr ""
 
-#: game/models.py:106
+#: game/models.py:111
 msgid "groups"
 msgstr ""
 
-#: game/models.py:112
+#: game/models.py:117
 msgid "running"
 msgstr "Running"
 
-#: game/models.py:113
+#: game/models.py:118
 msgid "finished"
 msgstr "Finished"
 
-#: game/models.py:119
+#: game/models.py:124
 msgid "players"
 msgstr "Players"
 
-#: game/models.py:120
+#: game/models.py:125
 msgid "game log file"
 msgstr "Log File"
 
-#: game/models.py:122
+#: game/models.py:127
 msgid "error log"
 msgstr ""
 
-#: game/models.py:125
+#: game/models.py:130
 msgid "pre games"
 msgstr "Pre games"
 
-#: game/models.py:141
+#: game/models.py:146
 msgid "games"
 msgstr "Games"
 
-#: game/models.py:209
+#: game/models.py:214
 msgid "team submit"
 msgstr "Team Submit"
 
-#: game/models.py:221
+#: game/models.py:226
 #, fuzzy
 #| msgid "game type"
 msgid "game types"
 msgstr "Game Type"
+
+#~ msgid "invite member to team"
+#~ msgstr "Invite member to team"
 
 #~ msgid "submit opinion"
 #~ msgstr "Submit opinion"

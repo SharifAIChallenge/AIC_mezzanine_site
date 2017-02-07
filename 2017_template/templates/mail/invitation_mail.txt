@@ -1,6 +1,0 @@
-{% load i18n %}
-
-{% trans 'you have been invited to team:' %} {{ team }}
-{% trans 'click on below link to accept:' %}
-
-http://{{ current_host }}{{ abs_link }}

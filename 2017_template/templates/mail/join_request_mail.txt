@@ -1,4 +1,0 @@
-{% load i18n %}
-{% trans 'following user has requested to join your team:' %}
-{{ member }}
-{% trans "you can accept or decline this request in the 'my tean' page" %}

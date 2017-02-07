@@ -220,6 +220,13 @@ def change_team_name(request, id):
 @team_required
 def my_team(request):
     # A temporary response, while my_team page is under construction
+    try:
+        user_team = request.user.team
+        if user_team is None or not user_team.is_finalized:
+            return redirect('register_team')
+    except:
+        return redirect('register_team')
+
     context = dict()
     page = dict()
     context['message'] = u'ثبت‌نام شما با موفقیت انجام شده است. این صفحه به زودی به روز خواهد شد.'
@@ -234,6 +241,13 @@ def my_team(request):
 @team_required
 def my_team_under_construction(request):
     """ The original my_team view, which should replace current my_team view """
+    try:
+        user_team = request.user.team
+        if user_team is None or not user_team.is_finalized:
+            return redirect('register_team')
+    except:
+        return redirect('register_team')
+
     if request.method == 'POST':
         will_come_form = WillComeForm(request.POST, instance=request.team)
         if will_come_form.is_valid():

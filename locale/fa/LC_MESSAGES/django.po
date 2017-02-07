@@ -1504,8 +1504,8 @@ msgstr "نوع بازی"
 #~ msgid "avatar"
 #~ msgstr "عکس پروفایل"
 
-#~ msgid "Contact us"
-#~ msgstr "تماس با ما"
+msgid "contact"
+msgstr "تماس با ما"
 
 #~ msgid "password"
 #~ msgstr "گذرواژه"

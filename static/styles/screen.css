@@ -188,13 +188,13 @@ hr {
       #header .wrapper > .menu li {
         display: inline-block;
         margin-left: 3px;
-        font: 10px "IRANYekan", sans-serif;
+        font: 13px "IRANYekan", sans-serif;
         border-top: 4px solid transparent;
         margin-top: 0px;
-        padding-top: 16px;
+        padding-top: 18px;
         padding-bottom: 19px;
-        padding-right: 12px;
-        padding-left: 12px;
+        padding-right: 9px;
+        padding-left: 9px;
         -moz-transition: all 0.3s;
         -o-transition: all 0.3s;
         -webkit-transition: all 0.3s;
@@ -215,6 +215,7 @@ hr {
               text-align: center;
               vertical-align: middle;
               padding-left: 5px;
+              padding-right: 5px;
             }
 
       #header .wrapper .float > .menuleft {
@@ -222,13 +223,13 @@ hr {
       #header .wrapper .float > .menuleft li {
         display: inline-block;
         margin-right: 3px;
-        font: 10px "IRANYekan", sans-serif;
+        font: 13px "IRANYekan", sans-serif;
         border-top: 4px solid transparent;
         margin-top: -2px;
-        padding-top: 16px;
+        padding-top: 18px;
         padding-bottom: 19px;
-        padding-right: 12px;
-        padding-left: 12px;
+        padding-right: 9px;
+        padding-left: 9px;
         -moz-transition: all 0.3s;
         -o-transition: all 0.3s;
         -webkit-transition: all 0.3s;
@@ -249,16 +250,16 @@ hr {
         -moz-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
-        padding: 6px 35px;
-        font: 10px "IRANYekan", sans-serif;
+        /*padding: 6px 35px;*/
+        font: 13px "IRANYekan", sans-serif;
         -moz-transition: all 0.5s;
         -o-transition: all 0.5s;
         -webkit-transition: all 0.5s;
         transition: all 0.5s;
         background: transparent;
         color: #FFF;
-        line-height: 23px;
-        vertical-align: top;
+        line-height: 21px;
+        vertical-align: center;
         margin-top: 12px;
         -moz-border-radius: 2.5px;
         -webkit-border-radius: 2.5px;
@@ -270,7 +271,7 @@ hr {
         -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         padding: 6px 35px;
-        font: 14px "IRANYekan", sans-serif;
+        font: 13px "IRANYekan", sans-serif;
         -moz-transition: all 0.5s;
         -o-transition: all 0.5s;
         -webkit-transition: all 0.5s;
@@ -330,7 +331,7 @@ hr {
           display: block; }
         #header .wrapper > .mobile .menu li {
           display: block;
-          font: 14px "IRANYekan", sans-serif;
+          font: 13px "IRANYekan", sans-serif;
           padding: 0px 10px 2px 7px;
           border-right: 3px solid transparent;
           -moz-transition: all 0.3s;
@@ -355,7 +356,7 @@ hr {
         box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.2) inset;
         display: inline-block;
         padding: 5px 35px;
-        font: 14px "IRANYekan", sans-serif;
+        font: 13px "IRANYekan", sans-serif;
         -moz-transition: all 0.5s;
         -o-transition: all 0.5s;
         -webkit-transition: all 0.5s;
@@ -378,7 +379,7 @@ hr {
         -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         padding: 6px 35px;
-        font: 14px "IRANYekan", sans-serif;
+        font: 13px "IRANYekan", sans-serif;
         -moz-transition: all 0.5s;
         -o-transition: all 0.5s;
         -webkit-transition: all 0.5s;
@@ -398,7 +399,7 @@ hr {
         -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         padding: 6px 35px;
-        font: 14px "IRANYekan", sans-serif;
+        font: 13px "IRANYekan", sans-serif;
         -moz-transition: all 0.5s;
         -o-transition: all 0.5s;
         -webkit-transition: all 0.5s;

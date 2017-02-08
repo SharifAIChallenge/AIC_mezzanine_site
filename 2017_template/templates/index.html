@@ -5,8 +5,6 @@
 <!--[if IE 8]>    <html class="ie8 lt-ie10 lt-ie9" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if IE 9]>    <html class="ie9 lt-ie10" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if gt IE 9]><!-->
-
-<!-- search the answer here -->
 <html lang="{{ LANGUAGE_CODE }}"> <!--<![endif]-->
 <head>
     <title>{{ settings.SITE_TITLE }}</title>
@@ -16,24 +14,17 @@
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
     <meta http-equiv="pragma" content="no-cache" />
-    <link rel="shortcut icon" href="/static/images/logo-site.ico" type="image/x-icon">
-    <link href="/static/styles/screen.css" media="screen, projection" rel="stylesheet" type="text/css"/>
-    <link href="/static/styles/sharedrtl.css" media="screen, projection" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="/static/scripts/bootstrap.min.css">
-    <script src="/static/scripts/jquery.min.js"></script>
-    <script src="/static/scripts/bootstrap.min.js"></script>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width, height=device-height">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <style>
-        {% if LANGUAGE_BIDI %}
-        body {
-            direction: rtl;
-        }
-        {% endif %}
-    </style>
+    <link rel="shortcut icon" href="/static/images/logo-site.ico" type="image/x-icon">
+    <link href="/static/styles/screen.css" media="screen, projection" rel="stylesheet" type="text/css"/>
+    <link href="/static/styles/sharedrtl.css" media="screen, projection" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/static/scripts/bootstrap.min.css">
 
+    <script src="/static/scripts/jquery.min.js"></script>
+    <script src="/static/scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/scripts/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/static/scripts/jquery.countdown.min.js"></script>
     <script type="text/javascript" src="/static/scripts/main.js"></script>
@@ -89,8 +80,8 @@
             <li><a href="#program" tabindex="-1" hidefocus="true">برنامه مسابقه</a></li>
             <li><a href="#history" tabindex="-1" hidefocus="true">تاریخچه</a></li>
             <li><a href="#award" tabindex="-1" hidefocus="true">جوایز</a></li>
-{#            <li><a href="#about" tabindex="-1" hidefocus="true">معرفی</a></li>#}
-{#            <li><a href="/staff/teams/" tabindex="-1" hidefocus="true">برگزارکنندگان</a></li>#}
+            <li><a href="#about" tabindex="-1" hidefocus="true">معرفی</a></li>
+            <li><a href="/staff/teams/" tabindex="-1" hidefocus="true">برگزارکنندگان</a></li>
             <li><a href="#sponsors" tabindex="-1" hidefocus="true">حامیان</a></li>
         </ul>
         <div class="mobile">
@@ -105,7 +96,7 @@
                 <li><a href="#program" tabindex="-1" hidefocus="true">برنامه مسابقه</a></li>
                 <li><a href="#history" tabindex="-1" hidefocus="true">تاریخچه</a></li>
                 <li><a href="#award" tabindex="-1" hidefocus="true">جوایز</a></li>
-{#                <li><a href="#about" tabindex="-1" hidefocus="true">معرفی</a></li>#}
+                <li><a href="#about" tabindex="-1" hidefocus="true">معرفی</a></li>
                 <li><a href="#sponsors" tabindex="-1" hidefocus="true">حامیان</a></li>
                 <li><a href="/contact-us/" tabindex="-1" hidefocus="true">تماس با ما</a></li>
                 <li><a href="/blog/" tabindex="-1" hidefocus="true">بلاگ</a></li>
@@ -161,7 +152,7 @@
                 برای حضور در مسابقه کافی خواهد بود! قوانین شرکت در مسابقه را می‌توانید از طریق
                 <a style="color: blue" href="http://aichallenge.sharif.edu:2017/docs/site/participation_rules/">این لینک</a>
             مشاهده کنید.
-            
+
             <!--
                 <br>
                 اخبار و اطلاعات تکمیلی مسابقه از طریق
@@ -182,13 +173,13 @@
             </li><li>
             ۲۹-۱۵ بهمن: مرحله‌ی غیر حضوری
             </li><li>
-            ۳ اسفند: اعلام نتایج مرحله‌ی حضوری و راه‌یافتگان به مرحله‌ی حضوری. 
+            ۳ اسفند: اعلام نتایج مرحله‌ی حضوری و راه‌یافتگان به مرحله‌ی حضوری
              </li><li>
-                ۱۸ و ۱۹ اسفند: مرحله‌ی حضوری در دانشگاه صنعتی.
+                ۱۸ و ۱۹ اسفند: مرحله‌ی حضوری در دانشگاه صنعتی شریف
                 </li>
-                </ul>	
+                </ul>
             </div>
-            
+
 
         </div>
     </div>
@@ -198,36 +189,22 @@
             <h2 class="title run">تاریخچه</h2>
             <h3 class="subtitle run">دوره‌های گذشته مسابقه</h3>
             <div class="content">
-
                 <!-- timeline -->
                 <ul class="timeline run">
                     <li class="timeline-event">
                         <label class="timeline-event-icon"></label>
                         <div class="timeline-event-copy">
-                            <p class="timeline-event-thumbnail">۱۳۹۴</p>
-                            <h3>دوره هشتم مسابقه</h3>
-                            <h4>برگزاری مسابقه در سطح بین المللی</h4>
-                            <p>باتوجه به تجربه‌ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه نویسی ، دوره‌ی
-                                هشتم این مسابقات با تغییر نام خود به <span class="red">«نبرد هوش مصنوعی شریف»</span>
-                                برگزار شد . همچنین در این دوره مسابقه به صورت بین المللی برگزار شد.
-                            </p>
-                        </div>
-                    </li>
-                    <li class="timeline-event">
-                        <label class="timeline-event-icon"></label>
-                        <div class="timeline-event-copy">
-                            <p class="timeline-event-thumbnail">۱۳۹۳</p>
-                            <h3>دوره ی هفتم مسابقه</h3>
-                            <h4>پشتیبانی از زبان های برنامه نویسی ++C و پایتون </h4>
-                            <p><span class="red">دوره‌ی هفتم </span>با درنظر گرفتن مشکلات و تجربه های دوره های قبل، به
-                                گونه ای متفاوت برگزار شد.نتیجه‌ی تلاش برگزار کنندگان در این دوره ، حضور ۱۵۸ تیم از ۲۸
-                                دانشگاه کشور در مرحله ی غیرحضوری و یک رقابت جدی برای انتخاب ۳۲ تیم در مرحله‌ی حضوری بود.
-                                همچنین به همت تیم فنی ، زبان های
-                                ++C و python هم در مسابقه پشتیبانی می‌شدند.
-                            <br>
-                            مستنداین مسابقه (جاواچلنج۹۳) از طریق
-                                <a style="color: blue" href="http://bayanbox.ir/view/8601289253364961637/JavaChallenge2015-fa.pdf">این لینک</a>
-                            قابل مشاهده است.
+                            <p class="timeline-event-thumbnail">۱۳۸۹-۱۳۸۷</p> <!--  ۱  ۳  ۹  ۰  -->
+                            <h3>سه دوره ی نخست مسابقه</h3>
+                            <h4>برگزاری مسابقه به صورت درون دانشگاهی</h4>
+                            <p><span class="red">۷ سال پیش</span>
+                                تعدادی از اعضای انجمن علمی دانشکده ی مهندسی کامپیوتر ، تصمیم گرفتند تا مسابقه‌ی برنامه
+                                نویسی در کنار مسابقات
+                                ACM
+                                در دانشکده برگزار کنند.
+                                با شرکت در این مسابقه مهارت های برنامه نویسی دانشجویان سنجیده و تقویت می‌شد.
+                                در دو سال بعد هم مسابقه با همین شرایط برگزار شد. به طوری که برگزاری این مسابقه به
+                                رویدادی سالیانه در دانشکده تبدیل شده بود.
                             </p>
                         </div>
                     </li>
@@ -253,17 +230,30 @@
                     <li class="timeline-event">
                         <label class="timeline-event-icon"></label>
                         <div class="timeline-event-copy">
-                            <p class="timeline-event-thumbnail">۱۳۸۹-۱۳۸۷</p> <!--  ۱  ۳  ۹  ۰  -->
-                            <h3>سه دوره ی نخست مسابقه</h3>
-                            <h4>برگزاری مسابقه به صورت درون دانشگاهی</h4>
-                            <p><span class="red">۷ سال پیش</span>
-                                تعدادی از اعضای انجمن علمی دانشکده ی مهندسی کامپیوتر ، تصمیم گرفتند تا مسابقه‌ی برنامه
-                                نویسی در کنار مسابقات
-                                ACM
-                                در دانشکده برگزار کنند.
-                                با شرکت در این مسابقه مهارت های برنامه نویسی دانشجویان سنجیده و تقویت می‌شد.
-                                در دو سال بعد هم مسابقه با همین شرایط برگزار شد. به طوری که برگزاری این مسابقه به
-                                رویدادی سالیانه در دانشکده تبدیل شده بود.
+                            <p class="timeline-event-thumbnail">۱۳۹۳</p>
+                            <h3>دوره ی هفتم مسابقه</h3>
+                            <h4>پشتیبانی از زبان های برنامه نویسی ++C و پایتون </h4>
+                            <p><span class="red">دوره‌ی هفتم </span>با درنظر گرفتن مشکلات و تجربه های دوره های قبل، به
+                                گونه ای متفاوت برگزار شد.نتیجه‌ی تلاش برگزار کنندگان در این دوره ، حضور ۱۵۸ تیم از ۲۸
+                                دانشگاه کشور در مرحله ی غیرحضوری و یک رقابت جدی برای انتخاب ۳۲ تیم در مرحله‌ی حضوری بود.
+                                همچنین به همت تیم فنی ، زبان های
+                                ++C و python هم در مسابقه پشتیبانی می‌شدند.
+                            <br>
+                            مستنداین مسابقه (جاواچلنج۹۳) از طریق
+                                <a style="color: blue" href="http://bayanbox.ir/view/8601289253364961637/JavaChallenge2015-fa.pdf">این لینک</a>
+                            قابل مشاهده است.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="timeline-event">
+                        <label class="timeline-event-icon"></label>
+                        <div class="timeline-event-copy">
+                            <p class="timeline-event-thumbnail">۱۳۹۴</p>
+                            <h3>دوره هشتم مسابقه</h3>
+                            <h4>برگزاری مسابقه در سطح بین المللی</h4>
+                            <p>باتوجه به تجربه‌ی موفق در برگزاری مسابقه با پشتیبانی زبان های مختلف برنامه نویسی ، دوره‌ی
+                                هشتم این مسابقات با تغییر نام خود به <span class="red">«نبرد هوش مصنوعی شریف»</span>
+                                برگزار شد . همچنین در این دوره مسابقه به صورت بین المللی برگزار شد.
                             </p>
                         </div>
                     </li>
@@ -320,13 +310,12 @@
                     </div>
                 </div>
                 <div class="column col-right prizes-text">
-                    <br>
                     <h5>تیم اول</h5>
                     <p>سه عدد ساعت هوشمند Samsung Gear S3 Classic</p>
-                    <br>
+
                     <h5>تیم دوم </h5>
                     <p>سه عدد بلندگوی آمازون اکو</p>
-                    <br>
+
                     <h5>تیم سوم </h5>
                     <p>سه عدد هارددیسک اکسترنال ۱ ترابایت</p>
                     <br>
@@ -336,7 +325,7 @@
             </div>
         </div>
     </div>
-    
+
     <!--
     <div class="section clearfix section-about even" id="about">
         <div class="sp-wp">
@@ -351,12 +340,12 @@
             </div>
         </div>
     </div>
-    
-    -->
-    
-    
 
-    
+    -->
+
+
+
+
     <div class="section clearfix section-sponsors even" id="sponsors">
         <div class="sp-wp">
             <h2 class="title run">حامیان مسابقه</h2>
@@ -372,19 +361,19 @@
     </div>
 
 
-    <!-- Start of StatCounter Code for Default Guide -->
-    <a title="shopify traffic stats"
-    href="http://statcounter.com/shopify/" target="_blank"><img
-    src="http://c.statcounter.com/10808005/0/005c1cbf/1/"
-    alt="shopify traffic stats" style="border:none;"></a>
-    <!-- End of StatCounter Code for Default Guide -->
+{#    <!-- Start of StatCounter Code for Default Guide -->#}
+{#    <a title="shopify traffic stats"#}
+{#    href="http://statcounter.com/shopify/" target="_blank"><img#}
+{#    src="http://c.statcounter.com/10808005/0/005c1cbf/1/"#}
+{#    alt="shopify traffic stats" style="border:none;"></a>#}
+{#    <!-- End of StatCounter Code for Default Guide -->#}
 
 
     <div class="footer">
         <div class="information-site">
-            {#            <h2 class="pull-title" style="color: #C3C7D8;font-size: 2.6em;cursor: default;">ارتباط با ما</h2>#}
-            {#            <p>ایران٬ تهران٬ دانشگاه شریف٬ سالن جبار</p>#}
-            {#            <p>+۹۸۲۱۶۱۵۳</p>#}
+                        <h2 class="pull-title" style="color: #C3C7D8;cursor: default;">ارتباط با ما</h2>
+                        <p style="font-size: 14px">ایران، تهران، دانشگاه صنعتی شریف</p>
+                        <p style="font-size: 14px">۹۸۲۱۶۱۵۳+</p>
 
             <ul class="social-media">
                 <li><a href="http://twitter.com/aichallenge" title="Twitter" target="_blank"><i

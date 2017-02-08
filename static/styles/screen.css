@@ -1,9 +1,14 @@
 /* Written by : Compass and SASS */
 @font-face {
-  font-family: "BYekan";
-  src: url(fonts/regular.eot);
-  src: url(fonts/regular.eot?#iefix) format("eot"), url(fonts/regular.woff2) format("woff2"), url(fonts/regular.woff) format("woff"), url(fonts/regular.ttf) format("ttf");
-  font-weight: 400; }
+	font-family: IRANYekan;
+	font-style: normal;
+	font-weight: normal;
+	src: url('fonts/iranyekanwebregular.eot');
+	src: url('fonts/iranyekanwebregular.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('fonts/iranyekanwebregular.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('fonts/iranyekanwebregular.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('fonts/iranyekanwebregular.ttf') format('truetype');
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -58,7 +63,7 @@ body {
   width: 100%;
   border: none !important;
   outline: none !important;
-  font: 13px "BYekan", "Open Sans", sans-serif;
+  font: 13px "IRANYekan", sans-serif;
   height: auto;
   height: 100%;
   color: #33353F;
@@ -114,7 +119,7 @@ h6 {
   color: #007AFF;
   font-style: normal;
   font-weight: normal;
-  font-family: "BYekan", "Open Sans", sans-serif !important; }
+  font-family: "IRANYekan", sans-serif !important; }
 
 h1 a,
 h2 a,
@@ -182,14 +187,14 @@ hr {
       display: inline-block; }
       #header .wrapper > .menu li {
         display: inline-block;
-        margin-left: 5px;
-        font: 14px "BYekan", "Open Sans", sans-serif;
+        margin-left: 3px;
+        font: 13px "IRANYekan", sans-serif;
         border-top: 4px solid transparent;
         margin-top: 0px;
-        padding-top: 12px;
+        padding-top: 18px;
         padding-bottom: 19px;
-        padding-right: 12px;
-        padding-left: 12px;
+        padding-right: 9px;
+        padding-left: 9px;
         -moz-transition: all 0.3s;
         -o-transition: all 0.3s;
         -webkit-transition: all 0.3s;
@@ -210,20 +215,21 @@ hr {
               text-align: center;
               vertical-align: middle;
               padding-left: 5px;
+              padding-right: 5px;
             }
 
       #header .wrapper .float > .menuleft {
       display: inline-block; }
       #header .wrapper .float > .menuleft li {
         display: inline-block;
-        margin-right: 5px;
-        font: 14px "BYekan", "Open Sans", sans-serif;
+        margin-right: 3px;
+        font: 13px "IRANYekan", sans-serif;
         border-top: 4px solid transparent;
-        margin-top: 0px;
-        padding-top: 12px;
+        margin-top: -2px;
+        padding-top: 18px;
         padding-bottom: 19px;
-        padding-right: 12px;
-        padding-left: 12px;
+        padding-right: 9px;
+        padding-left: 9px;
         -moz-transition: all 0.3s;
         -o-transition: all 0.3s;
         -webkit-transition: all 0.3s;
@@ -244,16 +250,16 @@ hr {
         -moz-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
-        padding: 6px 35px;
-        font: 14px "BYekan", "Open Sans", sans-serif;
+        /*padding: 6px 35px;*/
+        font: 13px "IRANYekan", sans-serif;
         -moz-transition: all 0.5s;
         -o-transition: all 0.5s;
         -webkit-transition: all 0.5s;
         transition: all 0.5s;
         background: transparent;
         color: #FFF;
-        line-height: 23px;
-        vertical-align: top;
+        line-height: 21px;
+        vertical-align: center;
         margin-top: 12px;
         -moz-border-radius: 2.5px;
         -webkit-border-radius: 2.5px;
@@ -265,7 +271,7 @@ hr {
         -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         padding: 6px 35px;
-        font: 14px "BYekan", "Open Sans", sans-serif;
+        font: 13px "IRANYekan", sans-serif;
         -moz-transition: all 0.5s;
         -o-transition: all 0.5s;
         -webkit-transition: all 0.5s;
@@ -325,7 +331,7 @@ hr {
           display: block; }
         #header .wrapper > .mobile .menu li {
           display: block;
-          font: 14px "BYekan", "Open Sans", sans-serif;
+          font: 13px "IRANYekan", sans-serif;
           padding: 0px 10px 2px 7px;
           border-right: 3px solid transparent;
           -moz-transition: all 0.3s;
@@ -350,7 +356,7 @@ hr {
         box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.2) inset;
         display: inline-block;
         padding: 5px 35px;
-        font: 14px "BYekan", "Open Sans", sans-serif;
+        font: 13px "IRANYekan", sans-serif;
         -moz-transition: all 0.5s;
         -o-transition: all 0.5s;
         -webkit-transition: all 0.5s;
@@ -373,7 +379,7 @@ hr {
         -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         padding: 6px 35px;
-        font: 14px "BYekan", "Open Sans", sans-serif;
+        font: 13px "IRANYekan", sans-serif;
         -moz-transition: all 0.5s;
         -o-transition: all 0.5s;
         -webkit-transition: all 0.5s;
@@ -393,7 +399,7 @@ hr {
         -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
         padding: 6px 35px;
-        font: 14px "BYekan", "Open Sans", sans-serif;
+        font: 13px "IRANYekan", sans-serif;
         -moz-transition: all 0.5s;
         -o-transition: all 0.5s;
         -webkit-transition: all 0.5s;
@@ -507,7 +513,8 @@ body.ltr .content {
 .content-img {
   text-align: right; }
   .content-img img {
-    width: 100%; }
+    width: 100%;
+    margin: 15px 0px 15px 15px;}
 
 img {
   border: 0px none; }
@@ -543,7 +550,7 @@ img {
     padding: 25px 0px;
     margin: 2.5em auto;
     text-align: right;
-    font: 14px "BYekan", "Open Sans", sans-serif; }
+    font: 14px "IRANYekan", sans-serif; }
     .section .content::before {
       position: absolute;
       display: block;
@@ -592,7 +599,7 @@ img {
   -webkit-box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
   box-shadow: 0px -1px 0px rgba(255, 255, 255, 0.1) inset;
   padding: 6px 35px;
-  font: 20px "BYekan", "Open Sans", sans-serif;
+  font: 20px "IRANYekan", sans-serif;
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;
   -webkit-transition: all 0.5s;
@@ -629,7 +636,7 @@ img {
   .section-program #remaining li {
     display: inline-block;
     font-size: 3em;
-    font-family: "BYekan", "Open Sans", sans-serif;
+    font-family: "IRANYekan", sans-serif;
     line-height: 0.7em;
     cursor: default;
     text-align: left;
@@ -660,10 +667,10 @@ img {
     margin: 0px auto;
     padding: 30px 0px; }
     .containerWrap .inner-wrap .title h1 {
-      font: 18px BYekan;
+      font: 18px IRANYekan;
       color: #666; }
     .containerWrap .inner-wrap .content {
-      font: 13px BYekan; }
+      font: 13px IRANYekan; }
 
 body.ltr .timeline:before {
   left: 0px;
@@ -719,7 +726,7 @@ body.ltr .timeline.animated {
   top: -2.375em;
   right: 1em;
   width: 80%;
-  font-family: "BYekan", "Open Sans", sans-serif; }
+  font-family: "IRANYekan", sans-serif; }
   .timeline-event-copy h3 {
     color: #33353F;
     font-size: 1.75em; }
@@ -770,9 +777,14 @@ body.ltr .timeline.animated {
   padding: 0.25em 1em 0.2em 1em; }
 
 .prizes-text h5 {
-  font-family: "BYekan", "Open Sans", sans-serif, "tahoma", Arial, sans-serif;
+  font-family: "IRANYekan", sans-serif, "tahoma", Arial, sans-serif;
   font-size: 1.5em;
+  margin: 25px;
   color: #EC5353; }
+
+.prizes-text p{
+  margin: 25px;
+}
 
 .section-award .content::before {
   position: absolute;
@@ -885,7 +897,7 @@ body.ltr .section-award.animated .col-left {
         font-size: 14px;
         padding: 8px 3px;
         color: #363636;
-        font-family: "BYekan", "Open Sans", sans-serif, Arial; }
+        font-family: "IRANYekan", sans-serif, Arial; }
     #cross .col img {
       margin-top: 0px; }
       #cross .col img[src*="sharif"] {
@@ -1034,7 +1046,7 @@ body.ltr .section-award.animated .col-left {
   width: 100%;
   padding: 16px 0 0;
   text-align: center;
-  font: 13px "BYekan", "Open Sans", sans-serif;
+  font: 13px "IRANYekan", sans-serif;
   background: #244273;
   color: #FFF; }
   .footer .information-site {
@@ -1120,7 +1132,7 @@ body.ltr .section-award.animated .col-left {
 
 .copyright-text {
   color: #FFF;
-  font: 13px "BYekan", "Open Sans", sans-serif, "Arial"; }
+  font: 13px "IRANYekan", sans-serif, "Arial"; }
   .copyright-text a {
     color: #C59D5F; }
 

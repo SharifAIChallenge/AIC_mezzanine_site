@@ -14,18 +14,17 @@
     <meta http-equiv="expires" content="0" />
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
     <meta http-equiv="pragma" content="no-cache" />
-    <link rel="shortcut icon" href="/static/images/logo-site.ico" type="image/x-icon">
-    <link href="/static/styles/screen.css" media="screen, projection" rel="stylesheet" type="text/css"/>
-    <link href="/static/styles/sharedrtl.css" media="screen, projection" rel="stylesheet" type="text/css"/>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="/static/scripts/bootstrap.min.css">
-    <script src="/static/scripts/jquery.min.js"></script>
-    <script src="/static/scripts/bootstrap.min.js"></script>
-
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, width=device-width, height=device-height">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
+    <link rel="shortcut icon" href="/static/images/logo-site.ico" type="image/x-icon">
+    <link href="/static/styles/screen.css" media="screen, projection" rel="stylesheet" type="text/css"/>
+    <link href="/static/styles/sharedrtl.css" media="screen, projection" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/static/scripts/bootstrap.min.css">
+
+    <script src="/static/scripts/jquery.min.js"></script>
+    <script src="/static/scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="/static/scripts/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="/static/scripts/jquery.countdown.min.js"></script>
     <script type="text/javascript" src="/static/scripts/main.js"></script>
@@ -37,9 +36,6 @@
         }
     </script>
 
-    <style>
-    #cross .col {width: 49%;}
-    </style>
 </head>
 <body class="ltr">
 
@@ -71,8 +67,9 @@
             <li><a href="#info" tabindex="-1" hidefocus="true">Introduction</a></li>
             <li><a href="#program" tabindex="-1" hidefocus="true">Schedule</a></li>
             <li><a href="#history" tabindex="-1" hidefocus="true">History</a></li>
+            <li><a href="#team" tabindex="-1" hidefocus="true">Selected Pictures</a></li>
             <li><a href="#award" tabindex="-1" hidefocus="true">Trophies</a></li>
-            <li><a href="#about" tabindex="-1" hidefocus="true">About</a></li>
+            <li><a href="#sponsors" tabindex="-1" hidefocus="true">Sponsers</a></li>
         </ul>
         <div class="mobile">
             <a id="menu-toggle" href="#" class="menu-button">
@@ -85,8 +82,10 @@
                 <li><a href="#info" tabindex="-1" hidefocus="true">Introduction</a></li>
                 <li><a href="#program" tabindex="-1" hidefocus="true">Schedule</a></li>
                 <li><a href="#history" tabindex="-1" hidefocus="true">History</a></li>
+                <li><a href="#team" tabindex="-1" hidefocus="true">Selected Pictures</a></li>
                 <li><a href="#award" tabindex="-1" hidefocus="true">Trophies</a></li>
-                <li><a href="#about" tabindex="-1" hidefocus="true">About</a></li>
+                <li><a href="#sponsors" tabindex="-1" hidefocus="true">Sponsers</a></li>
+                <li><a href="/contact-us/" tabindex="-1" hidefocus="true">Contact Us</a></li>
                 <li><a href="/blog/" tabindex="-1" hidefocus="true">Blog</a></li>
 
                 {% if user.is_authenticated %}
@@ -117,20 +116,16 @@
             <!-- <img src="images/index-1.jpg" alt="" /> -->
         </div>
         <div class="competition">
-            <a href="{% url 'my_team' %}" tabindex="-1" hidefocus="true"  class="competition-dump">Enter into competition</a>
+            <a href="#" tabindex="-1" hidefocus="true"  class="competition-dump" style="font-size: 18px">&nbsp; Competition Area &nbsp;</a>
         </div>
     </div>
     <div class="section clearfix section-info odd" id="info">
         <div class="sp-wp">
-            <h2 class="title run">Challenge Introduction</h2>
-            <h3 class="subtitle run">Sharif Artificial Intelligence Challenge 2017</h3>
+            <h2 class="title run" style="font-size: 34px">Challenge Introduction</h2>
+            <h3 class="subtitle run" style="font-size: 18px">Sharif Artificial Intelligence Challenge 2017</h3>
             <div class="content" style="text-align: justify">
-                <span class="red">Sharif AI Challenge</span>
-                is a student programming contest in which competitors will compete for the game designed by our technical team, and challenge other teams to win and go up the ladder.
-                This competition was originally titled "JavaChallenge", but since it's 8th year we've decided to add support for C++ and Python. Hence, the name "AIChallenge". <br>
-                The only pre-requisite to enter this competition is familiarity with one of the aforementioned programming languages. But obviously, knowledge of algorithmic thinking and artificial intelligence will be a great asset for any of the participating teams.
+                Scientific competitions have always played a significant role in enhancing the university experience. It was the lack of such competitions for computer majors that prompted the Student's Scientific Chapter(SSC) of the Department of Computer Engineering of Sharif University of Technology, to hold competitions similar to the "Java Challenge". The 9th Java Challenge will be held in February and March 2017 and will be supporting C++ and Python for the 3rd  consecutive year. The ''Java Challenge'', which is being held internationally for the second time, is a student programming contest in which teams of three, develop a program in one of Java, C++ or Python languages to overcome rivals one after another in a pre-designed battlefield. Since minimum programming skills in only one of the languages mentioned above is sufficient for entering this competition, "<span class="red">Sharif AI Challenge</span>" is a good opportunity for all Computer major students to put their skills and abilities to test .
                 <b>You can see participation rules <a style="color: blue" href="http://aichallenge.sharif.edu:2017/docs/site/participation_rules/">here</a>
-                
                 .
                 <!--
                  and last year's documents <a style="color: blue" href="http://bayanbox.ir/view/992459135507989458/JavaChallenge2015-en.pdf">here</a>.<br>
@@ -142,8 +137,8 @@
     </div>
     <div class="section clearfix section-program even" id="program">
         <div class="sp-wp">
-            <h2 class="title run">Challenge Timetable</h2>
-            <h3 class="subtitle run">Timetable and Calender of the competition</h3>
+            <h2 class="title run" style="font-size: 34px">Challenge Timetable</h2>
+            <h3 class="subtitle run" style="font-size: 18px">Timetable and Calender of the competition</h3>
             <div class="content">
                 <div class="column col-right" style="text-align: justify;padding-left: 2em;">
                     <ul>
@@ -175,8 +170,8 @@
     </div>
     <div class="section clearfix section-history white" id="history">
         <div class="sp-wp">
-            <h2 class="title run">History</h2>
-            <h3 class="subtitle run">A brief look on the previous years</h3>
+            <h2 class="title run" style="font-size: 34px">History</h2>
+            <h3 class="subtitle run" style="font-size: 18px">A brief look on the previous years</h3>
             <div class="content">
 
                 <!-- timeline -->
@@ -184,27 +179,15 @@
                     <li class="timeline-event">
                         <label class="timeline-event-icon"></label>
                         <div class="timeline-event-copy">
-                            <p class="timeline-event-thumbnail">2016</p>
-                            <h3>8<sup>th</sup> year </h3>
-                            <h4>Aim to be International</h4>
-                            <p>With great experience of previous years, 8th year of the challenge held with the
-                                name of Sharif AI Challenge. Also for the first time, it hosted participants around the world in the online phase.
-                            </p>
-                        </div>
-                    </li>
-                    <li class="timeline-event">
-                        <label class="timeline-event-icon"></label>
-                        <div class="timeline-event-copy">
-                            <p class="timeline-event-thumbnail">2015</p>
-                            <h3>7<sup>th</sup> year </h3>
-                            <h4>Supporting C++ and Python</h4>
-                            <p>With the experience of previous years, and as a result of great efforts of executive
-                                team, 158 teams from 28 universities across the country, took place in this year’s
-                                Challenge and 32 of them was chosen to be in final phase, and with hard work of
-                                technical team, C++ and Python was added to programming languages of Challenge.
-                                <br>
-                                The Documentation of this competition (Java Challenge 2015) is available
-                                <a href="http://bayanbox.ir/view/992459135507989458/JavaChallenge2015-en.pdf" style="color: blue">here</a>.
+                            <p class="timeline-event-thumbnail">2009 - 2011</p> <!--  ۱  ۳  ۹  ۰  -->
+                            <h3>First Three Years</h3>
+                            <h4>In the University</h4>
+                            <p><span class="red">8 years ago, </span>
+                                the need for an exciting and challenging inter-university competition in the CE department
+                                was a starting point for the "Sharif AI Challenge". This later became possible thanks to the
+                                efforts of the Student's Scientific Chapter(SSC) of this department. The students took advantage
+                                of this opportunity in order to evaluate their skills in programming and improve upon them.
+                                Participation was so impressive that the "Sharif AI Challenge" soon became an annual event.
                             </p>
                         </div>
                     </li>
@@ -214,27 +197,46 @@
                             <p class="timeline-event-thumbnail">2012 - 2014</p>
                             <h3>4<sup>th</sup> to 6<sup>th</sup> Challenge</h3>
                             <h4>With Teams From Others Universities of Tehran</h4>
-                            <p><span class="red">4<sup>th</sup> year </span> competition was introduced as
-                                “JavaChallenge” and teams from Amirkabir University of Technology and University of
-                                Tehran took place in this challenge.
-                                <br> <span class="red">5<sup>th</sup> year, </span> was also held with teams from Sharif
-                                University of Technology, Amirkabir University of Technology and University of Tehran.
-                                <br> In the <span class="red">6<sup>th</sup> year,</span> as a result of widespread
-                                announcement, some teams from other cities participated in the competition.
+                            <p>
+
+                                The <span class="red">4<sup>th</sup> year </span> of the competition was introduced
+                                as the "Java Challenge".
+                                Due to its high level and credibility, the event went further than collegiate
+                                level and witnessed the participation of other teams from Tehran. The <span class="red">5<sup>th</sup> tournament</span> was
+                                organized and held in a similar way. During all this time, the level and quality of
+                                the "AI Challenge" was immensely improved. With the efforts of the Student's Scientific
+                                Chapter of the CE department and widespread advertisement, the <span class="red">6<sup>th</sup> year </span> was finally organized and held nationally. The participation of teams from Tehran and other provinces brought upon a new spirit of nationality to the competition.
+
                             </p>
                         </div>
                     </li>
                     <li class="timeline-event">
                         <label class="timeline-event-icon"></label>
                         <div class="timeline-event-copy">
-                            <p class="timeline-event-thumbnail">2009 - 2011</p> <!--  ۱  ۳  ۹  ۰  -->
-                            <h3>First Three Years</h3>
-                            <h4>In the University</h4>
-                            <p><span class="red">7 years ago, </span>
-                                some students from Student Scientific Chapter (SSC) of computer school, decided to hold
-                                a programming competition alongside ACM. The main reason of this competition, was
-                                evaluating and enhancing the programming skill of students. In the next 2 years, this
-                                competition was one of the main events which Sharif Computer School held annually.
+                            <p class="timeline-event-thumbnail">2015</p>
+                            <h3>7<sup>th</sup> year </h3>
+                            <h4>Supporting C++ and Python</h4>
+                            <p>"Sharif AI Challenge" national competition continuously advanced and in its <span class="red">7<sup>th</sup> year </span>,
+                                thanks to the efforts of the technical team, C++ and Python were added to the competition's
+                                supported languages as well. This round of the "Sharif AI Challenge" was met with
+                                good reception and approximately 158 teams from 28 universities participated in
+                                the selection phase.
+                                <br>
+                                The Documentation of this competition (Java Challenge 2015) is available
+                                <a href="http://bayanbox.ir/view/992459135507989458/JavaChallenge2015-en.pdf" style="color: blue">here</a>.
+                            </p>
+                        </div>
+                    </li>
+                    <li class="timeline-event">
+                        <label class="timeline-event-icon"></label>
+                        <div class="timeline-event-copy">
+                            <p class="timeline-event-thumbnail">2016</p>
+                            <h3>8<sup>th</sup> year </h3>
+                            <h4>Aim to be International</h4>
+                            <p>Since the added benefit of supporting other languages in the competition
+                                was a success, the <span class="red">8<sup>th</sup> tournament</span> was held under the name "Sharif AI Challenge".
+                                Furthermore, with the great advances made in the previous turn,
+                                the competition expanded internationally.
                             </p>
                         </div>
                     </li>
@@ -243,7 +245,7 @@
             </div>
         </div>
     </div>
-    
+
     <!--
     <div class="section clearfix section-award odd run" id="award">
         <div class="sp-wp">
@@ -269,11 +271,11 @@
         </div>
     </div>
     -->
-    
+
     <div class="section clearfix section-team even" id="team">
 		<div class="sp-wp">
-			<h2 class="title run">Selected pictures</h2>
-			<h3 class="subtitle run">Sharif Ai Challenge 2016</h3>
+			<h2 class="title run" style="font-size: 34px">Selected Pictures</h2>
+			<h3 class="subtitle run" style="font-size: 18px">Sharif Ai Challenge 2016</h3>
 			<div class="content">
 			    <div class="team-item">
 			    	<div class="uname-img">
@@ -297,8 +299,8 @@
 
     <div class="section clearfix section-award odd run" id="award">
         <div class="sp-wp">
-            <h2 class="title run">Awards</h2>
-            <h3 class="subtitle run">جوایز این دوره از مسابقات</h3>
+            <h2 class="title run" style="font-size: 34px">Trophies</h2>
+            <h3 class="subtitle run" style="font-size: 18px">Prizes for this year competition</h3>
             <div class="content">
                 <div class="column col-left">
                     <div class="content-img">
@@ -306,14 +308,21 @@
                     </div>
                 </div>
                 <div class="column col-right prizes-text" dir="ltr" style="text-align: left">
-                    <h5>تیم اول</h5>
-                    <p>سه عدد ساعت هوشمند Samsung Gear S3 Classic</p>
-                    <h5>تیم دوم </h5>
-                    <p>سع عدد بلندگوی آمازون اکو</p>
-                    <h5>تیم سوم </h5>
-                    <p>سه عدد هارددیسک اکسترنال ۱ ترابایت</p>
-                    <h5>۴۸ تیم راه یافته به مرحله حضوری</h5>
-                    <p>یاد بود مسابقات شامل: تی شرت، ماگ و فلش مموری مسابقه</p>
+                    <h5>1<sup>st</sup> place</h5>
+                    <p>Each member of the team that wins 1<sup>st</sup> place will receive a
+                        Samsung Gear S3 Classic Smart Watch.
+                    </p>
+
+                    <h5>2<sup>nd</sup> place</h5>
+                    <p>Each member of the team that wins 2<sup>nd</sup> place will receive an Amazon Echo Speaker.
+                    </p>
+
+                    <h5>3<sup>rd</sup> place</h5>
+                    <p>Each member of the team that wins 3<sup>rd</sup> place will receive a 1TB Portable External Hard Drive.</p>
+
+                    <h5>48 Teams qualified for the on-site round</h5>
+                    <p>In addition to prizes for the top 10 teams, every participant also recieves a gift bundle, including AI-themed mug,
+                        T-shirt and USB hard drive.</p>
                 </div>
             </div>
         </div>
@@ -321,30 +330,30 @@
 
     <div class="section clearfix section-sponsors even" id="sponsors">
         <div class="sp-wp">
-            <h2 class="title run">Sponsors</h2>
+            <h2 class="title run" style="font-size: 34px">Sponsors</h2>
             <div id="cross" class="inconsolata bold">
                 <div class="col" style="margin-right: 17%">
-                    <a href="https://tap30.ir/" tabindex="-1" hidefocus="true" target="_blank"><span>سامانه هوشمند درخواست تاکسی TAP30</span><img width=80% alt="TAP30" src="/static/images/TAP30.png"></a>
+                    <a href="https://tap30.ir/" tabindex="-1" hidefocus="true" target="_blank"><span>TAP30: Get a reliable ride in minutes</span><img width=80% alt="TAP30" src="/static/images/TAP30.png"></a>
                 </div>
                 <div class="col">
-                    <a href="http://www.digikala.com" tabindex="-1" hidefocus="true" target="_blank"><span>دیجیکالا: بررسی، انتخاب، خرید آنلاین</span><img width=80% alt="Digikala" src="/static/images/digikala.png"></a>
+                    <a href="http://www.digikala.com" tabindex="-1" hidefocus="true" target="_blank"><span>Digikala: The online retailer</span><img width=80% alt="Digikala" src="/static/images/digikala.png"></a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Start of StatCounter Code for Default Guide -->
-    <a title="shopify traffic stats"
-    href="http://statcounter.com/shopify/" target="_blank"><img
-    src="http://c.statcounter.com/10808005/0/005c1cbf/1/"
-    alt="shopify traffic stats" style="border:none;"></a>
-    <!-- End of StatCounter Code for Default Guide -->
+{#    <!-- Start of StatCounter Code for Default Guide -->#}
+{#    <a title="shopify traffic stats"#}
+{#    href="http://statcounter.com/shopify/" target="_blank"><img#}
+{#    src="http://c.statcounter.com/10808005/0/005c1cbf/1/"#}
+{#    alt="shopify traffic stats" style="border:none;"></a>#}
+{#    <!-- End of StatCounter Code for Default Guide -->#}
 
     <div class="footer">
         <div class="information-site">
-            <!-- 		<h2 class="pull-title" style="color: #C3C7D8;font-size: 2.6em;cursor: default;">Contact Us</h2>
-                    <p>ایران٬ تهران٬ دانشگاه شریف٬ سالن جبار</p>
-                    <p>+۹۸۲۱۶۱۵۳</p> -->
+{#             		<h2 class="pull-title" style="color: #C3C7D8;cursor: default;">Contact Us</h2>#}
+{#                    <p style="font-size: 14px">Iran, Tehran, Sharif University of Technology</p>#}
+{#                    <p style="font-size: 14px">(+98)21-6153</p>#}
             <ul class="social-media">
                 <li><a href="http://twitter.com/aichallenge" title="twitter" target="_blank"><i
                         class="icon-twitter-circled"></i></a></li>

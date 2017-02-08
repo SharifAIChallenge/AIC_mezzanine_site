@@ -71,6 +71,12 @@ class TeamForm(forms.ModelForm):
                 if not can_edit or team_members[i].confirmed:
                     member_field.widget.attrs['readonly'] = ''
 
+            if i < len(self.members):
+                if team_members[i].confirmed:
+                    member_field.label += u" (✓)"
+                else:
+                    member_field.label += u" (✗)"
+
             self.fields[self.MEMBER_FIELD_NAME.format(i)] = member_field
         self.old_team_members = TeamMember.objects.filter(team=self.instance) if self.instance else []
 

@@ -3,24 +3,26 @@
 
 
 {% block pre_form_part %}
-    {% if is_invited %}
+    {% if invites %}
         <div class="messages">
-            <div class="alert alert-dismissable alert-info" data-alert="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                {% blocktrans with team_name=invitation.team.name invitation_accept_link=invitation.accept_link %}
-                    You are invited to team {{ team_name }}. <a class="btn btn-primary" href="{{ invitation_accept_link }}">accept</a>
-                {% endblocktrans %}
-            </div>
+            {% for invite in invites %}
+                <div class="alert alert-dismissable alert-info" data-alert="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    {% blocktrans with team_name=invite.team.name invitation_accept_link=invite.accept_link %}
+                        You are invited to team {{ team_name }}.
+                        <a class="btn btn-primary" href="{{ invitation_accept_link }}">accept</a>
+                    {% endblocktrans %}
+                </div>
+            {% endfor %}
         </div>
     {% endif %}
-
     <p>
         {% blocktrans with url="/docs/registration_guide" %}
             <p>Until you don't register a complete team, you can't go to your team page.
                 You can see competition documentation from the <b><a href="/blog/">blog</a></b>.</p>
             <p>Click <a href={{ url }}>here</a> to view documentation of team registration.<p>
         {% endblocktrans %}
-    </p>
+        </p>
 {% endblock %}
 
 
@@ -32,6 +34,4 @@
     {% endif %}
 {% endblock %}
 
-{#{% block main %}#}
-{#    <a class="btn" href="{% url 'teams_list' %}">{% trans "Teams" %}</a>#}
-{#{% endblock %}#}
+

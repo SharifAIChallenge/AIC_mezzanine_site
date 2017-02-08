@@ -827,7 +827,6 @@ msgstr ""
 "        "
 
 #: 2017_template/templates/accounts/new_team_page.html:11
-#, fuzzy, python-format
 #| msgid ""
 #| "\n"
 #| "                    You are invited to team %(team_name)s. <a class=\"btn "

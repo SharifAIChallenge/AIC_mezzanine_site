@@ -91,7 +91,19 @@ def register_team(request):
             team = form.save(request.get_host)
             request.session['team'] = team.id
 
-    context = {'form': form, 'title': _('register new team'), 'can_submit': form.can_edit}
+    team_invites = []
+    if not user_team:
+        team_invites = TeamInvitation.objects.filter(
+            member=request.user,
+            team__competition=Competition.objects.get(site_id=request.site_id),
+            accepted=False,
+        )
+        print team_invites
+
+    context = {'form': form,
+               'title': _('register new team'),
+               'can_submit': form.can_edit,
+               'invites': team_invites,}
 
     return render(request, 'accounts/invite_team.html', context)
 
@@ -136,7 +148,7 @@ def submit(request):
 def accept_invite(request, slug):
     if is_registration_period_ended(request):
         messages.error(request, _("registration period has ended"))
-        return Http404() # it should fix
+        return Http404()  # it should fix
     try:
         invitation = TeamInvitation.objects.get(slug=slug)
     except TeamInvitation.DoesNotExist:

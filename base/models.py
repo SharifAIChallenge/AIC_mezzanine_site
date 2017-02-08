@@ -230,6 +230,12 @@ class TeamInvitation(models.Model):
             team_member.save()
             self.accepted = True
             self.save()
+            TeamMember.objects.filter(member=self.member,
+                                      team__competition=self.team.competition,
+                                      confirmed=False).delete()
+            TeamInvitation.objects.filter(member=self.member,
+                                          team__competition=self.team.competition,
+                                          accepted=False).delete()
 
     @property
     def accept_link(self):

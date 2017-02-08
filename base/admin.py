@@ -70,6 +70,14 @@ class MemberResource(resources.ModelResource):
 
 
 @add_link_field('team', 'team')
+class TeamsInline(admin.TabularInline):
+    model = TeamMember
+    fields = ('team_link', 'confirmed')
+    readonly_fields = fields
+    extra = 0
+
+
+@add_link_field('team', 'team')
 class MemberAdmin(ImportExportModelAdmin):
     resource_class = MemberResource
     search_fields = ('username', 'email', 'first_name', 'last_name', 'education_place')
@@ -85,6 +93,7 @@ class MemberAdmin(ImportExportModelAdmin):
         ('team_link',)
     )
     readonly_fields = ('team_link',)
+    inlines = [TeamsInline, ]
 
 
 admin.site.unregister(Member)
@@ -92,9 +101,9 @@ admin.site.register(Member, MemberAdmin)
 
 
 @add_link_field('member', 'member')
-class MembersInline(admin.StackedInline):
+class MembersInline(admin.TabularInline):
     model = TeamMember
-    fields = ('member_link',)
+    fields = ('member_link', 'confirmed')
     readonly_fields = fields
     extra = 0
 
@@ -216,13 +225,15 @@ class TeamResource(resources.ModelResource):
 
 
 @add_link_field('member', 'head')
+@add_link_field('member', 'member_1')
+@add_link_field('member', 'member_2')
 class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
-    inlines = [MembersInline, ]
     search_fields = ('name',)
     list_filter = ('final', 'show', 'will_come', 'final_submission', 'competition')
     list_display = (
-        'name', 'competition', 'head', 'countries', 'head_country', 'show', 'final', 'is_last_submit_final',
+        'name', 'competition', 'head', 'member_1', 'member_2', 'final',
+        'countries', 'head_country', 'show', 'is_last_submit_final',
         'site_participation_possible',
         'should_pay', 'payment_value')
     fields = (
@@ -235,6 +246,7 @@ class TeamAdmin(ImportExportModelAdmin):
         ('head_link',)
     )
     readonly_fields = ('head_link',)
+    inlines = (MembersInline,)
 
     def head_country(self, obj):
         return obj.head.country

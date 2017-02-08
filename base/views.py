@@ -11,13 +11,12 @@ from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse, HttpResponseRedirect, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-from django.utils.translation import get_language_from_request
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 from mezzanine.utils.email import send_mail_template
 
-from base.forms import SubmitForm, TeamForm, TeamNameForm, WillComeForm, GameTypeForm
-from base.models import TeamInvitation, Team, Member, JoinRequest, Message, GameRequest, Submit, \
+from base.forms import SubmitForm, TeamForm, TeamNameForm, GameTypeForm
+from base.models import TeamInvitation, Team, Member, JoinRequest, GameRequest, Submit, \
     StaffMember, StaffTeam, TeamMember
 from game.models import Competition, GameTeamSubmit, Game, GameConfiguration, TeamScore
 from .tasks import compile_code
@@ -98,12 +97,11 @@ def register_team(request):
             team__competition=Competition.objects.get(site_id=request.site_id),
             accepted=False,
         )
-        print team_invites
 
     context = {'form': form,
                'title': _('register new team'),
                'can_submit': form.can_edit,
-               'invites': team_invites,}
+               'invites': team_invites, }
 
     return render(request, 'accounts/invite_team.html', context)
 
@@ -111,7 +109,6 @@ def register_team(request):
 @login_required
 @team_required_and_finilized
 def submit(request):
-    print("i was here")
     competition = request.team.competition
     if not request.team.is_finalized():
         messages.error(request, _('your team must be final'))

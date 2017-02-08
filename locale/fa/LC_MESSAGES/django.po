@@ -918,7 +918,7 @@ msgstr "داداش داری اشتباه می‌زنی"
 
 #: base/forms.py:101
 msgid "this user has another team"
-msgstr "کاربر یافت نشد"
+msgstr "کاربر در تیم دیگری عضو است"
 
 #: base/forms.py:105
 msgid "this user has not account"

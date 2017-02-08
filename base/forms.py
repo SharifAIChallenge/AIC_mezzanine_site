@@ -78,7 +78,7 @@ class TeamForm(forms.ModelForm):
         self.members = set()
         cleaned_data = super(TeamForm, self).clean()
         if not self.can_edit:
-            raise forms.ValidationError(_(u"just team's head can edit team"))
+            raise forms.ValidationError(_("just team's head can edit team"))
         for i in range(self.competition.max_members):
             member_identification = cleaned_data.get(self.MEMBER_FIELD_NAME.format(i))
             if member_identification and isinstance(member_identification, list):

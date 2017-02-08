@@ -5,7 +5,7 @@
 {% if branch_level == 0 %}
 
 {% for page in page_branch %}
-{% if page.in_menu %}
+{% if '2' in page.in_menus %}
 <li>
     <a class="center-align collapsible-header
     {% if page.is_current_or_ascendant %} active white-text cyan {% else %}

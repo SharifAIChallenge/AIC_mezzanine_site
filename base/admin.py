@@ -160,13 +160,13 @@ class TeamResource(resources.ModelResource):
         )
 
     def dehydrate_head(self, team):
-        return team.head.get_full_name()
+        return team.head.get_full_name() if team.head else None
 
     def dehydrate_head_email(self, team):
-        return team.head.email
+        return team.head.email if team.head else None
 
     def dehydrate_head_country(self, team):
-        return team.head.country
+        return team.head.country if team.head else None
 
     def dehydrate_head_education_place(self, team):
         return team.head.education_place
@@ -253,7 +253,7 @@ class TeamAdmin(ImportExportModelAdmin):
     is_finalized.boolean = True
 
     def head_country(self, obj):
-        return obj.head.country
+        return obj.head.country if obj.head else None
 
     def get_queryset(self, request):
         queryset = super(TeamAdmin, self).get_queryset(request)

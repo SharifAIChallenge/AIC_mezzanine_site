@@ -66,7 +66,9 @@ class Team(models.Model):
 
     def __init__(self, *args, **kwargs):
         super(Team, self).__init__(*args, **kwargs)
-        members = self.get_members()
+        members = []
+        if self.id:
+            members = self.get_members()
         for i in range(Competition.get_current_instance().max_members):
             m = None
             if len(members) > i:

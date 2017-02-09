@@ -87,7 +87,10 @@ class Team(models.Model):
         return self.transactions.filter(status='v').exists()
 
     def get_members(self):
-        return self.member_set.exclude(pk=self.head.pk).distinct()
+        q = self.member_set.all()
+        if self.head:
+            q.exclude(pk=self.head.pk)
+        return q.distinct()
 
     @property
     def final_submit(self):

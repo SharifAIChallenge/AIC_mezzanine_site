@@ -64,6 +64,17 @@ class Team(models.Model):
     should_pay = models.BooleanField(verbose_name=_("Should pay?"), default=False)
     payment_value = models.PositiveIntegerField(verbose_name=_("Payment value (rials)"), default=0)
 
+    def __init__(self, *args, **kwargs):
+        super(Team, self).__init__(*args, **kwargs)
+        members = self.get_members()
+        for i in range(Competition.get_current_instance().max_members):
+            m = None
+            if len(members) > i:
+                m = members[i]
+
+            field_name = "member_{}".format(i + 1)
+            setattr(Team, field_name, m)
+
     def __unicode__(self):
         return "Team%d(%s)" % (self.id, self.name)
 
@@ -236,6 +247,9 @@ class TeamInvitation(models.Model):
             TeamInvitation.objects.filter(member=self.member,
                                           team__competition=self.team.competition,
                                           accepted=False).delete()
+            if self.team.is_finalized:
+                self.team.final = True
+                self.team.save()
 
     @property
     def accept_link(self):

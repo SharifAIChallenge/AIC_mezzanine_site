@@ -110,16 +110,9 @@ def register_team(request):
 @team_required_and_finilized
 def submit(request):
     competition = request.team.competition
-    if not request.team.is_finalized():
-        messages.error(request, _('your team must be final'))
-        return redirect('register_team')
-    if request.team.member_set.count() < request.team.competition.min_members:
-        messages.error(request, _("your team does not have enough members"))
-        return redirect('register_team')
-
     if request.method == 'POST':
 
-        if not request.user.is_superuser and not request.team.competition.submit_active:
+        if not request.user.is_superuser and not competition.submit_active:
             # if not request.user.is_superuser and not request.team.should_pay:
             messages.error(request, _('submit period has ended'))
             return redirect('submit_code')

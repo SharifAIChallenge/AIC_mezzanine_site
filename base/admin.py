@@ -73,7 +73,7 @@ class MemberResource(resources.ModelResource):
 class TeamsInline(admin.TabularInline):
     model = TeamMember
     fields = ('team_link', 'confirmed')
-    readonly_fields = fields
+    readonly_fields = ('team_link', )
     extra = 0
 
 
@@ -104,7 +104,7 @@ admin.site.register(Member, MemberAdmin)
 class MembersInline(admin.TabularInline):
     model = TeamMember
     fields = ('member_link', 'confirmed')
-    readonly_fields = fields
+    readonly_fields = ('member_link', )
     extra = 0
 
     def get_max_num(self, request, obj=None, **kwargs):

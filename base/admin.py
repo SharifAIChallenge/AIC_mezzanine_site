@@ -136,14 +136,13 @@ class TeamResource(resources.ModelResource):
             'id',
             'name',
             'timestamp',
-            'final',
             'will_come',
         )
         export_order = (
             'id',
             'name',
             'timestamp',
-            'final',
+            'is_finalized',
             'head',
             'head_email',
             'head_country',
@@ -230,15 +229,15 @@ class TeamResource(resources.ModelResource):
 class TeamAdmin(ImportExportModelAdmin):
     resource_class = TeamResource
     search_fields = ('name',)
-    list_filter = ('final', 'show', 'will_come', 'final_submission', 'competition')
+    list_filter = ('show', 'will_come', 'final_submission', 'competition')
     list_display = (
-        'name', 'competition', 'head', 'member_1', 'member_2', 'final',
+        'name', 'competition', 'head', 'member_1', 'member_2', 'is_finalized',
         'countries', 'head_country', 'show', 'is_last_submit_final',
         'site_participation_possible',
         'should_pay', 'payment_value')
     fields = (
         ('name', 'show'),
-        ('competition', 'final'),
+        ('competition',),
         ('will_come', 'site_participation_possible'),
         ('final_submission',),
         ('should_pay',),
@@ -247,6 +246,11 @@ class TeamAdmin(ImportExportModelAdmin):
     )
     readonly_fields = ('head_link',)
     inlines = (MembersInline,)
+
+    def is_finalized(self, obj):
+        return obj.is_finalized
+
+    is_finalized.boolean = True
 
     def head_country(self, obj):
         return obj.head.country

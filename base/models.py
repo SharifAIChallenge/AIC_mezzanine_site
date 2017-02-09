@@ -73,7 +73,7 @@ class Team(models.Model):
                 m = members[i]
 
             field_name = "member_{}".format(i + 1)
-            setattr(Team, field_name, m)
+            setattr(self, field_name, m)
 
     def __unicode__(self):
         return "Team%d(%s)" % (self.id, self.name)

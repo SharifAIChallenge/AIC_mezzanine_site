@@ -89,7 +89,7 @@ class Team(models.Model):
     def get_members(self):
         q = self.member_set.all()
         if self.head:
-            q.exclude(pk=self.head.pk)
+            q = q.exclude(pk=self.head.pk)
         return q.distinct()
 
     @property

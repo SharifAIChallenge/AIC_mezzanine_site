@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-10 23:31+0330\n"
+"POT-Creation-Date: 2017-02-11 00:18+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -376,7 +376,6 @@ msgid "team member"
 msgstr "Team members"
 
 #: 2016_template/templates/custom/includes/team_member_row.html:35
-#: 2017_template/templates/custom/includes/team_member_row.html:19
 #, fuzzy
 #| msgid "team members"
 msgid "invited member"
@@ -495,7 +494,7 @@ msgstr "Join requests"
 #: 2016_template/templates/custom/teams_list.html:45
 #: 2016_template/templates/game/group.html:21
 #: 2016_template/templates/game/scoreboard.html:33
-#: 2017_template/templates/custom/my_team.html:98
+#: 2017_template/templates/custom/my_team.html:100
 #: 2017_template/templates/custom/scoreboard.html:44
 #: 2017_template/templates/custom/teams_list.html:45
 #: 2017_template/templates/game/group.html:21
@@ -505,7 +504,7 @@ msgid "name"
 msgstr "Name"
 
 #: 2016_template/templates/custom/my_team.html:244
-#: 2017_template/templates/custom/my_team.html:91 base/models.py:191
+#: 2017_template/templates/custom/my_team.html:93 base/models.py:191
 msgid "team members"
 msgstr "Team members"
 
@@ -514,7 +513,7 @@ msgid "remove user from team"
 msgstr "remove"
 
 #: 2016_template/templates/custom/my_team.html:256
-#: 2017_template/templates/custom/my_team.html:101
+#: 2017_template/templates/custom/my_team.html:103
 msgid "membership status"
 msgstr "Status"
 
@@ -536,7 +535,7 @@ msgstr "Change"
 
 #: 2016_template/templates/custom/my_team.html:345
 #: 2016_template/templates/custom/my_team.html:362
-#: 2017_template/templates/custom/my_team.html:76
+#: 2017_template/templates/custom/my_team.html:78
 msgid "cancel"
 msgstr "Cancel"
 
@@ -551,6 +550,7 @@ msgstr ""
 #: 2016_template/templates/custom/scoreboard.html:47
 #: 2016_template/templates/custom/teams_list.html:47
 #: 2016_template/templates/custom/teams_list.html:48
+#: 2017_template/templates/custom/includes/team_member_row.html:19
 #: 2017_template/templates/custom/scoreboard.html:46
 #: 2017_template/templates/custom/scoreboard.html:47
 #: 2017_template/templates/custom/teams_list.html:47
@@ -819,23 +819,23 @@ msgid ""
 "        "
 msgstr ""
 
-#: 2017_template/templates/custom/my_team.html:50
+#: 2017_template/templates/custom/my_team.html:51
 msgid "errors"
 msgstr ""
 
-#: 2017_template/templates/custom/my_team.html:56
+#: 2017_template/templates/custom/my_team.html:58
 #, fuzzy
 #| msgid "change team name"
 msgid "team's name"
 msgstr "Change team name"
 
-#: 2017_template/templates/custom/my_team.html:69
+#: 2017_template/templates/custom/my_team.html:71
 #, fuzzy
 #| msgid "change team name"
 msgid "change name"
 msgstr "Change team name"
 
-#: 2017_template/templates/custom/my_team.html:95
+#: 2017_template/templates/custom/my_team.html:97
 msgid "email address"
 msgstr ""
 

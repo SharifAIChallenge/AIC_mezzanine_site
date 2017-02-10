@@ -237,26 +237,20 @@ def change_team_name(request, id):
 
 @login_required
 @team_required_and_finilized
-def my_team_under_construction(request):
-    # A temporary response, while my_team page is under construction
-
-    context = dict()
-    page = dict()
-    context['message'] = u'ثبت‌نام شما با موفقیت انجام شده است. این صفحه به زودی به روز خواهد شد.'
-    page['title'] = u'تیم {}'.format(request.team.name)
-    return render(request, 'pages/message.html', {
-        'context': context,
-        'page': page,
-    })
-
-
-@login_required
-@team_required_and_finilized
 def my_team_info(request):
     """ The original my_team view, which should replace current my_team view """
     team = request.team
+    errors = {}
+    if request.method == "POST":
+        new_team_name = request.POST.get('new_team_name')
+        if new_team_name and len(new_team_name):
+            team.name = new_team_name
+            team.save()
+        else:
+            errors['team_name'] = _("Team name is not valid.")
     return render(request, 'custom/my_team.html', {
         'team': team,
+        'errors': errors
     })
 
 

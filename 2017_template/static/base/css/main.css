@@ -149,3 +149,7 @@ th {
 td {
     vertical-align: middle;
 }
+
+.top-margin-two-em {
+    margin-top: 2em;
+}

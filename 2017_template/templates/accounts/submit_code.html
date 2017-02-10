@@ -10,7 +10,7 @@
     <li>{{ title }}</li>
 {% endblock %}
 
-{% block main_hack %}
+{% block main %}
     <div class="row">
         <div class="col s12 m12 l10 offset-l1">
             <div class="card-panel">
@@ -48,7 +48,7 @@
                 </form>
             </div>
             <div class="card-panel acc-hints">
-                {% block main %}{% endblock %}
+{#                {% block main %}{% endblock %}#}
                 {% if submissions %}
                     <h4>{% trans 'previous submissions' %}</h4>
                     <table class="table-striped striped">

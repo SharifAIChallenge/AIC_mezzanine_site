@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-08 12:21+0330\n"
+"POT-Creation-Date: 2017-02-11 00:18+0330\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,13 +40,12 @@ msgid ""
 msgstr ""
 
 #: 2016_template/templates/accounts/account_signup.html:15
-#: 2017_template/templates/accounts/account_signup.html:15 base/views.py:462
-#: base/views.py:520
+#: 2017_template/templates/accounts/account_signup.html:15 base/views.py:465
+#: base/views.py:523
 msgid "please check spams too"
 msgstr "لطفا پوشه‌ی spam را نیز چک کنید."
 
 #: 2016_template/templates/accounts/invite_team.html:10
-#: 2017_template/templates/accounts/invite_team.html:10
 #, python-format
 msgid ""
 "\n"
@@ -96,7 +95,7 @@ msgstr "سابمیت نهایی"
 #: 2016_template/templates/custom/my_games.html:175
 #: 2017_template/templates/accounts/submit_code.html:58
 #: 2017_template/templates/custom/my_games.html:89
-#: 2017_template/templates/custom/my_games.html:175 base/models.py:157
+#: 2017_template/templates/custom/my_games.html:175 base/models.py:173
 #: game/models.py:128
 msgid "status"
 msgstr "وضعیت"
@@ -107,7 +106,7 @@ msgid "submitter"
 msgstr "فرستنده"
 
 #: 2016_template/templates/accounts/submit_code.html:60
-#: 2017_template/templates/accounts/submit_code.html:60 base/models.py:159
+#: 2017_template/templates/accounts/submit_code.html:60 base/models.py:175
 msgid "programming language"
 msgstr "زبان برنامه نویسی"
 
@@ -115,7 +114,7 @@ msgstr "زبان برنامه نویسی"
 #: 2016_template/templates/custom/my_games.html:86
 #: 2017_template/templates/accounts/submit_code.html:61
 #: 2017_template/templates/custom/my_games.html:86 base/models.py:52
-#: base/models.py:149 game/models.py:19 game/models.py:122
+#: base/models.py:165 game/models.py:19 game/models.py:122
 msgid "timestamp"
 msgstr "زمان"
 
@@ -149,12 +148,12 @@ msgid "Final submission changed"
 msgstr "ارسال نهایی تغییر کرد"
 
 #: 2016_template/templates/accounts/submit_code.html:180
-#: 2017_template/templates/accounts/submit_code.html:180 base/views.py:115
+#: 2017_template/templates/accounts/submit_code.html:180 base/views.py:124
 msgid "submit period has ended"
 msgstr "زمان ارسال کد به اتمام رسیده است"
 
 #: 2016_template/templates/base.html:82 2016_template/templates/index.html:67
-#: 2017_template/templates/base.html:90 2017_template/templates/index.html:74
+#: 2017_template/templates/base.html:90 2017_template/templates/index.html:65
 msgid "Change"
 msgstr "تغییر"
 
@@ -202,10 +201,9 @@ msgid "blog"
 msgstr "بلاگ"
 
 #: 2016_template/templates/base.html:130 2017_template/templates/base.html:115
-#: 2017_template/templates/index-en.html:65
-#: 2017_template/templates/index-en.html:93
-#: 2017_template/templates/index.html:82
-#: 2017_template/templates/index.html:114
+#: 2017_template/templates/index-en.html:61
+#: 2017_template/templates/index-en.html:92
+#: 2017_template/templates/index.html:73 2017_template/templates/index.html:105
 msgid "edit profile"
 msgstr " ویرایش مشخصات"
 
@@ -384,7 +382,6 @@ msgid "team member"
 msgstr "عضو"
 
 #: 2016_template/templates/custom/includes/team_member_row.html:35
-#: 2017_template/templates/custom/includes/team_member_row.html:19
 msgid "invited member"
 msgstr "کاربر مدعو"
 
@@ -410,9 +407,8 @@ msgstr "درخواست‌های بازی"
 #: 2016_template/templates/custom/my_games.html:169
 #: 2016_template/templates/custom/my_team.html:195
 #: 2017_template/templates/custom/my_games.html:80
-#: 2017_template/templates/custom/my_games.html:169
-#: 2017_template/templates/custom/my_team.html:46 base/models.py:71
-#: base/models.py:151 base/models.py:205 base/models.py:241 game/models.py:224
+#: 2017_template/templates/custom/my_games.html:169 base/models.py:84
+#: base/models.py:167 base/models.py:221 base/models.py:266 game/models.py:224
 msgid "team"
 msgstr "تیم"
 
@@ -492,7 +488,7 @@ msgstr "تغییر نام تیم"
 msgid "finalize team"
 msgstr "نهایی کردن تیم"
 
-#: 2016_template/templates/custom/my_team.html:221 base/models.py:250
+#: 2016_template/templates/custom/my_team.html:221 base/models.py:275
 msgid "join requests"
 msgstr "درخواست‌های عضویت"
 
@@ -502,7 +498,7 @@ msgstr "درخواست‌های عضویت"
 #: 2016_template/templates/custom/teams_list.html:45
 #: 2016_template/templates/game/group.html:21
 #: 2016_template/templates/game/scoreboard.html:33
-#: 2017_template/templates/custom/my_team.html:57
+#: 2017_template/templates/custom/my_team.html:100
 #: 2017_template/templates/custom/scoreboard.html:44
 #: 2017_template/templates/custom/teams_list.html:45
 #: 2017_template/templates/game/group.html:21
@@ -512,7 +508,7 @@ msgid "name"
 msgstr "نام"
 
 #: 2016_template/templates/custom/my_team.html:244
-#: 2017_template/templates/custom/my_team.html:50 base/models.py:175
+#: 2017_template/templates/custom/my_team.html:93 base/models.py:191
 msgid "team members"
 msgstr "اعضای تیم"
 
@@ -521,7 +517,7 @@ msgid "remove user from team"
 msgstr "حذف کاربر از تیم"
 
 #: 2016_template/templates/custom/my_team.html:256
-#: 2017_template/templates/custom/my_team.html:60
+#: 2017_template/templates/custom/my_team.html:103
 msgid "membership status"
 msgstr "وضعیت"
 
@@ -533,7 +529,7 @@ msgstr "ترک تیم"
 msgid "game docs"
 msgstr "مستندات مسابقه"
 
-#: 2016_template/templates/custom/my_team.html:299 base/views.py:130
+#: 2016_template/templates/custom/my_team.html:299 base/views.py:139
 msgid "submit new code"
 msgstr "ارسال کد"
 
@@ -543,6 +539,7 @@ msgstr "تغییر"
 
 #: 2016_template/templates/custom/my_team.html:345
 #: 2016_template/templates/custom/my_team.html:362
+#: 2017_template/templates/custom/my_team.html:78
 msgid "cancel"
 msgstr "انصراف"
 
@@ -559,11 +556,12 @@ msgstr ""
 #: 2016_template/templates/custom/scoreboard.html:47
 #: 2016_template/templates/custom/teams_list.html:47
 #: 2016_template/templates/custom/teams_list.html:48
+#: 2017_template/templates/custom/includes/team_member_row.html:19
 #: 2017_template/templates/custom/scoreboard.html:46
 #: 2017_template/templates/custom/scoreboard.html:47
 #: 2017_template/templates/custom/teams_list.html:47
-#: 2017_template/templates/custom/teams_list.html:48 base/models.py:206
-#: base/models.py:242
+#: 2017_template/templates/custom/teams_list.html:48 base/models.py:222
+#: base/models.py:267
 msgid "member"
 msgstr "عضو"
 
@@ -573,7 +571,7 @@ msgid "friendly game"
 msgstr "بازی دوستانه"
 
 #: 2016_template/templates/custom/teams_list.html:90
-#: 2017_template/templates/custom/teams_list.html:90 base/models.py:249
+#: 2017_template/templates/custom/teams_list.html:90 base/models.py:274
 msgid "join request"
 msgstr "درخواست عضویت"
 
@@ -802,12 +800,28 @@ msgstr "ادامه‌ی نوشتار"
 #: 2017_template/templates/staff/staff-list.html:4
 #: 2017_template/templates/staff/staff-list.html:5
 #: 2017_template/templates/staff/staff-teams-list.html:4
-#: 2017_template/templates/staff/staff-teams-list.html:5 base/models.py:199
+#: 2017_template/templates/staff/staff-teams-list.html:5 base/models.py:215
 #: game/models.py:22
 msgid "staff"
 msgstr "برگزار کنندگان"
 
-#: 2017_template/templates/accounts/invite_team.html:18
+#: 2017_template/templates/accounts/invite_team.html:11
+#: 2017_template/templates/accounts/new_team_page.html:11
+#, python-format
+msgid ""
+"\n"
+"                        You are invited to team %(team_name)s.\n"
+"                        <a class=\"btn btn-primary\" href="
+"\"%(invitation_accept_link)s\">accept</a>\n"
+"                    "
+msgstr ""
+"\n"
+"شما به تیم %(team_name)s دعوت شدید. <a class=\"btn btn-primary\" href="
+"\"%(invitation_accept_link)s\">پذیرفتن دعوت</a>\n"
+"                "
+
+#: 2017_template/templates/accounts/invite_team.html:20
+#, python-format
 msgid ""
 "\n"
 "            <p>Until you don't register a complete team, you can't go to "
@@ -821,30 +835,24 @@ msgstr ""
 "\n"
 "            <p>تا زمانی که تیم شما به طور کامل ثبت نشده است، نمی‌توانید به "
 "صفحه‌ی تیمتان بروید.                  تا زمان تکمیل تیم، می‌توانید مستندات "
-"مسابقه را از طریق <b><a href=\"/"
-"blog/\">بلاگ</a></b> مسابقه دریافت نمایید.            <p>برای مشاهده‌ی "
-"راهنمای ثبت تیم  <a href=%(url)s>این‌ صفحه</a> را مشاهده کنید.\n"
+"مسابقه را از طریق <b><a href=\"/blog/\">بلاگ</a></b> مسابقه دریافت "
+"نمایید.            <p>برای مشاهده‌ی راهنمای ثبت تیم  <a href=%(url)s>این‌ "
+"صفحه</a> را مشاهده کنید.\n"
 "        "
 
-#: 2017_template/templates/accounts/new_team_page.html:11
-#| msgid ""
-#| "\n"
-#| "                    You are invited to team %(team_name)s. <a class=\"btn "
-#| "btn-primary\" href=\"%(invitation_accept_link)s\">accept</a>\n"
-#| "                "
-msgid ""
-"\n"
-"                        You are invited to team %(team_name)s.\n"
-"                        <a class=\"btn btn-primary\" href="
-"\"%(invitation_accept_link)s\">accept</a>\n"
-"                    "
-msgstr ""
-"\n"
-"شما به تیم %(team_name)s دعوت شدید. <a class=\"btn btn-primary\" href="
-"\"%(invitation_accept_link)s\">پذیرفتن دعوت</a>\n"
-"                "
+#: 2017_template/templates/custom/my_team.html:51
+msgid "errors"
+msgstr "خطاها"
 
-#: 2017_template/templates/custom/my_team.html:54
+#: 2017_template/templates/custom/my_team.html:58
+msgid "team's name"
+msgstr "نام تیم"
+
+#: 2017_template/templates/custom/my_team.html:71
+msgid "change name"
+msgstr "تغییر نام"
+
+#: 2017_template/templates/custom/my_team.html:97
 msgid "email address"
 msgstr "آدرس ایمیل"
 
@@ -907,35 +915,35 @@ msgstr "عضو {}"
 msgid "email or username"
 msgstr "ایمیل یا نام کاربری"
 
-#: base/forms.py:81
+#: base/forms.py:87
 msgid "just team's head can edit team"
 msgstr "تنها سرگروه امکان تغییر تیم را دارد"
 
-#: base/forms.py:88
+#: base/forms.py:94
 msgid "brother you are hitting wrong!"
 msgstr "داداش داری اشتباه می‌زنی"
 
-#: base/forms.py:101
+#: base/forms.py:107
 msgid "this user has another team"
 msgstr "کاربر در تیم دیگری عضو است"
 
-#: base/forms.py:105
+#: base/forms.py:111
 msgid "this user has not account"
 msgstr "کاربر یافت نشد"
 
-#: base/forms.py:107
+#: base/forms.py:113
 msgid "at least {} members required for team"
 msgstr "حداقل {} نفر برای تشکیل تیم نیاز است."
 
-#: base/forms.py:114
+#: base/forms.py:120
 msgid "you can not remove an accepted member"
 msgstr "شما نمی‌توانید یک عضو پذیرفته شده را حذف کنید."
 
-#: base/forms.py:144 base/views.py:456
+#: base/forms.py:150 base/views.py:459
 msgid "AIChallenge team invitation"
 msgstr "دعوت عضویت تیم در AIChallenge"
 
-#: base/forms.py:172 game/forms.py:12 game/forms.py:42 game/forms.py:100
+#: base/forms.py:178 game/forms.py:12 game/forms.py:42 game/forms.py:100
 #: game/models.py:132
 msgid "game type"
 msgstr "نوع بازی"
@@ -960,7 +968,7 @@ msgstr "کشور"
 msgid "choose your country"
 msgstr "کشور خود را انتخاب کنید"
 
-#: base/models.py:33 base/models.py:72
+#: base/models.py:33 base/models.py:85
 msgid "teams"
 msgstr "تیم‌ها"
 
@@ -1007,171 +1015,171 @@ msgstr ""
 msgid "Payment value (rials)"
 msgstr "مقدار پرداخت به ریال"
 
-#: base/models.py:142 game/models.py:115
+#: base/models.py:158 game/models.py:115
 msgid "waiting"
 msgstr "در انتظار"
 
-#: base/models.py:143 game/models.py:116
+#: base/models.py:159 game/models.py:116
 msgid "queued"
 msgstr "در صف"
 
-#: base/models.py:144
+#: base/models.py:160
 msgid "compiling"
 msgstr "در حال کامپایل"
 
-#: base/models.py:145
+#: base/models.py:161
 msgid "compiled"
 msgstr "کامپایل شده"
 
-#: base/models.py:146 game/models.py:119
+#: base/models.py:162 game/models.py:119
 msgid "failed"
 msgstr " ناموفق"
 
-#: base/models.py:150
+#: base/models.py:166
 msgid "code"
 msgstr "کد"
 
-#: base/models.py:154
+#: base/models.py:170
 msgid "compiled code"
 msgstr "کد کامپایل شده"
 
-#: base/models.py:156
+#: base/models.py:172
 msgid "log file"
 msgstr "فایل log"
 
-#: base/models.py:161
+#: base/models.py:177
 msgid "played"
 msgstr "بازی کرده"
 
-#: base/models.py:162
+#: base/models.py:178
 msgid "won"
 msgstr "برده"
 
-#: base/models.py:168
+#: base/models.py:184
 msgid "submit"
 msgstr "کد سابمیت شده"
 
-#: base/models.py:169
+#: base/models.py:185
 msgid "submits"
 msgstr "کدهای سابمیت شده"
 
-#: base/models.py:173
+#: base/models.py:189
 #, fuzzy
 #| msgid "change team name"
 msgid "team name"
 msgstr "تغییر نام تیم"
 
-#: base/models.py:174
+#: base/models.py:190
 #, fuzzy
 #| msgid "leave team"
 msgid "parent team"
 msgstr "ترک تیم"
 
-#: base/models.py:176
+#: base/models.py:192
 msgid "icon"
 msgstr ""
 
-#: base/models.py:182
+#: base/models.py:198
 #, fuzzy
 #| msgid "leave team"
 msgid "staff team"
 msgstr "تیم برگزاری"
 
-#: base/models.py:183
+#: base/models.py:199
 #, fuzzy
 #| msgid "Final teams"
 msgid "staff teams"
 msgstr "تیم‌های برگزاری"
 
-#: base/models.py:187
+#: base/models.py:203
 #, fuzzy
 #| msgid "Full Name"
 msgid "full name"
 msgstr "نام و نام خانوادگی"
 
-#: base/models.py:189
+#: base/models.py:205
 msgid "entrance year"
 msgstr ""
 
-#: base/models.py:190
+#: base/models.py:206
 msgid "role"
 msgstr ""
 
-#: base/models.py:191
+#: base/models.py:207
 msgid "biography"
 msgstr ""
 
-#: base/models.py:192
+#: base/models.py:208
 #, fuzzy
 #| msgid "image"
 msgid "image"
 msgstr "تصویر"
 
-#: base/models.py:198
+#: base/models.py:214
 #, fuzzy
 #| msgid "team member"
 msgid "staff member"
 msgstr "عضو تیم برگزاری"
 
-#: base/models.py:204 base/models.py:240
+#: base/models.py:220 base/models.py:265
 msgid "accepted"
 msgstr "پذیرفته"
 
-#: base/models.py:207
+#: base/models.py:223
 msgid "slug"
 msgstr "اسلاگ"
 
-#: base/models.py:216
+#: base/models.py:232
 msgid "invitation of {} to join {} [{}]"
 msgstr "دعوت {} به پیوستن {} [{}]"
 
-#: base/models.py:220
+#: base/models.py:236
 msgid "invitation"
 msgstr "دعوت"
 
-#: base/models.py:221
+#: base/models.py:237
 msgid "invitations"
 msgstr "دعوت‌ها"
 
-#: base/models.py:245
+#: base/models.py:270
 msgid "request of {} to join {} [{}]"
 msgstr "درخواست {} به پیوستن {} [{}]"
 
-#: base/models.py:291
+#: base/models.py:316
 msgid "requester"
 msgstr "درخواست دهنده"
 
-#: base/models.py:292
+#: base/models.py:317
 msgid "requestee"
 msgstr "مورد درخواست"
 
-#: base/models.py:294
+#: base/models.py:319
 msgid "state"
 msgstr "وضعیت"
 
-#: base/models.py:295
+#: base/models.py:320
 msgid "accept time"
 msgstr "زمان قبول"
 
-#: base/models.py:296 game/models.py:133
+#: base/models.py:321 game/models.py:133
 msgid "game configuration"
 msgstr "تنظیمات بازی"
 
-#: base/page_processors.py:12 base/page_processors.py:22 base/views.py:105
-#: base/views.py:261 base/views.py:284 base/views.py:327
+#: base/page_processors.py:12 base/page_processors.py:22 base/views.py:114
+#: base/views.py:264 base/views.py:287 base/views.py:330
 msgid "your team must be final"
 msgstr "تیم شما باید بسته‌شده باشد"
 
-#: base/views.py:41 base/views.py:73 base/views.py:138 base/views.py:370
-#: base/views.py:416 base/views.py:445 base/views.py:472 base/views.py:502
+#: base/views.py:40 base/views.py:72 base/views.py:147 base/views.py:373
+#: base/views.py:419 base/views.py:448 base/views.py:475 base/views.py:505
 msgid "registration period has ended"
 msgstr "زمان ثبت‌نام به اتمام رسیده است"
 
-#: base/views.py:45
+#: base/views.py:44
 msgid "Your team is not finalized."
 msgstr "تیم شما نهایی نشده است."
 
-#: base/views.py:51
+#: base/views.py:50
 msgid ""
 "you are not in a team, create one below or request your team leader to "
 "invite you"
@@ -1179,91 +1187,95 @@ msgstr ""
 "شما در هیچ تیمی نیستید، هم اکنون یک تیم بسازید یا از سرگروه بخواهید شما را "
 "دعوت کند."
 
-#: base/views.py:94
+#: base/views.py:102
 msgid "register new team"
 msgstr "ثبت تیم جدید"
 
-#: base/views.py:108 base/views.py:428
+#: base/views.py:117 base/views.py:431
 msgid "your team does not have enough members"
 msgstr "تیم شما تعداد اعضای کافی ندارد"
 
-#: base/views.py:147 base/views.py:509
+#: base/views.py:156 base/views.py:512
 msgid "you already have a team"
 msgstr "شما در حال حاضر عضو این تیم هستید"
 
-#: base/views.py:153 base/views.py:222 base/views.py:379 base/views.py:393
-#: base/views.py:513
+#: base/views.py:162 base/views.py:231 base/views.py:382 base/views.py:396
+#: base/views.py:516
 msgid "The team is final."
 msgstr "تیم نهایی شده"
 
-#: base/views.py:156
+#: base/views.py:165
 #, python-format
 msgid "successfully joined team %s"
 msgstr "با موفقیت به تیم %s ملحق شدید"
 
-#: base/views.py:201
+#: base/views.py:210
 msgid "qualification games results"
 msgstr "نتیجه بازی‌های دور مقدماتی"
 
-#: base/views.py:202
+#: base/views.py:211
 msgid "random bot games results"
 msgstr "نتایج بازی‌ها با بات رندم"
 
-#: base/views.py:292 base/views.py:298
+#: base/views.py:250
+msgid "Team name is not valid."
+msgstr "نام تیم قابل قبول نیست."
+
+#: base/views.py:295 base/views.py:301
 msgid "No such game request found"
 msgstr "بازی پیدا نشد"
 
-#: base/views.py:304
+#: base/views.py:307
 msgid "Bad request"
 msgstr "درخواست نادرست"
 
-#: base/views.py:313
+#: base/views.py:316
 #, python-format
 msgid "this team can not play for %d minutes"
 msgstr "این تیم تا %d دقیقه دیگر نمی‌تواند بازی کند"
 
-#: base/views.py:318
+#: base/views.py:321
 msgid "Done"
 msgstr "انجام شد"
 
-#: base/views.py:345
+#: base/views.py:348
 #, python-format
 msgid "you must wait %d minutes before another request"
 msgstr "شما باید %d دقیقه تا درخواست بعدی صبر کنید"
 
-#: base/views.py:348
+#: base/views.py:351
 msgid "Challenged the team successfully"
 msgstr "تیم مورد نظر به بازی دوستانه دعوت شد"
 
-#: base/views.py:436
+#: base/views.py:439
 msgid "team is now finalized"
 msgstr "تبریک! تیم شما نهایی شد."
 
-#: base/views.py:463
+#: base/views.py:466
 msgid "invitation resend successful"
 msgstr "با موفقیت بازارسال شد"
 
-#: base/views.py:489
+#: base/views.py:492
 msgid "already part of another team"
 msgstr "عضو تیم دیگری است."
 
-#: base/views.py:492 base/views.py:511
+#: base/views.py:495 base/views.py:514
 msgid "the team has reached max members"
 msgstr "تیم شما به حداکثر تعداد رسیده است"
 
-#: base/views.py:517
+#: base/views.py:520
 msgid "AIChallenge team join request"
 msgstr "درخواست عضویت تیم در AIChallenge"
 
-#: base/views.py:519
+#: base/views.py:522
 msgid "join request has been sent"
 msgstr "درخواست عضویت ارسال شد"
 
-#: base/views.py:523
+#: base/views.py:526
 msgid "your request to join this team has been declined"
 msgstr "درخواست شما توسط سرگروه این تیم رد شده است"
 
-#: base/views.py:525
+#: base/views.py:528
 msgid "you have requested to join this team before"
 msgstr "شما قبلا درخواست عضویت در این تیم را داده‌اید"
 

@@ -4,103 +4,124 @@
 {% block meta_title %}{% trans 'My Team' %}{% endblock %}
 {% block title %}{% trans 'My Team' %}{% endblock %}
 {% block extra_head %}
-    <!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
-    <style>
-        td.name-avatar {
-        {% if LANGUAGE_BIDI %}
-            text-align: right;
-        {% else %}
-            text-align: left;
-        {% endif %}
-        }
+<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+<style>
+    td.name-avatar {
+    {% if LANGUAGE_BIDI %}
+        text-align: right;
+    {% else %}
+        text-align: left;
+    {% endif %}
+    }
 
-        .member-email {
-            color: #7c7c7c;
-            font-size: 0.95em;
-        }
+    .member-email {
+        color: #7c7c7c;
+        font-size: 0.95em;
+    }
 
-        td.action-buttons {
-            text-align: center;
-        }
-    </style>
+    td.action-buttons {
+        text-align: center;
+    }
+</style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 {% endblock %}
 
 {% block main %}
-    <div class="row">
-        <div class="col s12 m12 l12">
-            <div class="card-panel">
-                {% nevercache %}
-                    {% if messages %}
-                        <div class="messages">
-                            {% for message in messages %}
-                                <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
-                                    <button type="button" class="close" data-dismiss="alert"
-                                            aria-hidden="true">&times;</button>
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                {% endnevercache %}
+<div class="row">
+    <div class="col s12 m12 l12">
+        <div class="card-panel">
+            {% nevercache %}
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div class="alert alert-dismissable alert-{{ message.tags }}" data-alert="alert">
+                                <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">&times;</button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endnevercache %}
 
-                <h5>{% trans 'team' %} <small> {{ team.name }} </small> </h5>
+            {% if errors.team_name %}
+            <div class="card yellow lighten-5">
+                <div class="card-content white-text">
+                    <span class="card-title blue-grey-text text-darken-2"> {% trans "errors" %} </span>
+                    <p class="blue-grey-text text-darken-2"> {{ errors.team_name }} </p>
+                </div>
+            </div>
+            {% endif %}
 
+
+            <h5>{% trans "team's name" %}
+                <small>
+                <a id="show-button" class="btn-floating btn waves-effect waves-light cyan cyan-darker-4 to-hide"><span
+                        class="glyphicon glyphicon-pencil"></span></a>
+                </small>
+            </h5>
+            <h6 class="grey-text text-darken-2 to-hide"> {{ team.name }} </h6>
+            <form id="to-show" class="hide" method="post">
+                {% csrf_token %}
                 <div class="row">
-                    <div class="col m12 s12 l12">
-                        <h5>{% trans 'team members' %}</h5>
-                        <table class="table-striped ">
-                            <tr>
-                                <th>
-                                    {% trans 'email address' %}
-                                </th>
-                                <th>
-                                    {% trans 'name' %}
-                                </th>
-                                <th>
-                                    {% trans 'membership status' %}
-                                </th>
-                            </tr>
-                            {% with member=team.head %}
-                                {% include 'custom/includes/team_member_row.html' %}
-                            {% endwith %}
-                            {% with team_members=team.get_members%}
-                                {% for member in team_members %}
-                                    {% include 'custom/includes/team_member_row.html' %}
-                                {% endfor %}
-                            {% endwith %}
-                        </table>
+                    <div class="col s3 offset-s2">
+                        <div class="input-field inline top-margin-two-em">
+                            <button type="submit" class="waves-effect waves-light btn teal teal-darken-2">
+                                {% trans "change name" %}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col s3">
+                        <div class="input-field inline top-margin-two-em">
+                            <a id="hide-button" class="waves-effect waves-light btn grey grey-darken-1">
+                                {% trans "cancel" %}
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col s4  ">
+                        <div class="input-field inline">
+                            <input id="new_team_name" name="new_team_name" type="text" class="validate">
+                            <label for="new_team_name">نام جدید تیم</label>
+                        </div>
                     </div>
                 </div>
-{#                                {% if team.final and request.user == team.head %}#}
-{#                                    <div class="row"#}
-{#                                         style="background: rgba(255, 250, 0, 0.2); margin-right: -20px; margin-left: -20px;">#}
-{#                                        <div class="col m12 s12 l12" style="padding: 10px 28px;">#}
-{#                                            <form method="post" action="{% url 'my_team' %}">#}
-{#                                                {% csrf_token %}#}
-{#                                                <label>{% trans 'Will you participate in Tehran site competition?' %}</label>#}
-{#                                                <p {% if LANGUAGE_BIDI %}style="text-align: right;"{% endif %}>#}
-{#                                                    <input id="id_will_come_0"#}
-{#                                                           {% if will_come_form.will_come.value == 0 %}checked {% endif %}class="with-gap"#}
-{#                                                           name="will_come" type="radio" value="0"/>#}
-{#                                                    <label for="id_will_come_0">{% trans 'yes' %}</label>#}
-{#                                                    <input id="id_will_come_1"#}
-{#                                                           {% if will_come_form.will_come.value == 1 %}checked {% endif %}class="with-gap"#}
-{#                                                           name="will_come" type="radio" value="1"/>#}
-{#                                                    <label for="id_will_come_1">{% trans 'no' %}</label>#}
-{#                                                    <input id="id_will_come_2"#}
-{#                                                           {% if will_come_form.will_come.value == 2 %}checked {% endif %}class="with-gap"#}
-{#                                                           name="will_come" type="radio" value="2"/>#}
-{#                                                    <label for="id_will_come_2">{% trans 'not decided yet' %}</label>#}
-{#                                                </p>#}
-{##}
-{#                                                <button type="submit" class="btn waves-effect waves-blue">#}
-{#                                                    {% trans 'submit opinion' %}</button>#}
-{#                                            </form>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                {% endif %}#}
+            </form>
+
+            <div class="row">
+                <div class="col m12 s12 l12">
+                    <h5>{% trans 'team members' %}</h5>
+                    <table class="table-striped ">
+                        <tr>
+                            <th>
+                                {% trans 'email address' %}
+                            </th>
+                            <th>
+                                {% trans 'name' %}
+                            </th>
+                            <th>
+                                {% trans 'membership status' %}
+                            </th>
+                        </tr>
+                        {% with member=team.head %}
+                            {% include 'custom/includes/team_member_row.html' %}
+                        {% endwith %}
+                        {% with team_members=team.get_members %}
+                            {% for member in team_members %}
+                                {% include 'custom/includes/team_member_row.html' %}
+                            {% endfor %}
+                        {% endwith %}
+                    </table>
+                </div>
             </div>
+
         </div>
     </div>
+</div>
 
+{% endblock %}
+
+{% block extra_body %}
+{{ block.super }}
+    {% include  'importing_js/show_hide_button.html' %}
 {% endblock %}

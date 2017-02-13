@@ -111,7 +111,6 @@ def register_team(request):
 def submit(request):
     competition = request.team.competition
     if request.method == 'POST':
-
         if not request.user.is_superuser and not competition.submit_active:
             # if not request.user.is_superuser and not request.team.should_pay:
             messages.error(request, _('submit period has ended'))
@@ -123,10 +122,14 @@ def submit(request):
             new_submit.team = request.team
             new_submit.submitter = request.user
             new_submit.save()
-            compile_code.delay(new_submit.id)
+            #compile_code.delay(new_submit.id)
             return redirect('submit_code')
     else:
         form = SubmitForm(competition)
+
+    for submit in Submit.objects.filter(team=request.team):
+        pass
+
     return render(request, 'accounts/submit_code.html', {
         'form': form,
         'title': _('submit new code'),

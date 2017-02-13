@@ -14,8 +14,8 @@ list(map(admin.site.register, admin_models))
 
 
 class SubmitAdmin(admin.ModelAdmin):
-    fieldsets = ((None, {"fields": ("status", "code", "compile_log_file", "compiled_code", "team")}),)
-    list_display = ("get_team_name", "lang", "code", "status", "compile_log_file", "compiled_code")
+    fieldsets = ((None, {"fields": ("status", "code", "compile_log_file", "compiled_code", "team","token")}),)
+    list_display = ("get_team_name", "lang", "code", "status", "compile_log_file", "compiled_code","token")
     list_display_links = ()
     list_editable = ()
     list_filter = ("status",)

@@ -5,6 +5,7 @@ import base64
 import datetime
 import re
 import uuid
+import coreapi
 
 from ckeditor.fields import RichTextField
 from django.conf import settings
@@ -176,6 +177,8 @@ class Submit(models.Model):
 
     played = models.IntegerField(verbose_name=_('played'), default=0)
     won = models.IntegerField(verbose_name=_('won'), default=0)
+    token = models.CharField(max_length=40)
+
 
     def __unicode__(self):
         return 'Submit %s for team %d' % (self.code.name.split('/')[-1], self.team.id)
@@ -183,6 +186,21 @@ class Submit(models.Model):
     class Meta:
         verbose_name = _('submit')
         verbose_name_plural = _('submits')
+
+    @staticmethod
+    def compilation_request(submit_pk,code,lang):
+        credientals = {settings.BASE_MIDDLE_BRAIN_API_IP: 'Token ' + settings.BASE_MIDDLE_BRAIN_TOKEN}
+        transports = [coreapi.transports.HTTPTransport(credentials=credientals)]
+        client = coreapi.Client(transports=transports)
+        schema = client.get(settings.BASE_MIDDLE_BRAIN_API_SCHEMA)
+        ans=client.action(schema,['storage','new_file','update'],params={'file':coreapi.utils.File(name='file', content=code)})
+        Submit.objects.get(pk=submit_pk).token=ans['token']
+        ans=client.action(schema,['run','run','create'],params={'data':[{'operation':'compile','parameters':{'language':lang,'code_zip':ans['token']}}]})
+        print(ans)
+
+    def save(self,*args,**kwargs):
+        super(Submit, self).save(*args, **kwargs)
+        Submit.compilation_request(submit_pk=self.pk,code=self.code,lang=self.lang.code_name)
 
 
 class StaffTeam(MPTTModel):

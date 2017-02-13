@@ -178,6 +178,7 @@ class Submit(models.Model):
     played = models.IntegerField(verbose_name=_('played'), default=0)
     won = models.IntegerField(verbose_name=_('won'), default=0)
     token = models.CharField(max_length=40)
+    run_id = models.CharField(max_length=40)
 
 
     def __unicode__(self):
@@ -194,12 +195,13 @@ class Submit(models.Model):
         client = coreapi.Client(transports=transports)
         schema = client.get(settings.BASE_MIDDLE_BRAIN_API_SCHEMA)
         ans=client.action(schema,['storage','new_file','update'],params={'file':coreapi.utils.File(name='file', content=code)})
-        Submit.objects.get(pk=submit_pk).token=ans['token']
+        submit=Submit.objects.get(pk=submit_pk)
+        submit.token=ans['token']
         ans=client.action(schema,['run','run','create'],params={'data':[{'operation':'compile','parameters':{'language':lang,'code_zip':ans['token']}}]})
-        print(ans)
+        submit.run_id = ans[0]['run_id']
+        submit.save()
 
-    def save(self,*args,**kwargs):
-        super(Submit, self).save(*args, **kwargs)
+    def request_compilation_async(self):
         Submit.compilation_request(submit_pk=self.pk,code=self.code,lang=self.lang.code_name)
 
 

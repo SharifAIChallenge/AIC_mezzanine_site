@@ -3,9 +3,9 @@
 import os
 
 import coreapi
+import celery
 from celery import Celery
 from celery import shared_task
-from celery.bin import celery
 from celery.schedules import crontab
 from celery.task import periodic_task
 # from django.conf import settings
@@ -29,15 +29,8 @@ from django.conf import settings
 
 from base.models import Submit
 
-app = Celery('AIC')
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'AIC_site.settings')
-
-app.config_from_object('django.conf:settings')
-@app.task
-def khar():
-    print("sag")
-
+@shared_task
 def get_reports():
     credientals = {settings.BASE_MIDDLE_BRAIN_API_IP: 'Token ' + settings.BASE_MIDDLE_BRAIN_TOKEN}
     transports = [coreapi.transports.HTTPTransport(credentials=credientals)]
@@ -48,18 +41,18 @@ def get_reports():
     for report in reports:
         submit=Submit.objects.get(run_id=report['id'])
 
-        #log = client.action(schema,['storage','get_file','read'],params={'token':report['parameters']['code_log']})
-        #print(log)
+
         if(report['status']==2):
             submit.compiled_id=report['parameters']['code_compiled_zip']
             if(submit.status!=3):
-                print(report['parameters']['code_log'])
-            submit.status=3
+                log = client.action(schema, ['storage', 'get_file', 'read'],
+                params={'token': report['parameters']['code_log']})
+                if log is None:
+                    log = {"errors": []}
+                print(log)
+                if len(log["errors"]) == 0:
+                    submit.status = 3
+                else:
+                    submit.status = 4
+                    submit.compile_log_file = str(log["errors"])
         submit.save()
-
-app.conf.beat_schedule = {
-    'add-every-30-seconds': {
-        'task': 'khar',
-        'schedule': 30.0,
-    },
-}

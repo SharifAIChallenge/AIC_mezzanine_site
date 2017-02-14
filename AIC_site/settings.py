@@ -2,6 +2,7 @@
 from __future__ import absolute_import, unicode_literals
 
 import os
+
 import raven
 from django.utils.translation import ugettext_lazy as _
 
@@ -350,6 +351,12 @@ COUNTRIES_OVERRIDE = {
 # celery
 BROKER_URL = 'redis://localhost:6379/1'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+CELERY_BEAT_SCHEDULE = {
+    'periodic_check_for_missed_runs': {
+        'task': 'base.tasks.get_status',
+        'schedule': 10.0,
+    }
+}
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 CELERY_EMAIL_TASK_CONFIG = {
     'max_retries': 30,

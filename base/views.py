@@ -18,8 +18,8 @@ from mezzanine.utils.email import send_mail_template
 from base.forms import SubmitForm, TeamForm, TeamNameForm, GameTypeForm
 from base.models import TeamInvitation, Team, Member, JoinRequest, GameRequest, Submit, \
     StaffMember, StaffTeam, TeamMember
+from base.tasks import get_reports
 from game.models import Competition, GameTeamSubmit, Game, GameConfiguration, TeamScore
-from .tasks import compile_code
 
 
 def is_registration_period_ended(request):
@@ -109,7 +109,9 @@ def register_team(request):
 @login_required
 @team_required_and_finilized
 def submit(request):
+
     competition = request.team.competition
+    get_reports()
     if request.method == 'POST':
         if not request.user.is_superuser and not competition.submit_active:
             # if not request.user.is_superuser and not request.team.should_pay:
@@ -124,6 +126,7 @@ def submit(request):
             new_submit.save()
 
             new_submit.request_compilation_async()
+
             #compile_code.delay(new_submit.id)
             return redirect('submit_code')
     else:

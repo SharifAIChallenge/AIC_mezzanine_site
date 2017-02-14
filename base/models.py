@@ -179,6 +179,7 @@ class Submit(models.Model):
     won = models.IntegerField(verbose_name=_('won'), default=0)
     token = models.CharField(max_length=40)
     run_id = models.CharField(max_length=40)
+    compiled_id = models.CharField(max_length=40)
 
 
     def __unicode__(self):

@@ -349,7 +349,7 @@ COUNTRIES_OVERRIDE = {
 }
 
 # celery
-BROKER_URL = 'redis://localhost:6379/1'
+CELERY_BROKER_URL = 'redis://localhost:6379/1'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
 CELERY_BEAT_SCHEDULE = {
 	'periodic_check_for_results': {

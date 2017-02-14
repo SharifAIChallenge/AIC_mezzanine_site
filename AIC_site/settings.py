@@ -352,8 +352,8 @@ COUNTRIES_OVERRIDE = {
 BROKER_URL = 'redis://localhost:6379/1'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
 CELERY_BEAT_SCHEDULE = {
-    'periodic_check_for_missed_runs': {
-        'task': 'base.tasks.get_status',
+	'periodic_check_for_results': {
+        'task': 'base.tasks.get_reports',
         'schedule': 10.0,
     }
 }

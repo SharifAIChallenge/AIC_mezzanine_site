@@ -22,6 +22,7 @@ from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
 
 from game.models import Game, Competition
+from celery import shared_task
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -188,22 +189,23 @@ class Submit(models.Model):
     class Meta:
         verbose_name = _('submit')
         verbose_name_plural = _('submits')
-
+	
     @staticmethod
-    def compilation_request(submit_pk,code,lang):
+    @shared_task
+    def compilation_request(submit_pk):
+        submit=Submit.objects.get(pk=submit_pk)
         credientals = {settings.BASE_MIDDLE_BRAIN_API_IP: 'Token ' + settings.BASE_MIDDLE_BRAIN_TOKEN}
         transports = [coreapi.transports.HTTPTransport(credentials=credientals)]
         client = coreapi.Client(transports=transports)
         schema = client.get(settings.BASE_MIDDLE_BRAIN_API_SCHEMA)
-        ans=client.action(schema,['storage','new_file','update'],params={'file':coreapi.utils.File(name='file', content=code)})
-        submit=Submit.objects.get(pk=submit_pk)
+        ans=client.action(schema,['storage','new_file','update'],params={'file':coreapi.utils.File(name='file', content=submit.code)})
         submit.token=ans['token']
-        ans=client.action(schema,['run','run','create'],params={'data':[{'operation':'compile','parameters':{'language':lang,'code_zip':ans['token']}}]})
+        ans=client.action(schema,['run','run','create'],params={'data':[{'operation':'compile','parameters':{'language':submit.lang.code_name,'code_zip':ans['token']}}]})
         submit.run_id = ans[0]['run_id']
         submit.save()
 
     def request_compilation_async(self):
-        Submit.compilation_request(submit_pk=self.pk,code=self.code,lang=self.lang.code_name)
+        Submit.compilation_request.delay(submit_pk=self.pk)
 
 
 class StaffTeam(MPTTModel):

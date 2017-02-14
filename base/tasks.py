@@ -28,5 +28,5 @@ def get_reports():
                     submit.status = 3
                 else:
                     submit.status = 4
-                    submit.compile_log_file = str(log["errors"])
+                    submit.compile_log_file = '\n'.join(error for error in log["errors"])
         submit.save()

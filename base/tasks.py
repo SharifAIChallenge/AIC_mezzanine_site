@@ -17,8 +17,9 @@ def get_reports():
     schema = client.get(settings.BASE_MIDDLE_BRAIN_API_SCHEMA)
     reports=client.action(schema,['run','report','list'],params={'time':0})
     for report in reports:
-        if(len(Submit.objects.filter(run_id=report['id']))>0):
-            submit=Submit.objects.get(run_id=report['id'])
+        if(len(Submit.objects.filter(run_id=report['id']))==0):
+            continue
+        submit=Submit.objects.get(run_id=report['id'])
         if(report['status']==2):
             submit.compiled_id=report['parameters']['code_compiled_zip']
             if(submit.status!=3):

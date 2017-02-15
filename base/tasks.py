@@ -16,7 +16,7 @@ def get_reports():
     transports = [coreapi.transports.HTTPTransport(credentials=credientals)]
     client = coreapi.Client(transports=transports)
     schema = client.get(settings.BASE_MIDDLE_BRAIN_API_SCHEMA)
-    reports=client.action(schema,['run','report','list'],params={'time':int(LastGetReportsTime.get_solo().time)-1})
+    reports=client.action(schema,['run','report','list'],params={'time':int(LastGetReportsTime.get_solo().time)-30})
     for report in reports:
         if(len(Submit.objects.filter(run_id=report['id']))==0):
             continue

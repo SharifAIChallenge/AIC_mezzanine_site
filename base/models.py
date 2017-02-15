@@ -380,4 +380,4 @@ class GameRequest(models.Model):
         self.save()
 
 class LastGetReportsTime(SingletonModel):
-    time=models.CharField(default=0,verbose_name="salam",max_length=20)
+    time=models.IntegerField(default=0,verbose_name="salam")

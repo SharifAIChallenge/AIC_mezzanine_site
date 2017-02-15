@@ -16,7 +16,8 @@ def get_reports():
     transports = [coreapi.transports.HTTPTransport(credentials=credientals)]
     client = coreapi.Client(transports=transports)
     schema = client.get(settings.BASE_MIDDLE_BRAIN_API_SCHEMA)
-    reports=client.action(schema,['run','report','list'],params={'time':LastGetReportsTime.get_solo().time})
+    print(LastGetReportsTime.get_solo().time)
+    reports=client.action(schema,['run','report','list'],params={'time':int(LastGetReportsTime.get_solo().time)})
     for report in reports:
         if(len(Submit.objects.filter(run_id=report['id']))==0):
             continue
@@ -24,14 +25,18 @@ def get_reports():
         if(report['status']==2):
             submit.compiled_id=report['parameters']['code_compiled_zip']
             if(submit.status!=3):
-                log = json.loads(client.action(schema, ['storage', 'get_file', 'read'],
-                params={'token': report['parameters']['code_log']}).read())
+                logfile=client.action(schema, ['storage', 'get_file','read'],
+                params={'token': report['parameters']['code_log']})
+                if(logfile is None):
+                    continue
+                log = json.loads(logfile.read())
                 if len(log["errors"]) == 0:
                     submit.status = 3
                 else:
                     submit.status = 4
                     submit.compile_log_file = '\n'.join(error for error in log["errors"])
         submit.save()
-    instance=LastGetReportsTime.get_solo()
-    instance.time=(datetime.datetime.now()-datetime.datetime(1970,1,1)).total_seconds()
+    instance=LastGetReportsTime.objects.get()
+    instance.time=(datetime.datetime.utcnow()-datetime.datetime(1970,1,1)).total_seconds()
+    print(instance.time)
     instance.save()

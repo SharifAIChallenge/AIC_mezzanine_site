@@ -111,6 +111,7 @@ def register_team(request):
 def submit(request):
 
     competition = request.team.competition
+    get_reports()
     if request.method == 'POST':
         if not request.user.is_superuser and not competition.submit_active:
             # if not request.user.is_superuser and not request.team.should_pay:

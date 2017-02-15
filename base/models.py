@@ -20,6 +20,7 @@ from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
+from solo.models import SingletonModel
 
 from game.models import Game, Competition
 from celery import shared_task
@@ -377,3 +378,6 @@ class GameRequest(models.Model):
         if accepted:
             Game.create([self.requestee, self.requester], game_conf=self.game_config)
         self.save()
+
+class LastGetReportsTime(SingletonModel):
+    time=models.CharField(default=0,verbose_name="salam",max_length=20)

@@ -126,7 +126,6 @@ def submit(request):
 
             new_submit.request_compilation_async()
 
-            #compile_code.delay(new_submit.id)
             return redirect('submit_code')
     else:
         form = SubmitForm(competition)

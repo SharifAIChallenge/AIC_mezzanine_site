@@ -4,8 +4,9 @@ import os
 
 import coreapi
 from celery import shared_task
+import datetime
 from django.conf import settings
-from base.models import Submit
+from base.models import Submit, LastGetReportsTime
 import json
 
 
@@ -15,7 +16,7 @@ def get_reports():
     transports = [coreapi.transports.HTTPTransport(credentials=credientals)]
     client = coreapi.Client(transports=transports)
     schema = client.get(settings.BASE_MIDDLE_BRAIN_API_SCHEMA)
-    reports=client.action(schema,['run','report','list'],params={'time':0})
+    reports=client.action(schema,['run','report','list'],params={'time':LastGetReportsTime.get_solo().time})
     for report in reports:
         if(len(Submit.objects.filter(run_id=report['id']))==0):
             continue
@@ -31,3 +32,6 @@ def get_reports():
                     submit.status = 4
                     submit.compile_log_file = '\n'.join(error for error in log["errors"])
         submit.save()
+    instance=LastGetReportsTime.get_solo()
+    instance.time=(datetime.datetime.now()-datetime.datetime(1970,1,1)).total_seconds()
+    instance.save()

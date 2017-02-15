@@ -16,8 +16,7 @@ def get_reports():
     transports = [coreapi.transports.HTTPTransport(credentials=credientals)]
     client = coreapi.Client(transports=transports)
     schema = client.get(settings.BASE_MIDDLE_BRAIN_API_SCHEMA)
-    print(LastGetReportsTime.get_solo().time)
-    reports=client.action(schema,['run','report','list'],params={'time':int(LastGetReportsTime.get_solo().time)})
+    reports=client.action(schema,['run','report','list'],params={'time':int(LastGetReportsTime.get_solo().time)-1})
     for report in reports:
         if(len(Submit.objects.filter(run_id=report['id']))==0):
             continue
@@ -38,5 +37,4 @@ def get_reports():
         submit.save()
     instance=LastGetReportsTime.objects.get()
     instance.time=(datetime.datetime.utcnow()-datetime.datetime(1970,1,1)).total_seconds()
-    print(instance.time)
     instance.save()

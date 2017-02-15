@@ -204,7 +204,6 @@ class Submit(models.Model):
         ans=client.action(schema,['run','run','create'],params={'data':[{'operation':'compile','parameters':{'language':submit.lang.code_name,'code_zip':ans['token']}}]})
         submit.run_id = ans[0]['run_id']
         submit.save()
-
     def request_compilation_async(self):
         Submit.compilation_request.delay(submit_pk=self.pk)
 

@@ -11,3 +11,5 @@ local_settings.py
 forms
 gunicorn.*
 .idea
+celerybeat-schedule
+celerybeat.pid

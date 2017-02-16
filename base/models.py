@@ -165,7 +165,7 @@ class Submit(models.Model):
         (4, _('failed')),
     )
 
-    timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now=True)
+    timestamp = models.DateTimeField(verbose_name=_('timestamp'), auto_now_add=True)
     code = models.FileField(verbose_name=_('code'), upload_to=team_code_directory_path, storage=syncing_storage)
     team = models.ForeignKey(Team, verbose_name=_('team'))
     submitter = models.ForeignKey(Member, default=None, null=True, blank=True)

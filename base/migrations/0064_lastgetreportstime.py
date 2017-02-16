@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name='LastGetReportsTime',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('time', models.DateTimeField(default=0)),
+                ('time', models.IntegerField(default=0, verbose_name='salam')),
             ],
             options={
                 'abstract': False,

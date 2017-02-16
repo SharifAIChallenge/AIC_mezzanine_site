@@ -6,7 +6,6 @@ import os
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'AIC_site.settings')
 
-from django.conf import settings
 
 app = celery.Celery('AIC')
 

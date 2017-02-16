@@ -5,6 +5,7 @@ import base64
 import datetime
 import re
 import uuid
+import coreapi
 
 from ckeditor.fields import RichTextField
 from django.conf import settings
@@ -19,8 +20,10 @@ from django.utils.translation import ugettext_lazy as _
 from django_countries.fields import CountryField
 from mptt.fields import TreeForeignKey
 from mptt.models import MPTTModel
+from solo.models import SingletonModel
 
 from game.models import Game, Competition
+from celery import shared_task
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -176,6 +179,10 @@ class Submit(models.Model):
 
     played = models.IntegerField(verbose_name=_('played'), default=0)
     won = models.IntegerField(verbose_name=_('won'), default=0)
+    token = models.CharField(max_length=40)
+    run_id = models.CharField(max_length=40)
+    compiled_id = models.CharField(max_length=40)
+
 
     def __unicode__(self):
         return 'Submit %s for team %d' % (self.code.name.split('/')[-1], self.team.id)
@@ -183,6 +190,22 @@ class Submit(models.Model):
     class Meta:
         verbose_name = _('submit')
         verbose_name_plural = _('submits')
+	
+    @staticmethod
+    @shared_task
+    def compilation_request(submit_pk):
+        submit=Submit.objects.get(pk=submit_pk)
+        credientals = {settings.BASE_MIDDLE_BRAIN_API_IP: 'Token ' + settings.BASE_MIDDLE_BRAIN_TOKEN}
+        transports = [coreapi.transports.HTTPTransport(credentials=credientals)]
+        client = coreapi.Client(transports=transports)
+        schema = client.get(settings.BASE_MIDDLE_BRAIN_API_SCHEMA)
+        ans=client.action(schema,['storage','new_file','update'],params={'file':coreapi.utils.File(name='file', content=submit.code)})
+        submit.token=ans['token']
+        ans=client.action(schema,['run','run','create'],params={'data':[{'operation':'compile','parameters':{'language':submit.lang.code_name,'code_zip':ans['token']}}]})
+        submit.run_id = ans[0]['run_id']
+        submit.save()
+    def request_compilation_async(self):
+        Submit.compilation_request.delay(submit_pk=self.pk)
 
 
 class StaffTeam(MPTTModel):
@@ -354,3 +377,6 @@ class GameRequest(models.Model):
         if accepted:
             Game.create([self.requestee, self.requester], game_conf=self.game_config)
         self.save()
+
+class LastGetReportsTime(SingletonModel):
+    time=models.IntegerField(default=0,verbose_name="salam")

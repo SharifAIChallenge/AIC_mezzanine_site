@@ -18,8 +18,8 @@ from mezzanine.utils.email import send_mail_template
 from base.forms import SubmitForm, TeamForm, TeamNameForm, GameTypeForm
 from base.models import TeamInvitation, Team, Member, JoinRequest, GameRequest, Submit, \
     StaffMember, StaffTeam, TeamMember
+from base.tasks import get_reports
 from game.models import Competition, GameTeamSubmit, Game, GameConfiguration, TeamScore
-from .tasks import compile_code
 
 
 def is_registration_period_ended(request):
@@ -109,17 +109,10 @@ def register_team(request):
 @login_required
 @team_required_and_finilized
 def submit(request):
+
     competition = request.team.competition
-    if not request.team.is_finalized():
-        messages.error(request, _('your team must be final'))
-        return redirect('register_team')
-    if request.team.member_set.count() < request.team.competition.min_members:
-        messages.error(request, _("your team does not have enough members"))
-        return redirect('register_team')
-
     if request.method == 'POST':
-
-        if not request.user.is_superuser and not request.team.competition.submit_active:
+        if not request.user.is_superuser and not competition.submit_active:
             # if not request.user.is_superuser and not request.team.should_pay:
             messages.error(request, _('submit period has ended'))
             return redirect('submit_code')
@@ -130,10 +123,12 @@ def submit(request):
             new_submit.team = request.team
             new_submit.submitter = request.user
             new_submit.save()
-            compile_code.delay(new_submit.id)
+
+            new_submit.request_compilation_async()
             return redirect('submit_code')
     else:
         form = SubmitForm(competition)
+
     return render(request, 'accounts/submit_code.html', {
         'form': form,
         'title': _('submit new code'),

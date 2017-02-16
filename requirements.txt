@@ -43,7 +43,7 @@ future==0.15.2
 grappelli-safe==0.4.2
 html5lib==0.9999999
 itypes==1.1.0
-jdatetime==1.7.1
+jdatetime==1.8.2
 Jinja2==2.8
 jsonschema==2.5.1
 kombu==4.0.2

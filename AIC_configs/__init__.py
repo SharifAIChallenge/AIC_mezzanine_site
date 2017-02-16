@@ -1,4 +1,4 @@
-from django.contrib.gis.geoip import GeoIP
+from pygeoip import GeoIP
 
 class ForceDefaultLanguageMiddleware(object):
     """
@@ -11,13 +11,13 @@ class ForceDefaultLanguageMiddleware(object):
     namely django.middleware.locale.LocaleMiddleware
     """
     def process_request(self, request):
-        geo_ip = GeoIP()
+        geo_ip = GeoIP('geoip.dat')
         ip = request.META.get('REMOTE_ADDR', None) or request.META.get('HTTP_X_REAL_IP', None)
         if ip:
             if ip.startswith("213.233."):
                 country_code = 'IR'
             else:
-                country_code = geo_ip.country_code(ip)
+                country_code = geo_ip.country_code_by_name(ip)
         else:
             country_code = 'IR'
         if country_code == 'IR':

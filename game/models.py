@@ -80,6 +80,7 @@ class ProgrammingLanguage(models.Model):
                                           null=True, blank=True)
     execute_container = models.ForeignKey('game.DockerContainer', verbose_name=_('execute container'), related_name='+',
                                           null=True, blank=True)
+    code_name = models.CharField(max_length=200)
 
     def __unicode__(self):
         return self.name

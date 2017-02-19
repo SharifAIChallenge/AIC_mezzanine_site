@@ -10,7 +10,7 @@ from django.db.models import Q
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.utils.sites import current_site_id
 
-from game.tasks import run_game
+#from game.tasks import run_game
 
 syncing_storage = settings.BASE_AND_GAME_STORAGE
 
@@ -142,6 +142,8 @@ class Game(models.Model):
     double_elimination_group = models.ForeignKey('game.DoubleEliminationGroup', null=True)
     counted_in_double_elimination_group = models.BooleanField(default=False)
 
+    run_id = models.CharField(max_length=50)
+
     class Meta:
         verbose_name = _('game')
         verbose_name_plural = _('games')
@@ -175,6 +177,7 @@ class Game(models.Model):
         for participant in participants:
             game_team_submits.append(GameTeamSubmit(game=game, submit=participant.final_submit))
         GameTeamSubmit.objects.bulk_create(game_team_submits)
+        from game.tasks import run_game
         run_game.delay(game.id)
 
     def get_participants(self):

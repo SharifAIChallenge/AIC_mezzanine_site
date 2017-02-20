@@ -127,6 +127,7 @@ class Game(models.Model):
                                 storage=syncing_storage)
     error_log = models.TextField(verbose_name=_('error log'), null=True, blank=True)
     status = models.PositiveSmallIntegerField(verbose_name=_('status'), choices=STATUSES, default=0)
+    log = models.TextField(null=True,blank=True)
 
     pre_games = models.ManyToManyField('game.Game', verbose_name=_('pre games'), blank=True)
 

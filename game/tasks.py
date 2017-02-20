@@ -33,7 +33,8 @@ def run_game(self, game_id):
             "client2_token": uuid.uuid4(),
             "client2_code": submissions[1].compiled_id,
             "logger_token": uuid.uuid4(),
-            "server_game_config": ans['token']
+            "server_game_config": ans['token'],
+            #TODO LANGUAGE RA BEDE
         }}]})
     game.run_id = ans[0]['id']
     game.save()

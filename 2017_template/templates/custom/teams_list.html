@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_with_menu.html" %}
 {% load i18n mezzanine_tags %}
 
 {% block meta_title %}{% trans 'Teams' %}{% endblock %}
@@ -56,27 +56,21 @@
                             <td>{{ team.name }}</td>
                             <td class="aligned">
                                 <div>
-                                    <img class="circle" style="vertical-align: middle; margin: 5px;"
-                                         width="40" height="40"
-                                         src="{% gravatar_url team.head.email 40 %}"/>
+
                                     <span style="vertical-align: middle; margin-right: 5px">{{ team.head.get_full_name }}</span>
                                     <img src="{{ team.head.country.flag }}"/>
                                 </div>
                             </td>
                             <td>{% if team.get_members.0 %}
                                 <div class="aligned">
-                                    <img class="circle" style="vertical-align: middle; margin: 5px;"
-                                         width="40" height="40"
-                                         src="{% gravatar_url team.get_members.0.email 40 %}"/>
+
                                     <span style="vertical-align: middle; margin-right: 5px">{{ team.get_members.0.get_full_name }}</span>
                                     <img src="{{ team.get_members.0.country.flag }}"/>
                                 </div>
                             {% else %}-{% endif %}</td>
                             <td>{% if team.get_members.1 %}
                                 <div class="aligned">
-                                    <img class="circle" style="vertical-align: middle; margin: 5px;"
-                                         width="40" height="40"
-                                         src="{% gravatar_url team.get_members.1.email 40 %}"/>
+
                                     <span style="vertical-align: middle; margin-right: 5px">{{ team.get_members.1.get_full_name }}</span>
                                     <img src="{{ team.get_members.1.country.flag }}"/>
                                 </div>

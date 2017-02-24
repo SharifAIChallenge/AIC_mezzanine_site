@@ -164,23 +164,23 @@ def accept_invite(request, slug):
 
 @login_required
 def teams(request):
-    teams_list = Team.objects.exclude(show=False)
-    if request.GET.get('final', '0') == '1':
-        teams_list = teams_list.filter(final=True)
+    teams_list = Team.objects.filter(competition=Competition.get_current_instance()).exclude(show=False)
+    # if request.GET.get('final', '0') == '1':
+    #     teams_list = teams_list.filter(final=True)
 
     show_friendly_button = False
     wait_time = 0
 
-    if request.GET.get('submitted', '0') == '1':
-        teams_list = teams_list.filter(final=True, submit__status=3).distinct()
-        if hasattr(request.user, 'team') and \
-                request.user.team and \
-                request.user.team.final and \
-                request.user.team.has_successful_submit:
-            show_friendly_button = True
-            wait_time = GameRequest.check_last_time(request.user.team)
-            if wait_time:
-                show_friendly_button = False
+    #if request.GET.get('submitted', '0') == '1':
+        # teams_list = teams_list.filter(final=True, submit__status=3).distinct()
+        # if hasattr(request.user, 'team') and \
+        #         request.user.team and \
+        #         request.user.team.final and \
+        #         request.user.team.has_successful_submit:
+        #     show_friendly_button = True
+        #     wait_time = GameRequest.check_last_time(request.user.team)
+        #     if wait_time:
+        #         show_friendly_button = False
 
     public_configs = GameConfiguration.objects.filter(is_public=True)
 

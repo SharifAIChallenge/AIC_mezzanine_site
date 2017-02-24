@@ -42,7 +42,7 @@
                 <table class="teams-list">
                     <tr>
                         <th>#</th>
-                        <th>{% trans 'name' %}</th>
+                        <th width="25%">{% trans 'name' %}</th>
                         <th>{% trans 'team head' %}</th>
                         <th>{% trans 'member' %}</th>
                         <th>{% trans 'member' %}</th>
@@ -51,7 +51,7 @@
                         {% endif %}
                     </tr>
                     {% for team in teams %}
-                        <tr {% if not team.final %}class="non-final"{% endif %}>
+                        <tr {% if not team.is_finalized %}class="non-final"{% endif %}>
                             <td>{{ forloop.counter }}</td>
                             <td>{{ team.name }}</td>
                             <td class="aligned">

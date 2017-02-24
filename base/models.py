@@ -60,7 +60,7 @@ class Team(models.Model):
     site_participation_possible = models.BooleanField(default=False)
 
     final_submission = models.ForeignKey('base.Submit', verbose_name=_('final submission'),
-                                         related_name="team_final_submission", null=True)
+                                         related_name="team_final_submission", null=True, blank=True)
 
     will_come = models.PositiveSmallIntegerField(verbose_name=_("will come to site"), choices=WILL_COME_CHOICES,
                                                  default=2)

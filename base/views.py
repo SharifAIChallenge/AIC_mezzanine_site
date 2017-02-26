@@ -109,7 +109,6 @@ def register_team(request):
 @login_required
 @team_required_and_finilized
 def submit(request):
-
     competition = request.team.competition
     if request.method == 'POST':
         if not request.user.is_superuser and not competition.submit_active:

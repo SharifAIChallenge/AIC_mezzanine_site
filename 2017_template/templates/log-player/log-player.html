@@ -1,53 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{{ settings.SITE_TITLE }}</title>
-    <link rel="shortcut icon" href="/static/images/logo-site.ico" type="image/x-icon">
-    <script src="/static/log-player/js/jquery.js"></script>
-    <script src="/static/log-player/js/jq_color_anim.js"></script>
-    <script src="/static/log-player/js/cytoscape.min.js"></script>
-    <!--<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>-->
-    <link rel="stylesheet" href="/static/log-player/css/style.css">
-    <script src="/static/log-player/js/rb_init.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="shortcut icon" href="/static/images/logo-site.ico" type="image/x-icon">
+	<title>{{ settings.SITE_TITLE }}</title>
+	<link href="/static/log-player/css/main.8c6e9fc9.css" rel="stylesheet">
 </head>
 <body>
-    <div hidden>
-        <input type="hidden" id="log-address" value="{{ game.log_file.url }}">
-        {% for submit in game.players.all %}
-            <input type="hidden" id="team-{{ submit.team.id }}" value="{{ submit.team.name }}">
-        {% endfor %}
-    </div>
-    <div id="cy"></div>
-    <button id="playButt" onclick="rb.play()">play</button>
-    <div id="SpeedText">Speed</div>
-    <input id="speed" type="range" min="0" max="1200" step="400" />
-    <button id="stepButt" onclick="rb.step()">Next Step</button>
-    <button id="turnButt" onclick="rb.turn()">Next Turn</button>
-    <div id="scoreBoard">
-        State: <br><div id="state">-</div>
-    </div>
-
-    <div id="status">
-        Turn: <div id="turn">0</div><br>
-        <div class="redScore"><div id="team1">Red Score</div>: <div id="redScore">0</div></div>
-        <div class="blueScore"><div id="team2">Blue Score</div>: <div id="blueScore">0</div></div><br>
-    </div>
-    <div id="rb"></div>
-    <div id="lamp1" class="lamp">
-        <div class="light"></div>
-    </div>
-    <div id="lamp2" class="lamp">
-        <div class="light"></div>
-    </div>
-    <div id="lamp3" class="lamp">
-        <div class="light"></div>
-    </div>
-    <div id="lamp4" class="lamp">
-        <div class="light"></div>
-    </div>
-    <div id="hidden"></div>
-    <div id="logo"></div>
-
+	<script>window.logUrl='{{ game.log_file.url }}'||null</script>
+	<div id="root"></div>
+	<script type="text/javascript" src="/static/log-player/js/main.64eace5b.js"></script>
 </body>
 </html>

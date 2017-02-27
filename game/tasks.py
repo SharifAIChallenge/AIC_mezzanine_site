@@ -21,11 +21,9 @@ def run_game(game_id):
                         params={'file': coreapi.utils.File(name='file',content=game.game_config.config)})
     # game.token;
     # game.token = ans['token']
-    submissions = GameTeamSubmit.objects.all().filter(game=game)
+    submissions = list(GameTeamSubmit.objects.all().filter(game=game).order_by('pk'))
     if len(submissions) != 2:
         raise ValueError()
-    submissions = list(submissions)
-    print(schema)
     ans = client.action(schema, ['run', 'run', 'create'], params={
         'data':[{'operation': 'execute', 'parameters': {
             "client1_id": submissions[0].pk,
@@ -37,6 +35,5 @@ def run_game(game_id):
             "logger_token": str(uuid.uuid4()),
             "server_game_config": ans['token'],
         }}]})
-    print(ans)
     game.run_id = ans[0]['run_id']
     game.save()

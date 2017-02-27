@@ -6,7 +6,10 @@ import coreapi
 from celery import shared_task
 import datetime
 from django.conf import settings
+from django.core.files.base import ContentFile
+
 from base.models import Submit, LastGetReportsTime
+from django.db import models
 import json
 
 from game.tasks import run_game
@@ -21,7 +24,7 @@ def get_reports():
     client = coreapi.Client(transports=transports)
     schema = client.get(settings.BASE_MIDDLE_BRAIN_API_SCHEMA)
     print(LastGetReportsTime.get_solo().time)
-    reports=client.action(schema,['run','report','list'],params={'time':int(LastGetReportsTime.get_solo().time)-500})
+    reports=client.action(schema,['run','report','list'],params={'time':int(LastGetReportsTime.get_solo().time)-10})
     for report in reports:
         if(report['operation']=='compile'):
             if(len(Submit.objects.filter(run_id=report['id']))==0):
@@ -56,6 +59,7 @@ def get_reports():
                 if (logfile is None):
                     continue
                 game.log=logfile.read()
+                game.log_file.save(report['parameters']['game_log'], ContentFile(game.log))
                 game.status=3
             elif(report['status']==3):
                 game.status=4

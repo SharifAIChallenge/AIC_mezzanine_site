@@ -21,7 +21,7 @@ def get_reports():
     client = coreapi.Client(transports=transports)
     schema = client.get(settings.BASE_MIDDLE_BRAIN_API_SCHEMA)
     print(LastGetReportsTime.get_solo().time)
-    reports=client.action(schema,['run','report','list'],params={'time':int(LastGetReportsTime.get_solo().time)-10})
+    reports=client.action(schema,['run','report','list'],params={'time':int(LastGetReportsTime.get_solo().time)-500})
     for report in reports:
         if(report['operation']=='compile'):
             if(len(Submit.objects.filter(run_id=report['id']))==0):
@@ -48,7 +48,7 @@ def get_reports():
             print(report)
             try:
                 game=Game.objects.get(run_id=report['id'])
-            except Exception:
+            except Exception as exception:
                 continue
             if(report['status']==2):
                 logfile = client.action(schema, ['storage', 'get_file', 'read'],
@@ -56,11 +56,13 @@ def get_reports():
                 if (logfile is None):
                     continue
                 game.log=logfile.read()
+                game.status=3
             elif(report['status']==3):
                 game.status=4
                 pass
                 #run_game.delay(game.id)
             game.save()
+            print(Game.objects.get(run_id=report['id']).status)
 
     instance=LastGetReportsTime.objects.get()
     instance.time=(datetime.datetime.utcnow()-datetime.datetime(1970,1,1)).total_seconds()

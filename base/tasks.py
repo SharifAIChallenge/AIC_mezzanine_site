@@ -5,13 +5,18 @@ import os
 import coreapi
 from celery import shared_task
 import datetime
+
+from decimal import Decimal
 from django.conf import settings
+from django.core.files.base import ContentFile
+
 from base.models import Submit, LastGetReportsTime
+from django.db import models
 import json
 
 from game.tasks import run_game
 
-from game.models import Game
+from game.models import Game, GameTeamSubmit
 
 
 @shared_task
@@ -20,7 +25,7 @@ def get_reports():
     transports = [coreapi.transports.HTTPTransport(credentials=credientals)]
     client = coreapi.Client(transports=transports)
     schema = client.get(settings.BASE_MIDDLE_BRAIN_API_SCHEMA)
-    reports=client.action(schema,['run','report','list'],params={'time':int(LastGetReportsTime.get_solo().time)-10})
+    reports=client.action(schema,['run','report','list'],params={'time':int(LastGetReportsTime.get_solo().time)-5000})
     for report in reports:
         if(report['operation']=='compile'):
             if(len(Submit.objects.filter(run_id=report['id']))==0):
@@ -44,17 +49,31 @@ def get_reports():
                 submit.compile_log_file = 'Unknown error occurred maybe compilation timed out'
             submit.save()
         elif(report['operation']=='execute'):
-            game=Game.objects.get(run_id=report['id'])
+            try:
+                game=Game.objects.get(run_id=report['id'])
+            except Exception as exception:
+                continue
             if(report['status']==2):
                 logfile = client.action(schema, ['storage', 'get_file', 'read'],
                                         params={'token': report['parameters']['game_log']})
                 if (logfile is None):
                     continue
+
+                submissions = list(GameTeamSubmit.objects.all().filter(game=game).order_by('pk'))
+                submissions[0].score,submissions[1].score = json.load(client.action(schema, ['storage', 'get_file', 'read'],
+                                        params={'token': report['parameters']['game_score']}))
+                submissions[0].save()
+                submissions[1].save()
                 game.log=logfile.read()
+                game.log_file.save(report['parameters']['game_log'], ContentFile(game.log))
+                game.status=3
             elif(report['status']==3):
-                run_game.delay(game.id)
+                game.status=4
+                pass
+                #run_game.delay(game.id)
             game.save()
 
     instance=LastGetReportsTime.objects.get()
     instance.time=(datetime.datetime.utcnow()-datetime.datetime(1970,1,1)).total_seconds()
     instance.save()
+

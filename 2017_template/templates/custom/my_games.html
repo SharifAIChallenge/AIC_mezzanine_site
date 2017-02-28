@@ -183,6 +183,12 @@
                                             <td>
                                                 {% for team in participation.game.get_participants %}
                                                     {{ team.name }}
+                                                    {% if forloop.counter == 1 %}
+                                                      ({% trans 'red team' %})
+						    {% else %}
+						      ({% trans 'blue team' %})
+                                                    {% endif %}
+                                                    
                                                     {% if not forloop.last %}, {% endif %}
                                                 {% endfor %}
                                             </td>

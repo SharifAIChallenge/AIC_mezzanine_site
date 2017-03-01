@@ -171,10 +171,11 @@ def teams(request):
     wait_time = 0
 
     if request.GET.get('submitted', '0') == '1':
-        teams_list = teams_list.filter(final=True, submit__status=3).distinct()
+        #teams_list = teams_list.filter(final=True, submit__status=3).distinct()
+	teams_list = [ x for x in teams_list if x.is_finalized ]
         if hasattr(request.user, 'team') and \
                 request.user.team and \
-                request.user.team.final and \
+                request.user.team.is_finalized and \
                 request.user.team.has_successful_submit:
             show_friendly_button = True
             wait_time = GameRequest.check_last_time(request.user.team)
@@ -254,7 +255,7 @@ def my_games(request):
     if not request.user.is_superuser and not request.team.competition.my_games_active:
         raise Http404()
 
-    if not request.team.final:
+    if not request.team.is_finalized:
         messages.error(request, _('your team must be final'))
         return redirect('my_team')
 
@@ -275,7 +276,7 @@ def my_games(request):
 @team_required_and_finilized
 @require_POST
 def handle_game_request(request):
-    if not request.team.final:
+    if not request.team.is_finalized:
         return HttpResponse(json.dumps({
             'success': False,
             'message': str(_('your team must be final'))
@@ -320,7 +321,7 @@ def handle_game_request(request):
 @team_required_and_finilized
 @require_POST
 def game_request(request):
-    if not request.team.final:
+    if not request.team.is_finalized:
         messages.error(request, _('your team must be final'))
         return HttpResponseRedirect(reverse('teams_list') + '?final=1')
 
@@ -371,8 +372,8 @@ def remove(request):
     if type == 'team':
         team = Team.objects.get(pk=id)
         is_head = request.team.head == request.user
-        if not is_head or team != request.team or team.final:
-            if team.final:
+        if not is_head or team != request.team or team.is_finalized:
+            if team.is_finalized:
                 messages.error(request, _("The team is final."))
             raise PermissionDenied()
         managers = TeamMember.objects.filter(team=request.team)
@@ -386,7 +387,7 @@ def remove(request):
         is_head = request.team.head == request.user
         if not is_head and member != request.user:
             raise PermissionDenied()
-        if member.team.final:
+        if member.team.is_finalized:
             messages.error(request, _("The team is final."))
             raise PermissionDenied()
         TeamMember.objects.get(member=member, team=request.team).delete()
@@ -506,7 +507,7 @@ def request_join(request, team_id):
         messages.error(request, _("you already have a team"))
     if team.member_set.count() == team.competition.max_members:
         messages.error(request, _("the team has reached max members"))
-    elif team.final:
+    elif team.is_finalized:
         messages.error(request, _("The team is final."))
     else:
         req, is_new = JoinRequest.objects.get_or_create(team=team, member=request.user)

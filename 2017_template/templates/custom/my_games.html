@@ -8,7 +8,7 @@
 
 {% block extra_js %}
     {{ block.super }}
-    {% if team.final %}
+    {% if team.is_finalized %}
         <script type="text/javascript">
             $(function () {
                 var csrf_token = '{{ csrf_token }}';

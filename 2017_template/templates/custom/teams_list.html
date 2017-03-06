@@ -65,7 +65,7 @@
                                     <img style="display: inline-block" src="{{ team.get_members.1.country.flag }}"/>
                                 </div>
                             </td>
-                        {% if show_friendly_button and team.is_finalized and team.has_successful_submit and team != request.user.team %}
+                        {% if show_friendly_button and team.is_finalized and team.has_successful_submit and team != request.user.team and request.user.is_superuser %}
                             <td>
                                 <button type="submit" class="btn btn-primary" onclick="challenge({{ team.id }});">
                                     {% trans 'Challenge' %}

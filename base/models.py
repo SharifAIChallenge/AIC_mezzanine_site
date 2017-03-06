@@ -129,6 +129,14 @@ class Team(models.Model):
         team_member = TeamMember.objects.filter(team=self, is_head=True).first()
         return team_member.member if team_member else None
 
+class SharifID(models.Model):
+	username = models.CharField(max_length=200)
+	password = models.CharField(max_length=200)
+	member = models.ForeignKey(Member, default=0, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return ('<%s, %s>' % (self.username, self.password))
+
 
 class TeamMember(models.Model):
     member = models.ForeignKey(Member)

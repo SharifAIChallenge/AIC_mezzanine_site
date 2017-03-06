@@ -1,0 +1,12 @@
+{% load gravatar %}
+{% load i18n %}
+
+{% spaceless %}
+<tr data-id="{{ member.pk }}">
+
+    {% for shid in member.sharifid_set.all %}
+        <td>{{ shid.username }}</td>
+        <td>{{ shid.password }}</td>
+    {% endfor %}
+</tr>
+{% endspaceless %}

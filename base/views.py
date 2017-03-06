@@ -251,6 +251,17 @@ def my_team_info(request):
 
 @login_required
 @team_required_and_finilized
+def sharif_id(request):
+    user = request.user
+    if not user.team.has_paid:
+	    return HttpResponseRedirect('/team/my')
+    return render(request, 'custom/sharif_id.html', {
+        'user': user,
+    })
+
+
+@login_required
+@team_required_and_finilized
 def my_games(request):
     if not request.user.is_superuser and not request.team.competition.my_games_active:
         raise Http404()

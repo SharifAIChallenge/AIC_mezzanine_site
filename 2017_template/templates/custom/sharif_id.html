@@ -1,0 +1,108 @@
+{% extends "base_with_menu.html" %}
+{% load i18n mezzanine_tags %}
+
+{% block meta_title %}{% trans 'My Team' %}{% endblock %}
+{% block title %}{% trans 'My Team' %}{% endblock %}
+{% block extra_head %}
+<!--<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">-->
+<style>
+    td.name-avatar {
+    {% if LANGUAGE_BIDI %}
+        text-align: right;
+    {% else %}
+        text-align: left;
+    {% endif %}
+    }
+
+    .member-email {
+        color: #7c7c7c;
+        font-size: 0.95em;
+    }
+
+    td.action-buttons {
+        text-align: center;
+    }
+</style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col s12 m12 l12">
+        <div class="card-panel">
+            <h5>شناسه شریف</h5><br><br>
+            <h6 class="grey-text text-darken-2 to-hide"> {{ team.name }} </h6>
+            <div class="row">
+                <div class="col m12 s12 l12">
+                    <table class="table-striped ">
+                        <tr>
+                            <th>
+                                شناسه شریف
+                            </th>
+                            <th>
+                                رمز شناسه
+                            </th>
+                        </tr>
+                        {% with member=user %}
+                            {% include 'custom/includes/team_member_sharif_id_row.html' %}
+                        {% endwith %}
+                    </table>
+                </div>
+
+            </div>
+        <!-- qwertyuiopsredtfyguhijoklp;lk;. -->
+        <p>
+        برای دریافت فایل راهنمای ساخت و تنظیم شناسه شریف، روی آیکون سیستم عامل خود کلیک کنید.
+        </p>
+        <a href="//id.sharif.ir/static/users/files/sharifid-help-android.pdf">
+            <img src="//id.sharif.ir/static/users/files/sharifid-help-android.png">
+        </a>
+
+        <a href="//id.sharif.ir/static/users/files/sharifid-help-iOS.pdf">
+            <img src="//id.sharif.ir/static/users/files/sharifid-help-iOS.png">
+        </a>
+
+        <a href="//id.sharif.ir/static/users/files/sharifid-help-gnome.pdf">
+            <img src="//id.sharif.ir/static/users/files/sharifid-help-gnome.png">
+        </a>
+        <a href="//id.sharif.ir/static/users/files/sharifid-help-kde.pdf">
+            <img src="//id.sharif.ir/static/users/files/sharifid-help-kde.png">
+        </a>
+        <a href="//id.sharif.ir/static/users/files/sharifid-help-unity.pdf">
+            <img src="//id.sharif.ir/static/users/files/sharifid-help-unity.ico">
+        </a>
+
+        <a href="//id.sharif.ir/static/users/files/sharifid-help-ms-windows.pdf">
+            <img src="//id.sharif.ir/static/users/files/sharifid-help-ms-windows.png">
+        </a>
+
+        <a href="//id.sharif.ir/static/users/files/sharifid-help-windows-7.pdf">
+            <img src="//id.sharif.ir/static/users/files/sharifid-help-windows-7.png">
+        </a>
+
+        <a href="//id.sharif.ir/static/users/files/sharifid-help-mac.pdf">
+            <img src="//id.sharif.ir/static/users/files/sharifid-help-mac.png">
+        </a>
+
+
+        <p>
+            کانکشن اتصال در ویندوز را از
+            <a href="//id.sharif.ir/static/users/files/sharif.pbk"> اینجا</a>
+            دانلود نمایید.
+        </p>
+        <p>
+            برای دریافت اطلاعات بیشتر به
+            <a href="https://id.sharif.edu/help/">صفحه راهنمای شناسه شریف</a>
+            مراجعه کنید.
+        </p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_body %}
+{{ block.super }}
+    {% include  'importing_js/show_hide_button.html' %}
+{% endblock %}

@@ -16,6 +16,8 @@ from .models import Transaction
 @login_required
 @team_required_and_finilized
 def payment(request):
+    if not request.team.should_pay or request.team.has_paid:
+        return HttpResponseRedirect(reverse('my_team'))
     if request.method == 'POST':
         form = UserCompletionForm(request.POST, instance=request.user)
         if form.is_valid():

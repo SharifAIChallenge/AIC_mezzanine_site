@@ -4,7 +4,18 @@ from django.core.files import File
 from django.utils.encoding import force_bytes
 from queued_storage.backends import QueuedStorage
 from storages.backends.hashpath import HashPathStorage
+from storages.backends.sftpstorage import SFTPStorage
 
+
+class SFTPSkipDupStorage(SFTPStorage):
+    def save(self, name, content, max_length=None):
+        if name is None:
+            name = content.name
+        if not hasattr(content, 'chunks'):
+            content = File(content)
+        if not self.exists(name):
+            name = self._save(name, content)
+        return force_text(name.replace('\\', '/'))
 
 class SyncingStorage(QueuedStorage):
     def get_storage(self, name):

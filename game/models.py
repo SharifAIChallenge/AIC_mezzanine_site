@@ -52,7 +52,7 @@ class Competition(models.Model):
 
     @classmethod
     def get_current_instance(cls):
-        return cls.objects.get(id=current_site_id())
+        return cls.objects.get(site_id=current_site_id())
 
 
 def game_config_directory_path(instance, filename):

@@ -253,7 +253,7 @@ def my_team_info(request):
 @team_required_and_finilized
 def sharif_id(request):
     user = request.user
-    if not user.team.has_paid:
+    if not user.team.will_come==0:
 	    return HttpResponseRedirect('/team/my')
     return render(request, 'custom/sharif_id.html', {
         'user': user,

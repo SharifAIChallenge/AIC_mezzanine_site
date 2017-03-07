@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
-settings.SITE_ID=2
+settings.SITE_ID=3
 from base.models import SharifID, Member
 
 class Command(BaseCommand):
@@ -13,6 +13,7 @@ class Command(BaseCommand):
             if mem.team and mem.team.will_come==0 and mem.team.timestamp.year==2017:
                 for sh in mem.sharifid_set.all():
 	                mem.sharifid_set.remove(sh)
+		self.stdout.write(self.style.WARNING(mem.team.name))
                 mem.sharifid_set.add(shids[shid_count])
                 shid_count += 1
 

@@ -132,7 +132,7 @@ class Team(models.Model):
 class SharifID(models.Model):
 	username = models.CharField(max_length=200)
 	password = models.CharField(max_length=200)
-	member = models.ForeignKey(Member, default=0, on_delete=models.CASCADE)
+	member = models.ForeignKey(Member, null=True, blank=True, on_delete=models.CASCADE)
 
 	def __str__(self):
 		return ('<%s, %s>' % (self.username, self.password))
